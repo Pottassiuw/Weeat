@@ -28,6 +28,34 @@
     gap: 2rem;
 }
 
+.wrapper li{
+    position: relative;
+    
+}
+
+.wrapper li:hover {
+    cursor: pointer;
+}
+
+.wrapper li::before {
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    content: '';
+    width: 0%;
+    height: 4px;
+    background: none;
+}
+
+
+
+.wrapper li:hover::before {
+    background: #fa7f72;
+    width: 100%;
+    transition: 300ms all ease;
+}
+
+
 .wrapperButtons{
     display: flex;
     gap: 1rem;
