@@ -1,4 +1,4 @@
-nav {
+.navBar {
     display: flex;
 
     position: fixed;
@@ -14,9 +14,10 @@ nav {
     padding: 2.4rem;
 
     background-color: #efefef;
+    border: 2px;
 }
 
-nav div img {
+.logoImage {
     width: 70px;
     height: 70px;
 }

@@ -4,9 +4,9 @@ import logo from "../assets/weeatsLogo.png";
 
 const NavBar = () => {
     return (
-        <nav>
+        <nav className={styles.navBar}>
             <div className={styles.logo}>
-                <img src={logo} alt="logo"/>
+                <img src={logo} alt="logo" className={styles.logoImage}/>
             </div>
             <ul className={styles.wrapper} >
                 <li>Home</li>
