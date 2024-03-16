@@ -1,0 +1,39 @@
+.footer-nav {
+
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+    padding: 40px 20px;
+}
+
+.contact-info, .social-media, .location {
+    
+    flex: 1;
+}
+
+.contact-info h2, .social-media h2, .location h2 {
+    margin-bottom: 20px;
+}
+
+.social-media ul {
+    list-style: none;
+    padding: 0;
+}
+
+.social-media ul li {
+    margin-bottom: 10px;
+}
+
+.social-media ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.social-media ul li a:hover {
+    text-decoration: underline;
+}
+
+.location p {
+    font-style: italic;
+}
