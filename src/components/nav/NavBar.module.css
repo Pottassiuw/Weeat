@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'Knewave';
+    src: url('../../assets/fonts/Knewave/Knewave-Regular.ttf');
+}
+
+.navBar {
+    display: flex;
+    
+    justify-content: space-evenly;
+    align-items: center;
+
+    height: 80px;
+    min-width: 100%;
+
+    padding: 2.4rem;
+
+    background-color: #efefef;
+    border: 2px;
+}
+
+.logo {
+    font-size: 24pt;
+    font-family: 'Knewave';
+}
+
+.logoLinks {
+    color: black;
+    text-decoration: none;
+}
+
+.logoImage {
+    width: 70px;
+    height: 70px;
+}
+
+.wrapper {
+    align-items: center;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.wrapper li{
+    position: relative;
+}
+
+.wrapper li:hover {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.wrapper li::before {
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    content: '';
+    width: 0%;
+    height: 4px;
+    background: none;
+}
+
+.wrapper li:hover::before {
+    background: #ff3d3d;
+    width: 100%;
+    transition: 300ms all ease;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+}
+.searchBar input {
+    border: none;
+    border-radius: 1rem;
+    position: relative;
+    padding: 9px 0px;
+    padding-left: 2rem;
+    width: 20vw;
+
+    background: #d9d9d9;
+}
+
+.searchBar input:hover {
+    opacity: 0.8;
+}
+
+::-webkit-input-placeholder {
+    color: black;
+    font-weight: 600;
+    font-size: 11pt;
+}
+
+
+.searchIcon {
+    position: absolute;
+    margin-left: 10px;
+}
+
+.wrapperButtons{
+    display: flex;
+    gap: 1rem;
+} 
+
+.btnCadastrar {
+    border: none;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.btnEntrar {
+    border: none;
+    background-color:#ff3d3d;
+    padding: 6px;
+    border-radius: 10px;
+    color: white;
+}
+
+.btnEntrar .linkStyles {
+    color: white;
+    font-weight: 500;
+    font-size: 11pt;
+}
+
+.btnCadastrar .linkStyles {
+    color: #ff3d3d;
+    font-weight: 500;
+    font-size: 11pt;
+}
+
+.linkStyles {
+    color: black;
+    text-decoration: none;
+}
