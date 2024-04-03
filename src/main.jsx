@@ -43,11 +43,11 @@ const router = createBrowserRouter([
       {
         path: 'RegistroUsuario',
         element: <UserRegister />,
-        children: [{
-          path: 'RegistroEmail',
-          element: <EmailAuth />
-      }]
-      }
+      },
+      {
+        path: 'RegistroUsuario/RegistroEmail',
+        element: <EmailAuth />
+    }
     ]
   }
 

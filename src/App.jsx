@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 
-//Reaproveitamento de estruturas 
-import { Outlet } from 'react-router-dom'
-
+//Reuse of structures
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <section id='container_all'>
       <Outlet />
-    </div>
+    </section>
   );
 }
 
-export default App
+export default App;
