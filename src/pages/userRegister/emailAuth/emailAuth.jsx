@@ -1,13 +1,14 @@
-import styles from './emailAuth.module.css'
+import { Box } from '../UserRegister.styles'
+
 
 const EmailAuth = () => {
   return (
-    <section id={styles.hero}>
-      <div className={styles.wrapper}>
-        <div className={styles.text_container}>
+    <section>
+      <Box>
+        <div>
           <h1>Crie sua conta</h1>
         </div>
-        <div className={styles.form_container}>
+        <div>
           <form action="">
             <label htmlFor="user">Usuario</label>
             <input type="text" id='user' />
@@ -16,7 +17,7 @@ const EmailAuth = () => {
             <button type='submit'>Cadastrar</button>
           </form>
         </div>
-      </div>
+      </Box>
     </section>
   )
 }

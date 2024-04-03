@@ -1,4 +1,3 @@
-import React from "react";
 
 //Reuse of structures
 import { Outlet } from "react-router-dom";

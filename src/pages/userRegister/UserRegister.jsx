@@ -1,5 +1,5 @@
-import React from 'react'
 import styles from './UserRegister.module.css'
+import { Box, GoogleAuthButton, EmailOptionButton } from './UserRegister.styles'
 import { Link } from 'react-router-dom'
 
 // Assets importing
@@ -9,18 +9,6 @@ import faceLogo from '../../assets/images/facebookPng.png'
 
 
 const UserRegister = () => {
-  const handleGoogleLogin = () => {
-    window.location.href = ""
-    console.log("Redirecionando para autenticação do Google...");
-  }
-  const handleFacebookLogin = () => {
-    window.location.href = ""
-    console.log("Redirecionando para autenticação do Google...");
-  }
-
-  const goToEmailAuth = () => {
-    
-  }
   return (
     <section id={styles.hero}>
       <header>
@@ -28,7 +16,7 @@ const UserRegister = () => {
           <Link to='/' className={styles.logoLink}><h1 className={styles.logo}>Weeat</h1 ></Link>
         </div>
       </header>
-      <div className={styles.wrapper}>
+      <Box>
         <div className={styles.text_container}>
           <h1>Descubra novos estabelecimentos no poder de um clique!</h1>
           <p>como deseja continuar?</p>
@@ -37,7 +25,7 @@ const UserRegister = () => {
           <div className={styles.auth_container}>
             <div className={styles.googleAuth}>
               <img src={googleLogo} alt="google" />
-              <button className={styles.googleBtn}>Google</button>
+              <GoogleAuthButton>Google</GoogleAuthButton>
             </div>
             <div className={styles.facebookAuth}>
               <img src={faceLogo} alt="" />
@@ -46,10 +34,10 @@ const UserRegister = () => {
           </div>
           <div className={styles.btnLoginContainer}>
             <p>Ou cadastrar com</p>
-            <Link to="RegistroEmail"><button className={styles.emailBtn}>Email</button></Link>
+            <Link to="RegistroEmail"><EmailOptionButton>Email</EmailOptionButton></Link>
           </div>
         </div>
-      </div>
+      </Box>
     </section>
   )
 }
