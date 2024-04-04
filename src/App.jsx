@@ -1,4 +1,3 @@
-
 //Reuse of structures
 import { Outlet } from "react-router-dom";
 import  GlobalStyle  from "./index.styles";

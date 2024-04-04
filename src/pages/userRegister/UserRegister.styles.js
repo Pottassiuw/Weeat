@@ -20,7 +20,7 @@ export const WrapperBox = styled.div`
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     height: 100vh;
-    width: 50vw;
+    width: 45vw;
 
     overflow: auto;
 

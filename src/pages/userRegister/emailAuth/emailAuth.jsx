@@ -1,10 +1,10 @@
-import { Box } from '../UserRegister.styles'
+import { WrapperBox, Container } from './emailAuth.styles'
 
 
 const EmailAuth = () => {
   return (
-    <section>
-      <Box>
+    <Container>
+      <WrapperBox>
         <div>
           <h1>Crie sua conta</h1>
         </div>
@@ -17,8 +17,8 @@ const EmailAuth = () => {
             <button type='submit'>Cadastrar</button>
           </form>
         </div>
-      </Box>
-    </section>
+      </WrapperBox>
+    </Container>
   )
 }
 
