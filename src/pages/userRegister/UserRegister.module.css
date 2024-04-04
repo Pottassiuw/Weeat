@@ -86,21 +86,6 @@ header {
     position: relative;
 }
 
-
-.googleBtn, .facebookBtn {
-    border: none;
-    width: 350px;
-    height: fit-content;
-    padding: 1rem;
-    margin: 10px 0px;
-    border-radius: 5px;
-
-
-    font-size: 13pt;
-    font-weight: 600;
-}
-
-
 .googleAuth img {
     width: 35px;
     height: 35px;
@@ -122,18 +107,6 @@ header {
     top: 50%;
 
     transform: translateY(-50%);
-}
-
-
-
-.facebookBtn {
-    background: #4236bd;
-    color: white
-}
-
-.facebookBtn:hover {
-    background: #2c238f;
-    cursor: pointer;
 }
 
 .btnLoginContainer {

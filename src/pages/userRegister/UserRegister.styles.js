@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Box = styled.div`
+export const WrapperBox = styled.div`
 
     background-color: #fff;
     display: flex;
@@ -60,6 +60,29 @@ export const EmailOptionButton = styled.button`
 
     &:hover{
         background-color: #c5c5c5;
+        cursor: pointer;
+    }
+
+`
+
+export const FacebookAuthButton = styled.button`
+
+    border: none;
+    width: 350px;
+    height: fit-content;
+    padding: 1rem;
+    margin: 10px 0px;
+    border-radius: 5px;
+
+
+    font-size: 13pt;
+    font-weight: 600;
+
+    background: #4236bd;
+    color: white;
+
+    &:hover {
+        background: #2c238f;
         cursor: pointer;
     }
 

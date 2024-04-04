@@ -1,5 +1,5 @@
 import styles from './UserRegister.module.css'
-import { Box, GoogleAuthButton, EmailOptionButton } from './UserRegister.styles'
+import { WrapperBox, GoogleAuthButton, EmailOptionButton, FacebookAuthButton } from './UserRegister.styles'
 import { Link } from 'react-router-dom'
 
 // Assets importing
@@ -16,7 +16,7 @@ const UserRegister = () => {
           <Link to='/' className={styles.logoLink}><h1 className={styles.logo}>Weeat</h1 ></Link>
         </div>
       </header>
-      <Box>
+      <WrapperBox>
         <div className={styles.text_container}>
           <h1>Descubra novos estabelecimentos no poder de um clique!</h1>
           <p>como deseja continuar?</p>
@@ -29,7 +29,7 @@ const UserRegister = () => {
             </div>
             <div className={styles.facebookAuth}>
               <img src={faceLogo} alt="" />
-              <button className={styles.facebookBtn}>Facebook</button>
+              <FacebookAuthButton>Facebook</FacebookAuthButton>
             </div>
           </div>
           <div className={styles.btnLoginContainer}>
@@ -37,7 +37,7 @@ const UserRegister = () => {
             <Link to="RegistroEmail"><EmailOptionButton>Email</EmailOptionButton></Link>
           </div>
         </div>
-      </Box>
+      </WrapperBox>
     </section>
   )
 }
