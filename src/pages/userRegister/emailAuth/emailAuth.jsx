@@ -1,21 +1,26 @@
-import { WrapperBox, Container } from './emailAuth.styles'
-
+import { WrapperBox, Container, FormRegister, Logo, RouterLinks, InputField } from './emailAuth.styles'
 
 const EmailAuth = () => {
   return (
     <Container>
+      <header>
+        <RouterLinks to='/'>
+          <Logo>Weeat</Logo>
+        </RouterLinks>
+      </header>
       <WrapperBox>
         <div>
           <h1>Crie sua conta</h1>
+          <h2>Aproveite seu tempo...</h2>
         </div>
         <div>
-          <form action="">
+          <FormRegister>
             <label htmlFor="user">Usuario</label>
-            <input type="text" id='user' />
+            <InputField type="text" id="user" />
             <label htmlFor="password">Senha</label>
-            <input type="password" />
+            <InputField type="password" />
             <button type='submit'>Cadastrar</button>
-          </form>
+          </FormRegister>
         </div>
       </WrapperBox>
     </Container>

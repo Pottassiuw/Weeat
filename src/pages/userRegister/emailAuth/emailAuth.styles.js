@@ -1,5 +1,7 @@
-import styled from "styled-components";
-import background from "../../../assets/images/layered-waves-haikei.svg"
+import styled, { css } from "styled-components";
+import background from "../../../assets/images/layered-waves-haikei.svg";
+import fontLogo from '../../../assets/fonts/Knewave/Knewave-Regular.ttf';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.section`
 
@@ -36,5 +38,59 @@ export const WrapperBox = styled.div`
 
     overflow: auto;
 
+
+`
+
+export const FormRegister = styled.form`
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem;
+
+
+`
+export const Logo = styled.h1`
+    @font-face {
+        font-family: 'Knweave';
+        src: url(${fontLogo});
+    }
+
+    font-family: 'Knewave';
+    font-size: 28pt;
+    margin: 1rem;
+    letter-spacing: 1pt;
+    font-weight: 100;
+
+
+`
+
+export const RouterLinks = styled(Link)`
+    color: white;
+    text-decoration: none;
+
+
+`
+
+export const InputField = styled.input`
+    border: none;
+    border-radius: 5px;
+    padding: 6px;
+    position: relative;
+    margin: 10px;
+    width: 400px;
+
+    &::after {
+        content: '1';
+        width: 100%;
+        height: 200px;
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        
+    }
 
 `

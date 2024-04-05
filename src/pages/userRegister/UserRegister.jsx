@@ -12,9 +12,7 @@ const UserRegister = () => {
   return (
     <section id={styles.hero}>
       <header>
-        <div>
           <Link to='/' className={styles.logoLink}><h1 className={styles.logo}>Weeat</h1 ></Link>
-        </div>
       </header>
       <WrapperBox>
         <div className={styles.text_container}>
