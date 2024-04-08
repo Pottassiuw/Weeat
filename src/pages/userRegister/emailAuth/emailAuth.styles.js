@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import background from "../../../assets/images/layered-waves-haikei.svg";
 import fontLogo from '../../../assets/fonts/Knewave/Knewave-Regular.ttf';
 import { Link } from 'react-router-dom';
@@ -71,26 +71,14 @@ export const RouterLinks = styled(Link)`
     color: white;
     text-decoration: none;
 
-
 `
 
 export const InputField = styled.input`
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #ad002a;
+    border-radius: 1rem;
     padding: 6px;
-    position: relative;
     margin: 10px;
     width: 400px;
 
-    &::after {
-        content: '1';
-        width: 100%;
-        height: 200px;
-        background-color: black;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        
-    }
 
 `

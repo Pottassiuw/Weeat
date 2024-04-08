@@ -16,10 +16,16 @@ const EmailAuth = () => {
         <div>
           <FormRegister>
             <label htmlFor="user">Usuario</label>
-            <InputField type="text" id="user" />
+            <InputField required type="text" id="user" />
+            <label htmlFor="email">Email</label>
+            <InputField required type="email" id="email" />
             <label htmlFor="password">Senha</label>
             <InputField type="password" />
+            <label htmlFor="password" required>Confirmar senha</label>
+            <InputField type="password" required id="ConfirmPassword" />
             <button type='submit'>Cadastrar</button>
+            
+            
           </FormRegister>
         </div>
       </WrapperBox>
