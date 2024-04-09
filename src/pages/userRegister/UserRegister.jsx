@@ -1,5 +1,5 @@
 import styles from './UserRegister.module.css'
-import { WrapperBox, GoogleAuthButton, EmailOptionButton, FacebookAuthButton } from './UserRegister.styles'
+import { WrapperBox, GoogleAuthButton, EmailOptionButton, FacebookAuthButton, Container } from './UserRegister.styles'
 import { Link } from 'react-router-dom'
 
 // Assets importing
@@ -10,7 +10,7 @@ import faceLogo from '../../assets/images/facebookPng.png'
 
 const UserRegister = () => {
   return (
-    <section id={styles.hero}>
+    <Container>
       <header>
           <Link to='/' className={styles.logoLink}><h1 className={styles.logo}>Weeat</h1 ></Link>
       </header>
@@ -36,7 +36,7 @@ const UserRegister = () => {
           </div>
         </div>
       </WrapperBox>
-    </section>
+    </Container>
   )
 }
 

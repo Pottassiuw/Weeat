@@ -80,5 +80,4 @@ export const InputField = styled.input`
     margin: 10px;
     width: 400px;
 
-
 `
