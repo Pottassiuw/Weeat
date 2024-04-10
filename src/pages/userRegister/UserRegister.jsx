@@ -1,18 +1,24 @@
-import styles from './UserRegister.module.css'
-import { WrapperBox, GoogleAuthButton, EmailOptionButton, FacebookAuthButton, Container } from './UserRegister.styles'
-import { Link } from 'react-router-dom'
+import styles from "./UserRegister.module.css";
+import {
+  WrapperBox,
+  GoogleAuthButton,
+  EmailOptionButton,
+  FacebookAuthButton,
+  Container,
+} from "./UserRegister.styles";
+import { Link } from "react-router-dom";
 
 // Assets importing
-import googleLogo from '../../assets/images/googlePng.png'
-import faceLogo from '../../assets/images/facebookPng.png'
-
-
+import googleLogo from "../../assets/images/googlePng.png";
+import faceLogo from "../../assets/images/facebookPng.png";
 
 const UserRegister = () => {
   return (
     <Container>
       <header>
-          <Link to='/' className={styles.logoLink}><h1 className={styles.logo}>Weeat</h1 ></Link>
+        <Link to="/" className={styles.logoLink}>
+          <h1 className={styles.logo}>Weeat</h1>
+        </Link>
       </header>
       <WrapperBox>
         <div className={styles.text_container}>
@@ -32,12 +38,14 @@ const UserRegister = () => {
           </div>
           <div className={styles.btnLoginContainer}>
             <p>Ou cadastrar com</p>
-            <Link to="RegistroEmail"><EmailOptionButton>Email</EmailOptionButton></Link>
+            <Link to="RegistroEmail">
+              <EmailOptionButton>Email</EmailOptionButton>
+            </Link>
           </div>
         </div>
       </WrapperBox>
     </Container>
-  )
-}
+  );
+};
 
-export default UserRegister
+export default UserRegister;

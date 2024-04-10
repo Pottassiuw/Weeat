@@ -1,25 +1,17 @@
-import React from 'react'
-import styles from './UserLogin.module.css'
-import { Link } from 'react-router-dom'
+import styles from "./UserLogin.module.css";
+import { Link } from "react-router-dom";
 
-import googleLogo from '../../assets/images/googlePng.png'
-import faceLogo from '../../assets/images/facebookPng.png'
-
+import googleLogo from "../../assets/images/googlePng.png";
+import faceLogo from "../../assets/images/facebookPng.png";
 
 const UserRegister = () => {
-  const handleGoogleLogin = () => {
-    window.location.href = ""
-    console.log("Redirecionando para autenticação do Google...");
-  }
-  const handleFacebookLogin = () => {
-    window.location.href = ""
-    console.log("Redirecionando para autenticação do Google...");
-  }
   return (
     <section id={styles.hero}>
       <header>
         <div>
-          <Link to='/' className={styles.logoLink}><h1 className={styles.logo}>Weeat</h1 ></Link>
+          <Link to="/" className={styles.logoLink}>
+            <h1 className={styles.logo}>Weeat</h1>
+          </Link>
         </div>
       </header>
       <div className={styles.wrapper}>
@@ -45,7 +37,7 @@ const UserRegister = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default UserRegister
+export default UserRegister;
