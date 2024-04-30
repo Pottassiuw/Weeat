@@ -1,0 +1,72 @@
+#hero {
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url('../../assets/images/layered-waves-404.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    display: flex;
+
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.container h1 {
+    color: #ec645a;
+    font-size: 70pt;
+    position: relative;
+    
+}
+
+.container h1::before {
+    content: '';
+    width: 100%;
+    height: 5px;
+    background-color: black;
+
+    position: absolute;
+}
+
+.container h1::after{
+    content: '';
+    width: 100%;
+    height: 5px;
+    background-color: #ec645a;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.container h1 span {
+    color: black;
+}
+.container h2, .container h3 {
+    margin: 1rem;
+}
+.returnBtn {
+    margin-top: 0.6rem;
+    border: none;
+    box-shadow: 4px 5px 5px 0px  #ecc3c3b6;
+    padding: 12px;
+    width: 10rem;
+    border-radius: 1rem;
+    background: #fa7268c7;
+    font-weight: 400;
+    font-size: 13pt ;
+    transition: 321ms ease;
+}
+
+.returnBtn:hover {
+    cursor: pointer;
+    opacity: 0.9;
+
+}
