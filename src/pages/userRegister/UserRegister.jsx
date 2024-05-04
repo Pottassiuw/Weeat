@@ -5,7 +5,11 @@ import {
   EmailOptionButton,
   FacebookAuthButton,
   Container,
+<<<<<<< HEAD
 } from "./UserRegister.styles";
+=======
+} from "../../components/styles/Common-styles";
+>>>>>>> master
 import { Link } from "react-router-dom";
 
 // Assets importing

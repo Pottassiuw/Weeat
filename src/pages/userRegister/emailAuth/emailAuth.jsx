@@ -7,6 +7,7 @@ import {
   LabelInput,
   InputWrapper,
   RegisterButton,
+<<<<<<< HEAD
 } from "./emailAuth.styles.js";
 import { WrapperBox } from "../UserRegister.styles";
 import { useState } from "react";
@@ -26,6 +27,13 @@ const EmailAuth = () => {
     });
   };
 
+=======
+  TextWrapper,
+  WrapperBox
+} from "../../../components/styles/Common-styles.js";
+
+const EmailAuth = () => {
+>>>>>>> master
   return (
     <Container>
       <header>
@@ -34,6 +42,7 @@ const EmailAuth = () => {
         </RouterLinks>
       </header>
       <WrapperBox>
+<<<<<<< HEAD
         <div>
           <h1>Crie sua conta</h1>
           <h2>Aproveite seu tempo...</h2>
@@ -87,6 +96,28 @@ const EmailAuth = () => {
               required
               id="ConfirmPassword"
             />
+=======
+        <TextWrapper>
+          <h1>REGISTRAR</h1>
+          <h2>Aproveite seu tempo...</h2>
+        </TextWrapper>
+        <FormRegister>
+          <InputWrapper>
+            <InputField required type="text" id="user" />
+            <LabelInput htmlFor="user">Usuario</LabelInput>
+          </InputWrapper>
+          <InputWrapper>
+            <InputField required type="text" id="email" />
+            <LabelInput htmlFor="email">Email</LabelInput>
+          </InputWrapper>
+          <InputWrapper>
+            <InputField required type="password" id="password" />
+            <LabelInput htmlFor="password">Senha</LabelInput>
+          </InputWrapper>
+          <InputWrapper>
+            <InputField required type="password" id="ConfirmPassword" />
+            <LabelInput htmlFor="confirmPassword">Confirmar Senha</LabelInput>
+>>>>>>> master
           </InputWrapper>
           <RegisterButton type="submit">Registrar</RegisterButton>
         </FormRegister>

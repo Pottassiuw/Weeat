@@ -1,33 +1,38 @@
-
-import styles from './NavBar.module.css'
-import { FiSearch } from "react-icons/fi"
-import { Link } from 'react-router-dom'
+import {
+  Navigation,
+  LogoContainer,
+  StdLink,
+  LinkWrapper,
+  ButtonWrapper,
+  UserButton,
+  MenuButton,
+  UserIcon,
+} from "../../styles/Navbar-styles";
 
 const NavBar = () => {
+  return (
+    <Navigation>
+      <LogoContainer>
+        <StdLink>
+          <h2>W</h2>
+        </StdLink>
+      </LogoContainer>
+      <LinkWrapper>
+        <li>Home</li>
+        <li>Produtos</li>
+        <li>Estabelecimentos</li>
+        <li>Sobre</li>
+      </LinkWrapper>
+      <ButtonWrapper>
+        <UserButton>
+          <UserIcon />
+        </UserButton>
+        <MenuButton></MenuButton>
+      </ButtonWrapper>
+    </Navigation>
+  );
+};
 
-    return (
-        <nav className={styles.navBar}>
-            <div className="">
-                <Link to='/' className={styles.logoLinks}><h1 className={styles.logo}>Weeat</h1></Link>
-            </div>
-            <ul className={styles.wrapper} >
-                <Link to='/' className={styles.linkStyles}><li>Home</li></Link>
-                <Link to='Estabelecimentos' className={styles.linkStyles}><li>Estabelecimentos</li></Link>
-                <div className={styles.searchBar}>
-                    <input type='text' name="search-est" placeholder="Procure por estabelecimentos ou produtos..."/>
-                    <FiSearch className={styles.searchIcon}/>
-                
-                </div>
-            </ul>
-            
-            <ul className={styles.wrapperButtons}>
-                <button className={styles.btnCadastrar}><Link to='RegistroUsuario' className={styles.linkStyles}>Cadastrar</Link></button>
-                <button className={styles.btnEntrar}><Link to='LoginUsuario' className={styles.linkStyles}>Entrar</Link></button>
-            </ul>
+export default NavBar;
 
-        </nav>
-    )
-}
-
-export default NavBar
 
