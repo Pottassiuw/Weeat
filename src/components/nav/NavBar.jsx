@@ -1,4 +1,13 @@
-import { Navigation, LogoContainer, StdLink, LinkWrapper, ButtonWrapper, UserButton, MenuButton, UserIcon } from "../styles/Navbar-styles";
+import {
+  Navigation,
+  LogoContainer,
+  StdLink,
+  LinkWrapper,
+  ButtonWrapper,
+  UserButton,
+  MenuButton,
+  UserIcon,
+} from "../../styles/Navbar-styles";
 
 const NavBar = () => {
   return (
@@ -18,10 +27,8 @@ const NavBar = () => {
         <UserButton>
           <UserIcon />
         </UserButton>
-        <MenuButton>
-
-        </MenuButton>
-      </ButtonWrapper>
+        <MenuButton></MenuButton>
+      </ButtonWrapper>''
     </Navigation>
   );
 };

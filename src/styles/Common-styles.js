@@ -102,7 +102,7 @@ export const RegisterButton = styled.button`
     border-radius: 12px;
     background-color: #eb4034;
     cursor: pointer;
-    color: white
+    color: white;
 
 `
 
@@ -115,7 +115,7 @@ export const TextWrapper = styled.div`
     h1 {
         font-size: 40pt;
         letter-spacing: 2px;
-        color: #ab0000
+        color: #ab0000;
     }
 
 `
