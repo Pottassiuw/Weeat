@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-=======
->>>>>>> master
 import styles from './ErrorPage.module.css'
 import { Link } from 'react-router-dom'
 

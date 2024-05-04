@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import background from "../../assets/images/background-register-user.svg";
-import fontLogo from '../../assets/fonts/Knewave/Knewave-Regular.ttf';
+import background from "../assets/images/background-register-user.svg";
+import fontLogo from '../assets/fonts/Knewave/Knewave-Regular.ttf';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.section`

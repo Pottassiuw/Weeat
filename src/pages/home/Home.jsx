@@ -1,21 +1,5 @@
-<<<<<<< HEAD
-import React from 'react'
-import NavBar from '../../components/nav/NavBar'
-
-
-const Home = () => {
-    return (
-        <div>
-            <NavBar />
-            <h1>Home</h1>
-        </div>
-    )
-}
-
-export default Home
-=======
 import NavBar from '../../components/nav/NavBar';
-import {Container} from "../../components/styles/Home-styles";
+import {Container} from "../../styles/Home-styles";
 
 const Home = () => {
     return (
@@ -27,4 +11,3 @@ const Home = () => {
 }
 
 export default Home;
->>>>>>> master
