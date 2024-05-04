@@ -1,13 +1,17 @@
 //Reuse of structures
 import { Outlet } from "react-router-dom";
-import GlobalStyle from "./index.styles";
+import GlobalStyle from "./Global-styles";
+
+//Importing the theme
+import { ThemeProvider } from "styled-components";
+import theme from "./Theme";
 
 function App() {
   return (
-    <section id="container_all">
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Outlet />
-    </section>
+    </ThemeProvider>
   );
 }
 

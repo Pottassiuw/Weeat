@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 
-export const Navigation = styled.nav`
+export const nav = styled.nav`
     display: flex;
     
     justify-content: space-between;
@@ -18,7 +18,7 @@ export const Navigation = styled.nav`
 
 
 `
-export const LogoContainer = styled.div`
+export const logoContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,38 +26,45 @@ export const LogoContainer = styled.div`
     
 `
 
-export const StdLink = styled(Link)`
+export const link = styled(Link)`
     color: white;
 `
 
-export const LinkWrapper = styled.ul`
+export const links = styled.ul`
     list-style-type: none;
     display: inline-flex;
     gap: 5rem;
-
     li {
         color: white
     }
 `
 
-export const ButtonWrapper = styled.div`
+export const buttonWrapper = styled.div`
     display: flex;
     align-items: center;
 
     gap: 1rem;
 
 `
-export const UserIcon = styled(FiUser)`
+export const userIcon = styled(FiUser)`
     height: 30px;
     width: 30px;
 `
-export const UserButton = styled.button`
+export const userButton = styled.button`
     border: none;
     background: transparent;
     color: white;
 
 `
-export const MenuButton = styled.span`
 
+export const hamburguerWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+
+`
+export const span = styled.span`
+    border: 1px solid ${(props) => props.theme.colors.white};
+    width: 25px;
+    margin: 3px
 
 `

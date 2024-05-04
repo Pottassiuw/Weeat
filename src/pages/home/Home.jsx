@@ -1,11 +1,11 @@
 import NavBar from '../../components/nav/NavBar';
-import {Container} from "../../styles/Home-styles";
+import {Container, HeroTitle} from "../../styles/Home-styles";
 
 const Home = () => {
     return (
         <Container>
             <NavBar />
-            
+            <HeroTitle>Pense e eu compro p voçês</HeroTitle>
         </Container>
     )
 }

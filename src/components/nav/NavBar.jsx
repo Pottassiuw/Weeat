@@ -1,38 +1,31 @@
-import {
-  Navigation,
-  LogoContainer,
-  StdLink,
-  LinkWrapper,
-  ButtonWrapper,
-  UserButton,
-  MenuButton,
-  UserIcon,
-} from "../../styles/Navbar-styles";
+import * as Styled from "../../styles/Navbar-styles";
 
 const NavBar = () => {
   return (
-    <Navigation>
-      <LogoContainer>
-        <StdLink>
+    <Styled.nav>
+      <Styled.logoContainer>
+        <Styled.link>
           <h2>W</h2>
-        </StdLink>
-      </LogoContainer>
-      <LinkWrapper>
+        </Styled.link>
+      </Styled.logoContainer>
+      <Styled.links>
         <li>Home</li>
         <li>Produtos</li>
         <li>Estabelecimentos</li>
         <li>Sobre</li>
-      </LinkWrapper>
-      <ButtonWrapper>
-        <UserButton>
-          <UserIcon />
-        </UserButton>
-        <MenuButton></MenuButton>
-      </ButtonWrapper>
-    </Navigation>
+      </Styled.links>
+      <Styled.buttonWrapper>
+        <Styled.userButton>
+          <Styled.userIcon />
+        </Styled.userButton>
+        <Styled.hamburguerWrapper>
+          <Styled.span></Styled.span>
+          <Styled.span></Styled.span>
+          <Styled.span></Styled.span>
+        </Styled.hamburguerWrapper>
+      </Styled.buttonWrapper>
+    </Styled.nav>
   );
 };
 
 export default NavBar;
-
-

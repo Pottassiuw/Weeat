@@ -6,3 +6,6 @@ import {Container as cont} from "../styles/Common-styles"
 export const Container = styled(cont)`
     background-image: url(${Cimage1});
 `
+export const HeroTitle = styled.h1`
+    color: ${(props) => props.theme.colors.white}
+`

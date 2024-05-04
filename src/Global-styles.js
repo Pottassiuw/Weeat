@@ -7,7 +7,6 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     font-weight: 400;
 
-
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -17,6 +16,11 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+html {
+    scroll-snap-align: start;
+}
+
 `
 
 export default GlobalStyle;
