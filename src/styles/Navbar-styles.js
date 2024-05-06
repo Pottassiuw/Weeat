@@ -16,6 +16,7 @@ export const nav = styled.nav`
     backdrop-filter: blur(10px);
     border: 2px;
 
+    position: fixed;
 
 `
 export const logoContainer = styled.div`
@@ -25,7 +26,6 @@ export const logoContainer = styled.div`
 
     
 `
-
 export const link = styled(Link)`
     color: white;
 `
@@ -35,7 +35,8 @@ export const links = styled.ul`
     display: inline-flex;
     gap: 5rem;
     li {
-        color: white
+        color: white;
+        font-size: ${(props) => props.theme.fontSize.medium};
     }
 `
 
@@ -54,17 +55,21 @@ export const userButton = styled.button`
     border: none;
     background: transparent;
     color: white;
+    cursor: pointer;
 
 `
 
 export const hamburguerWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+    transition: 3s ease;
+
 
 `
 export const span = styled.span`
     border: 1px solid ${(props) => props.theme.colors.white};
     width: 25px;
-    margin: 3px
+    margin: 3px;
 
 `

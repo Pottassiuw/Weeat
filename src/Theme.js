@@ -1,12 +1,16 @@
 const theme = {
      colors: {
         white: '#FFF',
-        black: '#000',
+        primary: '#EB4034',
+        secondary: '#EBB134',
      },
      fontSize: {
-      small: '12pt',
-      medium: '14pt',
-      giant: '18pt'
+      small: '14pt',
+      medium: '16pt',
+      large: '20pt',
+      larger: '28pt',
+      great: '30pt',
+      giant: '38pt',
      }
 };
 export default theme;

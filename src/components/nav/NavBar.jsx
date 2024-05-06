@@ -1,30 +1,37 @@
-import * as Styled from "../../styles/Navbar-styles";
+import * as S from "../../styles/Navbar-styles";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(true);
+  }
+
   return (
-    <Styled.nav>
-      <Styled.logoContainer>
-        <Styled.link>
+    <S.nav>
+      <S.logoContainer>
+        <S.link>
           <h2>W</h2>
-        </Styled.link>
-      </Styled.logoContainer>
-      <Styled.links>
+        </S.link>
+      </S.logoContainer>
+      <S.links>
         <li>Home</li>
         <li>Produtos</li>
         <li>Estabelecimentos</li>
         <li>Sobre</li>
-      </Styled.links>
-      <Styled.buttonWrapper>
-        <Styled.userButton>
-          <Styled.userIcon />
-        </Styled.userButton>
-        <Styled.hamburguerWrapper>
-          <Styled.span></Styled.span>
-          <Styled.span></Styled.span>
-          <Styled.span></Styled.span>
-        </Styled.hamburguerWrapper>
-      </Styled.buttonWrapper>
-    </Styled.nav>
+      </S.links>
+      <S.buttonWrapper>
+        <S.userButton>
+          <S.userIcon />
+        </S.userButton>
+        <S.hamburguerWrapper isOpen={isOpen} onClick={toggleMenu}>
+          <S.span></S.span>
+          <S.span></S.span>
+          <S.span></S.span>
+        </S.hamburguerWrapper>
+      </S.buttonWrapper>
+    </S.nav>
   );
 };
 
