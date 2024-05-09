@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.section`
 
-    width: 100vw;
-    height: 100vh;
+    width: 100dvw;
+    height: 100dvh;
 
     background-image: url(${background});
     background-repeat: no-repeat;

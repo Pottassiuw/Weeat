@@ -8,13 +8,11 @@ import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 
 //Pages
 import Home from './pages/home/Home'
-import Contact from './pages/contact/Contact';
+import About from './pages/About/About';
 import Establishments from './pages/establishments/Establishments';
 import ErrorPage from './pages/errorPage/ErrorPage'
 import UserLogin from './pages/userLogin/UserLogin'
-//User register
-import UserRegister from './pages/userRegister/UserRegister';
-import EmailAuth from './pages/userRegister/emailAuth/emailAuth';
+import EmailAuth from './pages/userRegister/UserRegister';
 
 
 const router = createBrowserRouter([
@@ -28,8 +26,8 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: 'Contato',
-        element: <Contact />
+        path: 'Sobre',
+        element: <About />
       },
       {
         path: 'Estabelecimentos',
@@ -41,10 +39,6 @@ const router = createBrowserRouter([
       },
       {
         path: 'RegistroUsuario',
-        element: <UserRegister />,
-      },
-      {
-        path: 'RegistroUsuario/RegistroEmail',
         element: <EmailAuth />
     }
     ]

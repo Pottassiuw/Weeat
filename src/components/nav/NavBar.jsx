@@ -1,36 +1,51 @@
-import * as S from "../../styles/Navbar-styles";
+import * as S from "./styles";
 import { useState } from "react";
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(true);
-  }
+  const handleUserMenuToggle = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
+  };
 
   return (
     <S.nav>
       <S.logoContainer>
-        <S.link>
+        <S.link to="/">
           <h2>W</h2>
         </S.link>
       </S.logoContainer>
       <S.links>
-        <li>Home</li>
-        <li>Produtos</li>
-        <li>Estabelecimentos</li>
-        <li>Sobre</li>
+        <S.link to="/">
+          <li>Home</li>
+        </S.link>
+        <S.link to="/">
+          <li>Produtos</li>
+        </S.link>
+        <S.link to="/Estabelecimentos">
+          <li>Estabelecimentos</li>
+        </S.link>
+        <S.link to="/Sobre">
+          <li>Sobre</li>
+        </S.link>
       </S.links>
-      <S.buttonWrapper>
-        <S.userButton>
+      <S.buttonsWrapper>
+        <S.userButton isToggled={isUserMenuOpen} onClick={handleUserMenuToggle}>
           <S.userIcon />
+          {isUserMenuOpen && (
+            <S.userMenu>
+              <S.link to="/LoginUsuario">Login</S.link>
+              <S.link>Registro</S.link>
+            </S.userMenu>
+          )}
         </S.userButton>
-        <S.hamburguerWrapper isOpen={isOpen} onClick={toggleMenu}>
+
+        <S.hamburguerWrapper>
           <S.span></S.span>
           <S.span></S.span>
           <S.span></S.span>
         </S.hamburguerWrapper>
-      </S.buttonWrapper>
+      </S.buttonsWrapper>
     </S.nav>
   );
 };

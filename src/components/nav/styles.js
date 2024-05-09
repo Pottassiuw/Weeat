@@ -8,7 +8,7 @@ export const nav = styled.nav`
     justify-content: space-between;
     align-items: center;
 
-    height: 80px;
+    height: 10%;
     min-width: 100%;
 
     padding: 2.4rem;
@@ -28,6 +28,24 @@ export const logoContainer = styled.div`
 `
 export const link = styled(Link)`
     color: white;
+    text-decoration: none;
+    position: relative;
+
+    li {
+        &::before {
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: white;
+            position: absolute;
+            bottom: 0;
+            transition: 300ms all ease;
+        }
+        &:hover::before {
+            width: 100%;
+        }
+            
+    }
 `
 
 export const links = styled.ul`
@@ -37,10 +55,13 @@ export const links = styled.ul`
     li {
         color: white;
         font-size: ${(props) => props.theme.fontSize.medium};
+
     }
+
+    
 `
 
-export const buttonWrapper = styled.div`
+export const buttonsWrapper = styled.div`
     display: flex;
     align-items: center;
 
@@ -57,6 +78,8 @@ export const userButton = styled.button`
     color: white;
     cursor: pointer;
 
+    position: relative;
+
 `
 
 export const hamburguerWrapper = styled.div`
@@ -72,4 +95,22 @@ export const span = styled.span`
     width: 25px;
     margin: 3px;
 
+`
+export const userMenu = styled.div`
+    position: absolute;
+    background-color: rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    display: ${(props) => props ? 'flex' : 'none'};
+    flex-direction: column;
+    gap: 1rem;
+    width: 200px;
+    left: 50%;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    
+    transform: translateX(-50%);
+
+    & ${link} {
+        font-size: ${(props) => props.theme.fontSize.small}
+    }
 `

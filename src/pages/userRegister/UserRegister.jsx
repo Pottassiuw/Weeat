@@ -1,51 +1,40 @@
-import styles from "./UserRegister.module.css";
-import {
-  WrapperBox,
-  GoogleAuthButton,
-  EmailOptionButton,
-  FacebookAuthButton,
-  Container,
-} from "../../styles/Common-styles"
-import { Link } from "react-router-dom";
+import * as S from "../../styles/styles";
 
-// Assets importing
-import googleLogo from "../../assets/images/googlePng.png";
-import faceLogo from "../../assets/images/facebookPng.png";
-
-const UserRegister = () => {
+export default function UserRegister() {
   return (
-    <Container>
+    <S.Container>
       <header>
-        <Link to="/" className={styles.logoLink}>
-          <h1 className={styles.logo}>Weeat</h1>
-        </Link>
+        <S.RouterLinks to="/">
+          <S.Logo>Weeat</S.Logo>
+        </S.RouterLinks>
       </header>
-      <WrapperBox>
-        <div className={styles.text_container}>
-          <h1>Descubra novos estabelecimentos no poder de um clique!</h1>
-          <p>como deseja continuar?</p>
-        </div>
-        <div className={styles.form_container}>
-          <div className={styles.auth_container}>
-            <div className={styles.googleAuth}>
-              <img src={googleLogo} alt="google" />
-              <GoogleAuthButton>Google</GoogleAuthButton>
-            </div>
-            <div className={styles.facebookAuth}>
-              <img src={faceLogo} alt="" />
-              <FacebookAuthButton>Facebook</FacebookAuthButton>
-            </div>
-          </div>
-          <div className={styles.btnLoginContainer}>
-            <p>Ou cadastrar com</p>
-            <Link to="RegistroEmail">
-              <EmailOptionButton>Email</EmailOptionButton>
-            </Link>
-          </div>
-        </div>
-      </WrapperBox>
-    </Container>
+      <S.WrapperBox>
+        <S.TextWrapper>
+          <h1>REGISTRAR</h1>
+          <h2>Aproveite seu tempo...</h2>
+        </S.TextWrapper>
+        <S.FormRegister>
+          <S.InputWrapper>
+            <S.InputField required type="text" id="user" />
+            <S.LabelInput htmlFor="user">Usuario</S.LabelInput>
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputField required type="text" id="email" />
+            <S.LabelInput htmlFor="email">Email</S.LabelInput>
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputField required type="password" id="password" />
+            <S.LabelInput htmlFor="password">Senha</S.LabelInput>
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputField required type="password" id="ConfirmPassword" />
+            <S.LabelInput htmlFor="confirmPassword">
+              Confirmar Senha
+            </S.LabelInput>
+          </S.InputWrapper>
+          <S.RegisterButton type="submit">Registrar</S.RegisterButton>
+        </S.FormRegister>
+      </S.WrapperBox>
+    </S.Container>
   );
-};
-
-export default UserRegister;
+}

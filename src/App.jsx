@@ -4,7 +4,7 @@ import GlobalStyle from "./Global-styles";
 
 //Importing the theme
 import { ThemeProvider } from "styled-components";
-import theme from "./Theme";
+import theme from "./styles/Theme/main";
 
 function App() {
   return (
