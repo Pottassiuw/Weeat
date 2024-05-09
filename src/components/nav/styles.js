@@ -12,8 +12,8 @@ export const nav = styled.nav`
     min-width: 100%;
 
     padding: 2.4rem;
-    background-color: rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
+    background-color: rgba(16, 6, 4, 0.3);
+    backdrop-filter: blur(3px);
     border: 2px;
 
     position: fixed;

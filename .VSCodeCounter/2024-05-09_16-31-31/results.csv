@@ -1,0 +1,23 @@
+"filename", "language", "JavaScript", "JavaScript JSX", "CSS", "XML", "comment", "blank", "total"
+"c:\Users\pottassiu\Documents\Weeat\src\App.jsx", "JavaScript JSX", 0, 13, 0, 0, 2, 4, 19
+"c:\Users\pottassiu\Documents\Weeat\src\Global-styles.js", "JavaScript", 19, 0, 0, 0, 0, 7, 26
+"c:\Users\pottassiu\Documents\Weeat\src\assets\images\background-register-user.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\Users\pottassiu\Documents\Weeat\src\assets\images\layered-waves-404.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\Users\pottassiu\Documents\Weeat\src\assets\images\layered-waves-haikei.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\Users\pottassiu\Documents\Weeat\src\assets\images\wave-UserRegister.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\Users\pottassiu\Documents\Weeat\src\components\footer\Footer.jsx", "JavaScript JSX", 0, 20, 0, 0, 0, 3, 23
+"c:\Users\pottassiu\Documents\Weeat\src\components\nav\NavBar.jsx", "JavaScript JSX", 0, 48, 0, 0, 0, 6, 54
+"c:\Users\pottassiu\Documents\Weeat\src\components\nav\styles.js", "JavaScript", 91, 0, 0, 0, 0, 25, 116
+"c:\Users\pottassiu\Documents\Weeat\src\main.jsx", "JavaScript JSX", 0, 45, 0, 0, 2, 9, 56
+"c:\Users\pottassiu\Documents\Weeat\src\pages\About\About.jsx", "JavaScript JSX", 0, 8, 0, 0, 0, 2, 10
+"c:\Users\pottassiu\Documents\Weeat\src\pages\errorPage\ErrorPage.jsx", "JavaScript JSX", 0, 14, 0, 0, 0, 3, 17
+"c:\Users\pottassiu\Documents\Weeat\src\pages\errorPage\ErrorPage.module.css", "CSS", 0, 0, 58, 0, 0, 14, 72
+"c:\Users\pottassiu\Documents\Weeat\src\pages\establishments\Establishments.jsx", "JavaScript JSX", 0, 9, 0, 0, 0, 2, 11
+"c:\Users\pottassiu\Documents\Weeat\src\pages\home\Home.jsx", "JavaScript JSX", 0, 80, 0, 0, 3, 8, 91
+"c:\Users\pottassiu\Documents\Weeat\src\pages\home\styles.js", "JavaScript", 118, 0, 0, 0, 3, 33, 154
+"c:\Users\pottassiu\Documents\Weeat\src\pages\userLogin\UserLogin.jsx", "JavaScript JSX", 0, 37, 0, 0, 0, 2, 39
+"c:\Users\pottassiu\Documents\Weeat\src\pages\userRegister\UserRegister.jsx", "JavaScript JSX", 0, 39, 0, 0, 0, 2, 41
+"c:\Users\pottassiu\Documents\Weeat\src\reportWebVitals.js", "JavaScript", 12, 0, 0, 0, 0, 2, 14
+"c:\Users\pottassiu\Documents\Weeat\src\styles\Theme\main.js", "JavaScript", 25, 0, 0, 0, 0, 1, 26
+"c:\Users\pottassiu\Documents\Weeat\src\styles\styles.js", "JavaScript", 142, 0, 0, 0, 0, 64, 206
+"Total", "-", 407, 313, 58, 4, 10, 187, 979

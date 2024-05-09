@@ -1,0 +1,10 @@
+"filename", "language", "JavaScript", "JSON", "Markdown", "HTML", "comment", "blank", "total"
+"c:\Users\pottassiu\Documents\Weeat\.eslintrc.cjs", "JavaScript", -21, 0, 0, 0, 0, -1, -22
+"c:\Users\pottassiu\Documents\Weeat\README.md", "Markdown", 0, 0, -7, 0, 0, -3, -10
+"c:\Users\pottassiu\Documents\Weeat\index.html", "HTML", 0, 0, 0, -15, 0, -1, -16
+"c:\Users\pottassiu\Documents\Weeat\package-lock.json", "JSON", 0, -4436, 0, 0, 0, -1, -4437
+"c:\Users\pottassiu\Documents\Weeat\package.json", "JSON", 0, -29, 0, 0, 0, -1, -30
+"c:\Users\pottassiu\Documents\Weeat\public\index.html", "HTML", 0, 0, 0, -20, -23, -1, -44
+"c:\Users\pottassiu\Documents\Weeat\public\manifest.json", "JSON", 0, -25, 0, 0, 0, -1, -26
+"c:\Users\pottassiu\Documents\Weeat\vite.config.js", "JavaScript", -5, 0, 0, 0, -1, -2, -8
+"Total", "-", -26, -4490, -7, -35, -24, -11, -4593

@@ -16,10 +16,10 @@ export default {
      borderRadius: {
       button: '10px',
       images: '5px',
-      Wrappers: '10px',
+      wrappers: '1rem',
      },
      paddings: {
       medium: '1rem',
-      large: '30px',
+      large: '2rem',
      }
 };

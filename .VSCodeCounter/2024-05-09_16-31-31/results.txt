@@ -1,0 +1,64 @@
+Date : 2024-05-09 16:31:31
+Directory : c:\Users\pottassiu\Documents\Weeat\src
+Total : 21 files,  782 codes, 10 comments, 187 blanks, all 979 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript     |          6 |        407 |          3 |        132 |        542 |
+| JavaScript JSX |         10 |        313 |          7 |         41 |        361 |
+| CSS            |          1 |         58 |          0 |         14 |         72 |
+| XML            |          4 |          4 |          0 |          0 |          4 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                 |         21 |        782 |         10 |        187 |        979 |
+| . (Files)                                                                         |          4 |         89 |          4 |         22 |        115 |
+| assets                                                                            |          4 |          4 |          0 |          0 |          4 |
+| assets\images                                                                     |          4 |          4 |          0 |          0 |          4 |
+| components                                                                        |          3 |        159 |          0 |         34 |        193 |
+| components\footer                                                                 |          1 |         20 |          0 |          3 |         23 |
+| components\nav                                                                    |          2 |        139 |          0 |         31 |        170 |
+| pages                                                                             |          8 |        363 |          6 |         66 |        435 |
+| pages\About                                                                       |          1 |          8 |          0 |          2 |         10 |
+| pages\errorPage                                                                   |          2 |         72 |          0 |         17 |         89 |
+| pages\establishments                                                              |          1 |          9 |          0 |          2 |         11 |
+| pages\home                                                                        |          2 |        198 |          6 |         41 |        245 |
+| pages\userLogin                                                                   |          1 |         37 |          0 |          2 |         39 |
+| pages\userRegister                                                                |          1 |         39 |          0 |          2 |         41 |
+| styles                                                                            |          2 |        167 |          0 |         65 |        232 |
+| styles (Files)                                                                    |          1 |        142 |          0 |         64 |        206 |
+| styles\Theme                                                                      |          1 |         25 |          0 |          1 |         26 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                          | language       | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\pottassiu\Documents\Weeat\src\App.jsx                                    | JavaScript JSX |         13 |          2 |          4 |         19 |
+| c:\Users\pottassiu\Documents\Weeat\src\Global-styles.js                           | JavaScript     |         19 |          0 |          7 |         26 |
+| c:\Users\pottassiu\Documents\Weeat\src\assets\images\background-register-user.svg | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\pottassiu\Documents\Weeat\src\assets\images\layered-waves-404.svg        | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\pottassiu\Documents\Weeat\src\assets\images\layered-waves-haikei.svg     | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\pottassiu\Documents\Weeat\src\assets\images\wave-UserRegister.svg        | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\pottassiu\Documents\Weeat\src\components\footer\Footer.jsx               | JavaScript JSX |         20 |          0 |          3 |         23 |
+| c:\Users\pottassiu\Documents\Weeat\src\components\nav\NavBar.jsx                  | JavaScript JSX |         48 |          0 |          6 |         54 |
+| c:\Users\pottassiu\Documents\Weeat\src\components\nav\styles.js                   | JavaScript     |         91 |          0 |         25 |        116 |
+| c:\Users\pottassiu\Documents\Weeat\src\main.jsx                                   | JavaScript JSX |         45 |          2 |          9 |         56 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\About\About.jsx                      | JavaScript JSX |          8 |          0 |          2 |         10 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\errorPage\ErrorPage.jsx              | JavaScript JSX |         14 |          0 |          3 |         17 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\errorPage\ErrorPage.module.css       | CSS            |         58 |          0 |         14 |         72 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\establishments\Establishments.jsx    | JavaScript JSX |          9 |          0 |          2 |         11 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\home\Home.jsx                        | JavaScript JSX |         80 |          3 |          8 |         91 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\home\styles.js                       | JavaScript     |        118 |          3 |         33 |        154 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\userLogin\UserLogin.jsx              | JavaScript JSX |         37 |          0 |          2 |         39 |
+| c:\Users\pottassiu\Documents\Weeat\src\pages\userRegister\UserRegister.jsx        | JavaScript JSX |         39 |          0 |          2 |         41 |
+| c:\Users\pottassiu\Documents\Weeat\src\reportWebVitals.js                         | JavaScript     |         12 |          0 |          2 |         14 |
+| c:\Users\pottassiu\Documents\Weeat\src\styles\Theme\main.js                       | JavaScript     |         25 |          0 |          1 |         26 |
+| c:\Users\pottassiu\Documents\Weeat\src\styles\styles.js                           | JavaScript     |        142 |          0 |         64 |        206 |
+| Total                                                                             |                |        782 |         10 |        187 |        979 |
++-----------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
