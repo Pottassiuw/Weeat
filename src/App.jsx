@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Reuse of structures
 import { Outlet } from "react-router-dom";
 import GlobalStyle from "./Global-styles";
@@ -12,6 +13,21 @@ function App() {
       <GlobalStyle />
       <Outlet />
     </ThemeProvider>
+=======
+import './App.css';
+import LoginScreen from './components/pages/loginScreen';
+import NavBar from './components/layout/NavBar';
+
+
+
+function App() {
+  return (
+    <div className="App">
+      <NavBar />
+      <LoginScreen />
+      <p>pinto</p>
+    </div>
+>>>>>>> origin/main
   );
 }
 
