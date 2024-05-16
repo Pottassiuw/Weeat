@@ -15,7 +15,7 @@ export const nav = styled.nav`
     background-color: rgba(16, 6, 4, 0.3);
     backdrop-filter: blur(3px);
     border: 2px;
-
+    z-index: 999;
     position: fixed;
 
 `

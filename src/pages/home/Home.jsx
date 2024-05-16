@@ -2,8 +2,6 @@ import NavBar from "../../components/nav/NavBar";
 import Footer from "../../components/footer/Footer";
 
 //images
-import coca from "../../assets/images/coca.jpg";
-import heineken from "../../assets/images/heineken.jpeg";
 import Restaurant1 from "../../assets/images/mcDonalds.png";
 import starIcon from "../../assets/images/starIcon.png";
 
@@ -33,17 +31,27 @@ export default function Home() {
         </H.Box__section>
       </H.Hero__section>
 
-      {/* Products */}
+      {/* Get to know us */}
 
-      <H.Products__section>
-        <H.Title__div>
-          <h1>Experimente os melhores produtos dos melhores Restaurantes!</h1>
-        </H.Title__div>
-        <H.ProductsPrincipal__Wrapper>
-          <H.ProductPrincipal__img src={coca} />
-          <H.ProductPrincipal__img src={heineken} />
-        </H.ProductsPrincipal__Wrapper>
-      </H.Products__section>
+      <H.Know__section>
+        <H.Know__title>
+          <h1></h1>
+        </H.Know__title>
+        <H.Know__box>
+          <H.Know__card__wrapper>
+            <p>bla bla bla</p>
+          </H.Know__card__wrapper>
+          <H.Know__card__wrapper>
+            <p>bla bla bla bla</p>
+          </H.Know__card__wrapper>
+          <H.Know__card__wrapper>
+            <p>bla bla bla bla bla</p> 
+          </H.Know__card__wrapper>
+          <H.Know__card__wrapper>
+            <p>bla bla bla bla bla bla</p>
+          </H.Know__card__wrapper>
+        </H.Know__box>
+      </H.Know__section>
 
       {/* Restaurants */}
 
@@ -103,12 +111,12 @@ export default function Home() {
           <h1>Sobre nós</h1>
         </H.About__title>
         <H.About__title__text>
-        <p>
-          Nós somos uma modesta empresa que visa em primeiro lugar a satisfação
-          dos nossos clientes e a ampliação para os nossos estabelecimentos
-          sócios.
-        </p>
-      </H.About__title__text>
+          <p>
+            Nós somos uma modesta empresa que visa em primeiro lugar a
+            satisfação dos nossos clientes e a ampliação para os nossos
+            estabelecimentos sócios.
+          </p>
+        </H.About__title__text>
       </H.About__section>
       <Footer />
     </H.Container>
