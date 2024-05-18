@@ -13,12 +13,14 @@ export async function getUser (id) {
     }
 }
 
-export async function insertUser (id, name, email, password){
+export async function insertUser (name, email, password){
     try {
         const [result] = await pool.query(`
         INSERT INTO tb_cliente
-        (idCliente, nome, email, senha) VALUES (?, ? ,? ,?) `
-        , [id, name, email, password])
+        (nome, email, senha) VALUES (? ,? ,?) `
+        , [name, email, password])
+        
+        // show the created user
         const iduser = result.insertId
         const user = await getUser(iduser)
         return { message: 'User updated successfully', user};
