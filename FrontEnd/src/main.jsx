@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error/index";
-import userLogin from "./pages/users/userLogin/index";
-import userRegister from "./pages/users/userRegister/index";
+import UserLogin from "./pages/users/login/index";
+import UserRegister from "./pages/users/register/index";
 
 const router = createBrowserRouter([
   {
@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/user/login",
-        element: <userLogin />,
+        element: <UserLogin />,
       },
       {
         path: "/user/register",
-        element: <userRegister />,
+        element: <UserRegister />,
       },
     ],
   },

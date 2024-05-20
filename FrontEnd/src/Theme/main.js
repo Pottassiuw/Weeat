@@ -5,16 +5,13 @@ export default {
         primaryDark: '#B03027',
         secondary: '#EBB134',
      },
-     fontSize: {
-      small: '12pt',
-      medium: '15pt',
-      large: '18pt',
-      larger: '24pt',
-      great: '28pt',
-      giant: '38pt',
+     font: {
+      text: '13pt',
+      subtitles: '28pt',
+      title:'42pt'
      },
-     borderRadius: {
-      button: '10px',
+     border: {
+      button: '6px',
       images: '5px',
       wrappers: '1rem',
      },
