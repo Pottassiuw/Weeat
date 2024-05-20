@@ -16,7 +16,7 @@ export async function getUser (id) {
 export async function insertUser (name, email, password){
     try {
         const [result] = await pool.query(`
-        INSERT INTO tb_cliente
+            INSERT INTO tb_cliente
         (nome, email, senha) VALUES (? ,? ,?) `
         , [name, email, password])
         
