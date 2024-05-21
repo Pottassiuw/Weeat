@@ -37,13 +37,11 @@ export const WrapperInput = styled.div`
   width: 550px;
   margin: 0.7rem 0px;
 
-  
   input {
     &:focus + label,
     &:valid + label {
       transform: translateY(-20px);
       transition: 300ms all ease;
-      
     }
   }
 `;
@@ -80,6 +78,7 @@ export const SubmitButton = styled.button`
   color: white;
   border-radius: ${(p) => p.theme.border.button};
   font-size: ${(p) => p.theme.font.text};
+  cursor: pointer;
 `;
 
 export const WrapperImage = styled.div`

@@ -13,6 +13,10 @@ function Register() {
             <$.Label>Usuário</$.Label>
           </$.WrapperInput>
           <$.WrapperInput>
+            <$.Input type='text' required />
+            <$.Label>Email</$.Label>
+          </$.WrapperInput>
+          <$.WrapperInput>
             <$.Input type='password' required />
             <$.Label>Senha</$.Label>
           </$.WrapperInput>

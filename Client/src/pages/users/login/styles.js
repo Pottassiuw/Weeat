@@ -86,6 +86,7 @@ export const SubmitButton = styled.button`
   color: white;
   border-radius: ${(p) => p.theme.border.button};
   font-size: ${(p) => p.theme.font.text};
+  cursor: pointer;
 `;
 
 export const WrapperImage = styled.div`
