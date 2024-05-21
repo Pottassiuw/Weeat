@@ -7,8 +7,10 @@ export default {
      },
      font: {
       text: '13pt',
-      subtitles: '28pt',
-      title:'42pt'
+      subtitle: '15pt',
+      subtitleG: '28pt',
+      title: '38pt',
+      titleG:'45pt'
      },
      border: {
       button: '6px',

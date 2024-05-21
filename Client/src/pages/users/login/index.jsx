@@ -14,7 +14,7 @@ function Login() {
         <$.Form onSubmit={handleSubmit}>
           <$.WrapperInput>
             <$.Input type='text' required />
-            <$.Label>Usuário</$.Label>
+            <$.Label>Email</$.Label>
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Input type='password' required />

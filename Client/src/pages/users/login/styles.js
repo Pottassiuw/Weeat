@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   width: 100dvw;
   height: 100dvh;
-  position: relative;
 `;
 export const Wrapper = styled.div`
   display: flex;

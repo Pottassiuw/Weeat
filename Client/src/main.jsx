@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error/index";
 import UserLogin from "./pages/users/login/index";
 import UserRegister from "./pages/users/register/index";
+import EstablishmentLogin from './pages/establishments/login/index';
+import EstablishmentRegister from './pages/establishments/register/index'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
         path: "/user/register",
         element: <UserRegister />,
       },
+      {
+        path: "/establishment/login",
+        element: <EstablishmentLogin />
+      },
+      {
+        path: "/establishment/register",
+        element: <EstablishmentRegister />
+      }
     ],
   },
 ]);
