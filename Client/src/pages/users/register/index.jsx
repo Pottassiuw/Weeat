@@ -1,26 +1,30 @@
-import * as $ from "./styles";
-import Image from "../../../assets/login_register.png";
-
-function Login() {
+import * as $ from './styles'
+import Image from '../../../assets/login_register.png';
+function Register() {
   return (
     <$.Container>
       <$.Wrapper>
         <$.WrapperTitle>
-          <$.Title>Login</$.Title>
+          <$.Title>Sign in</$.Title>
         </$.WrapperTitle>
         <$.Form>
           <$.WrapperInput>
-            <$.Input />
+            <$.Input type='text' required />
             <$.Label>Usuário</$.Label>
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input />
+            <$.Input type='password' required />
             <$.Label>Senha</$.Label>
+          </$.WrapperInput>
+          <$.WrapperInput>
+            <$.Input type='password' required />
+            <$.Label>Confirmar senha</$.Label>
           </$.WrapperInput>
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton>Entrar</$.SubmitButton>
+          <$.SubmitButton>Cadastrar</$.SubmitButton>
+          <$.RegisterText>Já possuí uma conta? <$.Links to="/user/login">Logar</$.Links></$.RegisterText>
         </$.Form>
       </$.Wrapper>
 
@@ -29,7 +33,7 @@ function Login() {
         <$.Image src={Image} />
       </$.WrapperImage>
     </$.Container>
-  );
+  )
 }
 
-export default Login;
+export default Register
