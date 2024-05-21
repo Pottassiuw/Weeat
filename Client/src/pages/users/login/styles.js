@@ -42,7 +42,14 @@ export const WrapperInput = styled.div`
     &:valid + label {
       transform: translateY(-20px);
       transition: 300ms all ease;
-      
+    }
+
+    &:focus {
+     border-bottom: 2px solid  rgba(255, 20, 0 , 0.5); 
+    }
+    &:valid {
+      border-bottom: 2px solid  rgba(255, 20, 0 , 0.3); 
+
     }
   }
 `;
