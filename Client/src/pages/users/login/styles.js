@@ -35,6 +35,7 @@ export const WrapperInput = styled.div`
   padding: 1rem 0rem;
   position: relative;
   width: 550px;
+  margin: 0.7rem 0px;
 
   
   input {
@@ -49,7 +50,6 @@ export const WrapperInput = styled.div`
     }
     &:valid {
       border-bottom: 2px solid  rgba(255, 20, 0 , 0.3); 
-
     }
   }
 `;
@@ -67,6 +67,7 @@ export const Label = styled.label`
   bottom: 20px;
   left: 0;
   pointer-events: none;
+  transition: 300ms all ease;
 `;
 
 export const WrapperCheckbox = styled.div`
