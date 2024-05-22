@@ -43,12 +43,8 @@ export const WrapperInput = styled.div`
       transform: translateY(-20px);
       transition: 300ms all ease;
     }
-
-    &:focus {
+    &:focus, &:valid {
      border-bottom: 2px solid  rgba(255, 20, 0 , 0.5); 
-    }
-    &:valid {
-      border-bottom: 2px solid  rgba(255, 20, 0 , 0.3); 
     }
   }
 `;
@@ -58,6 +54,7 @@ export const Input = styled.input`
   border-bottom: 2px solid #d9d9d9;
   width: 100%;
   outline: none;
+  font-size: 12pt;
 `;
 
 export const Label = styled.label`

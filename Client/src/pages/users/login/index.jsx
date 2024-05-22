@@ -27,7 +27,6 @@ function Login() {
           <$.RegisterText>Ainda não é cadastrado? <$.Links to="/user/register">registre</$.Links></$.RegisterText>
         </$.Form>
       </$.Wrapper>
-
       <$.WrapperImage>
         <$.Title>Busque os melhores restaurantes</$.Title>
         <$.Image src={Image} />
