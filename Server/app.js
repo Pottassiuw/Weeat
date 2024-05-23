@@ -1,8 +1,8 @@
 import express from "express"
 import dotenv from "dotenv"
-import userRouter from "./src/api/routes/users.js"
-import establishmentRouter from "./src/api/routes/establishment.js"
-import { centralErrorHandler } from "./src/api/middlewares/errorHandle.js"
+import userRouter from "./src/routes/users.js"
+import establishmentRouter from "./src/routes/establishment.js"
+import { centralErrorHandler } from "./src/middlewares/errorHandle.js"
 
 dotenv.config()
 
@@ -18,4 +18,3 @@ app.use(centralErrorHandler)
 app.listen(PORT,() => {
     console.log("Done!")
 })
-  

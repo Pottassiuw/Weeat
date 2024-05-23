@@ -1,24 +1,45 @@
 import * as $ from "./styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Register() {
+  const apiUrl = "https://localhost:4040/";
   const [page, setPage] = useState(1);
-  const [establishmentData, setEstablishmentData] = useState({
+  const [establishmentData, setEstablishmentData] = useState(() => ({
     name: "",
     email: "",
     password: "",
-  });
+    ZIP: "",
+    neighborhood: "",
+    city: "",
+    address: "",
+    number: "",
+    complement: "",
+  }));
 
   const handlePages = () => {
     setPage(2);
   };
 
-  const handleChages = (e) => {
+  const handleChanges = (e) => {
+    const { name, value } = e.target;
     setEstablishmentData({
       ...establishmentData,
-      [e.target.name]: e.target.value
-    })
-  }
+      [name]: value,
+    });
+  };
+
+  const sendEstablishmetData = async () => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}establishment`,
+        establishmentData
+      );
+      console.log("Data send successfully!", response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <$.Screen>
@@ -31,22 +52,43 @@ export default function Register() {
                 Seja um sócio weeat e expanda seu comércio
               </$.Subtitle>
             </$.WrapperTitle>
-            <$.Form onSubmit={(e) => {e.preventDefault()}}>
+            <$.Form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <$.WrapperInput>
                 <$.Label>Nome Completo</$.Label>
-                <$.Input type="text" required placeholder="Pedro da Silva" />
+                <$.Input
+                  type="text"
+                  name="name"
+                  value={establishmentData.name}
+                  onChange={handleChanges}
+                  required
+                  placeholder="Pedro da Silva"
+                />
               </$.WrapperInput>
               <$.WrapperInput>
                 <$.Label>E-mail</$.Label>
                 <$.Input
                   type="text"
+                  name="email"
+                  value={establishmentData.email}
+                  onChange={handleChanges}
                   required
                   placeholder="ex: email@email.com"
                 />
               </$.WrapperInput>
               <$.WrapperInput>
                 <$.Label>Celular</$.Label>
-                <$.Input type="phone" required placeholder="(00) 00000-0000" />
+                <$.Input
+                  type="phone"
+                  name="password"
+                  value={establishmentData.password}
+                  onChange={handleChanges}
+                  required
+                  placeholder="(00) 00000-0000"
+                />
               </$.WrapperInput>
               <$.SubmitButton type="submit" onClick={handlePages}>
                 Continuar agora!
@@ -55,8 +97,7 @@ export default function Register() {
           </$.Wrapper>
         </$.Container>
       ) : page === 2 ? (
-        <$.Rcontainer>
-        </$.Rcontainer>
+        <$.Rcontainer></$.Rcontainer>
       ) : null}
     </$.Screen>
   );
