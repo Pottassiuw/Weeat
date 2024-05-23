@@ -24,14 +24,13 @@ export const Container = styled.div`
   background-color: #fff;
   border-radius: 1rem;
   padding: 3rem;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 export const Wrapper = styled.div`
-  width: fit-content;
-  height: fit-content;
+  width: 100%;
+  height: 100%;
 `;
-
 export const WrapperTitle = styled.div`
   display: flex;
   flex-direction: column;
@@ -80,3 +79,8 @@ export const SubmitButton = styled.button`
   font-size: ${(p) => p.theme.font.text};
   cursor: pointer;
 `;
+
+export const Rcontainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
