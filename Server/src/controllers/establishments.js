@@ -39,7 +39,7 @@ export async function insertEstablishment(
     };
   } catch (err) {
     console.error("Error CREATING establishment: ", err);
-    return { error: "Internal server error" };
+    return { error: "Internal server error" };  
   }
 }
 
