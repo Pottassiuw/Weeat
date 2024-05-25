@@ -1,8 +1,8 @@
 import express from "express"
 import dotenv from "dotenv"
-import userRouter from "./src/routes/users.js"
-import establishmentRouter from "./src/routes/establishment.js"
-import { centralErrorHandler } from "./src/middlewares/errorHandle.js"
+import userRouter from "./routes/users..js"
+import establishmentRouter from "./routes/establishment.js"
+import { centralErrorHandler } from "./middlewares/errorHandle.js"
 
 dotenv.config()
 
