@@ -1,14 +1,12 @@
-import express from "express"
+import express, {Express, Request, Response} from "express"
 import dotenv from "dotenv"
-import userRouter from "./routes/users..js"
-import establishmentRouter from "./routes/establishment.js"
-import { centralErrorHandler } from "./middlewares/errorHandle.js"
+import { centralErrorHandler } from "./middlewares/errorHandle"
 
 dotenv.config()
 
 const PORT = process.env.PORT || 3000
 
-const app = express()
+const app: Express = express()
 app.use(express.json())
 
 app.use('/users', userRouter)
