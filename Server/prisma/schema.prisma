@@ -6,3 +6,51 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Store {
+  id          Int      @id @default(autoincrement())
+  name        String
+  Store_name  String
+  description String
+  address     String
+  email       String   @unique
+  contact     String
+  photo       String?
+  stars       Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  photo       String?
+  stars       Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Favorite {
+  id Int @id @default(autoincrement())
+}
+
+model Plan {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Float
+  duration  Int
+  type      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
