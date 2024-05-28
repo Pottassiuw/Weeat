@@ -8,32 +8,42 @@ datasource db {
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   name      String
-  email     String
+  email     String         @unique
   password  String
-  address   String
-  favorite  Favorite[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  address   User_Address[]
+  favorites Favorite[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 
   @@unique([name, email])
   @@index([email])
 }
 
+model User_Address {
+  id     String @unique @default(uuid())
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+}
+
 model Store {
-  id            Int      @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   name          String
-  Store_name    String
+  storeName     String
   description   String
-  address       String
-  email         String   @unique
+  email         String          @unique
   contact       String
   photo         String?
   averageRating Float
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  category      String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  category      String
+  address       Store_Address[]
+  favorites     Favorite[]
+
+  @@index([name])
+  @@index([category])
 }
 
 model Product {
@@ -45,14 +55,28 @@ model Product {
   averageRating Float
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+
+  @@index([name])
+  @@index([price])
 }
 
 model Favorite {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
   userId    Int
+  storeId   Int
+  user      User     @relation(fields: [userId], references: [id])
+  store     Store    @relation(fields: [storeId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([storeId])
+}
+
+model Store_Address {
+  id      String @unique @default(uuid())
+  storeId Int
+  store   Store  @relation(fields: [storeId], references: [id])
 }
 
 model Plan {
@@ -63,6 +87,8 @@ model Plan {
   type      PlanType @default(BASIC)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([name])
 }
 
 enum PlanType {
