@@ -8,38 +8,38 @@ datasource db {
 }
 
 model User {
-  id        Int            @id @default(autoincrement())
+  id        Int           @id @default(autoincrement())
   name      String
-  email     String         @unique
+  email     String        @unique
   password  String
-  address   User_Address[]
+  address   UserAddress[]
   favorites Favorite[]
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 
   @@unique([name, email])
   @@index([email])
 }
 
-model User_Address {
-  id     String @unique @default(uuid())
+model UserAddress {
+  id     Int  @id @default(autoincrement())
   userId Int
-  user   User   @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
 }
 
 model Store {
-  id            Int             @id @default(autoincrement())
+  id            Int            @id @default(autoincrement())
   name          String
   storeName     String
   description   String
-  email         String          @unique
+  email         String         @unique
   contact       String
   photo         String?
   averageRating Float
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   category      String
-  address       Store_Address[]
+  address       StoreAddress[]
   favorites     Favorite[]
 
   @@index([name])
@@ -73,10 +73,10 @@ model Favorite {
   @@index([storeId])
 }
 
-model Store_Address {
-  id      String @unique @default(uuid())
+model StoreAddress {
+  id      Int   @id @default(autoincrement())
   storeId Int
-  store   Store  @relation(fields: [storeId], references: [id])
+  store   Store @relation(fields: [storeId], references: [id])
 }
 
 model Plan {
