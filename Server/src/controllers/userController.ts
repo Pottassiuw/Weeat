@@ -1,7 +1,7 @@
 import { PrismaClient, User } from "@prisma/client";
+import UserService. from "../services/userService";
 
 const prisma = new PrismaClient();
-
 class UserServices {
     async getUserById(userId: Number): Promise<User | null> {
         try {
