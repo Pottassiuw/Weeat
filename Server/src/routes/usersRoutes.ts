@@ -1,10 +1,10 @@
 // src/routes/userRoutes.ts
 
-import express from "express";
+import {Router} from "express";
 import userController from "../controllers/userController";
 import { authenticateUser } from "../middlewares/authUser";
 
-const router = express.Router();
+const router = Router();
 
 router.post('/register', userController.register.bind(userController));
 router.post('/login', userController.login.bind(userController));
