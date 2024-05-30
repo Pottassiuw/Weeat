@@ -12,7 +12,7 @@ model User {
   name      String
   email     String        @unique
   password  String
-  address   UserAddress[]
+  addresses UserAddress[]
   favorites Favorite[]
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
@@ -21,9 +21,10 @@ model User {
 }
 
 model UserAddress {
-  id     Int  @id @default(autoincrement())
+  id     Int    @id @default(autoincrement())
+  adress String
   userId Int
-  user   User @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Store {
@@ -37,16 +38,27 @@ model Store {
   contact          String
   banner           String?
   logo             String?
-  averageRating    Float
+  averageRating    Float          @default(0.0)
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
   category         String
-  address          StoreAddress[]
+  addresses        StoreAddress[]
+  products         Product[]
   favorites        Favorite[]
 
   @@index([name])
   @@index([email])
   @@index([category])
+}
+
+model StoreAddress {
+  id      Int    @id @default(autoincrement())
+  storeId Int
+  store   Store  @relation(fields: [storeId], references: [id])
+  street  String
+  city    String
+  state   String
+  zip     String
 }
 
 model Product {
@@ -55,9 +67,11 @@ model Product {
   description   String
   price         Float
   photo         String?
-  averageRating Float
+  averageRating Float    @default(0.0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  storeId       Int
+  store         Store    @relation(fields: [storeId], references: [id])
 
   @@index([name])
   @@index([price])
@@ -70,16 +84,10 @@ model Favorite {
   user      User     @relation(fields: [userId], references: [id])
   store     Store    @relation(fields: [storeId], references: [id])
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 
   @@index([userId])
   @@index([storeId])
-}
-
-model StoreAddress {
-  id      Int   @id @default(autoincrement())
-  storeId Int
-  store   Store @relation(fields: [storeId], references: [id])
 }
 
 model Plan {
@@ -89,7 +97,7 @@ model Plan {
   duration  Int
   type      PlanType @default(BASIC)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 
   @@index([name])
 }

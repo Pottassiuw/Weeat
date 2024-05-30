@@ -1,8 +1,34 @@
 import { PrismaClient, Store, StoreAddress, Favorite } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
+interface StoreRegistrationData {
+    name: string;
+    storeName: string;
+    description: string;
+    email: string;
+    taxpayerRegistry: number;
+    password: string;
+    contact: string;
+    category: string;
+    banner?: string;
+    logo?: string;
+    averageRating?: number;
+}
+
 class StoreService {
+    async registerStore(storeData: StoreRegistrationData): Promise<Store> {
+        const hashedPassword = await bcrypt.hash(storeData.password, 10);
+        const store = await prisma.store.create({
+            data: {
+                ...storeData,
+                password: hashedPassword,
+                averageRating: storeData.averageRating || 0,
+            },
+        });
+        return store;
+    }
     async updateStore(storeId: number, data: Partial<Store>): Promise<Store> {
         const store = await prisma.store.update({
             where: { id: storeId },

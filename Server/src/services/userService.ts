@@ -6,7 +6,25 @@ import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
+interface UserRegistrationData {
+  name: string;
+  email: string;
+  password: string;
+}
+
 class UserService {
+  async registerUser(userData: UserRegistrationData): Promise<User> {
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    const user = await prisma.user.create({
+      data: {
+        name: userData.name,
+        email: userData.email,
+        password: hashedPassword,
+      },
+    });
+    return user;
+  }
+
   async favoriteStore(userId: number, storeId: number): Promise<Favorite> {
     const favorite = await prisma.favorite.create({
       data: {

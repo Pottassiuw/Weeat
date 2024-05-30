@@ -1,5 +1,3 @@
-// favoriteService.ts
-
 import { PrismaClient, Favorite, Store, User } from '@prisma/client';
 
 const prisma = new PrismaClient();
