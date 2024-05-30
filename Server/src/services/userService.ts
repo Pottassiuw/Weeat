@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
-const SECRET_KEY = process.env.SECRET_KEY;
 
 class UserService {
   async favoriteStore(userId: number, storeId: number): Promise<Favorite> {

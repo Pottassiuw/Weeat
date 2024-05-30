@@ -1,11 +1,9 @@
-// authService.ts
-
 import { PrismaClient, User, Store } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
-const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY as string;
 
 interface UserRegistrationData {
   name: string;
@@ -52,12 +50,6 @@ class AuthService {
     const token = this.generateToken('user', user.id);
     return token;
   }
-  
-  async logoutUser(token: string): Promise<void> {
-    const decodedTokem = jwt.verify(token, SECRET_KEY) as { userId: number };
-    const userId = decodedTokem.userId;
-  }
-
 
   async registerStore(storeData: StoreRegistrationData): Promise<Store> {
     const hashedPassword = await bcrypt.hash(storeData.password, 10);
