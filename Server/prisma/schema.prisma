@@ -32,8 +32,8 @@ model Store {
   name             String
   storeName        String
   description      String
-  email            String
-  TaxpayerRegistry Int
+  email            String         @unique
+  TaxpayerRegistry Int            @unique
   password         String
   contact          String
   banner           String?
@@ -45,8 +45,8 @@ model Store {
   address          StoreAddress[]
   favorites        Favorite[]
 
-  @@unique([email, TaxpayerRegistry])
   @@index([name])
+  @@index([email])
   @@index([category])
 }
 
@@ -73,7 +73,6 @@ model Favorite {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([userId, storeId])
   @@index([userId])
   @@index([storeId])
 }
