@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 
 interface StoreRegistrationData {
+    id?: number;
     name: string;
     storeName: string;
     description: string;

@@ -20,7 +20,7 @@ class UserService {
         name: userData.name,
         email: userData.email,
         password: hashedPassword,
-      },
+      }
     });
     return user;
   }
