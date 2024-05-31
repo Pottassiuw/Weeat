@@ -4,7 +4,7 @@ import favoriteService from "../services/favoriteService";
 const isError = (error: unknown): error is Error => {
     return error instanceof Error;
 };
-class FavoriteController {
+export default class FavoriteController {
     async add(req: Request, res: Response) {
         try {
             const { userId, storeId } = req.body;
@@ -66,5 +66,4 @@ class FavoriteController {
             res.status(500).json({ message });
         }
     }
-
 }
