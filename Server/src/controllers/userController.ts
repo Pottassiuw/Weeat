@@ -28,13 +28,13 @@ export default class UserController {
         }
     }
 
-    async favoriteStore(req: Request, res: Response) {
+    async favorite(req: Request, res: Response) {
         try {
-            if (!req.user) {
+            if (!req.entity) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }
             const { storeId } = req.body;
-            const favorite = await UserService.favoriteStore(req.user.id, storeId);
+            const favorite = await UserService.favoriteStore(req.entity.id, storeId);
             res.status(201).json(favorite);
         } catch (error) {
             const message = isError(error) ? error.message : 'Unknown error';
@@ -42,9 +42,9 @@ export default class UserController {
         }
     }
 
-    async deleteUser(req: Request, res: Response) {
+    async delete(req: Request, res: Response) {
         try {
-            if (!req.user) {
+            if (!req.entity) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }
             const user = await UserService.deleteUser(parseInt(req.params.id));
@@ -55,9 +55,9 @@ export default class UserController {
         }
     }
 
-    async updateUser(req: Request, res: Response) {
+    async update(req: Request, res: Response) {
         try {
-            if (!req.user) {
+            if (!req.entity) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }
             const user = await UserService.updateUser(parseInt(req.params.id), req.body);
@@ -68,9 +68,9 @@ export default class UserController {
         }
     }
 
-    async getUserById(req: Request, res: Response) {
+    async getById(req: Request, res: Response) {
         try {
-            if (!req.user) {
+            if (!req.entity) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }
             const user = await UserService.getUserById(parseInt(req.params.id));
@@ -85,9 +85,9 @@ export default class UserController {
         }
     }
 
-    async getUserFavorites(req: Request, res: Response) {
+    async getFavorites(req: Request, res: Response) {
         try {
-            if (!req.user) {
+            if (!req.entity) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }
             const favorites = await UserService.getUserFavorites(parseInt(req.params.id));

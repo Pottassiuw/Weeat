@@ -17,6 +17,13 @@ interface StoreRegistrationData {
     averageRating?: number;
 }
 
+interface StoreAddressData {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+}
+
 class StoreService {
     async registerStore(storeData: StoreRegistrationData): Promise<Store> {
         const hashedPassword = await bcrypt.hash(storeData.password, 10);
@@ -58,7 +65,7 @@ class StoreService {
         return stores;
     }
 
-    async addStoreAddress(storeId: number, addressData: Partial<StoreAddress>): Promise<StoreAddress> {
+    async addStoreAddress(storeId: number, addressData: StoreAddressData): Promise<StoreAddress> {
         const address = await prisma.storeAddress.create({
             data: {
                 storeId,
@@ -68,18 +75,11 @@ class StoreService {
         return address;
     }
 
-    async getStoreAddresses(storeId: number): Promise<StoreAddress[]> {
+    async getStoreAddressesById(storeId: number): Promise<StoreAddress[]> {
         const addresses = await prisma.storeAddress.findMany({
             where: { storeId },
         });
         return addresses;
-    }
-
-    async getStoreFavorites(storeId: number): Promise<Favorite[]> {
-        const favorites = await prisma.favorite.findMany({
-            where: { storeId },
-        });
-        return favorites;
     }
 
     async getAllStores(): Promise<Store[]> {

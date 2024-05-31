@@ -1,4 +1,4 @@
-import { PrismaClient} from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -21,7 +21,7 @@ class AuthService {
     return { token, user: userWithoutPassword };
   }
 
-  async loginStore(email: string, password: string): Promise<{token: string, store: any}> {
+  async loginStore(email: string, password: string): Promise<{ token: string, store: any }> {
     const store = await prisma.store.findUnique({ where: { email } });
     if (!store) {
       throw new Error('Store not found');
@@ -31,12 +31,12 @@ class AuthService {
       throw new Error('Invalid password');
     }
     const token = this.generateToken('store', store.id);
-    const {password:_, ...storeWithoutPassword } = store;
-    return {token, store: storeWithoutPassword};
+    const { password: _, ...storeWithoutPassword } = store;
+    return { token, store: storeWithoutPassword };
   }
 
   generateToken(type: 'user' | 'store', id: number): string {
-    const token = jwt.sign({ type, id }, SECRET_KEY ?? "", { expiresIn: '8h' });
+    const token = jwt.sign({ type, id }, SECRET_KEY ?? "", { expiresIn: '5d' });
     return token;
   }
 

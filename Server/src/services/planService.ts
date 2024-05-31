@@ -15,24 +15,24 @@ class PlanService {
         return plan;
     }
 
-    async updatePlan(planId: number, data: Partial<Plan>): Promise<Plan> {
+    async updatePlan(id: number, data: Partial<Plan>): Promise<Plan> {
         const updatePlan = await prisma.plan.update({
-            where: {id: planId},
+            where: {id},
             data
         });
         return updatePlan;
     }
 
-    async deletePlan(planId: number): Promise<Plan> {
+    async deletePlan(id: number): Promise<Plan> {
         const deletePlan = await prisma.plan.delete({
-            where: {id: planId},
+            where: {id},
         });
         return deletePlan;
     }
 
-    async getPlanById(planId: number): Promise<Plan | null> {
+    async getPlanById(id: number): Promise<Plan | null> {
         const get = await prisma.plan.findUnique({
-            where: {id: planId}
+            where: {id}
         });
         return get;
     }

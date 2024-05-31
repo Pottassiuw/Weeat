@@ -8,7 +8,6 @@
 */
 -- DropIndex
 DROP INDEX `Store_TaxpayerRegistry_key` ON `Store`;
-
 -- AlterTable
 ALTER TABLE `Store` DROP COLUMN `TaxpayerRegistry`,
     ADD COLUMN `taxpayerRegistry` INTEGER NOT NULL;

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import UserController from "../controllers/userController";
-import { authenticateUser } from "../middlewares/authUser";
+import { authenticate } from "../middlewares/auth";
 
 const router = Router();
 const controller = new UserController();
@@ -8,11 +8,9 @@ const controller = new UserController();
 router.post('/register', controller.register);
 router.post('/login', controller.login);
 // Routes that require authentication
-router.post('/favorite', authenticateUser, controller.favoriteStore);
-router.get('/:id', authenticateUser, controller.getUserById);
-router.get('/:id/favorites', authenticateUser, controller.getUserFavorites);
+router.get('/:id', authenticate, controller.getById);
 // Routes that do not require authentication
-router.delete('/:id', controller.deleteUser);
-router.put('/:id', controller.updateUser);
+router.delete('/:id', controller.delete);
+router.put('/:id', controller.update);
 
 export default router;

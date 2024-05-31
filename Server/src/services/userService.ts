@@ -1,12 +1,11 @@
 
 import { PrismaClient, User, Favorite, Store } from '@prisma/client';
-import { AsyncLocalStorage } from 'async_hooks';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
 interface UserRegistrationData {
+  id?: number;
   name: string;
   email: string;
   password: string;
@@ -17,22 +16,13 @@ class UserService {
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     const user = await prisma.user.create({
       data: {
+        id: userData.id,
         name: userData.name,
         email: userData.email,
         password: hashedPassword,
       },
     });
     return user;
-  }
-
-  async favoriteStore(userId: number, storeId: number): Promise<Favorite> {
-    const favorite = await prisma.favorite.create({
-      data: {
-        userId,
-        storeId,
-      },
-    });
-    return favorite;
   }
 
   async deleteUser(userId: number): Promise<User> {
@@ -53,7 +43,6 @@ class UserService {
     return user;
   }
 
-
   async getUserById(userId: number): Promise<User | null> {
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -61,13 +50,6 @@ class UserService {
     return user;
   }
 
-  async getUserFavorites(userId: number): Promise<(Favorite & { store: Store })[]> {
-    const favorites = await prisma.favorite.findMany({
-      where: { userId },
-      include: { store: true },
-    });
-    return favorites;
-  }
 }
 
 export default new UserService();
