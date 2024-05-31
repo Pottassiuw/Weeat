@@ -11,10 +11,10 @@ interface StoreRegistrationData {
     taxpayerRegistry: number;
     password: string;
     contact: string;
-    category: string;
     banner?: string;
     logo?: string;
     averageRating?: number;
+    category: string;
 }
 
 interface StoreAddressData {
