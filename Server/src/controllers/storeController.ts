@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import AuthService from '../services/authService';
 import StoreService from '../services/storeService';
+
+
 const isError = (error: unknown): error is Error => {
     return error instanceof Error;
 };
@@ -95,7 +97,7 @@ export default class StoreController {
         }
     }
 
-    async getStores(req: Request, res: Response){
+    async getStores(req: Request, res: Response) {
         try {
             if (!req.entity) {
                 return res.status(500).json({ error: "Unauthorized" });

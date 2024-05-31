@@ -1,15 +1,21 @@
 import { PrismaClient, Plan, PlanType } from "@prisma/client";
 
 const prisma = new PrismaClient();
+interface PlanCreateData {
+    name: string;
+    price: number;
+    duration: number;
+    type: PlanType;
+}
 
 class PlanService {
-    async createPlan(name: string, price: number, duration: number, type: PlanType): Promise<Plan> {
+    async createPlan(planData: PlanCreateData): Promise<Plan> {
         const plan = await prisma.plan.create({
             data: {
-                name,
-                price,
-                duration,
-                type
+                name: planData.name,
+                price: planData.price,
+                duration: planData.duration,
+                type: planData.type
             }
         });
         return plan;
@@ -17,7 +23,7 @@ class PlanService {
 
     async updatePlan(id: number, data: Partial<Plan>): Promise<Plan> {
         const updatePlan = await prisma.plan.update({
-            where: {id},
+            where: { id },
             data
         });
         return updatePlan;
@@ -25,15 +31,17 @@ class PlanService {
 
     async deletePlan(id: number): Promise<Plan> {
         const deletePlan = await prisma.plan.delete({
-            where: {id},
+            where: { id },
         });
         return deletePlan;
     }
 
     async getPlanById(id: number): Promise<Plan | null> {
         const get = await prisma.plan.findUnique({
-            where: {id}
+            where: { id }
         });
         return get;
     }
 }
+
+export default new PlanService();

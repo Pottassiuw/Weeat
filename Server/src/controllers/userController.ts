@@ -28,20 +28,6 @@ export default class UserController {
         }
     }
 
-    async favorite(req: Request, res: Response) {
-        try {
-            if (!req.entity) {
-                return res.status(401).json({ message: 'Unauthorized' });
-            }
-            const { storeId } = req.body;
-            const favorite = await UserService.favoriteStore(req.entity.id, storeId);
-            res.status(201).json(favorite);
-        } catch (error) {
-            const message = isError(error) ? error.message : 'Unknown error';
-            res.status(500).json({ message });
-        }
-    }
-
     async delete(req: Request, res: Response) {
         try {
             if (!req.entity) {
@@ -85,17 +71,5 @@ export default class UserController {
         }
     }
 
-    async getFavorites(req: Request, res: Response) {
-        try {
-            if (!req.entity) {
-                return res.status(401).json({ message: 'Unauthorized' });
-            }
-            const favorites = await UserService.getUserFavorites(parseInt(req.params.id));
-            res.status(200).json(favorites);
-        } catch (error) {
-            const message = isError(error) ? error.message : 'Unknown error';
-            res.status(500).json({ message });
-        }
-    }
 }
 

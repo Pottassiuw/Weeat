@@ -45,6 +45,15 @@ class FavoriteService {
     });
     return favorite;
   }
+
+  async updateFavorite(favoriteId: number, updateData: Partial<Favorite>): Promise<Favorite> {
+    const favorite = await prisma.favorite.update({
+      where: { id: favoriteId },
+      data: updateData,
+    });
+    return favorite;
+  }
+
 }
 
 export default new FavoriteService();
