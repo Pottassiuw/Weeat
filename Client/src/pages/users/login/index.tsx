@@ -1,9 +1,9 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-
+import { FormEvent } from "react";
 
 function Login() {
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
 

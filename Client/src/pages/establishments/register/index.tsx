@@ -1,5 +1,5 @@
 import * as $ from "./styles";
-import { useState, useEffect } from "react";
+import { useState, ChangeEvent } from "react";
 import axios from "axios";
 
 export default function Register() {
@@ -21,7 +21,7 @@ export default function Register() {
     setPage(2);
   };
 
-  const handleChanges = (e) => {
+  const handleChanges = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEstablishmentData({
       ...establishmentData,
@@ -55,6 +55,7 @@ export default function Register() {
             <$.Form
               onSubmit={(e) => {
                 e.preventDefault();
+                sendEstablishmetData();
               }}
             >
               <$.WrapperInput>
