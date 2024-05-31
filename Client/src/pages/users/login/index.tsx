@@ -1,9 +1,11 @@
-import * as $ from './styles';
-import Image from '../../../assets/login_register.png';
+import * as $ from "./styles";
+import Image from "../../../assets/login_register.png";
+
+
 function Login() {
   const handleSubmit = (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   return (
     <$.Container>
@@ -13,18 +15,21 @@ function Login() {
         </$.WrapperTitle>
         <$.Form onSubmit={handleSubmit}>
           <$.WrapperInput>
-            <$.Input type='text' required />
+            <$.Input type="text" required />
             <$.Label>Email</$.Label>
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input type='password' required />
+            <$.Input type="password" required />
             <$.Label>Senha</$.Label>
           </$.WrapperInput>
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
           <$.SubmitButton>Entrar</$.SubmitButton>
-          <$.RegisterText>Ainda não é cadastrado? <$.Links to="/user/register">registre</$.Links></$.RegisterText>
+          <$.RegisterText>
+            Ainda não é cadastrado?{" "}
+            <$.Links to="/user/register">registre</$.Links>
+          </$.RegisterText>
         </$.Form>
       </$.Wrapper>
       <$.WrapperImage>
