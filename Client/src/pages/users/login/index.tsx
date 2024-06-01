@@ -28,7 +28,7 @@ function Login() {
           <$.SubmitButton>Entrar</$.SubmitButton>
           <$.RegisterText>
             Ainda não é cadastrado?{" "}
-            <$.Links to="/user/register">registre</$.Links>
+            <$.Links to="/users/register">registre</$.Links>
           </$.RegisterText>
         </$.Form>
       </$.Wrapper>

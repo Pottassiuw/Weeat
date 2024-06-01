@@ -28,7 +28,7 @@ function Register() {
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
           <$.SubmitButton>Cadastrar</$.SubmitButton>
-          <$.RegisterText>Já possuí uma conta? <$.Links to="/user/login">Logar</$.Links></$.RegisterText>
+          <$.RegisterText>Já possuí uma conta? <$.Links to="/users/login">Logar</$.Links></$.RegisterText>
         </$.Form>
       </$.Wrapper>
 
