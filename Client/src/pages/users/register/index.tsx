@@ -36,6 +36,7 @@ function Register() {
         <$.Title>Busque os melhores restaurantes</$.Title>
         <$.Image src={Image} />
       </$.WrapperImage>
+      <$.BottomColor></$.BottomColor>
     </$.Container>
   )
 }

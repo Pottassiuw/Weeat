@@ -6,9 +6,9 @@ const router = Router();
 const controller = new ProductController();
 
 router.post("/", authenticate, controller.create);
+router.get("/", authenticate, controller.getAll);
 router.put("/:id", authenticate, controller.update);
 router.delete("/:id", authenticate, controller.delete);
 router.get("/:id", authenticate, controller.getById);
-router.get("/", authenticate, controller.getAll);
 
 export default router;

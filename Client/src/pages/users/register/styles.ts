@@ -115,3 +115,14 @@ export const Links = styled(Link)`
   font-weight: 600;
 
 `
+
+export const BottomColor = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #E8E8E8;
+  overflow: hidden;
+  width: 100%;
+  z-index: -1;
+  height: 10%;
+`

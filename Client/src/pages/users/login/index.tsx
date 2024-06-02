@@ -22,7 +22,7 @@ function Login() {
             <$.Input type="password" required />
             <$.Label>Senha</$.Label>
           </$.WrapperInput>
-          <$.WrapperCheckbox>
+          <$.WrapperCheckbox> 
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
           <$.SubmitButton>Entrar</$.SubmitButton>
@@ -36,6 +36,7 @@ function Login() {
         <$.Title>Busque os melhores restaurantes</$.Title>
         <$.Image src={Image} />
       </$.WrapperImage>
+      <$.BottomColor></$.BottomColor>
     </$.Container>
   );
 }

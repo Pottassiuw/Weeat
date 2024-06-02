@@ -1,15 +1,16 @@
-import { Router } from "express";
-import FavoriteController from "../controllers/favoriteController";
-import { authenticate } from "../middlewares/auth";
+import { Router } from 'express';
+import FavoriteController from '../controllers/favoriteController';
+import { authenticate, authorizeUser } from '../middlewares/auth';
 
 const router = Router();
 const controller = new FavoriteController();
 
-router.post("/", authenticate, controller.add);
-router.delete("/:id", authenticate, controller.remove);
-router.get("/user/:userId", authenticate, controller.getByUser);
-router.get("/store/:storeId", authenticate, controller.getByStore);
-router.get("/:userId/:storeId", authenticate, controller.get);
-router.put("/:id", authenticate, controller.update);
+router.post('/add', authenticate, authorizeUser, controller.add);
+router.delete('/remove/:id', authenticate, authorizeUser, controller.remove);
+router.get('/user', authenticate, authorizeUser, controller.getByUser);
+router.get('/store', authenticate, authorizeUser, controller.getByStore);
+router.get('/get', authenticate, authorizeUser, controller.get);
+router.put('/update/:id', authenticate, authorizeUser, controller.update);
 
 export default router;
+

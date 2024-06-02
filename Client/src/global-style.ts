@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'poppins', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #F5F5F5;
     color: #333;
   }
 
@@ -31,5 +31,6 @@ export const GlobalStyle = createGlobalStyle`
 
   input, textarea {
     font-family: 'Poppins', sans-serif;
+    background-color: transparent;
   }
 `;

@@ -22,5 +22,5 @@ app.use('/products', productsRouter );
 app.use('/plans', plansRouter);
 
 app.listen(PORT, () => {
-    console.log("Done!");
+    console.log(`Running on port ${PORT}!`);
 })

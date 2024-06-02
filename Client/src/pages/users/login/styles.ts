@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   width: 100dvw;
   height: 100dvh;
+  
 `;
 export const Wrapper = styled.div`
   display: flex;
@@ -118,4 +119,15 @@ export const Links = styled(Link)`
   color: black;
   font-weight: 600;
 
+`
+
+export const BottomColor = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #E8E8E8;
+  overflow: hidden;
+  width: 100%;
+  z-index: -1;
+  height: 10%;
 `
