@@ -1,10 +1,25 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
 import { FormEvent } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 function Login() {
-  const handleSubmit = (e: FormEvent) => {
+  const URL = "http://localhost:4040/users/login";
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [data, setData] = useState("");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const data = { email, password };
+
+    try {
+      const response = await axios.post(URL, data);
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -15,14 +30,24 @@ function Login() {
         </$.WrapperTitle>
         <$.Form onSubmit={handleSubmit}>
           <$.WrapperInput>
-            <$.Input type="text" required />
+            <$.Input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
             <$.Label>Email</$.Label>
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input type="password" required />
+            <$.Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
             <$.Label>Senha</$.Label>
           </$.WrapperInput>
-          <$.WrapperCheckbox> 
+          <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
           <$.SubmitButton>Entrar</$.SubmitButton>
@@ -36,7 +61,7 @@ function Login() {
         <$.Title>Busque os melhores restaurantes</$.Title>
         <$.Image src={Image} />
       </$.WrapperImage>
-      <$.BottomColor></$.BottomColor>
+      <$.BottomColor>Logado Como {JSON.stringify(data)}</$.BottomColor>
     </$.Container>
   );
 }
