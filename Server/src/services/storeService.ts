@@ -1,4 +1,4 @@
-import { PrismaClient, Store, StoreAddress, Favorite } from '@prisma/client';
+import { PrismaClient, Store, StoreAddress } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
@@ -87,6 +87,29 @@ class StoreService {
         const stores = await prisma.store.findMany();
         return stores;
     }
+
+    async updateAverageRating(storeId: number): Promise<void> {
+        const products = await prisma.product.findMany({
+          where: { storeId },
+          select: { averageRating: true }
+        });
+    
+        if (products.length === 0) {
+          await prisma.store.update({
+            where: { id: storeId },
+            data: { averageRating: 0 }
+          });
+          return;
+        }
+    
+        const totalRating = products.reduce((acc, product) => acc + product.averageRating, 0);
+        const averageRating = totalRating / products.length;
+    
+        await prisma.store.update({
+          where: { id: storeId },
+          data: { averageRating }
+        });
+      }
 }
 
 export default new StoreService();

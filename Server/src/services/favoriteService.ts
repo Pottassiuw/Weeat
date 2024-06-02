@@ -23,7 +23,10 @@ class FavoriteService {
   async getFavoritesByUser(userId: number): Promise<(Favorite & { store: Store })[]> {
     const favorites = await prisma.favorite.findMany({
       where: { userId },
-      include: { store: true },
+      include: {
+        store
+          : true
+      },
     });
     return favorites;
   }

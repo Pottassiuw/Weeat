@@ -8,23 +8,25 @@ datasource db {
 }
 
 model User {
-  id        Int           @id @default(autoincrement())
-  name      String
-  email     String        @unique
-  password  String
-  addresses UserAddress[]
-  favorites Favorite[]
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  id            Int             @id @default(autoincrement())
+  name          String
+  email         String          @unique
+  password      String
+  UserAddress   UserAddress[]
+  favorites     Favorite[]
+  ProductReview ProductReview[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 
   @@index([email])
 }
 
 model UserAddress {
-  id     Int    @id @default(autoincrement())
-  adress String
-  userId Int
-  user   User   @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
+  address   String
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Store {
@@ -51,30 +53,56 @@ model Store {
   @@index([category])
 }
 
+model StoreReview {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  storeId   Int
+  rating    Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([storeId])
+}
+
 model StoreAddress {
-  id      Int    @id @default(autoincrement())
-  storeId Int
-  store   Store  @relation(fields: [storeId], references: [id])
-  street  String
-  city    String
-  state   String
-  zip     String
+  id     Int     @id @default(autoincrement())
+  store  Store[]
+  street String
+  city   String
+  state  String
+  zip    String
 }
 
 model Product {
-  id            Int      @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   name          String
   description   String
   price         Float
   photo         String?
-  averageRating Float    @default(0.0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  averageRating Float           @default(0.0)
+  reviews       ProductReview[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
   storeId       Int
-  store         Store    @relation(fields: [storeId], references: [id])
+  store         Store           @relation(fields: [storeId], references: [id])
 
   @@index([name])
   @@index([price])
+}
+
+model ProductReview {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  rating    Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([userId])
 }
 
 model Favorite {
@@ -86,6 +114,7 @@ model Favorite {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
+  @@unique([userId, storeId])
   @@index([userId])
   @@index([storeId])
 }
