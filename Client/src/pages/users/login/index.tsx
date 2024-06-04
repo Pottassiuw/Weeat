@@ -61,7 +61,7 @@ function Login() {
         <$.Title>Busque os melhores restaurantes</$.Title>
         <$.Image src={Image} />
       </$.WrapperImage>
-      <$.BottomColor>Logado Como {JSON.stringify(data)}</$.BottomColor>
+      <$.BottomColor></$.BottomColor>
     </$.Container>
   );
 }

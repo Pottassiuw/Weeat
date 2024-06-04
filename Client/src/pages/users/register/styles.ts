@@ -126,3 +126,15 @@ export const BottomColor = styled.div`
   z-index: -1;
   height: 10%;
 `
+
+export const ErrorMessage = styled.span`
+  background-color: white;
+  color: red;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 5px;
+  align-items: center;
+  text-align: justify;
+  transition: 300ms all ease;
+
+`

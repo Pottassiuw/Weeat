@@ -1,44 +1,93 @@
-import * as $ from './styles'
-import Image from '../../../assets/login_register.png';
-function Register() {
+import * as $ from "./styles";
+import Image from "../../../assets/login_register.png";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { signUpSchema, TsignUpSchema } from "../../../libs/zod-types";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+export default function Register() {
+  const URL = "http://localhost:4040/users/register";
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<TsignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+  });
+
+  const createUser = async (data: TsignUpSchema) => {
+    const response = await axios.post(URL, data);
+    const responseData = await response.data;
+
+    reset();
+    return responseData;
+  };
+
   return (
     <$.Container>
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Sign in</$.Title>
         </$.WrapperTitle>
-        <$.Form>
+        <$.Form onSubmit={handleSubmit(createUser)}>
           <$.WrapperInput>
-            <$.Input type='text' required />
-            <$.Label>Usuário</$.Label>
+            <$.Input
+              id="name"
+              {...register("name")}
+              type="text"
+              autoComplete="username"
+            />
+            <$.Label htmlFor="name">Usuário</$.Label>
+            {errors.name && (
+              <$.ErrorMessage>{`${errors.name.message}`}</$.ErrorMessage>
+            )}
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input type='text' required />
-            <$.Label>Email</$.Label>
+            <$.Input
+              id="email"
+              {...register("email")}
+              type="text"
+              autoComplete="email"
+            />
+            <$.Label htmlFor="email">Email</$.Label>
+            {errors.email && (
+              <$.ErrorMessage>{`${errors.email.message}`}</$.ErrorMessage>
+            )}
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input type='password' required />
-            <$.Label>Senha</$.Label>
+            <$.Input id="password" {...register("password")} type="password" />
+            <$.Label htmlFor="password">Senha</$.Label>
+            {errors.password && (
+              <$.ErrorMessage>{`${errors.password.message}`}</$.ErrorMessage>
+            )}
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input type='password' required />
-            <$.Label>Confirmar senha</$.Label>
+            <$.Input
+              id="confirmPassword"
+              {...register("confirmPassword")}
+              type="password"
+            />
+            <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
+            {errors.confirmPassword && (
+              <$.ErrorMessage>{`${errors.confirmPassword.message}`}</$.ErrorMessage>
+            )}
           </$.WrapperInput>
           <$.WrapperCheckbox>
-            <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
+            <$.Checkbox id="remember" type="checkbox" />{" "}
+            <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton>Cadastrar</$.SubmitButton>
-          <$.RegisterText>Já possuí uma conta? <$.Links to="/users/login">Logar</$.Links></$.RegisterText>
+          <$.SubmitButton disabled={isSubmitting}>Cadastrar</$.SubmitButton>
+          <$.RegisterText>
+            Já possuí uma conta? <$.Links to="/users/login">Logar</$.Links>
+          </$.RegisterText>
         </$.Form>
       </$.Wrapper>
-
       <$.WrapperImage>
         <$.Title>Busque os melhores restaurantes</$.Title>
         <$.Image src={Image} />
       </$.WrapperImage>
       <$.BottomColor></$.BottomColor>
     </$.Container>
-  )
+  );
 }
-
-export default Register;
