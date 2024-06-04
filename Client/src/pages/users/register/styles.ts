@@ -38,34 +38,27 @@ export const WrapperInput = styled.div`
   position: relative;
   width: 550px;
   margin: 0.7rem 0px;
-
-  input:focus + label,
-  input:not(:placeholder-shown) + label {
-    transform: translateY(-20px);
-    transition: 300ms all ease;
-  }
 `;
 
 export const Input = styled.input`
-  border: none;
-  border-bottom: 2px solid #d9d9d9;
+  border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   width: 100%;
-  outline: none;
+  border-radius: ${p => p.theme.border.button};
+  padding: 7px;
+  
+  &:focus {
+    outline: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
+  }
 `;
 
 export const Label = styled.label`
   font-size: ${(p) => p.theme.font.text};
-  position: absolute;
-  bottom: 10px;
-  left: 0;
   pointer-events: none;
-  transition: 300ms all ease;
 `;
 
 export const ErrorMessage = styled.p`
   color: red;
   font-size: 0.875rem;
-  margin-top: 0.5rem;
 `;
 
 export const WrapperCheckbox = styled.div`
@@ -82,11 +75,12 @@ export const SubmitButton = styled.button`
   margin-top: 1rem;
   border: none;
   padding: 10px;
-  background: #fe2c2c;
+  background: ${p => p.enableButton ? "#8f4f4f" : "#ff2b2b"};
   color: white;
   border-radius: ${(p) => p.theme.border.button};
   font-size: ${(p) => p.theme.font.text};
   cursor: pointer;
+
 `;
 
 export const WrapperImage = styled.div`

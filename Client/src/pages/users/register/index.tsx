@@ -2,7 +2,7 @@ import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import type { TsignUpSchema } from "../../../@types/types.d.ts";
+import type { TsignUpSchema } from "../../../@types/types.ts";
 import { signUpSchema } from "../../../@types/types.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -11,7 +11,7 @@ export default function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }, 
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<TsignUpSchema>({
     resolver: zodResolver(signUpSchema),
@@ -33,52 +33,60 @@ export default function Register() {
         </$.WrapperTitle>
         <$.Form onSubmit={handleSubmit(createUser)}>
           <$.WrapperInput>
+            <$.Label htmlFor="name">Usuário</$.Label>
             <$.Input
+              hasError={!!errors.name}
               id="name"
               {...register("name")}
-              type="text"
               autoComplete="username"
             />
-            <$.Label htmlFor="name">Usuário</$.Label>
-            {errors.name && (
-              <$.ErrorMessage>{`${errors.name.message}`}</$.ErrorMessage>
+            {errors?.name && (
+              <$.ErrorMessage>{`${errors.name?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
+            <$.Label htmlFor="email">Email</$.Label>
             <$.Input
+              hasError={!!errors.email}
               id="email"
               {...register("email")}
-              type="text"
               autoComplete="email"
             />
-            <$.Label htmlFor="email">Email</$.Label>
-            {errors.email && (
-              <$.ErrorMessage>{`${errors.email.message}`}</$.ErrorMessage>
+            {errors?.email && (
+              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input id="password" {...register("password")} type="password" />
             <$.Label htmlFor="password">Senha</$.Label>
-            {errors.password && (
-              <$.ErrorMessage>{`${errors.password.message}`}</$.ErrorMessage>
+            <$.Input
+              hasError={!!errors.password}
+              id="password"
+              {...register("password")}
+              type="password"
+            />
+            {errors?.password && (
+              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
+            <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
             <$.Input
+              hasError={!!errors.confirmPassword}
               id="confirmPassword"
               {...register("confirmPassword")}
               type="password"
             />
-            <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
-            {errors.confirmPassword && (
-              <$.ErrorMessage>{`${errors.confirmPassword.message}`}</$.ErrorMessage>
+            {errors?.confirmPassword && (
+              <$.ErrorMessage>{`${errors.confirmPassword?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperCheckbox>
             <$.Checkbox id="remember" type="checkbox" />{" "}
             <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton disabled={isSubmitting}>Cadastrar</$.SubmitButton>
+          <$.SubmitButton disabled={isSubmitting} enableButton={isSubmitting}>
+            {isSubmitting ? <p>...Loading</p> : <p>Cadastrar</p>}
+          </$.SubmitButton>
           <$.RegisterText>
             Já possuí uma conta? <$.Links to="/users/login">Logar</$.Links>
           </$.RegisterText>
