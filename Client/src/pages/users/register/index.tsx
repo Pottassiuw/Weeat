@@ -2,7 +2,8 @@ import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { signUpSchema, TsignUpSchema } from "../../../libs/zod-types";
+import type { TsignUpSchema } from "../../../@types/types.d.ts";
+import { signUpSchema } from "../../../@types/types.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function Register() {
@@ -10,7 +11,7 @@ export default function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting }, 
     reset,
   } = useForm<TsignUpSchema>({
     resolver: zodResolver(signUpSchema),

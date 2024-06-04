@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
-  width: 100dvw;
-  height: 100dvh;
+  width: 100vw;
+  height: 100vh;
   position: relative;
 `;
+
 export const Wrapper = styled.div`
   display: flex;
-  width: 60dvw;
+  width: 60vw;
   height: 100vh;
   align-items: center;
   flex-direction: column;
@@ -29,6 +30,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
 export const WrapperInput = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,12 +39,10 @@ export const WrapperInput = styled.div`
   width: 550px;
   margin: 0.7rem 0px;
 
-  input {
-    &:focus + label,
-    &:valid + label {
-      transform: translateY(-20px);
-      transition: 300ms all ease;
-    }
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    transform: translateY(-20px);
+    transition: 300ms all ease;
   }
 `;
 
@@ -56,20 +56,28 @@ export const Input = styled.input`
 export const Label = styled.label`
   font-size: ${(p) => p.theme.font.text};
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 0;
   pointer-events: none;
   transition: 300ms all ease;
 `;
 
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+`;
+
 export const WrapperCheckbox = styled.div`
   margin: 10px 0px;
 `;
+
 export const Checkbox = styled.input``;
 
 export const Span = styled.span`
   font-size: ${(p) => p.theme.font.text};
 `;
+
 export const SubmitButton = styled.button`
   margin-top: 1rem;
   border: none;
@@ -99,42 +107,31 @@ export const WrapperImage = styled.div`
     transform: translateY(-50%);
   }
 `;
+
 export const Image = styled.img`
   object-fit: cover;
-  width: 45dvw;
-  height: 100dvh;
+  width: 45vw;
+  height: 100vh;
 `;
 
 export const RegisterText = styled.h2`
-  font-size: ${p => p.theme.font.text};
+  font-size: ${(p) => p.theme.font.text};
   margin-top: 2rem;
-`
+`;
+
 export const Links = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 600;
-
-`
+`;
 
 export const BottomColor = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   overflow: hidden;
   width: 100%;
   z-index: -1;
   height: 10%;
-`
-
-export const ErrorMessage = styled.span`
-  background-color: white;
-  color: red;
-  padding: 1rem;
-  border-radius: 10px;
-  margin: 5px;
-  align-items: center;
-  text-align: justify;
-  transition: 300ms all ease;
-
-`
+`;
