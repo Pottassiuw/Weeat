@@ -1,6 +1,7 @@
 import * as $ from "./styles";
 import { useState, ChangeEvent } from "react";
 import axios from "axios";
+import NavBar from "../../../components/nav";
 
 export default function Register() {
   const apiUrl = "https://localhost:4040/";
@@ -43,6 +44,7 @@ export default function Register() {
 
   return (
     <$.Screen>
+      <NavBar />
       {page === 1 ? (
         <$.Container>
           <$.Wrapper>

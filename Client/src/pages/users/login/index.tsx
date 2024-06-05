@@ -5,6 +5,7 @@ import { loginSchema } from "../../../@types/types.ts";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import NavBar from "../../../components/nav/index.tsx";
 
 function Login() {
   const URL = "http://localhost:4040/users/login";
@@ -29,6 +30,7 @@ function Login() {
   };
   return (
     <$.Container>
+      <NavBar />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Login</$.Title>

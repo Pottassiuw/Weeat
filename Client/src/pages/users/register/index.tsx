@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import type { TsignUpSchema } from "../../../@types/types.ts";
 import { signUpSchema } from "../../../@types/types.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
+import NavBar from "../../../components/nav/index.tsx";
 
 export default function Register() {
   const URL = "http://localhost:4040/users/register";
@@ -27,6 +28,7 @@ export default function Register() {
 
   return (
     <$.Container>
+      <NavBar />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Sign in</$.Title>
