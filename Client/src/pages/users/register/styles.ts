@@ -10,11 +10,12 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 60vw;
-  height: 100vh;
+  width: 50dvw;
+  height: 85vh;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 `;
 
 export const WrapperTitle = styled.div`
@@ -37,17 +38,17 @@ export const WrapperInput = styled.div`
   padding: 1rem 0rem;
   position: relative;
   width: 550px;
-  margin: 0.7rem 0px;
+  margin: 0.3rem 0px;
 `;
 
 export const Input = styled.input`
   border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   width: 100%;
-  border-radius: ${p => p.theme.border.button};
-  padding: 7px;
-  
+  border-radius: ${(p) => p.theme.border.button};
+  padding: 13px;
+
   &:focus {
-    outline: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
+    outline: 1px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   }
 `;
 
@@ -59,6 +60,7 @@ export const Label = styled.label`
 export const ErrorMessage = styled.p`
   color: red;
   font-size: 0.875rem;
+  height: 4px;
 `;
 
 export const WrapperCheckbox = styled.div`
@@ -75,12 +77,11 @@ export const SubmitButton = styled.button`
   margin-top: 1rem;
   border: none;
   padding: 10px;
-  background: ${p => p.enableButton ? "#8f4f4f" : "#ff2b2b"};
+  background: ${(p) => (p.enableButton ? "#8f4f4f" : "#ff2b2b")};
   color: white;
   border-radius: ${(p) => p.theme.border.button};
   font-size: ${(p) => p.theme.font.text};
   cursor: pointer;
-
 `;
 
 export const WrapperImage = styled.div`
@@ -89,6 +90,7 @@ export const WrapperImage = styled.div`
   right: 0;
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   ${Title} {
     color: white;
@@ -96,9 +98,9 @@ export const WrapperImage = styled.div`
     top: 50%;
     right: 5%;
     z-index: 1;
-    width: 650px;
+    font-size: 50pt;
     text-align: center;
-    transform: translateY(-50%);
+    transform: translate(7%, -60%);
   }
 `;
 
@@ -109,8 +111,10 @@ export const Image = styled.img`
 `;
 
 export const RegisterText = styled.h2`
-  font-size: ${(p) => p.theme.font.text};
+  font-size: ${p => p.theme.font.text};
   margin-top: 2rem;
+  font-weight: 400;
+  color: #1c1c1c;
 `;
 
 export const Links = styled(Link)`

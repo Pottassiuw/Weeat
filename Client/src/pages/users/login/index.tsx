@@ -1,56 +1,63 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import { FormEvent } from "react";
-import { useState } from "react";
+import { TloginSchema } from "../../../@types/types.ts";
+import { loginSchema } from "../../../@types/types.ts";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function Login() {
   const URL = "http://localhost:4040/users/login";
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [data, setData] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<TloginSchema>({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = { email, password };
-
+  const loginUser = async (data: TloginSchema) => {
     try {
-      const response = await axios.post(URL, data);
-      setData(response.data);
-    } catch (error) {
-      console.error(error);
+      const response = await axios.post(URL, JSON.stringify(data));
+      const responseData = await response.data;
+      reset();
+      return responseData;
+    } catch (error: any) {
+      throw new error();
     }
   };
-
   return (
     <$.Container>
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Login</$.Title>
         </$.WrapperTitle>
-        <$.Form onSubmit={handleSubmit}>
+        <$.Form onSubmit={handleSubmit(loginUser)}>
           <$.WrapperInput>
-            <$.Input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
             <$.Label>Email</$.Label>
+            <$.Input hasError={!!errors.email} {...register("email")} />
+            {errors?.email && (
+              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+            )}
           </$.WrapperInput>
           <$.WrapperInput>
-            <$.Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
             <$.Label>Senha</$.Label>
+            <$.Input
+              hasError={!!errors.password}
+              {...register("password")}
+              type="password"
+            />
+            {errors?.password && (
+              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+            )}
           </$.WrapperInput>
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton>Entrar</$.SubmitButton>
+          <$.SubmitButton disabled={isSubmitting} enableButton={isSubmitting}>
+            {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
+          </$.SubmitButton>
           <$.RegisterText>
             Ainda não é cadastrado?{" "}
             <$.Links to="/users/register">registre</$.Links>
