@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   width: 50dvw;
-  height: 85vh;
+  height: 100vh;
   align-items: center;
   flex-direction: column;
   justify-content: center;

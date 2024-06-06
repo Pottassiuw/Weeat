@@ -1,8 +1,10 @@
 import * as $ from "./styles";
+import LogoImage from "../../assets/logo weeat.png";
 export default function NavBar() {
   return (
     <$.Nav>
       <$.LogoWrapper>
+        <$.Logo src={LogoImage} />
         <$.LogoFont>Weeat</$.LogoFont>
       </$.LogoWrapper>
       <$.LinksWrapper>
@@ -17,12 +19,12 @@ export default function NavBar() {
         </$.LinkItem>
       </$.LinksWrapper>
       <$.ButtonsWrapper>
-        <$.ButtonStore>
-          <$.Links to="stores/login">Login Loja</$.Links>
-        </$.ButtonStore>
-        <$.ButtonUser>
-          <$.Links to="/users/login">Login Usuário</$.Links>
-        </$.ButtonUser>
+        <$.Links to="stores/login">
+          <$.ButtonStore>Login Loja</$.ButtonStore>
+        </$.Links>
+        <$.Links to="/users/login">
+          <$.ButtonUser>Login Usuário</$.ButtonUser>
+        </$.Links>
       </$.ButtonsWrapper>
     </$.Nav>
   );
