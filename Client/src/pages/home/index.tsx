@@ -17,7 +17,59 @@ export default function Home() {
           <$.HeroImage src={heroImage} />
         </$.HeroImageWrapper>
       </$.HeroSection>
-      
+      <$.AboutSection>
+        <$.AboutImageWrapper></$.AboutImageWrapper>
+        <$.AboutContentWrapper>
+          <$.AboutTitleContent></$.AboutTitleContent>
+          <$.AboutTextContent></$.AboutTextContent>
+        </$.AboutContentWrapper>
+      </$.AboutSection>
+      <$.BenefitsSection>
+        <$.BenefitWrapper>
+          <$.BenfitImage></$.BenfitImage>
+          <$.BenefitText></$.BenefitText>
+        </$.BenefitWrapper>
+        <$.BenefitWrapper>
+          <$.BenfitImage></$.BenfitImage>
+          <$.BenefitText></$.BenefitText>
+        </$.BenefitWrapper>
+      </$.BenefitsSection>
+      <$.TestimonialsSection>
+        <$.TestimonialTitle></$.TestimonialTitle>
+        <$.TestimonialCard>
+          <$.TestimonialCardText></$.TestimonialCardText>
+        </$.TestimonialCard>
+        <$.TestimonialCard>
+          <$.TestimonialCardText></$.TestimonialCardText>
+        </$.TestimonialCard>
+        <$.TestimonialCard>
+          <$.TestimonialCardText></$.TestimonialCardText>
+        </$.TestimonialCard>
+        <$.TestimonialUsersWrapper>
+          <$.TestimonialUserIconWrapper>
+            <$.TestimonialUserIcon></$.TestimonialUserIcon>
+          </$.TestimonialUserIconWrapper>
+          <$.TestimonialUserReviewWrapper>
+            <$.TestimonialUserName></$.TestimonialUserName>
+            <$.TestimonialUserReview></$.TestimonialUserReview>
+          </$.TestimonialUserReviewWrapper>
+        </$.TestimonialUsersWrapper>
+      </$.TestimonialsSection>
+      <$.FeaturesSection>
+        <$.FeaturesTitle></$.FeaturesTitle>
+        <$.FeaturesWrapper>
+          <$.FeaturesText></$.FeaturesText>
+        </$.FeaturesWrapper>
+      </$.FeaturesSection>
+      <$.FaqSection>
+        <$.FaqDetails>
+          <$.FaqSummary>
+            <$.FaqSummaryContent>
+              <$.FaqSummaryText></$.FaqSummaryText>
+            </$.FaqSummaryContent>
+          </$.FaqSummary>
+        </$.FaqDetails>
+      </$.FaqSection>
     </$.Container>
   );
 }

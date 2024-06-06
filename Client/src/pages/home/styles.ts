@@ -56,14 +56,12 @@ export const HeroImage = styled.img`
 
 export const AboutSection = styled.section`
     display: flex;
-    
 `
-
-export const ImageWrapper = styled.div``
-export const Image = styled.img``
-export const ContentWrapper = styled.div``
-export const TitleContent = styled.h1``
-export const TextContent = styled.p``
+export const AboutImageWrapper = styled.div``
+export const AboutImage = styled.img``
+export const AboutContentWrapper = styled.div``
+export const AboutTitleContent = styled.h1``
+export const AboutTextContent = styled.p``
 
 // Befefits Section
 
@@ -75,14 +73,14 @@ export const BenefitText = styled.h1``
 // Testimonials Section
 export const TestimonialsSection = styled.section``
 export const TestimonialTitle = styled.h1``
-export const Card = styled.div``
-export const CardText = styled.p``
-export const UsersWrapper = styled.div``
-export const UserIconWrapper = styled.div``
-export const UserIcon = styled.img``
-export const UserReviewWrapper = styled.div``
-export const UserName = styled.p``
-export const UserReview = styled.span``
+export const TestimonialCard = styled.div``
+export const TestimonialCardText = styled.p``
+export const TestimonialUsersWrapper = styled.div``
+export const TestimonialUserIconWrapper = styled.div``
+export const TestimonialUserIcon = styled.img``
+export const TestimonialUserReviewWrapper = styled.div``
+export const TestimonialUserName = styled.p``
+export const TestimonialUserReview = styled.span``
 
 // Feature Section
 
@@ -96,5 +94,5 @@ export const FeaturesText = styled.h1``
 export const FaqSection = styled.section``
 export const FaqDetails = styled.details``
 export const FaqSummary = styled.summary``
-export const SummaryContent = styled.div``
-export const SummaryText = styled.p``
+export const FaqSummaryContent = styled.div``
+export const FaqSummaryText = styled.p``
