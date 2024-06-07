@@ -3,14 +3,14 @@ import { styled } from "styled-components";
 
 export const Nav = styled.nav`
   display: flex;
-  position: absolute;
+  position: fixed;
   width: 100%;
-  background-color: #fff; 
+  background-color: #F5F5F5; 
   top: 0;
   left: 0;
   align-items: center;
   justify-content: space-between;
-  height: 7dvh;
+  height: 10dvh;
   border-bottom: 1px solid #d9d9d9;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -39,15 +39,17 @@ export const LinksWrapper = styled.ul`
   text-decoration: none;
   align-items: center;
 `;
-export const LinkItem = styled.li``;
-export const Links = styled(Link)`
-  color: black;
-  text-decoration: none;
-  font-size: ${(p) => p.theme.font.text};
-
+export const LinkItem = styled.li`
   &:hover {
     opacity: (0.1);
   }
+`;
+export const Links = styled(Link)`
+  color: black;
+  text-decoration: none;
+  font-size: 16pt;
+  
+  
 `;
 
 export const ButtonsWrapper = styled.div`
