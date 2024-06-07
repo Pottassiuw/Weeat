@@ -87,7 +87,7 @@ export default function Home() {
           <$.BenefitContentWrapper>
             <$.BenfitImage src={Feature3} />
             <$.BenefitText>
-              Você terá a oportunidade de Divulgar sua empresa!
+              Você terá oportunidade de Divulgar sua empresa!
             </$.BenefitText>
           </$.BenefitContentWrapper>
         </$.BenefitWrapper>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  position: relative;
   section {
     padding: 0px 4%;
   }
@@ -27,7 +28,7 @@ export const HeroImageWrapper = styled.div`
   flex-flow: row nowrap;
   width: 50%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 export const HeroTitle = styled.h1`
@@ -36,24 +37,30 @@ export const HeroTitle = styled.h1`
   padding: 1rem 0rem;
 `;
 export const HeroSubtitle = styled.h2`
-  font-size: ${(p) => p.theme.font.text};
+  font-size: 20pt;
   padding-bottom: 1rem;
+  font-weight: 500;
 `;
 export const HeroButton = styled.button`
   width: 40%;
   margin-top: 2rem;
   border: none;
-  padding: 1rem;
+  padding: 1.3rem;
   background: #eb4034;
   color: white;
   border-radius: ${(p) => p.theme.border.button};
-  font-size: ${(p) => p.theme.font.text};
+  font-size: 17pt;
+  transition: 250ms all ease;
   cursor: pointer;
+
+  &:hover {
+    scale: 0.95;
+  }
 `;
 
 export const HeroImage = styled.img`
-  width: 450px;
-  height: 450px;
+  width: 500px;
+  height: 500px;
 `;
 // about section
 
@@ -62,12 +69,12 @@ export const AboutSection = styled.section`
 `;
 export const AboutImageWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 50%;
   align-items: center;
 `;
 export const AboutImage = styled.img`
-  width: 500px;
+  width: 500;
   height: 500px;
 `;
 export const AboutContentWrapper = styled.div`
@@ -238,6 +245,7 @@ export const FaqSection = styled.section`
   align-items: center;
   margin-top: 10%;
   flex-flow: column nowrap;
+  height: 100dvh;
 `;
 export const FaqTitle = styled.h1`
   color: #eb4032;
