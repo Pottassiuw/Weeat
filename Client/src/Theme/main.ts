@@ -6,9 +6,9 @@ export default {
     secondary: "#EBB134",
   },
   font: {
-    text: "13pt",
+    text: "14pt",
     subtitle: "15pt",
-    subtitleG: "28pt",
+    subtitleG: "26pt",
     title: "38pt",
     titleG: "45pt",
   },

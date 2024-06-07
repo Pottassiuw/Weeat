@@ -2,19 +2,24 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display: flex;
+    flex-flow: column nowrap;
+
+    section {
+        padding: 0px 4%;
+    }
 `
 export const HeroSection = styled.section`
     display: flex;
     flex-flow: row nowrap;
     width: 100dvw;
     height: 100dvh;
+    padding: 0px 4%;
 `
 export const ActionWrapper = styled.div`
     display: flex;
     flex-flow: column nowrap;
     width: 50%;
     height: 100%;
-    padding-left: 7%;
     align-items: start;
     justify-content: center;
 `
@@ -48,51 +53,214 @@ export const HeroButton = styled.button`
 `
 
 export const HeroImage = styled.img`
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
 `
-
 // about section 
 
 export const AboutSection = styled.section`
     display: flex;
+    
 `
-export const AboutImageWrapper = styled.div``
-export const AboutImage = styled.img``
-export const AboutContentWrapper = styled.div``
-export const AboutTitleContent = styled.h1``
-export const AboutTextContent = styled.p``
+export const AboutImageWrapper = styled.div`
+    width: 50%;
+`
+export const AboutImage = styled.img`
+    width: 100%;
+    height: 100%;
+`
+export const AboutContentWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    width: 50%;
+    flex-flow: column nowrap;
+    
+`
+export const AboutTitleContent = styled.h1`
+    color: #EB4034;
+    font-size: ${p => p.theme.font.subtitleG};
+    text-align: left;
+`
+export const AboutTextContent = styled.p`
+    font-size: ${p => p.theme.font.text};
+    padding: 1rem 0px;
+`
+export const AboutTextContentBold = styled.p`
+    font-size: ${p => p.theme.font.text};
+    font-weight: 600;
+`
 
 // Befefits Section
 
-export const BenefitsSection = styled.section``
-export const BenefitWrapper = styled.div``
-export const BenfitImage = styled.img``
-export const BenefitText = styled.h1``
+export const BenefitsSection = styled.section`
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    padding: 0px 4%;
+`
+export const BenefitTitle = styled.h1`
+    color: #eb4034;
+    text-align: center;
+`
+export const BenefitWrapper = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: center;
+
+    
+`
+export const BenefitContentWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    width: 80%;
+    padding-left: 13%;
+    &:nth-child(2){
+        justify-content: end;
+        padding-right: 13%;
+    }
+
+    background-color: #fff;
+    margin: 40px 0px;
+    border-radius: 3rem;
+`
+export const BenfitImage = styled.img`
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+`
+export const BenefitText = styled.h1`
+    font-size: 22pt;
+`
 
 // Testimonials Section
-export const TestimonialsSection = styled.section``
-export const TestimonialTitle = styled.h1``
-export const TestimonialCard = styled.div``
-export const TestimonialCardText = styled.p``
-export const TestimonialUsersWrapper = styled.div``
-export const TestimonialUserIconWrapper = styled.div``
-export const TestimonialUserIcon = styled.img``
-export const TestimonialUserReviewWrapper = styled.div``
-export const TestimonialUserName = styled.p``
+export const TestimonialsSection = styled.section`
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0px 4%;
+    margin-top: 7%;
+`
+export const TestimonialTitle = styled.h1`
+    text-align: center;
+    color: #eb4034;
+    
+`
+export const TestimonialWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: 7%;
+`
+export const TestimonialCardWrapper = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+`
+export const TestimonialCard = styled.div`
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid #d9d9d9;
+    border-radius: 1rem;
+    
+    height: 500px;
+    width: 400px;
+    
+    margin: 0px 35px;
+
+    text-align: center;
+    font-size: 16pt;
+`
+export const TestimonialCardText = styled.p`
+    font-weight: 500;
+`
+export const TestimonialUsersWrapper = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 1rem 35px;
+`
+export const TestimonialUserIconWrapper = styled.div`
+    
+`
+export const TestimonialUserIcon = styled.img`
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+`
+export const TestimonialUserReviewWrapper = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    padding-left: 1rem;
+`
+export const TestimonialUserName = styled.p`
+    font-weight: 600;
+`
 export const TestimonialUserReview = styled.span``
 
 // Feature Section
 
-export const FeaturesSection = styled.section``
-export const FeaturesTitle = styled.h1``
-export const FeaturesWrapper = styled.div``
-export const FeaturesText = styled.h1``
+export const FeaturesSection = styled.section`
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0px 4%;
+    margin-top: 7%;
+`
+export const FeaturesTitle = styled.h1`
+    color: #eb4032;
+    text-align: center;
+    margin-bottom: 5%;
+
+`
+export const FeaturesWrapper = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+`
+export const FeaturesContentWrapper = styled.div`
+    display: flex;
+    border-radius: 1rem;
+    background-color: #fff;
+    margin: 25px 40px;
+    padding: 1rem;
+    width: 40%;
+    align-items: center;
+`
+export const FeaturesContent = styled.div``
+export const FeatureIcon = styled.img``
+export const FeaturesText = styled.h1`
+    font-size: 18pt;
+`
 
 // Faq Section
 
-export const FaqSection = styled.section``
-export const FaqDetails = styled.details``
-export const FaqSummary = styled.summary``
+export const FaqSection = styled.section`
+    display: flex;
+    padding: 0px 4%;
+    align-items: center;
+    margin-top: 7%;
+    flex-flow: column nowrap;
+`
+export const FaqTitle = styled.h1`
+    color: #eb4032;
+    margin-bottom: 5%;
+`
+export const FaqWrapper = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+`
+export const FaqDetails = styled.details`
+    width: 80%; 
+`
+export const FaqSummary = styled.summary`
+    background-color: #fff;
+    margin: 10px 0px;
+    padding: 20px 10px;
+    border-radius: 6px;
+`
 export const FaqSummaryContent = styled.div``
 export const FaqSummaryText = styled.p``
