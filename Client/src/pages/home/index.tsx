@@ -5,6 +5,7 @@ import AboutImage from "../../assets/AboutImage.png";
 import Feature1 from "../../assets/Feature1.png";
 import Feature2 from "../../assets/Feature2.png";
 import Feature3 from "../../assets/Feature3.png";
+import Footer from "../../components/Footer";
 
 export default function Home() {
   return (
@@ -230,6 +231,7 @@ export default function Home() {
       </$.FaqSection>
 
       {/*Footer*/}
+      <Footer />
     </$.Container>
   );
 }
