@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
-  width: 100dvw;
-  height: 100dvh;
+  width: 100vw;
+  height: 100vh;
   position: relative;
 `;
+
 export const Wrapper = styled.div`
   display: flex;
-  width: 60dvw;
+  width: 50dvw;
   height: 100vh;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 `;
 
 export const WrapperTitle = styled.div`
@@ -29,52 +31,53 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
 export const WrapperInput = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem 0rem;
   position: relative;
   width: 550px;
-  margin: 0.7rem 0px;
-
-  input {
-    &:focus + label,
-    &:valid + label {
-      transform: translateY(-20px);
-      transition: 300ms all ease;
-    }
-  }
+  margin: 0.3rem 0px;
 `;
 
 export const Input = styled.input`
-  border: none;
-  border-bottom: 2px solid #d9d9d9;
+  border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   width: 100%;
-  outline: none;
+  border-radius: ${(p) => p.theme.border.button};
+  padding: 13px;
+
+  &:focus {
+    outline: 1px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
+  }
 `;
 
 export const Label = styled.label`
   font-size: ${(p) => p.theme.font.text};
-  position: absolute;
-  bottom: 20px;
-  left: 0;
   pointer-events: none;
-  transition: 300ms all ease;
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.875rem;
+  height: 4px;
 `;
 
 export const WrapperCheckbox = styled.div`
   margin: 10px 0px;
 `;
+
 export const Checkbox = styled.input``;
 
 export const Span = styled.span`
   font-size: ${(p) => p.theme.font.text};
 `;
+
 export const SubmitButton = styled.button`
   margin-top: 1rem;
   border: none;
   padding: 10px;
-  background: #fe2c2c;
+  background: ${(p) => (p.enableButton ? "#8f4f4f" : "#ff2b2b")};
   color: white;
   border-radius: ${(p) => p.theme.border.button};
   font-size: ${(p) => p.theme.font.text};
@@ -87,6 +90,7 @@ export const WrapperImage = styled.div`
   right: 0;
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   ${Title} {
     color: white;
@@ -94,35 +98,38 @@ export const WrapperImage = styled.div`
     top: 50%;
     right: 5%;
     z-index: 1;
-    width: 650px;
+    font-size: 50pt;
     text-align: center;
-    transform: translateY(-50%);
+    transform: translate(7%, -60%);
   }
 `;
+
 export const Image = styled.img`
   object-fit: cover;
-  width: 45dvw;
-  height: 100dvh;
+  width: 45vw;
+  height: 100vh;
 `;
 
 export const RegisterText = styled.h2`
   font-size: ${p => p.theme.font.text};
   margin-top: 2rem;
-`
+  font-weight: 400;
+  color: #1c1c1c;
+`;
+
 export const Links = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 600;
-
-`
+`;
 
 export const BottomColor = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   overflow: hidden;
   width: 100%;
   z-index: -1;
   height: 10%;
-`
+`;
