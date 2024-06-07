@@ -10,6 +10,7 @@ export const Footer = styled.footer`
     height: 30dvh;
     padding-top: 2rem;
     flex-flow: row wrap;
+    margin-top: 10%;
 
     * {
         color: white;

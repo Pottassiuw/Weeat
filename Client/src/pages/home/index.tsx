@@ -39,26 +39,29 @@ export default function Home() {
             dificuldade ?
           </$.AboutTitleContent>
           <$.AboutTextContentBold>
-            spa Ao longo dos anos, percebemos uma grande crescente de grandes
-            estabelecimentos .
+            A resposta está na falta de uma plataforma eficiente e intuitiva que
+            facilite essa busca.
           </$.AboutTextContentBold>
           <$.AboutTextContent>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam
-            neque, congue et ornare maximus, molestie quis metus. Nulla non
-            feugiat orci. Quisque interdum viverra nunc. Nunc ipsum ante,
-            scelerisque quis tortor vel, maximus lobortis orci. Nam nisl ipsum,
-            dictum eu neque sit amet, lobortis faucibus quam. Quisque nec mi eu
-            dui porttitor pulvinar.
+            Nosso objetivo é resolver esse problema, proporcionando uma
+            ferramenta que conecta você aos melhores estabelecimentos da sua
+            região de maneira rápida e prática. Com nossa plataforma, você pode
+            descobrir restaurantes, lojas, serviços e muito mais, tudo ao
+            alcance de um clique.
           </$.AboutTextContent>
           <$.AboutTextContentBold>
             De acordo com todos estes problemas, viemos com nossa solução.
           </$.AboutTextContentBold>
           <$.AboutTextContent>
-            Quisque interdum viverra nunc. Nunc ipsum ante, scelerisque quis
-            tortor vel, maximus lobortis orci. Nam nisl ipsum, dictum eu neque
-            sit amet, lobortis faucibus quam. Quisque nec mi eu dui porttitor
-            pulvinar. Nullam efficitur finibus diam vel gravida. Sed placerat
-            ante et augue ultricies pulvinar.
+            Estamos empenhados em simplificar sua vida, oferecendo informações
+            detalhadas, avaliações de outros usuários e uma experiência de busca
+            personalizada. Acreditamos que encontrar o que você precisa perto de
+            você não deve ser complicado, e estamos aqui para tornar isso
+            possível.
+          </$.AboutTextContent>
+          <$.AboutTextContent>
+            Junte-se a nós e descubra como podemos facilitar sua rotina,
+            conectando você ao que há de melhor em sua região.
           </$.AboutTextContent>
         </$.AboutContentWrapper>
       </$.AboutSection>
@@ -76,14 +79,15 @@ export default function Home() {
           </$.BenefitContentWrapper>
           <$.BenefitContentWrapper>
             <$.BenefitText>
-              Encontre estabelecimentos próximos de você!{" "}
+              Encontrar estabelecimentos próximos de você se torna uma tarefa
+              simples!{" "}
             </$.BenefitText>
             <$.BenfitImage src={Feature2} />
           </$.BenefitContentWrapper>
           <$.BenefitContentWrapper>
             <$.BenfitImage src={Feature3} />
             <$.BenefitText>
-              Tenha a oportunidade de Divulgar sua empresa!
+              Você terá a oportunidade de Divulgar sua empresa!
             </$.BenefitText>
           </$.BenefitContentWrapper>
         </$.BenefitWrapper>
