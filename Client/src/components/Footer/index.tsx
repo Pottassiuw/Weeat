@@ -15,18 +15,18 @@ export default function () {
         </$.LogoContainer>
         <$.ItensWrapper>
           <$.ItensTitle>Páginas</$.ItensTitle>
-          <$.Links to="#">Home</$.Links>
-          <$.Links to="#">Estabelecimentos</$.Links>
+          <$.Links to="/">Home</$.Links>
+          <$.Links to="/stores">Estabelecimentos</$.Links>
         </$.ItensWrapper>
         <$.ItensWrapper>
           <$.ItensTitle>Usuário</$.ItensTitle>
-          <$.Links to="#">Cadastre o seu Usuário!</$.Links>
-          <$.Links to="#">Entre com seu Usuário!</$.Links>
+          <$.Links to="/users/register">Cadastre o seu Usuário!</$.Links>
+          <$.Links to="/users/login">Entre com seu Usuário!</$.Links>
         </$.ItensWrapper>
         <$.ItensWrapper>
           <$.ItensTitle>Empresa</$.ItensTitle>
-          <$.Links to="#">Cadastre sua Empresa!</$.Links>
-          <$.Links to="#">Entre na sua Empersa!</$.Links>
+          <$.Links to="/stores/register">Cadastre sua Empresa!</$.Links>
+          <$.Links to="/stores/login">Entre na sua Empersa!</$.Links>
         </$.ItensWrapper>
       </$.AllWrapper>
       <$.Copyright>
