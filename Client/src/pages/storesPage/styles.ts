@@ -11,7 +11,11 @@ export const SeeMore = styled.button``;
 // --------------------------------------------------------------
 
 //----------------Categories---------------------
-export const CategoriesSection = styled.section``;
+export const CategoriesSection = styled.section`
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+`;
 export const WeeatTitle = styled.h1``;
 export const SearchContainer = styled.div``;
 export const SearchBar = styled.button``;
@@ -27,7 +31,6 @@ export const StoresCategoryButton = styled.button``;
 //----------------Discount---------------------
 export const DiscountSection = styled.section``;
 export const DiscountTitleWrapper = styled.div``;
-
 export const DiscountTitle = styled.h1``;
 export const DiscountCardWrapper = styled.div``;
 export const DiscountCard = styled.div``;
