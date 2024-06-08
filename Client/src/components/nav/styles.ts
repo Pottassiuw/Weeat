@@ -5,7 +5,7 @@ export const Nav = styled.nav`
   display: flex;
   position: fixed;
   width: 100%;
-  background-color: #F5F5F5; 
+  background-color: #f5f5f5;
   top: 0;
   left: 0;
   align-items: center;
@@ -26,8 +26,7 @@ export const Logo = styled.img`
   width: 65px;
   height: 65px;
   object-fit: contain;
-  
-`
+`;
 export const LogoFont = styled.div`
   font-size: ${(p) => p.theme.font.title};
   font-weight: 600;
@@ -40,16 +39,31 @@ export const LinksWrapper = styled.ul`
   align-items: center;
 `;
 export const LinkItem = styled.li`
+  position: relative;
+  color: black;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    bottom: 0;
+    background-color: #eb4032;
+    transition: 300ms all ease-in-out;
+  }
   &:hover {
-    opacity: (0.1);
+    color: #eb4032;
+
+    &::before {
+      width: 100%;
+    }
   }
 `;
 export const Links = styled(Link)`
-  color: black;
   text-decoration: none;
-  font-size: 16pt;
-  
-  
+  font-size: 17pt;
+  transition: 100 all ease;
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -62,7 +76,6 @@ export const ButtonsWrapper = styled.div`
     padding: 10px;
     height: 40px;
     align-items: center;
-    
   }
 `;
 
@@ -74,7 +87,6 @@ export const ButtonStore = styled.button`
   font-weight: 500;
   color: #fe2c2c;
   font-size: 12pt;
-
 `;
 
 export const ButtonUser = styled.button`
