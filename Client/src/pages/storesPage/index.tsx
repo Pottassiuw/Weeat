@@ -41,6 +41,7 @@ export default function StorePage() {
           <$.StoresCategoryButton>+</$.StoresCategoryButton>
         </$.StoresCategoryWrapper>
       </$.CategoriesSection>
+      <$.Divisor></$.Divisor>
       <$.DiscountSection>
         <$.DiscountTitleWrapper>
           <$.DiscountTitle>Produtos com discontão!</$.DiscountTitle>
@@ -52,11 +53,11 @@ export default function StorePage() {
             </$.DiscountCardIconWrapper>
             <$.DiscountCardImage src="#" />
             <$.DiscountCardNameWrapper>
-              <$.DiscountCardName></$.DiscountCardName>
+              <$.DiscountCardName>CHAO1</$.DiscountCardName>
             </$.DiscountCardNameWrapper>
             <$.DiscountCardPriceWrapper>
-              <$.DiscountCardOldPrice></$.DiscountCardOldPrice>
-              <$.DiscountCardNewPrice></$.DiscountCardNewPrice>
+              <$.DiscountCardOldPrice>R$ 10.22</$.DiscountCardOldPrice>
+              <$.DiscountCardNewPrice>R$ 7.22</$.DiscountCardNewPrice>
             </$.DiscountCardPriceWrapper>
           </$.DiscountCard>
           <$.DiscountCard>
@@ -65,11 +66,11 @@ export default function StorePage() {
             </$.DiscountCardIconWrapper>
             <$.DiscountCardImage src="#" />
             <$.DiscountCardNameWrapper>
-              <$.DiscountCardName></$.DiscountCardName>
+              <$.DiscountCardName>CHAO2</$.DiscountCardName>
             </$.DiscountCardNameWrapper>
             <$.DiscountCardPriceWrapper>
-              <$.DiscountCardOldPrice></$.DiscountCardOldPrice>
-              <$.DiscountCardNewPrice></$.DiscountCardNewPrice>
+              <$.DiscountCardOldPrice>R$ 20.52</$.DiscountCardOldPrice>
+              <$.DiscountCardNewPrice>R$ 15.02</$.DiscountCardNewPrice>
             </$.DiscountCardPriceWrapper>
           </$.DiscountCard>
           <$.DiscountCard>
@@ -78,11 +79,11 @@ export default function StorePage() {
             </$.DiscountCardIconWrapper>
             <$.DiscountCardImage src="#" />
             <$.DiscountCardNameWrapper>
-              <$.DiscountCardName></$.DiscountCardName>
+              <$.DiscountCardName>CHAO3</$.DiscountCardName>
             </$.DiscountCardNameWrapper>
             <$.DiscountCardPriceWrapper>
-              <$.DiscountCardOldPrice></$.DiscountCardOldPrice>
-              <$.DiscountCardNewPrice></$.DiscountCardNewPrice>
+              <$.DiscountCardOldPrice>R$ 4001.00</$.DiscountCardOldPrice>
+              <$.DiscountCardNewPrice>R$ 3999.99</$.DiscountCardNewPrice>
             </$.DiscountCardPriceWrapper>
           </$.DiscountCard>
         </$.DiscountCardWrapper>
@@ -90,15 +91,93 @@ export default function StorePage() {
       <$.Divisor></$.Divisor>
       <$.StoresSection>
         <$.StoresTitleWrapper>
-          <$.StoresTitle></$.StoresTitle>
-          <$.StoresSubtitle></$.StoresSubtitle>
+          <$.StoresTitleContent>
+            <$.StoresTitle>Melhores restaurantes da sua região</$.StoresTitle>
+            <$.StoresMapIcon />
+          </$.StoresTitleContent>
+          <$.StoresSubtitle>
+            Os restaurantes mais bem avaliados perto de você.
+          </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
           <$.StoresCard>
             <$.StoresCardLogoWrapper>
               <$.StoresCardLogo src="#" />
             </$.StoresCardLogoWrapper>
-            <$.DiscountCardImage src="#" />
+            <$.StoresCardNameWrapper>
+              <$.StoresCardName></$.StoresCardName>
+              <$.StoresCardCategory></$.StoresCardCategory>
+            </$.StoresCardNameWrapper>
+          </$.StoresCard>
+          <$.StoresCard>
+            <$.StoresCardLogoWrapper>
+              <$.StoresCardLogo src="#" />
+            </$.StoresCardLogoWrapper>
+            <$.StoresCardNameWrapper>
+              <$.StoresCardName></$.StoresCardName>
+              <$.StoresCardCategory></$.StoresCardCategory>
+            </$.StoresCardNameWrapper>
+          </$.StoresCard>
+          <$.StoresCard>
+            <$.StoresCardLogoWrapper>
+              <$.StoresCardLogo src="#" />
+            </$.StoresCardLogoWrapper>
+            <$.StoresCardNameWrapper>
+              <$.StoresCardName></$.StoresCardName>
+              <$.StoresCardCategory></$.StoresCardCategory>
+            </$.StoresCardNameWrapper>
+          </$.StoresCard>
+          <$.StoresCard>
+            <$.StoresCardLogoWrapper>
+              <$.StoresCardLogo src="#" />
+            </$.StoresCardLogoWrapper>
+            <$.StoresCardNameWrapper>
+              <$.StoresCardName></$.StoresCardName>
+              <$.StoresCardCategory></$.StoresCardCategory>
+            </$.StoresCardNameWrapper>
+          </$.StoresCard>
+        </$.StoresCardWrapper>
+        <$.StoresTitleWrapper>
+          <$.StoresTitleContent>
+            <$.StoresTitle>Mais pedidos</$.StoresTitle>
+            <$.StoresStarIcon />
+          </$.StoresTitleContent>
+          <$.StoresSubtitle>
+            Os restaurantes mais pedidos recentemente próximos de você{" "}
+          </$.StoresSubtitle>
+        </$.StoresTitleWrapper>
+        <$.StoresCardWrapper>
+          <$.StoresCard>
+            <$.StoresCardLogoWrapper>
+              <$.StoresCardLogo src="#" />
+            </$.StoresCardLogoWrapper>
+            <$.StoresCardNameWrapper>
+              <$.StoresCardName></$.StoresCardName>
+              <$.StoresCardCategory></$.StoresCardCategory>
+            </$.StoresCardNameWrapper>
+          </$.StoresCard>
+          <$.StoresCard>
+            <$.StoresCardLogoWrapper>
+              <$.StoresCardLogo src="#" />
+            </$.StoresCardLogoWrapper>
+            <$.StoresCardNameWrapper>
+              <$.StoresCardName></$.StoresCardName>
+              <$.StoresCardCategory></$.StoresCardCategory>
+            </$.StoresCardNameWrapper>
+          </$.StoresCard>
+          <$.StoresCard>
+            <$.StoresCardLogoWrapper>
+              <$.StoresCardLogo src="#" />
+            </$.StoresCardLogoWrapper>
+            <$.StoresCardNameWrapper>
+              <$.StoresCardName></$.StoresCardName>
+              <$.StoresCardCategory></$.StoresCardCategory>
+            </$.StoresCardNameWrapper>
+          </$.StoresCard>
+          <$.StoresCard>
+            <$.StoresCardLogoWrapper>
+              <$.StoresCardLogo src="#" />
+            </$.StoresCardLogoWrapper>
             <$.StoresCardNameWrapper>
               <$.StoresCardName></$.StoresCardName>
               <$.StoresCardCategory></$.StoresCardCategory>
@@ -106,6 +185,7 @@ export default function StorePage() {
           </$.StoresCard>
         </$.StoresCardWrapper>
       </$.StoresSection>
+      <$.Divisor></$.Divisor>
       <Footer />
     </$.Container>
   );
