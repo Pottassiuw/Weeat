@@ -4,7 +4,7 @@ import * as $ from "./styles";
 export default function StorePage() {
   return (
     <$.Container>
-      <NavBar />
+      <NavBar sticky />
       <$.CategoriesSection>
         <$.WeeatTitleWrapper>
           <$.WeeatTitle>Weeat</$.WeeatTitle>
@@ -41,10 +41,13 @@ export default function StorePage() {
           <$.StoresCategoryButton>+</$.StoresCategoryButton>
         </$.StoresCategoryWrapper>
       </$.CategoriesSection>
-      <$.Divisor></$.Divisor>
+
+      <$.Divisor>{/* DISCOUNT */}</$.Divisor>
+
       <$.DiscountSection>
         <$.DiscountTitleWrapper>
           <$.DiscountTitle>Produtos com discontão!</$.DiscountTitle>
+          <$.DiscountTitleIcon />
         </$.DiscountTitleWrapper>
         <$.DiscountCardWrapper>
           <$.DiscountCard>
@@ -88,7 +91,9 @@ export default function StorePage() {
           </$.DiscountCard>
         </$.DiscountCardWrapper>
       </$.DiscountSection>
-      <$.Divisor></$.Divisor>
+
+      <$.Divisor>{/* STORES */}</$.Divisor>
+
       <$.StoresSection>
         <$.StoresTitleWrapper>
           <$.StoresTitleContent>

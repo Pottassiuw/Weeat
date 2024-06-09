@@ -1,0 +1,27 @@
+"filename", "language", "TypeScript JSX", "TypeScript", "XML", "comment", "blank", "total"
+"c:\Users\pottassiu\Documents\Weeat\Client\src\@types\types.ts", "TypeScript", 0, 18, 0, 0, 5, 23
+"c:\Users\pottassiu\Documents\Weeat\Client\src\App.tsx", "TypeScript JSX", 15, 0, 0, 0, 2, 17
+"c:\Users\pottassiu\Documents\Weeat\Client\src\Theme\main.ts", "TypeScript", 0, 24, 0, 0, 1, 25
+"c:\Users\pottassiu\Documents\Weeat\Client\src\assets\heroImage.svg", "XML", 0, 0, 398, 0, 1, 399
+"c:\Users\pottassiu\Documents\Weeat\Client\src\components\Footer\index.tsx", "TypeScript JSX", 39, 0, 0, 0, 1, 40
+"c:\Users\pottassiu\Documents\Weeat\Client\src\components\Footer\styles.ts", "TypeScript", 0, 79, 0, 0, 6, 85
+"c:\Users\pottassiu\Documents\Weeat\Client\src\components\nav\index.tsx", "TypeScript JSX", 31, 0, 0, 0, 1, 32
+"c:\Users\pottassiu\Documents\Weeat\Client\src\components\nav\styles.ts", "TypeScript", 0, 91, 0, 0, 9, 100
+"c:\Users\pottassiu\Documents\Weeat\Client\src\global-style.ts", "TypeScript", 0, 31, 0, 0, 7, 38
+"c:\Users\pottassiu\Documents\Weeat\Client\src\main.tsx", "TypeScript JSX", 9, 0, 0, 0, 2, 11
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\error\index.tsx", "TypeScript JSX", 6, 0, 0, 0, 2, 8
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\home\index.tsx", "TypeScript JSX", 220, 0, 0, 7, 15, 242
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\home\styles.ts", "TypeScript", 0, 250, 0, 5, 17, 272
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\storesAuth\login\index.tsx", "TypeScript JSX", 7, 0, 0, 0, 3, 10
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\storesAuth\login\styles.ts", "TypeScript", 0, 0, 0, 0, 1, 1
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\storesAuth\register\index.tsx", "TypeScript JSX", 102, 0, 0, 0, 6, 108
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\storesAuth\register\styles.ts", "TypeScript", 0, 80, 0, 0, 7, 87
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\storesPage\index.tsx", "TypeScript JSX", 66, 0, 0, 0, 1, 67
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\storesPage\styles.ts", "TypeScript", 0, 62, 0, 8, 5, 75
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\usersAuth\login\index.tsx", "TypeScript JSX", 75, 0, 0, 0, 4, 79
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\usersAuth\login\styles.ts", "TypeScript", 0, 117, 0, 0, 17, 134
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\usersAuth\register\index.tsx", "TypeScript JSX", 100, 0, 0, 0, 5, 105
+"c:\Users\pottassiu\Documents\Weeat\Client\src\pages\usersAuth\register\styles.ts", "TypeScript", 0, 115, 0, 0, 21, 136
+"c:\Users\pottassiu\Documents\Weeat\Client\src\router.tsx", "TypeScript JSX", 22, 0, 0, 0, 2, 24
+"c:\Users\pottassiu\Documents\Weeat\Client\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 1, 1, 2
+"Total", "-", 692, 867, 398, 21, 142, 2120

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <$.Container>
-      <NavBar />
+      <NavBar sticky />
 
       {/*Hero Section*/}
 
@@ -231,6 +231,18 @@ export default function Home() {
           </$.FaqDetails>
           <$.FaqDetails>
             <$.FaqSummary>Doubt 5</$.FaqSummary>
+            <$.FaqSummaryContent>
+              <$.FaqSummaryText>TEXT EXAMPLE5...</$.FaqSummaryText>
+            </$.FaqSummaryContent>
+          </$.FaqDetails>
+          <$.FaqDetails>
+            <$.FaqSummary>Doubt 6</$.FaqSummary>
+            <$.FaqSummaryContent>
+              <$.FaqSummaryText>TEXT EXAMPLE5...</$.FaqSummaryText>
+            </$.FaqSummaryContent>
+          </$.FaqDetails>
+          <$.FaqDetails>
+            <$.FaqSummary>Doubt 7</$.FaqSummary>
             <$.FaqSummaryContent>
               <$.FaqSummaryText>TEXT EXAMPLE5...</$.FaqSummaryText>
             </$.FaqSummaryContent>

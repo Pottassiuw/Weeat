@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import { Search, Bell, ArrowRight, MapPinned, Sparkles } from "lucide-react";
+import {
+  Search,
+  Bell,
+  ArrowRight,
+  MapPinned,
+  Sparkles,
+  TicketPercent,
+} from "lucide-react";
 
 export const Container = styled.div`
   display: flex;
@@ -131,11 +138,24 @@ export const DiscountSection = styled.section`
   width: 100dvw;
   height: 100dvh;
   margin-top: 10%;
+  padding: 0 4%;
 `;
-export const DiscountTitleWrapper = styled.div``;
+export const DiscountTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 1rem;
+`;
 export const DiscountTitle = styled.h1`
   font-size: 22pt;
-  padding-left: 50px;
+  padding-right: 1rem;
+`;
+export const DiscountTitleIcon = styled(TicketPercent)`
+  color: #ebb134;
+  width: 40px;
+  height: 40px;
 `;
 export const DiscountCardWrapper = styled.div`
   display: flex;
@@ -148,7 +168,7 @@ export const DiscountCard = styled.div`
   border-radius: 1rem;
   width: 450px;
   height: 550px;
-  margin: 0 auto;
+  margin: 4rem auto 0 0;
 `;
 export const DiscountCardIconWrapper = styled.div`
   width: 100%;
@@ -156,6 +176,7 @@ export const DiscountCardIconWrapper = styled.div`
   border-bottom: 3px solid #d9d9d9;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 export const DiscountCardIcon = styled.img``;
 export const DiscountCardImage = styled.img``;
@@ -241,7 +262,7 @@ export const StoresCard = styled.div`
   width: 400px;
   height: 200px;
   border-radius: 12px;
-  margin: 2rem 2rem 0 0;
+  margin: 2rem auto 0 0;
 `;
 export const StoresCardLogoWrapper = styled.div`
   display: flex;

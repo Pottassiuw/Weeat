@@ -3,10 +3,11 @@ import { styled } from "styled-components";
 
 export const Nav = styled.nav`
   display: flex;
-  position: sticky;
+  position: ${(p) => (p.sticky ? "sticky" : "absolute")};
   width: 100%;
   background-color: #f5f5f5;
   top: 0;
+  left: 0;
   align-items: center;
   justify-content: space-between;
   height: 12dvh;

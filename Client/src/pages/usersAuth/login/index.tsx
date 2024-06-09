@@ -30,7 +30,7 @@ function Login() {
   };
   return (
     <$.Container>
-      <NavBar />
+      <NavBar sticky={false} />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Login</$.Title>
