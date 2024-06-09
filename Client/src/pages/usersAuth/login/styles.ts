@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+interface HasError {
+  hasError: boolean;
+}
 export const Container = styled.div`
   display: flex;
   position: relative;
@@ -40,7 +43,7 @@ export const WrapperInput = styled.div`
   margin: 0.7rem 0px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<HasError>`
   border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   width: 100%;
   border-radius: ${(p) => p.theme.border.button};

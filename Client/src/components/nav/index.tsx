@@ -1,6 +1,9 @@
 import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
-export default function NavBar({ sticky }) {
+interface NavBarProps {
+  sticky?: boolean;
+}
+export default function NavBar({ sticky }: NavBarProps) {
   return (
     <$.Nav sticky={sticky}>
       <$.LogoWrapper>

@@ -57,7 +57,7 @@ function Login() {
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton disabled={isSubmitting} enableButton={isSubmitting}>
+          <$.SubmitButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
           </$.SubmitButton>
           <$.RegisterText>
