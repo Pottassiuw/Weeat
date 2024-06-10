@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {
   Search,
-  Bell,
   ArrowRight,
   MapPinned,
   Sparkles,
@@ -17,8 +16,8 @@ export const Container = styled.div`
 `;
 // --------------------Reusable----------------------------------
 export const Divisor = styled.div`
-  width: 100dvw;
-  height: 10dvh;
+  width: 100%;
+  height: 150px;
   background-color: #e8e8e8;
   opacity: 0.7;
 `;
@@ -52,16 +51,39 @@ export const CategoriesWrapper = styled.div`
 `;
 export const SearchWrapper = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20dvh;
+  background-color: #fff;
+  padding: 3rem;
+  border-radius: 10px;
+  flex-flow: column nowrap;
+  overflow: hidden;
+`;
+export const SearchContentText = styled.h1`
+  font-size: 22pt;
+  font-weight: 600;
+
+`;
+export const SearchContentWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+export const SearchContentContainer = styled.div`
+  display: flex;
   flex-flow: row nowrap;
   position: relative;
   border-radius: 0.6rem;
   border: 1px solid black;
-  padding: 0.4rem;
+  padding: 0.5rem;
   align-items: center;
-  width: 100%;
+  width: 70%;
 `;
+
 export const SearchIcon = styled(Search)`
-  color: red;
   margin-right: 5px;
 `;
 export const SearchBar = styled.input`
@@ -73,7 +95,16 @@ export const SearchBar = styled.input`
     outline: none;
   }
 `;
-export const BellIcon = styled(Bell)``;
+export const SearchContentButton = styled.button`
+  margin-left: 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid black;
+  background: black;
+  padding: 0.7rem;
+  color: white;
+  font-weight: 600;
+  width: 150px;
+`;
 export const GreetingsWrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;

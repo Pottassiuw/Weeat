@@ -9,29 +9,26 @@ export default function StorePage() {
         <$.WeeatTitleWrapper>
           <$.WeeatTitle>Weeat</$.WeeatTitle>
         </$.WeeatTitleWrapper>
+
         <$.Divisor></$.Divisor>
+
         <$.CategoriesWrapper>
-          <$.SearchWrapper>
-            <$.SearchIcon />
-            <$.SearchBar />
-            <$.BellIcon />
-          </$.SearchWrapper>
           <$.GreetingsWrapper>
             <$.Greetings>Olá (User)!</$.Greetings>
           </$.GreetingsWrapper>
-          <$.CategoryWrapper>
-            <$.CategoryButtonWrapper>
-              <$.CategoryButton>Categoria 1</$.CategoryButton>
-              <$.CategoryButton>Categoria 2</$.CategoryButton>
-              <$.CategoryButton>Categoria 3</$.CategoryButton>
-              <$.CategoryButton>Categoria 4</$.CategoryButton>
-              <$.CategoryButton>Categoria 5</$.CategoryButton>
-            </$.CategoryButtonWrapper>
-            <$.CategoryFavorites>
-              <$.CategoryButton>Favoritos</$.CategoryButton>
-              <$.ArrowIcon />
-            </$.CategoryFavorites>
-          </$.CategoryWrapper>
+
+          <$.SearchWrapper>
+          <$.SearchContentText>Procure por Estabelecimentos!</$.SearchContentText>
+          <$.SearchContentWrapper>
+            <$.SearchContentContainer>
+              <$.SearchIcon />
+              <$.SearchBar />
+            </$.SearchContentContainer>
+            <$.SearchContentButton>Pesquisar!</$.SearchContentButton>
+            </$.SearchContentWrapper>
+          </$.SearchWrapper>
+
+          <$.CategoryWrapper></$.CategoryWrapper>
         </$.CategoriesWrapper>
         <$.StoresCategoryWrapper>
           <$.StoresCategoryButton>Arabe</$.StoresCategoryButton>
