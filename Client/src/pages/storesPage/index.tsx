@@ -17,27 +17,27 @@ export default function StorePage() {
             <$.BellIcon />
           </$.SearchWrapper>
           <$.GreetingsWrapper>
-            <$.Greetings>Hello My (Nigga)!</$.Greetings>
+            <$.Greetings>Olá (User)!</$.Greetings>
           </$.GreetingsWrapper>
           <$.CategoryWrapper>
             <$.CategoryButtonWrapper>
-              <$.CategoryButton>Category 1</$.CategoryButton>
-              <$.CategoryButton>Category 2</$.CategoryButton>
-              <$.CategoryButton>Category 3</$.CategoryButton>
-              <$.CategoryButton>Category 4</$.CategoryButton>
-              <$.CategoryButton>Category 5</$.CategoryButton>
+              <$.CategoryButton>Categoria 1</$.CategoryButton>
+              <$.CategoryButton>Categoria 2</$.CategoryButton>
+              <$.CategoryButton>Categoria 3</$.CategoryButton>
+              <$.CategoryButton>Categoria 4</$.CategoryButton>
+              <$.CategoryButton>Categoria 5</$.CategoryButton>
             </$.CategoryButtonWrapper>
             <$.CategoryFavorites>
-              <$.CategoryButton>Goto Fav</$.CategoryButton>
+              <$.CategoryButton>Favoritos</$.CategoryButton>
               <$.ArrowIcon />
             </$.CategoryFavorites>
           </$.CategoryWrapper>
         </$.CategoriesWrapper>
         <$.StoresCategoryWrapper>
-          <$.StoresCategoryButton>Arab</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Thai</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Corean</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Japanese</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Arabe</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Talandês</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Coreano</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Japonês</$.StoresCategoryButton>
           <$.StoresCategoryButton>+</$.StoresCategoryButton>
         </$.StoresCategoryWrapper>
       </$.CategoriesSection>
