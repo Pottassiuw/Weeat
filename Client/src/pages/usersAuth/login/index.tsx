@@ -1,7 +1,7 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import { TloginSchema } from "../../../@types/types.ts";
-import { loginSchema } from "../../../@types/types.ts";
+import { TloginSchema } from "../../../@types/userform";
+import { loginSchema } from "../../../@types/userform";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

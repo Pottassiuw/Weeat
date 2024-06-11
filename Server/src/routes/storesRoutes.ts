@@ -11,9 +11,14 @@ router.post("/login", controller.login);
 router.post("/address", authenticate, authorizeStore, controller.addAddress);
 router.get("/address/:id", authenticate, authorizeStore, controller.getAddress);
 
-router.get("/", controller.getStores);
+router.get("/", authenticate, authorizeStore, controller.getStores);
 router.get("/:id", authenticate, authorizeStore, controller.getById);
 router.put("/:id", authenticate, authorizeStore, controller.update);
-router.get("/category/:category", controller.getByCategory);
+router.get(
+  "/category/:category",
+  authenticate,
+  authorizeStore,
+  controller.getByCategory
+);
 
 export default router;

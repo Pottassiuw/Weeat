@@ -2,8 +2,8 @@ import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import type { TsignUpSchema } from "../../../@types/types.ts";
-import { signUpSchema } from "../../../@types/types.ts";
+import type { TsignUpSchema } from "../../../@types/userform";
+import { signUpSchema } from "../../../@types/userform";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 
@@ -82,10 +82,6 @@ export default function Register() {
               <$.ErrorMessage>{`${errors.confirmPassword?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
-          <$.WrapperCheckbox>
-            <$.Checkbox id="remember" type="checkbox" />{" "}
-            <$.Span>Lembrar de mim</$.Span>
-          </$.WrapperCheckbox>
           <$.SubmitButton disabled={isSubmitting} enableButton={isSubmitting}>
             {isSubmitting ? <p>...Loading</p> : <p>Cadastrar</p>}
           </$.SubmitButton>

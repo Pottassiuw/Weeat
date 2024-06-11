@@ -46,7 +46,7 @@ model Store {
   category         String
   addresses        StoreAddress[]
   products         Product[]
-  favorites        Favorite[]
+  Favorite         Favorite[]
 
   @@index([name])
   @@index([email])

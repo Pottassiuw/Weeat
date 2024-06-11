@@ -7,7 +7,7 @@ import { URL } from "../../helper/URL";
 export default function StorePage() {
   useEffect(() => {
     const getStores = async () => {
-      const request = await axios.get(`${URL}/stores/`);
+      const request = await axios.get(`${URL}/stores`);
       const json = await request.data.json();
       console.log(json);
     };
