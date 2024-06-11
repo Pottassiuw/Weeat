@@ -1,22 +1,19 @@
 export type User = {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  userAddress?: number[];
-  favorites?: number[];
-  productReview?: number[];
+  id: number | undefined;
+  name: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
 };
 
 export type Store = {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  cep: number;
-  storeName: string;
-  description: string;
-  contact: string;
-  averageRating?: number;
-  category: string;
+  id: number | undefined;
+  name: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+  cep: number | undefined;
+  storeName: string | undefined;
+  description: string | undefined;
+  contact: string | undefined;
+  averageRating?: number | undefined;
+  category: string | undefined;
 };

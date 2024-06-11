@@ -1,11 +1,17 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import { PropsWithChildren, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authProvider";
 
-const userProtected: React.FC = () => {
-  // user context lá
+type childrenWithProps = PropsWithChildren;
+export default function protectedRoute({ children }: childrenWithProps) {
+  const user = useAuth();
+  const navigate = useNavigate();
 
-  if (!user) {
-    throw new Error("User must be logged To access this page!");
-  }
-  return user ? <Outlet /> : <...rest>
-};
+  useEffect(() => {
+    if (user === undefined) {
+      navigate("/users/register", { replace: true });
+    }
+  }, [user, navigate]);
+
+  return children;
+}

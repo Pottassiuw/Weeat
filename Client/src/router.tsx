@@ -5,7 +5,7 @@ import UserRegister from "./pages/usersAuth/register";
 import StoreRegister from "./pages/storesAuth/register";
 import StoresPage from "./pages/storesPage";
 import Home from "./pages/home";
-
+import ProtectedRoute from "./pages/infra/userProtected";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,7 +15,14 @@ const router = createBrowserRouter([
       { path: "users/login", element: <Login /> },
       { path: "users/register", element: <UserRegister /> },
       { path: "stores/register", element: <StoreRegister /> },
-      { path: "stores", element: <StoresPage /> },
+      {
+        path: "stores",
+        element: (
+          <ProtectedRoute>
+            <StoresPage />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

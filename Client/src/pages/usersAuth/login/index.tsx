@@ -20,9 +20,10 @@ function Login() {
 
   const loginUser = async (data: TloginSchema) => {
     try {
-      const response = await axios.post(URL, JSON.stringify(data));
+      const response = await axios.post(URL, data);
       const responseData = await response.data;
       reset();
+
       return responseData;
     } catch (error: any) {
       throw new error();

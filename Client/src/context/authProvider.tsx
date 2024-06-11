@@ -1,21 +1,21 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import type { User } from "../@types/Entity";
 
-const AuthContext = createContext<User | null>(null);
+const AuthContext = createContext<User | undefined>(undefined);
 
 type isSignedIn = PropsWithChildren & {
   isSignedIn?: boolean;
 };
 export default function AuthProvider({ children, isSignedIn }: isSignedIn) {
-  const [user] = useState<User | null>(
+  const [user] = useState<User | undefined>(
     isSignedIn
       ? {
-          id: 0,
-          name: "",
-          email: "",
-          password: "",
+          id: undefined,
+          name: undefined,
+          email: undefined,
+          password: undefined,
         }
-      : null
+      : undefined
   );
 
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
