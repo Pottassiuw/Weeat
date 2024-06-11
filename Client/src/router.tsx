@@ -3,9 +3,9 @@ import App from "./App";
 import Login from "./pages/usersAuth/login";
 import UserRegister from "./pages/usersAuth/register";
 import StoreRegister from "./pages/storesAuth/register";
-import StoreLogin from "./pages/storesAuth/login";
 import StoresPage from "./pages/storesPage";
 import Home from "./pages/home";
+
 const router = createBrowserRouter([
   {
     path: "/",

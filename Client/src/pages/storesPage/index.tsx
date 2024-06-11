@@ -2,6 +2,11 @@ import Footer from "../../components/Footer";
 import NavBar from "../../components/nav";
 import * as $ from "./styles";
 export default function StorePage() {
+
+
+
+
+  
   return (
     <$.Container>
       <NavBar sticky />
