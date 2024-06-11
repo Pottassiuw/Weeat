@@ -1,8 +1,17 @@
+import * as $ from './styles';
 
-function index () {
+const Error404 = () => {
   return (
-    <div>index</div>
-  )
-}
+    <$.Error404Container>
+      <$.Title>Weeat</$.Title>
+      <$.ErrorText>Error 404! Ops! Algo inesperado aconteceu, esta página está indisponível.</$.ErrorText>
+      <$.LinesContainer>
+        <$.Line color="#FF0000" />
+        <$.Line color="#FFA07A" />
+        <$.Line color="#FFFF00" />
+      </$.LinesContainer>
+    </$.Error404Container>
+  );
+};
 
-export default index
+export default Error404;

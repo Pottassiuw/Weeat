@@ -12,6 +12,9 @@ export default function NavBar() {
           <$.Links to="/">Home</$.Links>
         </$.LinkItem>
         <$.LinkItem>
+          <$.Links to="establishment/Example1">Teste</$.Links>
+        </$.LinkItem>
+        <$.LinkItem>
           <$.Links to="#">Estabelecimentos</$.Links>
         </$.LinkItem>
         <$.LinkItem>
@@ -19,7 +22,7 @@ export default function NavBar() {
         </$.LinkItem>
       </$.LinksWrapper>
       <$.ButtonsWrapper>
-        <$.Links to="stores/login">
+        <$.Links to="/stores/login">
           <$.ButtonStore>Login Loja</$.ButtonStore>
         </$.Links>
         <$.Links to="/users/login">

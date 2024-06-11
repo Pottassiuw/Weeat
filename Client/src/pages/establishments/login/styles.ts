@@ -84,3 +84,23 @@ export const Rcontainer = styled.div`
   display: flex;
   flex-direction: column;
 `
+
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 12px;
+  margin-bottom: 10px;
+`;
+
+export const Link = styled.a`
+  font-size: 16px;
+  color: ${props => props.theme.colors.redDark}; 
+  text-decoration: none;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+
+  &:hover {
+    color: ${props => props.theme.colors.redDarker}; 
+    text-decoration: underline;
+  }
+`;

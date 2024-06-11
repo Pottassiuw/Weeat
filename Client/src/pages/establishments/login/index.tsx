@@ -1,32 +1,33 @@
-import * as $ from "./styles";
 import { useState, ChangeEvent } from "react";
-import axios from "axios";
-import NavBar from "../../../components/nav";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import NavBar from '../../../components/nav';
+import * as $ from './styles';
 
-export default function Login() {
+export default function LoginEstablishment() {
   const apiUrl = "https://localhost:4040/";
-  const [page, setPage] = useState(1);
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handlePages = () => {
-    setPage(2);
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleChanges = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setLoginData({
-      ...loginData,
-      [name]: value,
-    });
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/stores/register');
   };
 
   const sendLoginData = async () => {
     try {
-      const response = await axios.post(`${apiUrl}login`, loginData);
-      console.log("Data send successfully!", response.data);
+      const response = await axios.post(`${apiUrl}establishment/login`, { email, password });
+      console.log('Login successful!', response.data);
+      navigate('/', { replace: true });
     } catch (err) {
       console.error(err);
     }
@@ -35,58 +36,51 @@ export default function Login() {
   return (
     <$.Screen>
       <NavBar />
-      {page === 1 ? (
-        <$.Container>
-          <$.Wrapper>
-            <$.WrapperTitle>
-              <$.Title>Faça seu login!</$.Title>
-              <$.Subtitle>Entre com suas credenciais</$.Subtitle>
-            </$.WrapperTitle>
-            <$.Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                sendLoginData();
-              }}
-            >
-              <$.WrapperInput>
-                <$.Label>E-mail</$.Label>
-                <$.Input
-                  type="text"
-                  name="email"
-                  value={loginData.email}
-                  onChange={handleChanges}
-                  required
-                  placeholder="ex: email@email.com"
-                />
-              </$.WrapperInput>
-              <$.WrapperInput>
-                <$.Label>Senha</$.Label>
-                <$.Input
-                  type="password"
-                  name="password"
-                  value={loginData.password}
-                  onChange={handleChanges}
-                  required
-                  placeholder="Mínimo 6 caracteres"
-                />
-              </$.WrapperInput>
-              <$.SubmitButton type="submit" onClick={handlePages}>
-                Entrar
-              </$.SubmitButton>
-            </$.Form>
-          </$.Wrapper>
-        </$.Container>
-      ) : page === 2 ? (
-        <$.Rcontainer></$.Rcontainer>
-      ) : null}
+      <$.Container>
+        <$.Wrapper>
+          <$.WrapperTitle>
+            <$.Title>Login Estabelecimento</$.Title>
+            <$.Subtitle>
+              Seja um sócio weeat e expanda seu comércio
+            </$.Subtitle>
+          </$.WrapperTitle>
+          <$.Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              sendLoginData();
+            }}
+          >
+            <$.WrapperInput>
+              <$.Label>Email</$.Label>
+              <$.Input
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChanges}
+                required
+                placeholder="ex: email@email.com"
+              />
+            </$.WrapperInput>
+            <$.WrapperInput>
+              <$.Label>Senha</$.Label>
+              <$.Input
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChanges}
+                required
+                placeholder="********"
+              />
+            </$.WrapperInput>
+            <$.SubmitButton type="submit">
+              Entrar
+            </$.SubmitButton>
+            <$.Link onClick={handleRegisterClick}>
+              Ainda não tem cadastro? Cadastre sua loja
+            </$.Link>
+          </$.Form>
+        </$.Wrapper>
+      </$.Container>
     </$.Screen>
   );
-}
-export default function index() {
-  return (
-    <>
-        <h1>Login estab.</h1>
-    
-    </>
-  )
-}
+};
