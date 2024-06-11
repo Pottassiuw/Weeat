@@ -1,12 +1,19 @@
+import { useEffect } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/nav";
 import * as $ from "./styles";
+import axios from "axios";
+import { URL } from "../../helper/URL";
 export default function StorePage() {
+  useEffect(() => {
+    const getStores = async () => {
+      const request = await axios.get(`${URL}/stores/`);
+      const json = await request.data.json();
+      console.log(json);
+    };
+    getStores();
+  }, []);
 
-
-
-
-  
   return (
     <$.Container>
       <NavBar sticky />
@@ -23,13 +30,15 @@ export default function StorePage() {
           </$.GreetingsWrapper>
 
           <$.SearchWrapper>
-          <$.SearchContentText>Procure por Estabelecimentos!</$.SearchContentText>
-          <$.SearchContentWrapper>
-            <$.SearchContentContainer>
-              <$.SearchIcon />
-              <$.SearchBar />
-            </$.SearchContentContainer>
-            <$.SearchContentButton>Pesquisar!</$.SearchContentButton>
+            <$.SearchContentText>
+              Procure por Estabelecimentos!
+            </$.SearchContentText>
+            <$.SearchContentWrapper>
+              <$.SearchContentContainer>
+                <$.SearchIcon />
+                <$.SearchBar />
+              </$.SearchContentContainer>
+              <$.SearchContentButton>Pesquisar!</$.SearchContentButton>
             </$.SearchContentWrapper>
           </$.SearchWrapper>
 
