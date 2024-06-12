@@ -80,8 +80,8 @@ export const Span = styled.span`
 export const SubmitButton = styled.button<HasError>`
   margin-top: 1rem;
   border: none;
-  padding: 10px;
-  background: ${(p) => (p.enableButton ? "#8f4f4f" : "#ff2b2b")};
+  padding: 1rem;
+  background: #fe2c2c;
   color: white;
   border-radius: ${(p) => p.theme.border.button};
   font-size: ${(p) => p.theme.font.text};

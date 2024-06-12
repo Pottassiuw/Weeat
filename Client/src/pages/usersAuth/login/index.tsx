@@ -22,13 +22,14 @@ function Login() {
     try {
       const response = await axios.post(URL, data);
       const responseData = await response.data;
-      reset();
 
+      reset();
       return responseData;
     } catch (error: any) {
       throw new error();
     }
   };
+
   return (
     <$.Container>
       <NavBar sticky={false} />
@@ -58,7 +59,7 @@ function Login() {
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton disabled={isSubmitting}>
+          <$.SubmitButton  disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
           </$.SubmitButton>
           <$.RegisterText>

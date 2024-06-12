@@ -23,6 +23,8 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 5dvw;
+  cursor: pointer;
+  padding: 0.5rem 0;
 `;
 export const Logo = styled.img`
   width: 65px;
