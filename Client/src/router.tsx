@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         path: "stores",
         element: (
           <ProtectedRoute>
-            <StoresPage />
+            <StoresPage/>
           </ProtectedRoute>
         ),
       },

@@ -4,10 +4,10 @@ import type { User } from "../@types/Entity";
 const AuthContext = createContext<User | undefined>(undefined);
 
 type isSignedIn = PropsWithChildren & {
-  isSignedIn?: boolean;
+  isSignedIn: boolean;
 };
 export default function AuthProvider({ children, isSignedIn }: isSignedIn) {
-  const [user] = useState<User | undefined>(
+  const [user, setUser] = useState<User | undefined>(
     isSignedIn
       ? {
           id: undefined,
@@ -26,6 +26,5 @@ export const useAuth = () => {
   if (context === null) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-
   return context;
 };

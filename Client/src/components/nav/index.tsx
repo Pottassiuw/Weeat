@@ -1,12 +1,17 @@
 import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
+import { useNavigate } from "react-router-dom";
 interface NavBarProps {
   sticky?: boolean;
 }
 export default function NavBar({ sticky }: NavBarProps) {
+  const navigate = useNavigate();
+  const gotoHome = () => {
+    navigate('/')
+  }
   return (
     <$.Nav sticky={sticky}>
-      <$.LogoWrapper>
+      <$.LogoWrapper onClick={gotoHome}>
         <$.Logo src={LogoImage} />
         <$.LogoFont>Weeat</$.LogoFont>
       </$.LogoWrapper>

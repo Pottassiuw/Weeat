@@ -1,9 +1,10 @@
 export type User = {
-  id: number | undefined;
-  name: string | undefined;
-  email: string | undefined;
-  password: string | undefined;
+  id?: number;
+  name?: string;
+  email?: string;
+  password?: string;
 };
+
 
 export type Store = {
   id: number | undefined;
