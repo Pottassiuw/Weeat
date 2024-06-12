@@ -1,14 +1,14 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import { TloginSchema } from "../../../@types/types.ts";
-import { loginSchema } from "../../../@types/types.ts";
-import axios from "axios";
+import { TloginSchema } from "../../../@types/userform";
+import { loginSchema } from "../../../@types/userform";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
+import { useAuth } from "../../../context/authProvider.tsx";
 
 function Login() {
-  const URL = "http://localhost:4040/users/login";
+  const { loginUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -18,24 +18,19 @@ function Login() {
     resolver: zodResolver(loginSchema),
   });
 
-  const loginUser = async (data: TloginSchema) => {
-    try {
-      const response = await axios.post(URL, JSON.stringify(data));
-      const responseData = await response.data;
-      reset();
-      return responseData;
-    } catch (error: any) {
-      throw new error();
-    }
+  const handleLogin = (form: TloginSchema) => {
+    loginUser({ email: form.email, password: form.password });
+    reset();
   };
+
   return (
     <$.Container>
-      <NavBar />
+      <NavBar sticky={false} />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Login</$.Title>
         </$.WrapperTitle>
-        <$.Form onSubmit={handleSubmit(loginUser)}>
+        <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
             <$.Input hasError={!!errors.email} {...register("email")} />
@@ -57,7 +52,7 @@ function Login() {
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton disabled={isSubmitting} enableButton={isSubmitting}>
+          <$.SubmitButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
           </$.SubmitButton>
           <$.RegisterText>

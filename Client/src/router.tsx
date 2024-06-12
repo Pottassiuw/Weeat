@@ -1,9 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Login from "./pages/users/login";
-import UserRegister from "./pages/users/register";
-import StoreRegister from "./pages/establishments/register";
+import Login from "./pages/usersAuth/login";
+import UserRegister from "./pages/usersAuth/register";
+import StoreRegister from "./pages/storesAuth/register";
+import StoresPage from "./pages/storesPage";
 import Home from "./pages/home";
+import ProtectedRoute from "./pages/infra/userProtected";
+import UserDash from "./pages/usersDash";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -11,8 +14,24 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "users/login", element: <Login /> },
+      {
+        path: "users/dashboard",
+        element: (
+          <ProtectedRoute>
+            <UserDash />
+          </ProtectedRoute>
+        ),
+      },
       { path: "users/register", element: <UserRegister /> },
       { path: "stores/register", element: <StoreRegister /> },
+      {
+        path: "stores",
+        element: (
+          <ProtectedRoute>
+            <StoresPage />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

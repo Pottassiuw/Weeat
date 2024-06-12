@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+interface HasError {
+  hasError?: boolean;
+  enableButton?: boolean;
+}
 export const Container = styled.div`
   display: flex;
   width: 100vw;
@@ -41,7 +45,7 @@ export const WrapperInput = styled.div`
   margin: 0.3rem 0px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<HasError>`
   border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   width: 100%;
   border-radius: ${(p) => p.theme.border.button};
@@ -73,11 +77,11 @@ export const Span = styled.span`
   font-size: ${(p) => p.theme.font.text};
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.button<HasError>`
   margin-top: 1rem;
   border: none;
-  padding: 10px;
-  background: ${(p) => (p.enableButton ? "#8f4f4f" : "#ff2b2b")};
+  padding: 1rem;
+  background: #fe2c2c;
   color: white;
   border-radius: ${(p) => p.theme.border.button};
   font-size: ${(p) => p.theme.font.text};
@@ -111,7 +115,7 @@ export const Image = styled.img`
 `;
 
 export const RegisterText = styled.h2`
-  font-size: ${p => p.theme.font.text};
+  font-size: ${(p) => p.theme.font.text};
   margin-top: 2rem;
   font-weight: 400;
   color: #1c1c1c;

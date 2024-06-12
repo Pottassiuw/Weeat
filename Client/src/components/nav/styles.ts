@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-
-export const Nav = styled.nav`
+interface NavProps {
+  sticky?: boolean;
+}
+export const Nav = styled.nav<NavProps>`
   display: flex;
-  position: fixed;
+  position: ${(p) => (p.sticky ? "sticky" : "absolute")};
   width: 100%;
   background-color: #f5f5f5;
   top: 0;
   left: 0;
   align-items: center;
   justify-content: space-between;
-  height: 10dvh;
+  height: 12dvh;
   border-bottom: 1px solid #d9d9d9;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -21,6 +23,8 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 5dvw;
+  cursor: pointer;
+  padding: 0.5rem 0;
 `;
 export const Logo = styled.img`
   width: 65px;
@@ -69,14 +73,15 @@ export const Links = styled(Link)`
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 15px;
-  margin-right: 5dvw;
-
   button {
     display: flex;
     padding: 10px;
     height: 40px;
     align-items: center;
   }
+  align-items: center;
+  justify-content: flex-start;
+  width: 300px;
 `;
 
 export const ButtonStore = styled.button`

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -41,6 +42,9 @@ export const HeroSubtitle = styled.h2`
   padding-bottom: 1rem;
   font-weight: 500;
 `;
+export const HeroButtonLink = styled(Link)`
+  width: 100%;
+`
 export const HeroButton = styled.button`
   width: 40%;
   margin-top: 2rem;

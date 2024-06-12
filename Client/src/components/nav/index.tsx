@@ -1,9 +1,32 @@
 import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
-export default function NavBar() {
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authProvider";
+
+interface NavBarProps {
+  sticky?: boolean;
+}
+
+export default function NavBar({ sticky }: NavBarProps) {
+  const navigate = useNavigate();
+  const { user, isSignedIn, logout } = useAuth();
+
+  const gotoHome = () => {
+    navigate("/");
+  };
+
+  const gotoDashboard = () => {
+    navigate("/users/dashboard");
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
-    <$.Nav>
-      <$.LogoWrapper>
+    <$.Nav sticky={sticky}>
+      <$.LogoWrapper onClick={gotoHome}>
         <$.Logo src={LogoImage} />
         <$.LogoFont>Weeat</$.LogoFont>
       </$.LogoWrapper>
@@ -12,20 +35,31 @@ export default function NavBar() {
           <$.Links to="/">Home</$.Links>
         </$.LinkItem>
         <$.LinkItem>
-          <$.Links to="#">Estabelecimentos</$.Links>
+          <$.Links to="/stores">Estabelecimentos</$.Links>
         </$.LinkItem>
         <$.LinkItem>
           <$.Links to="#">Faq</$.Links>
         </$.LinkItem>
       </$.LinksWrapper>
-      <$.ButtonsWrapper>
-        <$.Links to="stores/login">
-          <$.ButtonStore>Login Loja</$.ButtonStore>
-        </$.Links>
-        <$.Links to="/users/login">
-          <$.ButtonUser>Login Usuário</$.ButtonUser>
-        </$.Links>
-      </$.ButtonsWrapper>
+      {isSignedIn ? (
+        <$.ButtonsWrapper>
+          <$.Links to="/users/dashboard">
+            <$.ButtonUser onClick={gotoDashboard}>
+              {user?.name || "User"}
+            </$.ButtonUser>
+          </$.Links>
+          <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>
+        </$.ButtonsWrapper>
+      ) : (
+        <$.ButtonsWrapper>
+          <$.Links to="/stores/login">
+            <$.ButtonStore>Login Loja</$.ButtonStore>
+          </$.Links>
+          <$.Links to="/users/login">
+            <$.ButtonUser>Login Usuário</$.ButtonUser>
+          </$.Links>
+        </$.ButtonsWrapper>
+      )}
     </$.Nav>
   );
 }
