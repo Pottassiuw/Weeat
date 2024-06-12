@@ -5,7 +5,6 @@ export type User = {
   password?: string;
 };
 
-
 export type Store = {
   id: number | undefined;
   name: string | undefined;

@@ -6,9 +6,11 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
+import { useAuth } from "../../../context/authProvider.tsx";
 
 function Login() {
   const URL = "http://localhost:4040/users/login";
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -23,8 +25,8 @@ function Login() {
       const response = await axios.post(URL, data);
       const responseData = await response.data;
 
+      login(responseData.user);
       reset();
-      return responseData;
     } catch (error: any) {
       throw new error();
     }
@@ -59,7 +61,7 @@ function Login() {
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton  disabled={isSubmitting}>
+          <$.SubmitButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
           </$.SubmitButton>
           <$.RegisterText>

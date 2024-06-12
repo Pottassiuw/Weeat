@@ -1,14 +1,29 @@
 import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authProvider";
+
 interface NavBarProps {
   sticky?: boolean;
 }
+
 export default function NavBar({ sticky }: NavBarProps) {
   const navigate = useNavigate();
+  const { user, isSignedIn, logout } = useAuth();
+
   const gotoHome = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
+
+  const gotoDashboard = () => {
+    navigate("/users/dashboard");
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <$.Nav sticky={sticky}>
       <$.LogoWrapper onClick={gotoHome}>
@@ -27,12 +42,25 @@ export default function NavBar({ sticky }: NavBarProps) {
         </$.LinkItem>
       </$.LinksWrapper>
       <$.ButtonsWrapper>
-        <$.Links to="stores/login">
-          <$.ButtonStore>Login Loja</$.ButtonStore>
-        </$.Links>
-        <$.Links to="/users/login">
-          <$.ButtonUser>Login Usuário</$.ButtonUser>
-        </$.Links>
+        {isSignedIn ? (
+          <>
+            <$.Links to="/users/dashboard">
+              <$.ButtonUser onClick={gotoDashboard}>
+                {user?.name || "User"}
+              </$.ButtonUser>
+            </$.Links>
+            <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>
+          </>
+        ) : (
+          <>
+            <$.Links to="/stores/login">
+              <$.ButtonStore>Login Loja</$.ButtonStore>
+            </$.Links>
+            <$.Links to="/users/login">
+              <$.ButtonUser>Login Usuário</$.ButtonUser>
+            </$.Links>
+          </>
+        )}
       </$.ButtonsWrapper>
     </$.Nav>
   );
