@@ -26,17 +26,19 @@ type AuthProviderProps = PropsWithChildren;
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>(undefined);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  //MUDAR SE ESTIVER NA ETEC PARA TRUE
+
+  const [isSignedIn, setIsSignedIn] = useState(true);
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     if (user && token) {
       setUser(JSON.parse(user));
-      console.log(user);
       setToken(token);
-      console.log(token);
       setIsSignedIn(true);
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }

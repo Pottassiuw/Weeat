@@ -4,6 +4,7 @@ import NavBar from "../../components/nav";
 import * as $ from "./styles";
 import axios from "axios";
 import { URL } from "../../helper/URL";
+import { useAuth } from "../../context/authProvider";
 export default function StorePage() {
   useEffect(() => {
     const getStores = async () => {
@@ -13,6 +14,8 @@ export default function StorePage() {
     };
     getStores();
   }, []);
+
+  const { user } = useAuth();
 
   return (
     <$.Container>
@@ -26,7 +29,7 @@ export default function StorePage() {
 
         <$.CategoriesWrapper>
           <$.GreetingsWrapper>
-            <$.Greetings>Olá (User)!</$.Greetings>
+            <$.Greetings>Olá {user?.name || "Usuário não existente neste WebApp maravilhoso feito em React Ts"}!</$.Greetings>
           </$.GreetingsWrapper>
 
           <$.SearchWrapper>
@@ -45,11 +48,11 @@ export default function StorePage() {
           <$.CategoryWrapper></$.CategoryWrapper>
         </$.CategoriesWrapper>
         <$.StoresCategoryWrapper>
-          <$.StoresCategoryButton>Arabe</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Talandês</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Coreano</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Lanchonete</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Pizzaria</$.StoresCategoryButton>
           <$.StoresCategoryButton>Japonês</$.StoresCategoryButton>
-          <$.StoresCategoryButton>+</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Árabe</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Açaíteria</$.StoresCategoryButton>
         </$.StoresCategoryWrapper>
       </$.CategoriesSection>
 

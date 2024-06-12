@@ -4,43 +4,10 @@ import axios from "axios";
 import NavBar from "../../../components/nav";
 
 export default function Register() {
-  const apiUrl = "https://localhost:4040/";
+
   const [page, setPage] = useState(1);
-  const [establishmentData, setEstablishmentData] = useState(() => ({
-    name: "",
-    email: "",
-    password: "",
-    ZIP: "",
-    neighborhood: "",
-    city: "",
-    address: "",
-    number: "",
-    complement: "",
-  }));
-
-  const handlePages = () => {
-    setPage(2);
-  };
-
-  const handleChanges = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEstablishmentData({
-      ...establishmentData,
-      [name]: value,
-    });
-  };
-
-  const sendEstablishmetData = async () => {
-    try {
-      const response = await axios.post(
-        `${apiUrl}establishment`,
-        establishmentData
-      );
-      console.log("Data send successfully!", response.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  
+  
 
   return (
     <$.Screen>

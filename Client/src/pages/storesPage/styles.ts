@@ -158,9 +158,6 @@ export const StoresCategoryButton = styled.button`
   margin: 0 auto;
   color: #eb4032;
   background-color: transparent;
-  &:nth-child(1) {
-    width: 500px;
-  }
 `;
 //----------------Categories---------------------
 
