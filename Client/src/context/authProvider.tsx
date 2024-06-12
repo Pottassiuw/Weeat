@@ -4,45 +4,87 @@ import {
   useContext,
   useState,
   useMemo,
+  useEffect,
 } from "react";
+import { URL } from "../helper/URL";
+import axios from "axios";
 import type { User } from "../@types/Entity";
-
+import { TloginSchema, TsignUpSchema } from "../@types/userform";
+import { toast } from "react-toastify";
 interface AuthContextProps {
   user: User | undefined;
-  isSignedIn: boolean;
-  login: (user: User) => void;
+  isSignedIn?: boolean;
+  token: string | undefined;
+  loginUser: (data: TloginSchema) => void;
+  registerUser: (data: TsignUpSchema) => void;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
-type AuthProviderProps = PropsWithChildren & {
-  initialSignedIn: boolean;
-};
+type AuthProviderProps = PropsWithChildren;
 
-export default function AuthProvider({
-  children,
-  initialSignedIn,
-}: AuthProviderProps) {
-  const [user, setUser] = useState<User | undefined>(
-    initialSignedIn
-      ? {
-          id: undefined,
-          name: undefined,
-          email: undefined,
-          password: undefined,
-        }
-      : undefined
-  );
-  const [isSignedIn, setIsSignedIn] = useState(initialSignedIn);
+export default function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User | undefined>(undefined);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [token, setToken] = useState<string | undefined>(undefined);
+  const [isReady, setIsReady] = useState(false);
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    if (user && token) {
+      setUser(JSON.parse(user));
+      console.log(user);
+      setToken(token);
+      console.log(token);
+      setIsSignedIn(true);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    }
+    setIsReady(true);
+  }, []);
 
-  const login = (user: User) => {
-    setUser(user);
-    setIsSignedIn(true);
+  const loginUser = async (data: TloginSchema) => {
+    try {
+      const res = await axios.post(URL + "users/login", data);
+      if (res) {
+        const responseData = await res.data;
+        localStorage.setItem("token", responseData.token);
+        localStorage.setItem("user", JSON.stringify(responseData.user));
+        setToken(responseData?.token!);
+        setUser(responseData.user);
+        toast.success("User Logged!");
+        console.log(responseData.token);
+        setIsSignedIn(true);
+        setIsReady(true);
+      }
+    } catch (error: any) {
+      toast.error("Login error:", error);
+      throw error;
+    }
+  };
+  const registerUser = async (data: TsignUpSchema) => {
+    try {
+      const res = await axios.post(URL, data);
+      if (res) {
+        const responseData = await res.data;
+        localStorage.setItem("token", responseData.token);
+        localStorage.setItem("user", JSON.stringify(responseData.user));
+        setToken(responseData.token!);
+        setUser(responseData.user);
+        toast.success("User Created!");
+        console.log(responseData.token);
+      }
+    } catch (error: any) {
+      toast.warning("Login error:", error);
+      throw error;
+    }
   };
 
   const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setUser(undefined);
+    setToken("");
     setIsSignedIn(false);
   };
 
@@ -50,13 +92,19 @@ export default function AuthProvider({
     () => ({
       user,
       isSignedIn,
-      login,
+      token,
+      loginUser,
+      registerUser,
       logout,
     }),
     [user, isSignedIn]
   );
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {isReady ? children : null}
+    </AuthContext.Provider>
+  );
 }
 
 export const useAuth = () => {

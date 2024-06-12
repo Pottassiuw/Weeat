@@ -1,4 +1,4 @@
-import { PrismaClient, Favorite, Store, User } from '@prisma/client';
+import { PrismaClient, Favorite, Store, User } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -20,18 +20,21 @@ class FavoriteService {
     return favorite;
   }
 
-  async getFavoritesByUser(userId: number): Promise<(Favorite & { store: Store })[]> {
+  async getFavoritesByUser(
+    userId: number
+  ): Promise<(Favorite & { store: Store })[]> {
     const favorites = await prisma.favorite.findMany({
       where: { userId },
       include: {
-        store
-          : true
+        store: true,
       },
     });
     return favorites;
   }
 
-  async getFavoritesByStore(storeId: number): Promise<(Favorite & { user: User })[]> {
+  async getFavoritesByStore(
+    storeId: number
+  ): Promise<(Favorite & { user: User })[]> {
     const favorites = await prisma.favorite.findMany({
       where: { storeId },
       include: { user: true },
@@ -49,14 +52,16 @@ class FavoriteService {
     return favorite;
   }
 
-  async updateFavorite(favoriteId: number, updateData: Partial<Favorite>): Promise<Favorite> {
+  async updateFavorite(
+    favoriteId: number,
+    updateData: Partial<Favorite>
+  ): Promise<Favorite> {
     const favorite = await prisma.favorite.update({
       where: { id: favoriteId },
       data: updateData,
     });
     return favorite;
   }
-
 }
 
 export default new FavoriteService();

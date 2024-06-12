@@ -73,14 +73,15 @@ export const Links = styled(Link)`
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 15px;
-  margin-right: 5dvw;
-
   button {
     display: flex;
     padding: 10px;
     height: 40px;
     align-items: center;
   }
+  align-items: center;
+  justify-content: flex-start;
+  width: 300px;
 `;
 
 export const ButtonStore = styled.button`

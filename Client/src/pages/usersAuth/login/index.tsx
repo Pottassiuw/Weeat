@@ -2,15 +2,13 @@ import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
 import { TloginSchema } from "../../../@types/userform";
 import { loginSchema } from "../../../@types/userform";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { useAuth } from "../../../context/authProvider.tsx";
 
 function Login() {
-  const URL = "http://localhost:4040/users/login";
-  const { login } = useAuth();
+  const { loginUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -20,16 +18,9 @@ function Login() {
     resolver: zodResolver(loginSchema),
   });
 
-  const loginUser = async (data: TloginSchema) => {
-    try {
-      const response = await axios.post(URL, data);
-      const responseData = await response.data;
-
-      login(responseData.user);
-      reset();
-    } catch (error: any) {
-      throw new error();
-    }
+  const handleLogin = (form: TloginSchema) => {
+    loginUser({ email: form.email, password: form.password });
+    reset();
   };
 
   return (
@@ -39,7 +30,7 @@ function Login() {
         <$.WrapperTitle>
           <$.Title>Login</$.Title>
         </$.WrapperTitle>
-        <$.Form onSubmit={handleSubmit(loginUser)}>
+        <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
             <$.Input hasError={!!errors.email} {...register("email")} />

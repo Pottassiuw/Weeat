@@ -41,27 +41,25 @@ export default function NavBar({ sticky }: NavBarProps) {
           <$.Links to="#">Faq</$.Links>
         </$.LinkItem>
       </$.LinksWrapper>
-      <$.ButtonsWrapper>
-        {isSignedIn ? (
-          <>
-            <$.Links to="/users/dashboard">
-              <$.ButtonUser onClick={gotoDashboard}>
-                {user?.name || "User"}
-              </$.ButtonUser>
-            </$.Links>
-            <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>
-          </>
-        ) : (
-          <>
-            <$.Links to="/stores/login">
-              <$.ButtonStore>Login Loja</$.ButtonStore>
-            </$.Links>
-            <$.Links to="/users/login">
-              <$.ButtonUser>Login Usuário</$.ButtonUser>
-            </$.Links>
-          </>
-        )}
-      </$.ButtonsWrapper>
+      {isSignedIn ? (
+        <$.ButtonsWrapper>
+          <$.Links to="/users/dashboard">
+            <$.ButtonUser onClick={gotoDashboard}>
+              {user?.name || "User"}
+            </$.ButtonUser>
+          </$.Links>
+          <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>
+        </$.ButtonsWrapper>
+      ) : (
+        <$.ButtonsWrapper>
+          <$.Links to="/stores/login">
+            <$.ButtonStore>Login Loja</$.ButtonStore>
+          </$.Links>
+          <$.Links to="/users/login">
+            <$.ButtonUser>Login Usuário</$.ButtonUser>
+          </$.Links>
+        </$.ButtonsWrapper>
+      )}
     </$.Nav>
   );
 }

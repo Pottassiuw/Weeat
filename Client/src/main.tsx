@@ -5,9 +5,10 @@ import { RouterProvider } from "react-router-dom";
 import AuthProvider from "./context/authProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  // Render twice for debugging purposes
   <React.StrictMode>
-    <AuthProvider initialSignedIn={false}>
+    <AuthProvider>
+      {" "}
+      {/* Remove isSignedIn prop */}
       <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import UserService from "../services/userService";
 import AuthService from "../services/authService";
-
 const isError = (error: unknown): error is Error => {
   return error instanceof Error;
 };
@@ -20,7 +19,7 @@ export default class UserController {
   async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-      const { token, user } = await AuthService.loginUser(email, password);
+      const { user, token } = await AuthService.loginUser(email, password);
       res.status(200).json({ user, token });
     } catch (error) {
       const message = isError(error) ? error.message : "Unknown error";
