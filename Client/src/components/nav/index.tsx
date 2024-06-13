@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
 
 interface NavBarProps {
-  sticky?: boolean;
+  sticky: string;
 }
 
 export default function NavBar({ sticky }: NavBarProps) {
@@ -45,7 +45,7 @@ export default function NavBar({ sticky }: NavBarProps) {
         <$.ButtonsWrapper>
           <$.Links to="/users/dashboard">
             <$.ButtonUser onClick={gotoDashboard}>
-              {user?.name || "User"}
+              {user && user.name}
             </$.ButtonUser>
           </$.Links>
           <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>

@@ -6,6 +6,7 @@ import type { TsignUpSchema } from "../../../@types/userform";
 import { signUpSchema } from "../../../@types/userform";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
+import { FormButton } from "../../../components/FormButton/styles.ts";
 
 export default function Register() {
   const URL = "http://localhost:4040/users/register";
@@ -28,7 +29,7 @@ export default function Register() {
 
   return (
     <$.Container>
-      <NavBar sticky={false} />
+      <NavBar sticky="false" />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Sign in</$.Title>
@@ -82,9 +83,9 @@ export default function Register() {
               <$.ErrorMessage>{`${errors.confirmPassword?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
-          <$.SubmitButton disabled={isSubmitting} enableButton={isSubmitting}>
+          <FormButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Loading</p> : <p>Cadastrar</p>}
-          </$.SubmitButton>
+          </FormButton>
           <$.RegisterText>
             Já possuí uma conta? <$.Links to="/users/login">Logar</$.Links>
           </$.RegisterText>

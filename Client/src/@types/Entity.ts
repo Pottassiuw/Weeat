@@ -14,6 +14,8 @@ export type Store = {
   storeName: string | undefined;
   description: string | undefined;
   contact: string | undefined;
-  averageRating?: number | undefined;
+  banner: string | undefined;
+  logo: string | undefined;
+  averageRating: number | undefined;
   category: string | undefined;
 };

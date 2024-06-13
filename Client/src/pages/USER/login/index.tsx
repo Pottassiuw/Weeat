@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { useAuth } from "../../../context/authProvider.tsx";
-
+import FormButton from "../../../components/FormButton";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const { loginUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -18,14 +20,15 @@ function Login() {
     resolver: zodResolver(loginSchema),
   });
 
-  const handleLogin = (form: TloginSchema) => {
-    loginUser({ email: form.email, password: form.password });
+  const handleLogin = async (form: TloginSchema) => {
+    await loginUser({ email: form.email, password: form.password });
     reset();
+    navigate("/stores");
   };
 
   return (
     <$.Container>
-      <NavBar sticky={false} />
+      <NavBar sticky="false" />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Login</$.Title>
@@ -33,7 +36,11 @@ function Login() {
         <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
-            <$.Input hasError={!!errors.email} {...register("email")} />
+            <$.Input
+              hasError={!!errors.email}
+              {...register("email")}
+              autoComplete="email"
+            />
             {errors?.email && (
               <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
             )}
@@ -44,17 +51,15 @@ function Login() {
               hasError={!!errors.password}
               {...register("password")}
               type="password"
+              autoComplete="current-password"
             />
             {errors?.password && (
               <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
-          <$.WrapperCheckbox>
-            <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
-          </$.WrapperCheckbox>
-          <$.SubmitButton disabled={isSubmitting}>
+          <FormButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
-          </$.SubmitButton>
+          </FormButton>
           <$.RegisterText>
             Ainda não é cadastrado?{" "}
             <$.Links to="/users/register">registre</$.Links>

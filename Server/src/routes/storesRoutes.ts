@@ -9,10 +9,10 @@ router.post("/register", controller.register);
 router.post("/login", controller.login);
 
 router.post("/address", authenticate, authorizeStore, controller.addAddress);
-router.get("/address/:id", authenticate, authorizeStore, controller.getAddress);
+router.get("/address/:id", authenticate, controller.getAddress);
 
-router.get("/", authenticate, authorizeStore, controller.getStores);
-router.get("/:id", authenticate, authorizeStore, controller.getById);
+router.get("/", authenticate, controller.getStores);
+router.get("/:id", authenticate, controller.getById);
 router.put("/:id", authenticate, authorizeStore, controller.update);
 router.get(
   "/category/:category",

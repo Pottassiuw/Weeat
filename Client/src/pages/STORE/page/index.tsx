@@ -1,22 +1,37 @@
-import { useEffect } from "react";
-import Footer from "../../components/Footer";
-import NavBar from "../../components/nav";
+import { useEffect, useState } from "react";
+import Footer from "../../../components/Footer";
+import NavBar from "../../../components/nav";
 import * as $ from "./styles";
 import axios from "axios";
-import { URL } from "../../helper/URL";
+import { URL } from "../../../helper/URL";
+import { useAuth } from "../../../context/authProvider";
+import type { Store } from "../../../@types/Entity";
+
 export default function StorePage() {
+  const { user } = useAuth();
+  const [stores, setStores] = useState<Store[]>([]);
+
   useEffect(() => {
     const getStores = async () => {
-      const request = await axios.get(`${URL}/stores`);
-      const json = await request.data.json();
-      console.log(json);
+      try {
+        if (user) {
+          const response = await axios.get(`${URL}stores`);
+          if (response.data && Array.isArray(response.data.store)) {
+            setStores(response.data.store);
+          } else {
+            console.error("Unexpected response data format:", response.data);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching stores:", error);
+      }
     };
     getStores();
-  }, []);
+  }, [user]);
 
   return (
     <$.Container>
-      <NavBar sticky />
+      <NavBar sticky="true" />
       <$.CategoriesSection>
         <$.WeeatTitleWrapper>
           <$.WeeatTitle>Weeat</$.WeeatTitle>
@@ -26,7 +41,12 @@ export default function StorePage() {
 
         <$.CategoriesWrapper>
           <$.GreetingsWrapper>
-            <$.Greetings>Olá (User)!</$.Greetings>
+            <$.Greetings>
+              Olá{" "}
+              {user?.name ||
+                "Usuário não existente neste WebApp maravilhoso feito em React Ts"}
+              !
+            </$.Greetings>
           </$.GreetingsWrapper>
 
           <$.SearchWrapper>
@@ -45,11 +65,11 @@ export default function StorePage() {
           <$.CategoryWrapper></$.CategoryWrapper>
         </$.CategoriesWrapper>
         <$.StoresCategoryWrapper>
-          <$.StoresCategoryButton>Arabe</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Talandês</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Coreano</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Lanchonete</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Pizzaria</$.StoresCategoryButton>
           <$.StoresCategoryButton>Japonês</$.StoresCategoryButton>
-          <$.StoresCategoryButton>+</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Árabe</$.StoresCategoryButton>
+          <$.StoresCategoryButton>Açaíteria</$.StoresCategoryButton>
         </$.StoresCategoryWrapper>
       </$.CategoriesSection>
 
@@ -116,42 +136,17 @@ export default function StorePage() {
           </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
+          {stores.map((store) => (
+            <$.StoresCard key={store.id}>
+              <$.StoresCardLogoWrapper>
+                <$.StoresCardLogo src={store.logo || "#"} alt={store.name} />
+              </$.StoresCardLogoWrapper>
+              <$.StoresCardNameWrapper>
+                <$.StoresCardName>{store.name}</$.StoresCardName>
+                <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
+              </$.StoresCardNameWrapper>
+            </$.StoresCard>
+          ))}
         </$.StoresCardWrapper>
         <$.StoresTitleWrapper>
           <$.StoresTitleContent>
@@ -163,42 +158,17 @@ export default function StorePage() {
           </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
-          <$.StoresCard>
-            <$.StoresCardLogoWrapper>
-              <$.StoresCardLogo src="#" />
-            </$.StoresCardLogoWrapper>
-            <$.StoresCardNameWrapper>
-              <$.StoresCardName></$.StoresCardName>
-              <$.StoresCardCategory></$.StoresCardCategory>
-            </$.StoresCardNameWrapper>
-          </$.StoresCard>
+          {stores.map((store) => (
+            <$.StoresCard key={store.id}>
+              <$.StoresCardLogoWrapper>
+                <$.StoresCardLogo src={store.logo || "#"} alt={store.name} />
+              </$.StoresCardLogoWrapper>
+              <$.StoresCardNameWrapper>
+                <$.StoresCardName>{store.name}</$.StoresCardName>
+                <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
+              </$.StoresCardNameWrapper>
+            </$.StoresCard>
+          ))}
         </$.StoresCardWrapper>
       </$.StoresSection>
       <$.Divisor></$.Divisor>

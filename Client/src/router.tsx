@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Login from "./pages/usersAuth/login";
-import UserRegister from "./pages/usersAuth/register";
-import StoreRegister from "./pages/storesAuth/register";
-import StoresPage from "./pages/storesPage";
+import Login from "./pages/USER/login";
+import UserRegister from "./pages/USER/register";
+import StoreRegister from "./pages/STORE/register";
+import StoresPage from "./pages/STORE/page";
 import Home from "./pages/home";
 import ProtectedRoute from "./pages/infra/userProtected";
-import UserDash from "./pages/usersDash";
+import UserDash from "./pages/USER/settings";
 const router = createBrowserRouter([
   {
     path: "/",

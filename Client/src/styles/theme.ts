@@ -1,4 +1,6 @@
-export default {
+import { Theme } from "../@types/styled";
+
+export default <Theme>{
   colors: {
     white: "#FFF",
     primary: "#EB4034",
