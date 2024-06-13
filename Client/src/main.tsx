@@ -7,8 +7,6 @@ import AuthProvider from "./context/authProvider.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
-      {" "}
-      {/* Remove isSignedIn prop */}
       <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>

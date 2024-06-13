@@ -13,7 +13,7 @@ import { TloginSchema, TsignUpSchema } from "../@types/userform";
 import { toast } from "react-toastify";
 interface AuthContextProps {
   user: User | undefined;
-  isSignedIn?: boolean;
+  isSignedIn: boolean;
   token: string | undefined;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
@@ -26,17 +26,19 @@ type AuthProviderProps = PropsWithChildren;
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>(undefined);
+
+  //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
+
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     if (user && token) {
       setUser(JSON.parse(user));
-      console.log(user);
       setToken(token);
-      console.log(token);
       setIsSignedIn(true);
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
@@ -52,8 +54,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         localStorage.setItem("user", JSON.stringify(responseData.user));
         setToken(responseData?.token!);
         setUser(responseData.user);
-        toast.success("User Logged!");
-        console.log(responseData.token);
+        toast.success("Usuário Logado!");
         setIsSignedIn(true);
         setIsReady(true);
       }
@@ -72,7 +73,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setToken(responseData.token!);
         setUser(responseData.user);
         toast.success("User Created!");
-        console.log(responseData.token);
       }
     } catch (error: any) {
       toast.warning("Login error:", error);
