@@ -54,8 +54,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         localStorage.setItem("user", JSON.stringify(responseData.user));
         setToken(responseData?.token!);
         setUser(responseData.user);
-        toast.success("User Logged!");
-        console.log(responseData.token);
+        toast.success("Usuário Logado!");
         setIsSignedIn(true);
         setIsReady(true);
       }
@@ -74,7 +73,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setToken(responseData.token!);
         setUser(responseData.user);
         toast.success("User Created!");
-        console.log(responseData.token);
       }
     } catch (error: any) {
       toast.warning("Login error:", error);

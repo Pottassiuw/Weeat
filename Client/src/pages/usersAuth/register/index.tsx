@@ -28,7 +28,7 @@ export default function Register() {
 
   return (
     <$.Container>
-      <NavBar sticky={false} />
+      <NavBar sticky="false" />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Sign in</$.Title>

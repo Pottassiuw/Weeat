@@ -18,14 +18,14 @@ function Login() {
     resolver: zodResolver(loginSchema),
   });
 
-  const handleLogin = (form: TloginSchema) => {
-    loginUser({ email: form.email, password: form.password });
+  const handleLogin = async (form: TloginSchema) => {
+    await loginUser({ email: form.email, password: form.password });
     reset();
   };
 
   return (
     <$.Container>
-      <NavBar sticky={false} />
+      <NavBar sticky="false" />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Login</$.Title>
@@ -44,6 +44,7 @@ function Login() {
               hasError={!!errors.password}
               {...register("password")}
               type="password"
+              autoComplete="current-password"
             />
             {errors?.password && (
               <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>

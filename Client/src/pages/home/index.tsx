@@ -10,7 +10,7 @@ import Footer from "../../components/Footer";
 export default function Home() {
   return (
     <$.Container>
-      <NavBar sticky />
+      <NavBar sticky="true" />
 
       {/*Hero Section*/}
 

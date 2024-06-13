@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 interface NavProps {
-  sticky?: boolean;
+  sticky: string;
 }
 export const Nav = styled.nav<NavProps>`
   display: flex;
-  position: ${(p) => (p.sticky ? "sticky" : "absolute")};
+  position: ${(p) =>
+    p.sticky === "true" ? "sticky" : p.sticky === "false" ? "absolute" : null};
   width: 100%;
   background-color: #f5f5f5;
   top: 0;

@@ -64,7 +64,6 @@ export const SearchWrapper = styled.div`
 export const SearchContentText = styled.h1`
   font-size: 22pt;
   font-weight: 600;
-
 `;
 export const SearchContentWrapper = styled.div`
   display: flex;
@@ -302,11 +301,18 @@ export const StoresCardNameWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 50%;
+  justify-content: center;
 `;
 export const StoresCardLogo = styled.img`
   width: 70px;
   height: 70px;
 `;
-export const StoresCardName = styled.p``;
-export const StoresCardCategory = styled.p``;
+export const StoresCardName = styled.p`
+  font-size: ${(p) => p.theme.font.text};
+`;
+export const StoresCardCategory = styled.p`
+  color: ${(p) => p.theme.colors.secondary};
+  font-weight: 500;
+  font-size: ${(p) => p.theme.font.text};
+`;
 //----------------Stores-----------------------
