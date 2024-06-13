@@ -8,7 +8,7 @@ export const Button = styled.button`
   border-radius: ${({ theme }) => theme.border.button};
   cursor: pointer;
   font-size: ${({ theme }) => theme.font.text};
-  transition: background-color 0.3s;
+  transition: background-color 200ms;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};

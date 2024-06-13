@@ -7,8 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { useAuth } from "../../../context/authProvider.tsx";
 import FormButton from "../../../components/FormButton";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const { loginUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,6 +23,7 @@ function Login() {
   const handleLogin = async (form: TloginSchema) => {
     await loginUser({ email: form.email, password: form.password });
     reset();
+    navigate("/stores");
   };
 
   return (
@@ -33,7 +36,11 @@ function Login() {
         <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
-            <$.Input hasError={!!errors.email} {...register("email")} />
+            <$.Input
+              hasError={!!errors.email}
+              {...register("email")}
+              autoComplete="email"
+            />
             {errors?.email && (
               <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
             )}
@@ -50,9 +57,6 @@ function Login() {
               <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
             )}
           </$.WrapperInput>
-          <$.WrapperCheckbox>
-            <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
-          </$.WrapperCheckbox>
           <FormButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
           </FormButton>

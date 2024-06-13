@@ -13,7 +13,7 @@ import { TloginSchema, TsignUpSchema } from "../@types/userform";
 import { toast } from "react-toastify";
 interface AuthContextProps {
   user: User | undefined;
-  isSignedIn?: boolean;
+  isSignedIn: boolean;
   token: string | undefined;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
@@ -27,9 +27,9 @@ type AuthProviderProps = PropsWithChildren;
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>(undefined);
 
-  //MUDAR SE ESTIVER NA ETEC PARA TRUE
+  //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
 
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
 
