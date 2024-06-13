@@ -1,5 +1,5 @@
 import React from "react";
-import { FormButton } from "./styles";
+import * as S from "./styles";
 
 interface FormButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,7 +7,7 @@ interface FormButtonProps
 }
 
 const FormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
-  return <FormButton {...props}>{children}</FormButton>;
+  return <S.FormButton {...props}>{children}</S.FormButton>;
 };
 
 export default FormButton;
