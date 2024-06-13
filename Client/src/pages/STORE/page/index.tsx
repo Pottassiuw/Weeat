@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
-import NavBar from "../../components/nav";
+import Footer from "../../../components/Footer";
+import NavBar from "../../../components/nav";
 import * as $ from "./styles";
 import axios from "axios";
-import { URL } from "../../helper/URL";
-import { useAuth } from "../../context/authProvider";
-import type { Store } from "../../@types/Entity";
+import { URL } from "../../../helper/URL";
+import { useAuth } from "../../../context/authProvider";
+import type { Store } from "../../../@types/Entity";
 
 export default function StorePage() {
   const { user } = useAuth();

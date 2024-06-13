@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { useAuth } from "../../../context/authProvider.tsx";
-
+import FormButton from "../../../components/FormButton";
 function Login() {
   const { loginUser } = useAuth();
   const {
@@ -53,9 +53,9 @@ function Login() {
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton disabled={isSubmitting}>
+          <FormButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
-          </$.SubmitButton>
+          </FormButton>
           <$.RegisterText>
             Ainda não é cadastrado?{" "}
             <$.Links to="/users/register">registre</$.Links>

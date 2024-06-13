@@ -69,16 +69,6 @@ export const Checkbox = styled.input``;
 export const Span = styled.span`
   font-size: ${(p) => p.theme.font.text};
 `;
-export const SubmitButton = styled.button`
-  margin-top: 1rem;
-  border: none;
-  padding: 1rem;
-  background: #fe2c2c;
-  color: white;
-  border-radius: ${(p) => p.theme.border.button};
-  font-size: ${(p) => p.theme.font.text};
-  cursor: pointer;
-`;
 
 export const WrapperImage = styled.div`
   position: absolute;
