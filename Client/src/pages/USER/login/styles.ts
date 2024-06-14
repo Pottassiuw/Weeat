@@ -43,18 +43,6 @@ export const WrapperInput = styled.div`
   margin: 0.7rem 0px;
 `;
 
-export const Input = styled.input<HasError>`
-  border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
-  width: 100%;
-  border-radius: ${(p) => p.theme.border.button};
-  padding: 13px;
-  margin-bottom: 10px;
-
-  &:focus {
-    outline: 1px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
-  }
-`;
-
 export const Label = styled.label`
   font-size: ${(p) => p.theme.font.text};
   pointer-events: none;

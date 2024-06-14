@@ -1,3 +1,11 @@
+import * as S from "./styles";
+
 export default function index() {
-  return <div>index</div>;
+  return (
+    <S.Container>
+      <S.Form>
+        <S.InputWrapper></S.InputWrapper>
+      </S.Form>
+    </S.Container>
+  );
 }
