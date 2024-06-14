@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import UserService from "../services/userService";
 import AuthService from "../services/authService";
+import generateToken from "../services/authService";
+
 const isError = (error: unknown): error is Error => {
   return error instanceof Error;
 };
-import generateToken from "../services/authService";
 export default class UserController {
   async register(req: Request, res: Response) {
     try {
@@ -41,18 +42,22 @@ export default class UserController {
   }
 
   async update(req: Request, res: Response) {
+    const userId = parseInt(req.params.userId, 10);
+    const { data } = req.body;
+    const currentToken = req.headers.authorization?.split(" ")[1];
     try {
-      if (!req.entity) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-      const user = await UserService.updateUser(
-        parseInt(req.params.id),
-        req.body
+      const { user, token } = await UserService.updateUser(
+        userId,
+        data,
+        currentToken
       );
-      res.status(200).json(user);
+      res.status(200).json({ user, token });
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        res.status(400).json({ error: error.message });
+      } else {
+        res.status(500).json({ error: "Internal server error" });
+      }
     }
   }
 
