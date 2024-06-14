@@ -9,7 +9,7 @@ import {
 import { URL } from "../helper/URL";
 import axios from "axios";
 import type { User } from "../@types/Entity";
-import { TloginSchema, TsignUpSchema } from "../@types/userform";
+import { TloginSchema, TsignUpSchema } from "../@types/forms";
 import { toast } from "react-toastify";
 interface AuthContextProps {
   user: User | undefined;
@@ -17,6 +17,8 @@ interface AuthContextProps {
   token: string | undefined;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
+  updateUser: (data: TsignUpSchema) => void;
+  // getUser: () => any;
   logout: () => void;
 }
 
@@ -28,8 +30,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>(undefined);
 
   //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
-
   const [isSignedIn, setIsSignedIn] = useState(false);
+  //******************************************************************
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
 
@@ -79,7 +81,43 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       throw error;
     }
   };
-
+  const updateUser = async (data: TsignUpSchema) => {
+    try {
+      const user = localStorage.getItem("user");
+      if (!user) {
+        return null;
+      }
+      const userObj = JSON.parse(user);
+      const userId = userObj.id;
+      const { confirmPassword: _, ...datas } = data;
+      const res = await axios.put(URL + "users/update/" + userId, datas);
+      if (res) {
+        const responseData = await res.data;
+        localStorage.setItem("token", responseData.token);
+        localStorage.setItem("user", JSON.stringify(responseData.user));
+        setToken(responseData.token!);
+        setUser(responseData.user);
+        toast.success("User updated!");
+      }
+    } catch (error: any) {
+      toast.warning("Update error: ", error);
+      throw error;
+    }
+  };
+  // const getUser = async () => {
+  //   try {
+  //     const user = localStorage.getItem("user");
+  //     if (user) {
+  //       const userObj = JSON.parse(user);
+  //       const userId = userObj.id;
+  //       const res = await axios.get(URL + "users/" + userId);
+  //       return res;
+  //     }
+  //     return null;
+  //   } catch (error) {
+  //     toast.warning("Erro getting user!");
+  //   }
+  // };
   const logout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -95,6 +133,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       token,
       loginUser,
       registerUser,
+      updateUser,
+      // getUser,
       logout,
     }),
     [user, isSignedIn]

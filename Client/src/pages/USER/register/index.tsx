@@ -2,12 +2,12 @@ import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import type { TsignUpSchema } from "../../../@types/userform";
-import { signUpSchema } from "../../../@types/userform";
+import type { TsignUpSchema } from "../../../@types/forms.ts";
+import { signUpSchema } from "../../../@types/forms.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { FormButton } from "../../../components/FormButton/styles.ts";
-
+import Input from "../../../components/input/styles";
 export default function Register() {
   const URL = "http://localhost:4040/users/register";
   const {
@@ -37,7 +37,7 @@ export default function Register() {
         <$.Form onSubmit={handleSubmit(createUser)}>
           <$.WrapperInput>
             <$.Label htmlFor="name">Usuário</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.name}
               id="name"
               {...register("name")}
@@ -49,7 +49,7 @@ export default function Register() {
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="email">Email</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.email}
               id="email"
               {...register("email")}
@@ -61,7 +61,7 @@ export default function Register() {
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="password">Senha</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.password}
               id="password"
               {...register("password")}
@@ -73,7 +73,7 @@ export default function Register() {
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.confirmPassword}
               id="confirmPassword"
               {...register("confirmPassword")}
