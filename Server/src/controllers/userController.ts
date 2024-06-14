@@ -4,7 +4,7 @@ import AuthService from "../services/authService";
 const isError = (error: unknown): error is Error => {
   return error instanceof Error;
 };
-
+import generateToken from "../services/authService";
 export default class UserController {
   async register(req: Request, res: Response) {
     try {

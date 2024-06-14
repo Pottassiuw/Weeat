@@ -105,7 +105,6 @@ class UserService {
           store: { connect: { id: storeId } },
         },
       });
-
       return favorite;
     } catch (error) {
       console.error("Error favoriting store:", error);
