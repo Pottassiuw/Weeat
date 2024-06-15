@@ -9,7 +9,6 @@ interface UserRegistrationData {
   password: string;
   userAddress?: number[];
 }
-
 interface UserFunctions {
   favorites?: number[];
   productReview?: number[];
@@ -52,43 +51,15 @@ class UserService {
     return user;
   }
 
-  async updateUser(
-    userId: number,
-    data: Partial<User>,
-    currentToken?: string
-  ): Promise<{ user: User; token?: string }> {
-    try {
-      if (data.password) {
-        data.password = await bcrypt.hash(data.password, 10);
-      }
-
-      const user = await prisma.user.update({
-        where: { id: userId },
-        data,
-      });
-
-      let newToken;
-
-      if (currentToken) {
-        newToken = generateToken("user", userId);
-      }
-      console.log(newToken);
-
-      return { user, token: newToken };
-    } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        if (error.message.startsWith("Bcrypt: ")) {
-          console.error("Error hashing password:", error.message);
-          throw new Error("Failed to hash password");
-        }
-        if (error.code === "P2002" || error.code === "P2025") {
-          console.error("Prisma database error:", error);
-          throw new Error("Database error occurred");
-        }
-      }
-      console.error("Unexpected error:", error);
-      throw new Error("Unexpected error occurred");
+  async updateUser(userId: number, data: Partial<User>): Promise<User> {
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, 10);
     }
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data,
+    });
+    return user;
   }
 
   async getUserById(userId: number): Promise<User | null> {

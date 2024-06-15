@@ -42,22 +42,19 @@ export default class UserController {
   }
 
   async update(req: Request, res: Response) {
-    const userId = parseInt(req.params.userId, 10);
-    const { data } = req.body;
-    const currentToken = req.headers.authorization?.split(" ")[1];
     try {
-      const { user, token } = await UserService.updateUser(
-        userId,
-        data,
-        currentToken
-      );
-      res.status(200).json({ user, token });
-    } catch (error) {
-      if (error instanceof Error) {
-        res.status(400).json({ error: error.message });
-      } else {
-        res.status(500).json({ error: "Internal server error" });
+      if (!req.entity) {
+        return res.status(401).json({ message: "Unauthorized" });
       }
+      const user = await UserService.updateUser(
+        parseInt(req.params.id),
+        req.body
+      );
+      console.log("------>", req.body);
+      res.status(200).json(user);
+    } catch (error) {
+      const message = isError(error) ? error.message : "Unknown error";
+      res.status(500).json({ message });
     }
   }
 
