@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-
-export const Nav = styled.nav`
+interface NavProps {
+  sticky?: boolean;
+}
+export const Nav = styled.nav<NavProps>`
   display: flex;
-  position: fixed;
+  position: ${(p) => (p.sticky ? "sticky" : "absolute")};
   width: 100%;
   background-color: #f5f5f5;
   top: 0;
   left: 0;
   align-items: center;
   justify-content: space-between;
-  height: 10dvh;
+  height: 12dvh;
   border-bottom: 1px solid #d9d9d9;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;

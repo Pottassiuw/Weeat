@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+interface HasError {
+  hasError: boolean;
+}
 export const Container = styled.div`
   display: flex;
+  position: relative;
   width: 100dvw;
   height: 100dvh;
   align-items: center;
-  
 `;
 export const Wrapper = styled.div`
   display: flex;
@@ -40,13 +43,13 @@ export const WrapperInput = styled.div`
   margin: 0.7rem 0px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<HasError>`
   border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   width: 100%;
-  border-radius: ${p => p.theme.border.button};
+  border-radius: ${(p) => p.theme.border.button};
   padding: 13px;
   margin-bottom: 10px;
-  
+
   &:focus {
     outline: 1px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
   }
@@ -102,30 +105,28 @@ export const Image = styled.img`
   height: 100dvh;
 `;
 
-
 export const RegisterText = styled.h2`
-  font-size: ${p => p.theme.font.text};
+  font-size: ${(p) => p.theme.font.text};
   margin-top: 2rem;
   font-weight: 400;
   color: #1c1c1c;
-`
+`;
 export const Links = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 600;
-
-`
+`;
 
 export const BottomColor = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   overflow: hidden;
   width: 100%;
   z-index: -1;
   height: 10%;
-`
+`;
 
 export const ErrorMessage = styled.p`
   color: red;

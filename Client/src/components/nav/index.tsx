@@ -1,8 +1,11 @@
 import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
-export default function NavBar() {
+interface NavBarProps {
+  sticky?: boolean;
+}
+export default function NavBar({ sticky }: NavBarProps) {
   return (
-    <$.Nav>
+    <$.Nav sticky={sticky}>
       <$.LogoWrapper>
         <$.Logo src={LogoImage} />
         <$.LogoFont>Weeat</$.LogoFont>

@@ -1,7 +1,7 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import { TloginSchema } from "../../../@types/types.ts";
-import { loginSchema } from "../../../@types/types.ts";
+import { TloginSchema } from "../../../@types/userform";
+import { loginSchema } from "../../../@types/userform";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,9 +20,10 @@ function Login() {
 
   const loginUser = async (data: TloginSchema) => {
     try {
-      const response = await axios.post(URL, JSON.stringify(data));
+      const response = await axios.post(URL, data);
       const responseData = await response.data;
       reset();
+
       return responseData;
     } catch (error: any) {
       throw new error();
@@ -30,7 +31,7 @@ function Login() {
   };
   return (
     <$.Container>
-      <NavBar />
+      <NavBar sticky={false} />
       <$.Wrapper>
         <$.WrapperTitle>
           <$.Title>Login</$.Title>
@@ -57,7 +58,7 @@ function Login() {
           <$.WrapperCheckbox>
             <$.Checkbox type="checkbox" /> <$.Span>Lembrar de mim</$.Span>
           </$.WrapperCheckbox>
-          <$.SubmitButton disabled={isSubmitting} enableButton={isSubmitting}>
+          <$.SubmitButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Logando</p> : <p>Entrar</p>}
           </$.SubmitButton>
           <$.RegisterText>

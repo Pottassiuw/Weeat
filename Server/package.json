@@ -8,12 +8,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsx src/server.ts",
     "start:dev": "tsx watch src/server.ts",
-    "build": "tsup src"
+    "build": "tsup ./src"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.14.0",
+    "@prisma/client": "^5.15.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -32,7 +32,7 @@
     "eslint-plugin-react": "^7.34.1",
     "globals": "^15.2.0",
     "jsonwebtoken": "^9.0.2",
-    "prisma": "^5.14.0",
+    "prisma": "^5.15.0",
     "tsup": "^8.0.2",
     "tsx": "^4.11.0",
     "typescript": "^5.4.5"
