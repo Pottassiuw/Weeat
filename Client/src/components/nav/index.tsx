@@ -45,7 +45,8 @@ export default function NavBar({ sticky }: NavBarProps) {
         <$.ButtonsWrapper>
           <$.Links to="/users/dashboard">
             <$.ButtonUser onClick={gotoDashboard}>
-              {user && user.name}
+              <$.UserIcon />
+              Usuário
             </$.ButtonUser>
           </$.Links>
           <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>

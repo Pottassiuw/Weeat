@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
+import { User } from "lucide-react";
 interface NavProps {
   sticky: string;
 }
@@ -104,3 +105,4 @@ export const ButtonUser = styled.button`
   color: white;
   font-size: 12pt;
 `;
+export const UserIcon = styled(User)``;

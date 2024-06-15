@@ -27,7 +27,7 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 type AuthProviderProps = PropsWithChildren;
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [user, setUser] = useState<User>({} as User);
 
   //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -93,11 +93,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       const res = await axios.put(URL + "users/update/" + userId, datas);
       if (res) {
         const responseData = await res.data;
-        localStorage.setItem("token", responseData.token);
-        localStorage.setItem("user", JSON.stringify(responseData.user));
-        setToken(responseData.token!);
-        setUser(responseData.user);
-        toast.success("User updated!");
+        const jsonData = JSON.stringify(responseData);
+        console.log(jsonData);
+        if (jsonData) {
+          localStorage.setItem("user", jsonData);
+          setUser(JSON.parse(jsonData));
+          console.log(JSON.parse(jsonData));
+          toast.success("User updated!");
+        }
       }
     } catch (error: any) {
       toast.warning("Update error: ", error);
@@ -121,7 +124,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const logout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    setUser(undefined);
+    setUser({});
     setToken("");
     setIsSignedIn(false);
   };

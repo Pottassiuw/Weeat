@@ -3,14 +3,14 @@ import Input from "../../../components/input/styles";
 import { useForm } from "react-hook-form";
 import NavBar from "../../../components/nav";
 import { useState, useEffect } from "react";
-import { TsignUpSchema } from "../../../@types/forms";
+import { TsignUpSchema, signUpSchema } from "../../../@types/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../../../context/authProvider";
-import { signUpSchema } from "../../../@types/forms";
 
 export default function index() {
   const { updateUser, user } = useAuth();
   const [userD, setUserD] = useState<TsignUpSchema | null>(null);
+  const [shouldFetchUserData, setShouldFetchUserData] = useState(true);
   const {
     register,
     handleSubmit,
@@ -20,21 +20,25 @@ export default function index() {
   } = useForm<TsignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
-  useEffect(() => {
+  const fetchUserData = () => {
     const userData = localStorage.getItem("user");
     if (userData) {
       try {
-        if (user) {
-          const parsedUser: TsignUpSchema = JSON.parse(userData);
-          setUserD(parsedUser);
-          setValue("name", parsedUser.name);
-          setValue("email", parsedUser.email);
-        }
+        const parsedUser = JSON.parse(userData);
+        setUserD(parsedUser);
+        setValue("name", parsedUser.name);
+        setValue("email", parsedUser.email);
       } catch (error) {
         console.error("Failed to parse user data from localStorage", error);
       }
     }
-  }, [setValue]);
+  };
+  useEffect(() => {
+    if (shouldFetchUserData) {
+      fetchUserData();
+      setShouldFetchUserData(false);
+    }
+  }, [shouldFetchUserData, setValue]);
 
   const handleUpdate = async (user: TsignUpSchema) => {
     try {
@@ -45,6 +49,7 @@ export default function index() {
         confirmPassword: user.confirmPassword,
       });
       reset();
+      setShouldFetchUserData(true);
     } catch (error) {
       console.error("Failed to update User: ", error);
     }
@@ -55,23 +60,23 @@ export default function index() {
       <NavBar sticky="true" />
       <S.DataSection>
         <S.DataForm onSubmit={handleSubmit(handleUpdate)}>
-          <S.DataTitle>Usuário</S.DataTitle>
+          <S.DataTitle>Dados do usuário</S.DataTitle>
           <S.DataInputWrapper>
-            <S.DataLabel>Nome:</S.DataLabel>
+            <S.DataLabel>Nome</S.DataLabel>
             <Input {...register("name")} hasError={!!errors.name} />
             {errors?.name && (
               <S.ErrorMessage>{`${errors.name?.message}`}</S.ErrorMessage>
             )}
           </S.DataInputWrapper>
           <S.DataInputWrapper>
-            <S.DataLabel>Email:</S.DataLabel>
+            <S.DataLabel>Email</S.DataLabel>
             <Input {...register("email")} hasError={!!errors.email} />
             {errors?.email && (
               <S.ErrorMessage>{`${errors.email?.message}`}</S.ErrorMessage>
             )}
           </S.DataInputWrapper>
           <S.DataInputWrapper>
-            <S.DataLabel>Senha:</S.DataLabel>
+            <S.DataLabel>Senha</S.DataLabel>
             <Input
               type="password"
               {...register("password")}

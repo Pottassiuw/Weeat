@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
 import { flexCenter } from "../../../styles/mixins";
 
-//---------------User Data---------------
+//---------------User Data Setter---------------
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  width: 100%;
 `;
 export const DataSection = styled.section`
   display: flex;
@@ -14,7 +15,7 @@ export const DataSection = styled.section`
 export const DataForm = styled.form`
   border-radius: ${({ theme }) => theme.border.wrappers};
   background-color: #fff;
-  width: 90%;
+  width: 80%;
   height: 80%;
   margin: auto auto;
   ${flexCenter}
@@ -50,3 +51,5 @@ export const ErrorMessage = styled.p`
   font-size: 0.875rem;
   height: 4px;
 `;
+
+//-----------------User Settings------------------
