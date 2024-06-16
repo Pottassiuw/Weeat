@@ -4,6 +4,7 @@ import Login from "./pages/USER/login";
 import UserRegister from "./pages/USER/register";
 import StoreRegister from "./pages/STORE/register";
 import StoresPage from "./pages/STORE/page";
+import StoreLogin from "./pages/STORE/login";
 import Home from "./pages/home";
 import ProtectedRoute from "./pages/infra/userProtected";
 import UserDash from "./pages/USER/settings";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       },
       { path: "users/register", element: <UserRegister /> },
       { path: "stores/register", element: <StoreRegister /> },
+      { path: "stores/login", element: <StoreLogin />},
       {
         path: "stores",
         element: (
