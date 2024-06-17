@@ -4,17 +4,18 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  width: 100%;
   position: relative;
   section {
-    padding: 0px 4%;
+    padding: 0px 3.5%;
   }
 `;
 export const HeroSection = styled.section`
   display: flex;
   flex-flow: row nowrap;
-  width: 100dvw;
-  height: 100dvh;
-  padding: 0px 4%;
+  height: 85dvh;
+  width: 100%;
+  overflow: hidden;
 `;
 export const ActionWrapper = styled.div`
   display: flex;

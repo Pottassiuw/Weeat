@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import background from "../../../assets/estb_image2.png";
+import { flexCenter } from "../../../styles/mixins";
 export const Screen = styled.div`
   width: 100dvw;
   height: 100dvh;
@@ -9,24 +10,23 @@ export const Screen = styled.div`
   background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 `;
 
 export const Container = styled.div`
-  display: flex;
+  ${flexCenter}
   flex-direction: column;
   position: absolute;
   right: 10%;
   top: 50%;
-  width: 35dvw;
-  height: 67dvh;
-  align-items: center;
-  justify-content: center;
+  width: 700px;
+  height: 650px;
   transform: translateY(-50%);
 
   background-color: #fff;
   border-radius: 1rem;
   padding: 3rem;
-  overflow: auto;
+  overflow: hidden;
 `;
 
 export const Wrapper = styled.div`
@@ -83,7 +83,7 @@ export const Rcontainer = styled.div`
 export const ErrorMessage = styled.div`
   color: red;
   font-size: 12px;
-  margin-bottom: 10px;
+  height: 2px;
 `;
 
 export const Links = styled(Link)`

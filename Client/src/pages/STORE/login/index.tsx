@@ -29,7 +29,6 @@ export default function LoginEstablishment() {
   const handleData = async (data: TstoreLoginSchema) => {
     loginStore({ email: data.email, password: data.password });
     reset();
-    navigate("/stores");
   };
 
   return (
