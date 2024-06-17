@@ -4,14 +4,11 @@ import axios from "axios";
 import NavBar from "../../../components/nav";
 
 export default function Register() {
-
   const [page, setPage] = useState(1);
-  
-  
 
   return (
     <$.Screen>
-      <NavBar />
+      <NavBar sticky="true" />
       {page === 1 ? (
         <$.Container>
           <$.Wrapper>
@@ -21,48 +18,20 @@ export default function Register() {
                 Seja um sócio weeat e expanda seu comércio
               </$.Subtitle>
             </$.WrapperTitle>
-            <$.Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                sendEstablishmetData();
-              }}
-            >
+            <$.Form onSubmit={}>
               <$.WrapperInput>
                 <$.Label>Nome Completo</$.Label>
-                <$.Input
-                  type="text"
-                  name="name"
-                  value={establishmentData.name}
-                  onChange={handleChanges}
-                  required
-                  placeholder="Pedro da Silva"
-                />
+                <$.Input type="text" placeholder="Pedro da Silva" />
               </$.WrapperInput>
               <$.WrapperInput>
                 <$.Label>E-mail</$.Label>
-                <$.Input
-                  type="text"
-                  name="email"
-                  value={establishmentData.email}
-                  onChange={handleChanges}
-                  required
-                  placeholder="ex: email@email.com"
-                />
+                <$.Input type="text" placeholder="ex: email@email.com" />
               </$.WrapperInput>
               <$.WrapperInput>
                 <$.Label>Celular</$.Label>
-                <$.Input
-                  type="phone"
-                  name="password"
-                  value={establishmentData.password}
-                  onChange={handleChanges}
-                  required
-                  placeholder="(00) 00000-0000"
-                />
+                <$.Input type="phone" placeholder="(00) 00000-0000" />
               </$.WrapperInput>
-              <$.SubmitButton type="submit" onClick={handlePages}>
-                Continuar agora!
-              </$.SubmitButton>
+              <$.SubmitButton type="submit">Continuar agora!</$.SubmitButton>
             </$.Form>
           </$.Wrapper>
         </$.Container>

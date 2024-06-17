@@ -8,9 +8,10 @@ import {
 } from "react";
 import { URL } from "../helper/URL";
 import axios from "axios";
-import type { User } from "../@types/Entity";
-import { TloginSchema, TsignUpSchema } from "../@types/forms";
+import type { User, Store } from "../@types/Entity";
+import { TloginSchema, TsignUpSchema } from "../@types/userForms";
 import { toast } from "react-toastify";
+import { TstoreLoginSchema } from "../@types/storeForms";
 interface AuthContextProps {
   user: User | undefined;
   isSignedIn: boolean;
@@ -18,8 +19,8 @@ interface AuthContextProps {
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
   updateUser: (data: TsignUpSchema) => void;
-  // getUser: () => any;
-  logout: () => void;
+  logoutUser: () => void;
+  loginStore: (data: TstoreLoginSchema) => void;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -28,7 +29,7 @@ type AuthProviderProps = PropsWithChildren;
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>({} as User);
-
+  const [store, setStore] = useState<Store>({} as Store);
   //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
   const [isSignedIn, setIsSignedIn] = useState(false);
   //******************************************************************
@@ -37,9 +38,15 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
+    const store = localStorage.getItem("store");
     const token = localStorage.getItem("token");
     if (user && token) {
       setUser(JSON.parse(user));
+      setToken(token);
+      setIsSignedIn(true);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    } else if (store && token) {
+      setStore(JSON.parse(store));
       setToken(token);
       setIsSignedIn(true);
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -107,28 +114,31 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       throw error;
     }
   };
-  // const getUser = async () => {
-  //   try {
-  //     const user = localStorage.getItem("user");
-  //     if (user) {
-  //       const userObj = JSON.parse(user);
-  //       const userId = userObj.id;
-  //       const res = await axios.get(URL + "users/" + userId);
-  //       return res;
-  //     }
-  //     return null;
-  //   } catch (error) {
-  //     toast.warning("Erro getting user!");
-  //   }
-  // };
-  const logout = () => {
+  const logoutUser = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser({});
     setToken("");
     setIsSignedIn(false);
   };
-
+  const loginStore = async (data: TstoreLoginSchema) => {
+    try {
+      const res = await axios.post(URL + "stores/login", data);
+      if (res) {
+        const responseData = await res.data;
+        localStorage.setItem("token", responseData.token);
+        localStorage.setItem("store", JSON.stringify(responseData.store));
+        setToken(responseData?.token!);
+        setStore(responseData.store);
+        toast.success("Estabelecimento Logado!");
+        setIsSignedIn(true);
+        setIsReady(true);
+      }
+    } catch (error: any) {
+      toast.error("Login error:", error);
+      throw error;
+    }
+  };
   const value = useMemo(
     () => ({
       user,
@@ -137,8 +147,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       loginUser,
       registerUser,
       updateUser,
-      // getUser,
-      logout,
+      logoutUser,
+      loginStore,
     }),
     [user, isSignedIn]
   );

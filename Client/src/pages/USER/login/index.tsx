@@ -1,7 +1,6 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import { TloginSchema } from "../../../@types/forms.ts";
-import { loginSchema } from "../../../@types/forms.ts";
+import { TloginSchema, loginSchema } from "../../../@types/userForms.ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";

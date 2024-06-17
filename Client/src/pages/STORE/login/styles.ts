@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 import background from "../../../assets/estb_image2.png";
 export const Screen = styled.div`
   width: 100dvw;
@@ -16,7 +18,7 @@ export const Container = styled.div`
   right: 10%;
   top: 50%;
   width: 35dvw;
-  height: 75dvh;
+  height: 67dvh;
   align-items: center;
   justify-content: center;
   transform: translateY(-50%);
@@ -36,10 +38,9 @@ export const WrapperTitle = styled.div`
   flex-direction: column;
   text-align: start;
   padding: 0rem 1rem;
-  margin-top: 1rem;
 `;
 export const Title = styled.h1`
-  font-weight: 600;
+  font-weight: 700;
   font-size: ${(p) => p.theme.font.title};
 `;
 export const Subtitle = styled.h2`
@@ -59,12 +60,6 @@ export const WrapperInput = styled.div`
   flex-direction: column;
   padding: 0.7rem 0rem;
 `;
-export const Input = styled.input`
-  width: 100%;
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-`;
 export const Label = styled.label`
   padding: 2px 5px;
   font-size: ${(p) => p.theme.font.text};
@@ -83,7 +78,7 @@ export const SubmitButton = styled.button`
 export const Rcontainer = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const ErrorMessage = styled.div`
   color: red;
@@ -91,16 +86,59 @@ export const ErrorMessage = styled.div`
   margin-bottom: 10px;
 `;
 
-export const Link = styled.a`
-  font-size: 16px;
-  color: ${props => props.theme.colors.}; 
+export const Links = styled(Link)`
+  font-size: ${({ theme }) => theme.font.text};
   text-decoration: none;
-  margin-top: 10px;
-  display: block;
-  text-align: center;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary};
+  transition: 200ms;
+  padding-left: 8px;
 
   &:hover {
-    color: ${props => props.theme.colors.}; 
-    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primaryDark};
   }
+`;
+
+export const PolicyText = styled.span`
+  font-size: ${({ theme }) => theme.font.text};
+  font-weight: 500;
+  margin-top: 15px;
+`;
+
+export const PolicyText2 = styled.span`
+  font-size: ${({ theme }) => theme.font.text};
+  font-weight: 500;
+  margin-top: 30px;
+`;
+
+export const Lines = styled.span`
+  height: 1px;
+  background-color: #7b7272;
+  width: 100%;
+`;
+
+export const encapsular = styled.div`
+  border-top: 2rem;
+`;
+
+export const EyeDiv = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 1%;
+
+  height: 100%;
+  width: 50px;
+`;
+
+export const InputIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+export const Eye_on = styled(Eye)`
+  width: 100%;
+`;
+export const Eye_off = styled(EyeOff)`
+  width: 100%;
 `;

@@ -1,4 +1,4 @@
-import { createGlobalStyle, styled } from 'styled-components';
+import { createGlobalStyle, styled } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -37,7 +37,7 @@ export const LinesContainer = styled.div`
   margin-bottom: 100px;
 `;
 
-export const Line = styled.div`
+export const Line = styled.span`
   width: 683px;
   height: 10px;
   ${({ color }) => `

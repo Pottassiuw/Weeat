@@ -8,6 +8,8 @@ const Input = styled.input<HasError>`
   width: 100%;
   border-radius: ${(p) => p.theme.border.button};
   padding: 13px;
+  height: 50px;
+  line-height: 50px;
 
   &:focus {
     outline: 1px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};

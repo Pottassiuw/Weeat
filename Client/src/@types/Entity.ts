@@ -6,16 +6,16 @@ export type User = {
 };
 
 export type Store = {
-  id: number | undefined;
-  name: string | undefined;
-  email: string | undefined;
-  password: string | undefined;
-  cep: number | undefined;
-  storeName: string | undefined;
-  description: string | undefined;
-  contact: string | undefined;
-  banner: string | undefined;
-  logo: string | undefined;
-  averageRating: number | undefined;
-  category: string | undefined;
+  id?: number;
+  name?: string;
+  email?: string;
+  password?: string;
+  cep?: number;
+  storeName?: string;
+  description?: string;
+  contact?: string;
+  banner?: string;
+  logo?: string;
+  averageRating?: number;
+  category?: string;
 };

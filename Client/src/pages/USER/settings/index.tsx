@@ -3,7 +3,7 @@ import Input from "../../../components/input/styles";
 import { useForm } from "react-hook-form";
 import NavBar from "../../../components/nav";
 import { useState, useEffect } from "react";
-import { TsignUpSchema, signUpSchema } from "../../../@types/forms";
+import { TsignUpSchema, signUpSchema } from "../../../@types/userForms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../../../context/authProvider";
 
