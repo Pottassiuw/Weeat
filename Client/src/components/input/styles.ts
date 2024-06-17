@@ -10,6 +10,9 @@ const Input = styled.input<HasError>`
   padding: 13px;
   height: 50px;
   line-height: 50px;
+  &::placeholder {
+    color: #D9D9D9;
+  }
 
   &:focus {
     outline: 1px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};

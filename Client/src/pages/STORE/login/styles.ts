@@ -21,17 +21,18 @@ export const Container = styled.div`
   top: 50%;
   width: 700px;
   height: 650px;
-  transform: translateY(-50%);
-
+  transform: translateY(-45%);
   background-color: #fff;
   border-radius: 1rem;
-  padding: 3rem;
   overflow: hidden;
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  padding: 3rem;
+  overflow: hidden;
+
 `;
 export const WrapperTitle = styled.div`
   display: flex;
@@ -108,17 +109,13 @@ export const PolicyText = styled.span`
 export const PolicyText2 = styled.span`
   font-size: ${({ theme }) => theme.font.text};
   font-weight: 500;
-  margin-top: 30px;
-`;
-
-export const Lines = styled.span`
-  height: 1px;
-  background-color: #7b7272;
-  width: 100%;
 `;
 
 export const encapsular = styled.div`
-  border-top: 2rem;
+  ${flexCenter}
+  border-top: 1px solid #d9d9d9;
+  width: 100%;
+  height: 20%;
 `;
 
 export const EyeDiv = styled.div`
@@ -129,6 +126,9 @@ export const EyeDiv = styled.div`
 
   height: 100%;
   width: 50px;
+  svg {
+    color: #292929
+  }
 `;
 
 export const InputIconWrapper = styled.div`

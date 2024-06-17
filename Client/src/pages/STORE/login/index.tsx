@@ -47,8 +47,8 @@ export default function LoginEstablishment() {
                 {...register("email")}
                 hasError={!!errors.email}
                 type="text"
-                placeholder="(EX): email@email.email"
-                autoComplete="email webauthn"
+                placeholder="Ex: email@email.email"
+                autoComplete="email"
               />
               {errors?.email && (
                 <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
@@ -61,7 +61,7 @@ export default function LoginEstablishment() {
                   {...register("password")}
                   hasError={!!errors.password}
                   type={passwordVisible ? "text" : "password"}
-                  placeholder="(EX): 12345678"
+                  placeholder="Ex: 12345678"
                   autoComplete="current-password webauthn"
                 />
                 <$.EyeDiv onClick={togglePasswordVisibility}>
@@ -77,7 +77,6 @@ export default function LoginEstablishment() {
               Ao continuar, você concorda em receber comunicações promocionais
               da Weeat.
             </$.PolicyText>
-            <$.Lines></$.Lines>
           </$.Form>
         </$.Wrapper>
         <$.encapsular>
