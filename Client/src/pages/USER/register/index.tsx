@@ -2,12 +2,13 @@ import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import type { TsignUpSchema } from "../../../@types/userform";
-import { signUpSchema } from "../../../@types/userform";
+import type { TsignUpSchema } from "../../../@types/userForms.ts";
+import { signUpSchema } from "../../../@types/userForms.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { FormButton } from "../../../components/FormButton/styles.ts";
-
+import Input from "../../../components/input/styles";
+import ErrorMessage from "../../../components/errorMessage/styles.ts";
 export default function Register() {
   const URL = "http://localhost:4040/users/register";
   const {
@@ -37,50 +38,50 @@ export default function Register() {
         <$.Form onSubmit={handleSubmit(createUser)}>
           <$.WrapperInput>
             <$.Label htmlFor="name">Usuário</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.name}
               id="name"
               {...register("name")}
               autoComplete="username"
             />
             {errors?.name && (
-              <$.ErrorMessage>{`${errors.name?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.name?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="email">Email</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.email}
               id="email"
               {...register("email")}
               autoComplete="email"
             />
             {errors?.email && (
-              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="password">Senha</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.password}
               id="password"
               {...register("password")}
               type="password"
             />
             {errors?.password && (
-              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.confirmPassword}
               id="confirmPassword"
               {...register("confirmPassword")}
               type="password"
             />
             {errors?.confirmPassword && (
-              <$.ErrorMessage>{`${errors.confirmPassword?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.confirmPassword?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <FormButton disabled={isSubmitting}>

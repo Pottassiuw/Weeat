@@ -2,10 +2,6 @@ import { Request, Response } from "express";
 import AuthService from "../services/authService";
 import StoreService from "../services/storeService";
 
-const isError = (error: unknown): error is Error => {
-  return error instanceof Error;
-};
-
 export default class StoreController {
   async register(req: Request, res: Response) {
     try {
@@ -13,8 +9,10 @@ export default class StoreController {
       const { password: _, ...storeData } = store;
       return res.status(201).json(storeData);
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 
@@ -24,8 +22,10 @@ export default class StoreController {
       const { token, store } = await AuthService.loginStore(email, password);
       res.status(201).json({ store, token });
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 
@@ -40,8 +40,10 @@ export default class StoreController {
       );
       res.status(201).json({ store });
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 
@@ -53,8 +55,10 @@ export default class StoreController {
       const store = await StoreService.getStoreById(parseInt(req.params.id));
       res.status(201).json({ store });
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 
@@ -67,8 +71,10 @@ export default class StoreController {
       const store = await StoreService.getStoresByCategory(category);
       res.status(201).json({ store });
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 
@@ -84,8 +90,10 @@ export default class StoreController {
       );
       res.status(201).json({ store });
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 
@@ -99,21 +107,25 @@ export default class StoreController {
       );
       res.status(201).json({ store });
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 
   async getStores(req: Request, res: Response) {
     try {
       if (!req.entity) {
-        return res.status(500).json({ error: "Unauthorized" });
+        return res.status(401).json({ error: "Unauthorized" });
       }
       const store = await StoreService.getAllStores();
-      res.status(201).json({ store });
+      res.status(201).json(store);
     } catch (error) {
-      const message = isError(error) ? error.message : "Unknown error";
-      res.status(500).json({ message });
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
     }
   }
 }

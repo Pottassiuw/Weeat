@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import AuthService from "../services/authService";
-
+import { verifyToken } from "../services/tokenService";
 export const authenticate = (
   req: Request,
   res: Response,
@@ -16,7 +16,7 @@ export const authenticate = (
     return res.status(401).json({ message: "Token does not exists" });
   }
   try {
-    const decodedToken = AuthService.verifyToken(token);
+    const decodedToken = verifyToken(token);
     req.entity = { id: decodedToken.id, type: decodedToken.type };
     next();
   } catch (error) {

@@ -24,6 +24,7 @@ interface StoreAddressData {
   state: string;
   zip: string;
 }
+type StoreWithoutPassword = Omit<Store, "password">;
 
 class StoreService {
   async registerStore(storeData: StoreRegistrationData): Promise<Store> {
@@ -86,8 +87,24 @@ class StoreService {
     return addresses;
   }
 
-  async getAllStores(): Promise<Store[]> {
-    const stores = await prisma.store.findMany();
+  async getAllStores(): Promise<StoreWithoutPassword[]> {
+    const stores = await prisma.store.findMany({
+      select: {
+        id: true,
+        name: true,
+        storeName: true,
+        description: true,
+        email: true,
+        taxpayerRegistry: true,
+        contact: true,
+        banner: true,
+        logo: true,
+        averageRating: true,
+        createdAt: true,
+        updatedAt: true,
+        category: true,
+      },
+    });
     return stores;
   }
 

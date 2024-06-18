@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import UserService from "../services/userService";
 import AuthService from "../services/authService";
+import generateToken from "../services/authService";
+
 const isError = (error: unknown): error is Error => {
   return error instanceof Error;
 };
-
 export default class UserController {
   async register(req: Request, res: Response) {
     try {
@@ -49,6 +50,7 @@ export default class UserController {
         parseInt(req.params.id),
         req.body
       );
+      console.log("------>", req.body);
       res.status(200).json(user);
     } catch (error) {
       const message = isError(error) ? error.message : "Unknown error";

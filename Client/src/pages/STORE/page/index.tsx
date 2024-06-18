@@ -16,8 +16,8 @@ export default function StorePage() {
       try {
         if (user) {
           const response = await axios.get(`${URL}stores`);
-          if (response.data && Array.isArray(response.data.store)) {
-            setStores(response.data.store);
+          if (response.data && Array.isArray(response.data)) {
+            setStores(response.data);
           } else {
             console.error("Unexpected response data format:", response.data);
           }
@@ -28,7 +28,7 @@ export default function StorePage() {
     };
     getStores();
   }, [user]);
-
+  console.log(stores);
   return (
     <$.Container>
       <NavBar sticky="true" />

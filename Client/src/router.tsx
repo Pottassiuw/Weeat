@@ -2,11 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Login from "./pages/USER/login";
 import UserRegister from "./pages/USER/register";
-import StoreRegister from "./pages/STORE/register";
+// import StoreRegister from "./pages/STORE/register";
 import StoresPage from "./pages/STORE/page";
+import StoreLogin from "./pages/STORE/login";
 import Home from "./pages/home";
 import ProtectedRoute from "./pages/infra/userProtected";
 import UserDash from "./pages/USER/settings";
+import StoreRegister from "./pages/STORE/register"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,7 +25,8 @@ const router = createBrowserRouter([
         ),
       },
       { path: "users/register", element: <UserRegister /> },
-      { path: "stores/register", element: <StoreRegister /> },
+      // { path: "stores/register", element: <StoreRegister /> },
+      { path: "stores/login", element: <StoreLogin /> },
       {
         path: "stores",
         element: (
@@ -32,6 +35,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {path: "stores/register", element: <StoreRegister />}
     ],
   },
 ]);

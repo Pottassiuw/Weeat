@@ -1,13 +1,14 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import { TloginSchema } from "../../../@types/userform";
-import { loginSchema } from "../../../@types/userform";
+import { TloginSchema, loginSchema } from "../../../@types/userForms.ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { useAuth } from "../../../context/authProvider.tsx";
 import FormButton from "../../../components/FormButton";
 import { useNavigate } from "react-router-dom";
+import Input from "../../../components/input/styles";
+import ErrorMessage from "../../../components/errorMessage/styles.ts";
 function Login() {
   const { loginUser } = useAuth();
   const navigate = useNavigate();
@@ -36,25 +37,25 @@ function Login() {
         <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.email}
               {...register("email")}
               autoComplete="email"
             />
             {errors?.email && (
-              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label>Senha</$.Label>
-            <$.Input
+            <Input
               hasError={!!errors.password}
               {...register("password")}
               type="password"
               autoComplete="current-password"
             />
             {errors?.password && (
-              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <FormButton disabled={isSubmitting}>

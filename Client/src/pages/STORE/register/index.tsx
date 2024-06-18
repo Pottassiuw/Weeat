@@ -1,74 +1,90 @@
 import * as $ from "./styles";
-import { useState, ChangeEvent } from "react";
-import axios from "axios";
 import NavBar from "../../../components/nav";
-
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import {
+  TStoreRegisterSchema,
+  storeRegisterSchema,
+} from "../../../@types/storeForms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Input from "../../../components/input/styles";
+import FormButton from "../../../components/FormButton";
+import ErrorMessage from "../../../components/errorMessage/styles";
 export default function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<TStoreRegisterSchema>({
+    resolver: zodResolver(storeRegisterSchema),
+  });
 
-  const [page, setPage] = useState(1);
-  
-  
+  const handleData = async (data: TStoreRegisterSchema) => {};
 
   return (
     <$.Screen>
-      <NavBar />
-      {page === 1 ? (
-        <$.Container>
-          <$.Wrapper>
-            <$.WrapperTitle>
-              <$.Title>Cadastre sua loja!</$.Title>
-              <$.Subtitle>
-                Seja um sócio weeat e expanda seu comércio
-              </$.Subtitle>
-            </$.WrapperTitle>
-            <$.Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                sendEstablishmetData();
-              }}
-            >
-              <$.WrapperInput>
-                <$.Label>Nome Completo</$.Label>
-                <$.Input
+      <NavBar sticky="true" />
+      <$.Container>
+        <$.Wrapper>
+          <$.WrapperTitle>
+            <$.Title>Cadastre sua loja!</$.Title>
+            <$.Subtitle>Seja um sócio weeat e expanda seu comércio</$.Subtitle>
+          </$.WrapperTitle>
+          <$.Form onSubmit={handleSubmit(handleData)}>
+            <$.WrapperInput>
+              <$.Label>Nome</$.Label>
+              <Input
+                {...register("name")}
+                hasError={!!errors.name}
+                type="text"
+                placeholder="john Doe"
+                autoComplete="name"
+              />
+              {errors?.name && (
+                <ErrorMessage>{`${errors.name?.message}`}</ErrorMessage>
+              )}
+            </$.WrapperInput>
+            <$.WrapperInput>
+              <$.Label>Email</$.Label>
+              <$.InputIconWrapper>
+                <Input
+                  {...register("email")}
+                  hasError={!!errors.email}
                   type="text"
-                  name="name"
-                  value={establishmentData.name}
-                  onChange={handleChanges}
-                  required
-                  placeholder="Pedro da Silva"
+                  placeholder="Ex: email@email.com"
+                  autoComplete="email webauthn"
                 />
-              </$.WrapperInput>
-              <$.WrapperInput>
-                <$.Label>E-mail</$.Label>
-                <$.Input
-                  type="text"
-                  name="email"
-                  value={establishmentData.email}
-                  onChange={handleChanges}
-                  required
-                  placeholder="ex: email@email.com"
+              </$.InputIconWrapper>
+              {errors?.email && (
+                <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
+              )}
+            </$.WrapperInput>
+            <$.WrapperInput>
+              <$.Label>Senha</$.Label>
+              <$.InputIconWrapper>
+                <Input
+                  {...register("password")}
+                  hasError={!!errors.password}
+                  type="password"
+                  placeholder="Ex: 12345678"
+                  autoComplete="current-password webauthn"
                 />
-              </$.WrapperInput>
-              <$.WrapperInput>
-                <$.Label>Celular</$.Label>
-                <$.Input
-                  type="phone"
-                  name="password"
-                  value={establishmentData.password}
-                  onChange={handleChanges}
-                  required
-                  placeholder="(00) 00000-0000"
-                />
-              </$.WrapperInput>
-              <$.SubmitButton type="submit" onClick={handlePages}>
-                Continuar agora!
-              </$.SubmitButton>
-            </$.Form>
-          </$.Wrapper>
-        </$.Container>
-      ) : page === 2 ? (
-        <$.Rcontainer></$.Rcontainer>
-      ) : null}
+              </$.InputIconWrapper>
+              {errors?.password && (
+                <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
+              )}
+            </$.WrapperInput>
+            <FormButton disabled={isSubmitting}>Continuar</FormButton>
+          </$.Form>
+        </$.Wrapper>
+        <$.encapsular>
+          <$.PolicyText2>
+            Já é cadastrado?
+            <$.Links to="/stores/login">Entre com sua loja</$.Links>
+          </$.PolicyText2>
+        </$.encapsular>
+      </$.Container>
     </$.Screen>
   );
 }
