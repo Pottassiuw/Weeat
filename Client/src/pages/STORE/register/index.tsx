@@ -1,43 +1,90 @@
 import * as $ from "./styles";
-import { useState, ChangeEvent } from "react";
-import axios from "axios";
 import NavBar from "../../../components/nav";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import {
+  TStoreRegisterSchema,
+  storeRegisterSchema,
+} from "../../../@types/storeForms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Input from "../../../components/input/styles";
+import FormButton from "../../../components/FormButton";
 
 export default function Register() {
-  const [page, setPage] = useState(1);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<TStoreRegisterSchema>({
+    resolver: zodResolver(storeRegisterSchema),
+  });
+
+  const handleData = async (data: TStoreRegisterSchema) => {};
 
   return (
     <$.Screen>
       <NavBar sticky="true" />
-      {page === 1 ? (
-        <$.Container>
-          <$.Wrapper>
-            <$.WrapperTitle>
-              <$.Title>Cadastre sua loja!</$.Title>
-              <$.Subtitle>
-                Seja um sócio weeat e expanda seu comércio
-              </$.Subtitle>
-            </$.WrapperTitle>
-            <$.Form onSubmit={}>
-              <$.WrapperInput>
-                <$.Label>Nome Completo</$.Label>
-                <$.Input type="text" placeholder="Pedro da Silva" />
-              </$.WrapperInput>
-              <$.WrapperInput>
-                <$.Label>E-mail</$.Label>
-                <$.Input type="text" placeholder="ex: email@email.com" />
-              </$.WrapperInput>
-              <$.WrapperInput>
-                <$.Label>Celular</$.Label>
-                <$.Input type="phone" placeholder="(00) 00000-0000" />
-              </$.WrapperInput>
-              <$.SubmitButton type="submit">Continuar agora!</$.SubmitButton>
-            </$.Form>
-          </$.Wrapper>
-        </$.Container>
-      ) : page === 2 ? (
-        <$.Rcontainer></$.Rcontainer>
-      ) : null}
+      <$.Container>
+        <$.Wrapper>
+          <$.WrapperTitle>
+            <$.Title>Cadastre sua loja!</$.Title>
+            <$.Subtitle>Seja um sócio weeat e expanda seu comércio</$.Subtitle>
+          </$.WrapperTitle>
+          <$.Form onSubmit={handleSubmit(handleData)}>
+            <$.WrapperInput>
+              <$.Label>Nome</$.Label>
+              <Input
+                {...register("name")}
+                hasError={!!errors.name}
+                type="text"
+                placeholder="john Doe"
+                autoComplete="name"
+              />
+              {errors?.name && (
+                <$.ErrorMessage>{`${errors.name?.message}`}</$.ErrorMessage>
+              )}
+            </$.WrapperInput>
+            <$.WrapperInput>
+              <$.Label>Email</$.Label>
+              <$.InputIconWrapper>
+                <Input
+                  {...register("email")}
+                  hasError={!!errors.email}
+                  type="text"
+                  placeholder="Ex: email@email.com"
+                  autoComplete="email webauthn"
+                />
+              </$.InputIconWrapper>
+              {errors?.email && (
+                <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+              )}
+            </$.WrapperInput>
+            <$.WrapperInput>
+              <$.Label>Senha</$.Label>
+              <$.InputIconWrapper>
+                <Input
+                  {...register("password")}
+                  hasError={!!errors.password}
+                  type="password"
+                  placeholder="Ex: 12345678"
+                  autoComplete="current-password webauthn"
+                />
+              </$.InputIconWrapper>
+              {errors?.password && (
+                <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+              )}
+            </$.WrapperInput>
+            <FormButton disabled={isSubmitting}>Continuar</FormButton>
+          </$.Form>
+        </$.Wrapper>
+        <$.encapsular>
+          <$.PolicyText2>
+            Já é cadastrado?
+            <$.Links to="/stores/login">Entre com sua loja</$.Links>
+          </$.PolicyText2>
+        </$.encapsular>
+      </$.Container>
     </$.Screen>
   );
 }
