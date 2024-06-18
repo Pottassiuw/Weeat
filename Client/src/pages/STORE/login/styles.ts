@@ -20,7 +20,7 @@ export const Container = styled.div`
   right: 10%;
   top: 50%;
   width: 700px;
-  height: 650px;
+  height: 700px;
   transform: translateY(-45%);
   background-color: #fff;
   border-radius: 1rem;
@@ -60,6 +60,10 @@ export const WrapperInput = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0.7rem 0rem;
+
+  &:nth-child(2) {
+    margin-bottom: 1rem;
+  }
 `;
 export const Label = styled.label`
   padding: 2px 5px;
