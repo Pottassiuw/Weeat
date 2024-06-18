@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-interface HasError {
-  hasError: boolean;
-}
 export const Container = styled.div`
   display: flex;
   position: relative;
@@ -106,8 +103,3 @@ export const BottomColor = styled.div`
   height: 10%;
 `;
 
-export const ErrorMessage = styled.p`
-  color: red;
-  font-size: 0.875rem;
-  height: 4px;
-`;

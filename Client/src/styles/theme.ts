@@ -9,6 +9,7 @@ export default <Theme>{
   },
   font: {
     text: "14pt",
+    errorMessage: "11pt",
     subtitle: "15pt",
     subtitleG: "26pt",
     title: "38pt",

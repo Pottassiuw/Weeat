@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { FormButton } from "../../../components/FormButton/styles.ts";
 import Input from "../../../components/input/styles";
+import ErrorMessage from "../../../components/errorMessage/styles.ts";
 export default function Register() {
   const URL = "http://localhost:4040/users/register";
   const {
@@ -44,7 +45,7 @@ export default function Register() {
               autoComplete="username"
             />
             {errors?.name && (
-              <$.ErrorMessage>{`${errors.name?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.name?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
@@ -56,7 +57,7 @@ export default function Register() {
               autoComplete="email"
             />
             {errors?.email && (
-              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
@@ -68,7 +69,7 @@ export default function Register() {
               type="password"
             />
             {errors?.password && (
-              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
@@ -80,7 +81,7 @@ export default function Register() {
               type="password"
             />
             {errors?.confirmPassword && (
-              <$.ErrorMessage>{`${errors.confirmPassword?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.confirmPassword?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <FormButton disabled={isSubmitting}>

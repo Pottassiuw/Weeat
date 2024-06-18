@@ -9,7 +9,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../../../components/input/styles";
 import FormButton from "../../../components/FormButton";
-
+import ErrorMessage from "../../../components/errorMessage/styles";
 export default function Register() {
   const {
     register,
@@ -42,7 +42,7 @@ export default function Register() {
                 autoComplete="name"
               />
               {errors?.name && (
-                <$.ErrorMessage>{`${errors.name?.message}`}</$.ErrorMessage>
+                <ErrorMessage>{`${errors.name?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>
             <$.WrapperInput>
@@ -57,7 +57,7 @@ export default function Register() {
                 />
               </$.InputIconWrapper>
               {errors?.email && (
-                <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+                <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>
             <$.WrapperInput>
@@ -72,7 +72,7 @@ export default function Register() {
                 />
               </$.InputIconWrapper>
               {errors?.password && (
-                <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+                <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>
             <FormButton disabled={isSubmitting}>Continuar</FormButton>

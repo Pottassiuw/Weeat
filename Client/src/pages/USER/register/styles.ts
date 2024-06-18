@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-interface HasError {
-  hasError?: boolean;
-  enableButton?: boolean;
-}
+
 export const Container = styled.div`
   display: flex;
   width: 100vw;
@@ -49,11 +46,6 @@ export const Label = styled.label`
   pointer-events: none;
 `;
 
-export const ErrorMessage = styled.p`
-  color: red;
-  font-size: 0.875rem;
-  height: 4px;
-`;
 
 export const WrapperCheckbox = styled.div`
   margin: 10px 0px;
@@ -65,16 +57,6 @@ export const Span = styled.span`
   font-size: ${(p) => p.theme.font.text};
 `;
 
-export const SubmitButton = styled.button<HasError>`
-  margin-top: 1rem;
-  border: none;
-  padding: 1rem;
-  background: #fe2c2c;
-  color: white;
-  border-radius: ${(p) => p.theme.border.button};
-  font-size: ${(p) => p.theme.font.text};
-  cursor: pointer;
-`;
 
 export const WrapperImage = styled.div`
   position: absolute;

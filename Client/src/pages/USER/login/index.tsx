@@ -8,6 +8,7 @@ import { useAuth } from "../../../context/authProvider.tsx";
 import FormButton from "../../../components/FormButton";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/input/styles";
+import ErrorMessage from "../../../components/errorMessage/styles.ts";
 function Login() {
   const { loginUser } = useAuth();
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function Login() {
               autoComplete="email"
             />
             {errors?.email && (
-              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
@@ -54,7 +55,7 @@ function Login() {
               autoComplete="current-password"
             />
             {errors?.password && (
-              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <FormButton disabled={isSubmitting}>

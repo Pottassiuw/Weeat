@@ -42,7 +42,7 @@ export const WrapperTitle = styled.div`
 export const Title = styled.h1`
   font-weight: 700;
   font-size: ${(p) => p.theme.font.title};
-  height: 20px;
+  height: 25px;
 `;
 export const Subtitle = styled.h2`
   font-size: ${(p) => p.theme.font.subtitle};
@@ -61,7 +61,7 @@ export const WrapperInput = styled.div`
   flex-direction: column;
   padding: 0.7rem 0rem;
 
-  &:nth-child(2) {
+  &:nth-child(3) {
     margin-bottom: 1rem;
   }
 `;
@@ -85,11 +85,6 @@ export const Rcontainer = styled.div`
   flex-direction: column;
 `;
 
-export const ErrorMessage = styled.div`
-  color: red;
-  font-size: 12px;
-  height: 2px;
-`;
 
 export const Links = styled(Link)`
   font-size: ${({ theme }) => theme.font.text};

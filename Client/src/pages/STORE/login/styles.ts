@@ -85,12 +85,6 @@ export const Rcontainer = styled.div`
   flex-direction: column;
 `;
 
-export const ErrorMessage = styled.div`
-  color: red;
-  font-size: 12px;
-  height: 2px;
-`;
-
 export const Links = styled(Link)`
   font-size: ${({ theme }) => theme.font.text};
   text-decoration: none;
@@ -127,7 +121,6 @@ export const EyeDiv = styled.div`
   align-items: center;
   position: absolute;
   right: 1%;
-
   height: 100%;
   width: 50px;
   svg {

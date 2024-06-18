@@ -11,6 +11,7 @@ import {
 } from "../../../@types/storeForms";
 import { useAuth } from "../../../context/authProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ErrorMessage from "../../../components/errorMessage/styles";
 export default function LoginEstablishment() {
   const {
     register,
@@ -51,7 +52,7 @@ export default function LoginEstablishment() {
                 autoComplete="email"
               />
               {errors?.email && (
-                <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+                <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>
             <$.WrapperInput>
@@ -69,7 +70,7 @@ export default function LoginEstablishment() {
                 </$.EyeDiv>
               </$.InputIconWrapper>
               {errors?.password && (
-                <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+                <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>
             <FormButton disabled={isSubmitting}>Entrar</FormButton>
