@@ -1,6 +1,5 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import type { TsignUpSchema } from "../../../lib/userForms.ts";
 import { signUpSchema } from "../../../lib/userForms.ts";
@@ -9,11 +8,10 @@ import NavBar from "../../../components/nav/index.tsx";
 import { FormButton } from "../../../components/FormButton/styles.ts";
 import Input from "../../../components/input/styles";
 import ErrorMessage from "../../../components/errorMessage/styles.ts";
-import { useAuth } from "../../../context/userContext.tsx";
+import { useUser } from "../../../context/userContext.tsx";
 import { useNavigate } from "react-router-dom";
 export default function Register() {
-  const URL = "http://localhost:4040/users/register";
-  const { registerUser } = useAuth();
+  const { registerUser } = useUser();
   const {
     register,
     handleSubmit,

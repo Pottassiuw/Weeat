@@ -31,7 +31,8 @@ const StoreContext = createContext<StoreContextProps>({} as StoreContextProps);
 export function StoreProvider({ children }: { children: ReactNode }) {
   const { isSignedIn, setIsSignedIn } = useAuth();
   const [store, setStore] = useState<Partial<Store>>({});
-  const { token, setToken } = useAuth();
+  // ? chamar o token se precisar
+  const { setToken } = useAuth();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {

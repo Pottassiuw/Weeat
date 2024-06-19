@@ -1,10 +1,13 @@
-import * as $ from './styles';
+import * as $ from "./styles";
 
 const Error404 = () => {
   return (
     <$.Error404Container>
       <$.Title>Weeat</$.Title>
-      <$.ErrorText>Error 404! Ops! Algo inesperado aconteceu, esta página está indisponível.</$.ErrorText>
+      <$.ErrorText>
+        Error 404! Ops! Algo inesperado aconteceu, esta página está
+        indisponível.
+      </$.ErrorText>
       <$.LinesContainer>
         <$.Line color="#FF0000" />
         <$.Line color="#FFA07A" />

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import Input from "../../../components/input/styles";
 import FormButton from "../../../components/FormButton";
 import { TstoreLoginSchema, storeLoginSchema } from "../../../lib/storeForms";
-import { useAuth } from "../../../context/userContext";
+import { useStore } from "../../../context/storeContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMessage from "../../../components/errorMessage/styles";
 export default function LoginEstablishment() {
@@ -22,7 +22,7 @@ export default function LoginEstablishment() {
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
-  const { loginStore } = useAuth();
+  const { loginStore } = useStore();
   const navigate = useNavigate();
   const handleData = async (form: TstoreLoginSchema) => {
     await loginStore({ email: form.email, password: form.password });

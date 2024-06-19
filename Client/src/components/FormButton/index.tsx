@@ -8,7 +8,7 @@ interface FormButtonProps
 
 const FormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
   return (
-    <$.FormButton type="submit" {...props}>
+    <$.FormButton {...props}>
       {children}
     </$.FormButton>
   );

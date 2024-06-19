@@ -24,10 +24,7 @@ const userContext = createContext<UserContextProps>({} as UserContextProps);
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>({} as User);
-  const { token, setToken } = useAuth();
-  //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  //******************************************************************
+  const { token, setToken, isSignedIn, setIsSignedIn } = useAuth();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {

@@ -4,11 +4,11 @@ import NavBar from "../../../components/nav";
 import * as $ from "./styles";
 import axios from "axios";
 import { URL } from "../../../helper/URL";
-import { useAuth } from "../../../context/userContext";
+import { useUser } from "../../../context/userContext";
 import type { Store } from "../../../@types/Entity";
 
 export default function StorePage() {
-  const { user } = useAuth();
+  const { user } = useUser();
   const [stores, setStores] = useState<Store[]>([]);
 
   useEffect(() => {

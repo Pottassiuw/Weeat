@@ -5,10 +5,10 @@ import NavBar from "../../../components/nav";
 import { useState, useEffect } from "react";
 import { TsignUpSchema, signUpSchema } from "../../../lib/userForms";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "../../../context/userContext";
+import { useUser } from "../../../context/userContext";
 
 export default function index() {
-  const { updateUser, user } = useAuth();
+  const { updateUser, user } = useUser();
   const [userD, setUserD] = useState<TsignUpSchema | null>(null);
   const [shouldFetchUserData, setShouldFetchUserData] = useState(true);
   const {
@@ -63,14 +63,14 @@ export default function index() {
           <S.DataTitle>Dados do usuário</S.DataTitle>
           <S.DataInputWrapper>
             <S.DataLabel>Nome</S.DataLabel>
-            <Input {...register("name")} hasError={!!errors.name} />
+            <Input {...register("name")} has_error={!!errors.name} />
             {errors?.name && (
               <S.ErrorMessage>{`${errors.name?.message}`}</S.ErrorMessage>
             )}
           </S.DataInputWrapper>
           <S.DataInputWrapper>
             <S.DataLabel>Email</S.DataLabel>
-            <Input {...register("email")} hasError={!!errors.email} />
+            <Input {...register("email")} has_error={!!errors.email} />
             {errors?.email && (
               <S.ErrorMessage>{`${errors.email?.message}`}</S.ErrorMessage>
             )}
@@ -80,7 +80,7 @@ export default function index() {
             <Input
               type="password"
               {...register("password")}
-              hasError={!!errors.password}
+              has_error={!!errors.password}
             />
             {errors?.password && (
               <S.ErrorMessage>{`${errors.password?.message}`}</S.ErrorMessage>
@@ -91,7 +91,7 @@ export default function index() {
             <Input
               type="password"
               {...register("confirmPassword")}
-              hasError={!!errors.confirmPassword}
+              has_error={!!errors.confirmPassword}
             />
             {errors?.confirmPassword && (
               <S.ErrorMessage>{`${errors.confirmPassword?.message}`}</S.ErrorMessage>

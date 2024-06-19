@@ -4,13 +4,13 @@ import { TloginSchema, loginSchema } from "../../../lib/userForms.ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
-import { useAuth } from "../../../context/userContext.tsx";
+import { useUser } from "../../../context/userContext.tsx";
 import FormButton from "../../../components/FormButton";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/input/styles";
 import ErrorMessage from "../../../components/errorMessage/styles.ts";
 function Login() {
-  const { loginUser } = useAuth();
+  const { loginUser } = useUser();
   const navigate = useNavigate();
   const {
     register,

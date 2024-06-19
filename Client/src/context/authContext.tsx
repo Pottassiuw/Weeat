@@ -11,24 +11,18 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [isReady, setIsReady] = useState(false);
   const [token, setToken] = useState<string | undefined>(undefined);
 
   const value = useMemo(
     () => ({
       isSignedIn,
+      setIsSignedIn,
       token,
       setToken,
-      setIsReady,
-      setIsSignedIn,
     }),
     [isSignedIn]
   );
-  return (
-    <AuthContext.Provider value={value}>
-      {isReady ? children : null}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
