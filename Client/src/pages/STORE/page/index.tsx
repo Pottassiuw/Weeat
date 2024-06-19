@@ -4,7 +4,7 @@ import NavBar from "../../../components/nav";
 import * as $ from "./styles";
 import axios from "axios";
 import { URL } from "../../../helper/URL";
-import { useAuth } from "../../../context/authProvider";
+import { useAuth } from "../../../context/userContext";
 import type { Store } from "../../../@types/Entity";
 
 export default function StorePage() {

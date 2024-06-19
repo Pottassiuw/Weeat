@@ -1,4 +1,3 @@
-// routes/userRoutes.ts
 import { Router } from "express";
 import UserController from "../controllers/userController";
 import { authenticate, authorizeUser } from "../middlewares/auth";

@@ -1,7 +1,7 @@
 import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authProvider";
+import { useAuth } from "../../context/userContext";
 
 interface NavBarProps {
   sticky: string;
@@ -9,7 +9,7 @@ interface NavBarProps {
 
 export default function NavBar({ sticky }: NavBarProps) {
   const navigate = useNavigate();
-  const { user, isSignedIn, logout } = useAuth();
+  const { user, isSignedIn, logoutUser } = useAuth();
 
   const gotoHome = () => {
     navigate("/");
@@ -20,7 +20,7 @@ export default function NavBar({ sticky }: NavBarProps) {
   };
 
   const handleLogout = () => {
-    logout();
+    logoutUser();
     navigate("/");
   };
 

@@ -5,11 +5,8 @@ import * as $ from "./styles";
 import { useForm } from "react-hook-form";
 import Input from "../../../components/input/styles";
 import FormButton from "../../../components/FormButton";
-import {
-  TstoreLoginSchema,
-  storeLoginSchema,
-} from "../../../@types/storeForms";
-import { useAuth } from "../../../context/authProvider";
+import { TstoreLoginSchema, storeLoginSchema } from "../../../lib/storeForms";
+import { useAuth } from "../../../context/userContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMessage from "../../../components/errorMessage/styles";
 export default function LoginEstablishment() {
@@ -27,9 +24,10 @@ export default function LoginEstablishment() {
   };
   const { loginStore } = useAuth();
   const navigate = useNavigate();
-  const handleData = async (data: TstoreLoginSchema) => {
-    loginStore({ email: data.email, password: data.password });
+  const handleData = async (form: TstoreLoginSchema) => {
+    await loginStore({ email: form.email, password: form.password });
     reset();
+    navigate("/stores");
   };
 
   return (
@@ -46,12 +44,12 @@ export default function LoginEstablishment() {
               <$.Label>Email</$.Label>
               <Input
                 {...register("email")}
-                hasError={!!errors.email}
+                has_error={!!errors.email}
                 type="text"
                 placeholder="Ex: email@email.email"
                 autoComplete="email"
               />
-              {errors?.email && (
+              {errors.email && (
                 <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>
@@ -60,7 +58,7 @@ export default function LoginEstablishment() {
               <$.InputIconWrapper>
                 <Input
                   {...register("password")}
-                  hasError={!!errors.password}
+                  has_error={!!errors.password}
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Ex: 12345678"
                   autoComplete="current-password webauthn"
@@ -69,7 +67,7 @@ export default function LoginEstablishment() {
                   {passwordVisible ? <$.Eye_off /> : <$.Eye_on />}
                 </$.EyeDiv>
               </$.InputIconWrapper>
-              {errors?.password && (
+              {errors.password && (
                 <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>

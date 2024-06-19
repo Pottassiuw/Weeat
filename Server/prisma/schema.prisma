@@ -30,23 +30,22 @@ model UserAddress {
 }
 
 model Store {
-  id               Int            @id @default(autoincrement())
-  name             String
-  storeName        String
-  description      String
-  email            String         @unique
-  taxpayerRegistry Int            @unique
-  password         String
-  contact          String
-  banner           String?
-  logo             String?
-  averageRating    Float          @default(0.0)
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  category         String
-  addresses        StoreAddress[]
-  products         Product[]
-  Favorite         Favorite[]
+  id            Int            @id @default(autoincrement())
+  name          String
+  storeName     String
+  description   String
+  email         String         @unique
+  password      String
+  contact       String
+  banner        String?
+  logo          String?
+  averageRating Float          @default(0.0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  category      String
+  addresses     StoreAddress[]
+  products      Product[]
+  Favorite      Favorite[]
 
   @@index([name])
   @@index([email])
@@ -66,12 +65,15 @@ model StoreReview {
 }
 
 model StoreAddress {
-  id     Int     @id @default(autoincrement())
-  store  Store[]
-  street String
-  city   String
-  state  String
-  zip    String
+  id               Int     @id @default(autoincrement())
+  taxpayerRegistry Int     @unique
+  store            Store[]
+  street           String
+  //bairro(em ingês) colocar em baixo
+  address          String
+  number           Int
+  complement       String
+  zip              String
 }
 
 model Product {

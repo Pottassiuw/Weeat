@@ -3,9 +3,9 @@ import Input from "../../../components/input/styles";
 import { useForm } from "react-hook-form";
 import NavBar from "../../../components/nav";
 import { useState, useEffect } from "react";
-import { TsignUpSchema, signUpSchema } from "../../../@types/userForms";
+import { TsignUpSchema, signUpSchema } from "../../../lib/userForms";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "../../../context/authProvider";
+import { useAuth } from "../../../context/userContext";
 
 export default function index() {
   const { updateUser, user } = useAuth();

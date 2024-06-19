@@ -1,16 +1,20 @@
 import * as $ from "./styles";
 import NavBar from "../../../components/nav";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   TStoreRegisterSchema,
   storeRegisterSchema,
-} from "../../../@types/storeForms";
+} from "../../../lib/storeForms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../../../components/input/styles";
 import FormButton from "../../../components/FormButton";
 import ErrorMessage from "../../../components/errorMessage/styles";
+import { useAuth } from "../../../context/userContext";
+import { useNavigate } from "react-router-dom";
+
 export default function Register() {
+  const { store, setStore } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,7 +24,12 @@ export default function Register() {
     resolver: zodResolver(storeRegisterSchema),
   });
 
-  const handleData = async (data: TStoreRegisterSchema) => {};
+  const handleData = (data: Partial<TStoreRegisterSchema>) => {
+    setStore(data);
+    console.log(store);
+    reset();
+    navigate("registercont");
+  };
 
   return (
     <$.Screen>
@@ -36,7 +45,7 @@ export default function Register() {
               <$.Label>Nome</$.Label>
               <Input
                 {...register("name")}
-                hasError={!!errors.name}
+                has_error={!!errors.name}
                 type="text"
                 placeholder="john Doe"
                 autoComplete="name"
@@ -50,7 +59,7 @@ export default function Register() {
               <$.InputIconWrapper>
                 <Input
                   {...register("email")}
-                  hasError={!!errors.email}
+                  has_error={!!errors.email}
                   type="text"
                   placeholder="Ex: email@email.com"
                   autoComplete="email webauthn"
@@ -65,7 +74,7 @@ export default function Register() {
               <$.InputIconWrapper>
                 <Input
                   {...register("password")}
-                  hasError={!!errors.password}
+                  has_error={!!errors.password}
                   type="password"
                   placeholder="Ex: 12345678"
                   autoComplete="current-password webauthn"

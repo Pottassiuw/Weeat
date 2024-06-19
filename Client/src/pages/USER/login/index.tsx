@@ -1,10 +1,10 @@
 import * as $ from "./styles";
 import Image from "../../../assets/login_register.png";
-import { TloginSchema, loginSchema } from "../../../@types/userForms.ts";
+import { TloginSchema, loginSchema } from "../../../lib/userForms.ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
-import { useAuth } from "../../../context/authProvider.tsx";
+import { useAuth } from "../../../context/userContext.tsx";
 import FormButton from "../../../components/FormButton";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/input/styles";
@@ -38,23 +38,23 @@ function Login() {
           <$.WrapperInput>
             <$.Label>Email</$.Label>
             <Input
-              hasError={!!errors.email}
+              has_error={!!errors.email}
               {...register("email")}
               autoComplete="email"
             />
-            {errors?.email && (
+            {errors.email && (
               <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label>Senha</$.Label>
             <Input
-              hasError={!!errors.password}
+              has_error={!!errors.password}
               {...register("password")}
               type="password"
               autoComplete="current-password"
             />
-            {errors?.password && (
+            {errors.password && (
               <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>

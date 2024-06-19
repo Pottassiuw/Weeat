@@ -9,30 +9,31 @@ import {
 import { URL } from "../helper/URL";
 import axios from "axios";
 import type { User, Store } from "../@types/Entity";
-import { TloginSchema, TsignUpSchema } from "../@types/userForms";
+import { TloginSchema, TsignUpSchema } from "../lib/userForms";
 import { toast } from "react-toastify";
-import { TstoreLoginSchema } from "../@types/storeForms";
-interface AuthContextProps {
-  user: User | undefined;
+import { TStoreRegisterSchema, TstoreLoginSchema } from "../lib/storeForms";
+type  UserContextProps = {
+  user?: User;
   isSignedIn: boolean;
-  token: string | undefined;
+  token?: string;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
   updateUser: (data: TsignUpSchema) => void;
   logoutUser: () => void;
-  loginStore: (data: TstoreLoginSchema) => void;
 }
 
-const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
+const AuthContext = createContext<UserContextProps>({} as UserContextProps);
 
-type AuthProviderProps = PropsWithChildren;
+type UserProviderProps = PropsWithChildren;
 
-export default function AuthProvider({ children }: AuthProviderProps) {
+export default function AuthProvider({ children }: UserProviderProps) {
+
   const [user, setUser] = useState<User>({} as User);
-  const [store, setStore] = useState<Store>({} as Store);
+
   //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
   const [isSignedIn, setIsSignedIn] = useState(false);
   //******************************************************************
+  
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
 
@@ -68,13 +69,16 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setIsReady(true);
       }
     } catch (error: any) {
-      toast.error("Login error:", error);
-      throw error;
+      if (error instanceof Error) {
+        const message = error.stack;
+        toast.error(`Login error: ${message}`);
+        throw error;
+      }
     }
   };
   const registerUser = async (data: TsignUpSchema) => {
     try {
-      const res = await axios.post(URL, data);
+      const res = await axios.post(URL + "users/register", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -120,6 +124,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     setUser({});
     setToken("");
     setIsSignedIn(false);
+    toast.info("Usuário deslogado!");
   };
   const loginStore = async (data: TstoreLoginSchema) => {
     try {
@@ -139,16 +144,75 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       throw error;
     }
   };
+  const registerStore = async (data: TStoreRegisterSchema) => {
+    try {
+      const res = await axios.post(URL + "stores/register", data);
+      if (res) {
+        const responseData = await res.data;
+        localStorage.setItem("token", responseData.token);
+        localStorage.setItem("store", JSON.stringify(responseData.store));
+        setToken(responseData.token!);
+        setStore(responseData.store);
+        toast.success("Store Created!");
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.warn(`Error no registro: ${error.stack}`);
+      }
+    }
+  };
+  const updateStore = async (data: TStoreRegisterSchema) => {
+    try {
+      const store = localStorage.getItem("store");
+      if (!store) {
+        return null;
+      }
+      const storeObj = JSON.parse(store);
+      const storeId = storeObj.id;
+      const { confirmPassword: _, ...datas } = data;
+      const res = await axios.put(URL + "stores/update/" + storeId, datas);
+      if (res) {
+        const responseData = await res.data;
+        const jsonData = JSON.stringify(responseData);
+        console.log(jsonData);
+        if (jsonData) {
+          localStorage.setItem("store", jsonData);
+          setStore(JSON.parse(jsonData));
+          console.log(JSON.parse(jsonData));
+          toast.success("Store updated!");
+        }
+      }
+    } catch (error: any) {
+      toast.warning("Update error: ", error);
+      throw error;
+    }
+  };
+  const logoutStore = () => {
+    if (!store) {
+      return null;
+    }
+    setStore({});
+    setToken("");
+    localStorage.removeItem("store");
+    localStorage.removeItem("token");
+    setIsSignedIn(false);
+    toast.info("Loja deslogada!");
+  };
   const value = useMemo(
     () => ({
       user,
-      isSignedIn,
-      token,
       loginUser,
       registerUser,
       updateUser,
       logoutUser,
+      store,
       loginStore,
+      registerStore,
+      updateStore,
+      logoutStore,
+      setStore,
+      isSignedIn,
+      token,
     }),
     [user, isSignedIn]
   );
