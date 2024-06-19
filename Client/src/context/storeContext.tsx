@@ -1,34 +1,37 @@
 import {
-  PropsWithChildren,
   createContext,
   useContext,
   useState,
   useMemo,
   useEffect,
+  ReactNode,
 } from "react";
 import { URL } from "../helper/URL";
 import axios from "axios";
 import type { Store } from "../@types/Entity";
-import { TStoreRegisterSchema, TstoreLoginSchema, TStoreAdressSchema } from "../lib/storeForms";
+import {
+  TStoreRegisterSchema,
+  TstoreLoginSchema,
+  TStoreAdressSchema,
+} from "../lib/storeForms";
+import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
 
 type StoreContextProps = {
-  token?: string;
   store: Partial<Store>;
   setStore: React.Dispatch<React.SetStateAction<Partial<Store>>>;
   loginStore: (data: TstoreLoginSchema) => void;
   registerStore: (data: TStoreRegisterSchema) => void;
   updateStore: (data: TStoreRegisterSchema) => void;
   logoutStore: () => void;
-}
+};
 
 const StoreContext = createContext<StoreContextProps>({} as StoreContextProps);
 
-type StoreProviderProps = PropsWithChildren;
-
-export default function storeProvider({ children }: StoreProviderProps) {
+export function StoreProvider({ children }: { children: ReactNode }) {
+  const { isSignedIn, setIsSignedIn } = useAuth();
   const [store, setStore] = useState<Partial<Store>>({});
-  const [token, setToken] = useState<string | undefined>(undefined);
+  const { token, setToken } = useAuth();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -118,7 +121,6 @@ export default function storeProvider({ children }: StoreProviderProps) {
   const value = useMemo(
     () => ({
       store,
-      token,
       setStore,
       loginStore,
       registerStore,

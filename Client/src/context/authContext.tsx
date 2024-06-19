@@ -1,36 +1,41 @@
-import { PropsWithChildren, useContext, useMemo, useState } from "react";
-import { createContext } from "react"
+import { useContext, useMemo, useState } from "react";
+import { createContext } from "react";
 type AuthContextProps = {
-    isSignedIn: boolean;
-    setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
+  isSignedIn: boolean;
+  setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  token?: string;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+};
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
-type AuthWithProps = PropsWithChildren;
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [token, setToken] = useState<string | undefined>(undefined);
 
-export default function AuthProvider({ children }: AuthWithProps) {
-    const [isSignedIn, setIsSignedIn] = useState(false);
-    const [isReady, setIsReady] = useState(false);
-
-    const value = useMemo(
-        () => ({
-            isSignedIn,
-            setIsSignedIn,
-        }), [isSignedIn])
-    return (
-        <AuthContext.Provider value={value} >
-            {isReady ? children : null}
-        </AuthContext.Provider>
-    )
+  const value = useMemo(
+    () => ({
+      isSignedIn,
+      token,
+      setToken,
+      setIsReady,
+      setIsSignedIn,
+    }),
+    [isSignedIn]
+  );
+  return (
+    <AuthContext.Provider value={value}>
+      {isReady ? children : null}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
-    const context = useContext(AuthContext);
+  const context = useContext(AuthContext);
 
-    if (!context) {
-        throw new Error("useUser must be used within an AuthProvider");
-    }
-    return context;
-
+  if (!context) {
+    throw new Error("useUser must be used within an AuthProvider");
+  }
+  return context;
 }

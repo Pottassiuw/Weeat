@@ -1,33 +1,30 @@
 import {
-  PropsWithChildren,
   createContext,
   useContext,
   useState,
   useMemo,
   useEffect,
+  ReactNode,
 } from "react";
 import { URL } from "../helper/URL";
 import axios from "axios";
 import type { User } from "../@types/Entity";
 import { TloginSchema, TsignUpSchema } from "../lib/userForms";
 import { toast } from "react-toastify";
-type  UserContextProps = {
+import { useAuth } from "./authContext";
+type UserContextProps = {
   user?: User;
-  token?: string;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
   updateUser: (data: TsignUpSchema) => void;
   logoutUser: () => void;
-}
+};
 
 const userContext = createContext<UserContextProps>({} as UserContextProps);
 
-type UserProviderProps = PropsWithChildren;
-
-export default function userProvider({ children }: UserProviderProps) {
-
+export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>({} as User);
-  const [token, setToken] = useState<string | undefined>(undefined);
+  const { token, setToken } = useAuth();
   //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
   const [isSignedIn, setIsSignedIn] = useState(false);
   //******************************************************************
@@ -139,9 +136,9 @@ export default function userProvider({ children }: UserProviderProps) {
 export const useUser = () => {
   const context = useContext(userContext);
 
-  if(!context) {
-    throw new Error("useUser must be used within an AuthProvider")
+  if (!context) {
+    throw new Error("useUser must be used within an AuthProvider");
   }
-  
+
   return context;
 };
