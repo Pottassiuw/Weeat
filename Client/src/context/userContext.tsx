@@ -8,13 +8,11 @@ import {
 } from "react";
 import { URL } from "../helper/URL";
 import axios from "axios";
-import type { User, Store } from "../@types/Entity";
+import type { User } from "../@types/Entity";
 import { TloginSchema, TsignUpSchema } from "../lib/userForms";
 import { toast } from "react-toastify";
-import { TStoreRegisterSchema, TstoreLoginSchema } from "../lib/storeForms";
 type  UserContextProps = {
   user?: User;
-  isSignedIn: boolean;
   token?: string;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
@@ -22,32 +20,24 @@ type  UserContextProps = {
   logoutUser: () => void;
 }
 
-const AuthContext = createContext<UserContextProps>({} as UserContextProps);
+const userContext = createContext<UserContextProps>({} as UserContextProps);
 
 type UserProviderProps = PropsWithChildren;
 
-export default function AuthProvider({ children }: UserProviderProps) {
+export default function userProvider({ children }: UserProviderProps) {
 
   const [user, setUser] = useState<User>({} as User);
-
+  const [token, setToken] = useState<string | undefined>(undefined);
   //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
   const [isSignedIn, setIsSignedIn] = useState(false);
   //******************************************************************
-  
-  const [token, setToken] = useState<string | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    const store = localStorage.getItem("store");
     const token = localStorage.getItem("token");
     if (user && token) {
       setUser(JSON.parse(user));
-      setToken(token);
-      setIsSignedIn(true);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    } else if (store && token) {
-      setStore(JSON.parse(store));
       setToken(token);
       setIsSignedIn(true);
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -126,109 +116,32 @@ export default function AuthProvider({ children }: UserProviderProps) {
     setIsSignedIn(false);
     toast.info("Usuário deslogado!");
   };
-  const loginStore = async (data: TstoreLoginSchema) => {
-    try {
-      const res = await axios.post(URL + "stores/login", data);
-      if (res) {
-        const responseData = await res.data;
-        localStorage.setItem("token", responseData.token);
-        localStorage.setItem("store", JSON.stringify(responseData.store));
-        setToken(responseData?.token!);
-        setStore(responseData.store);
-        toast.success("Estabelecimento Logado!");
-        setIsSignedIn(true);
-        setIsReady(true);
-      }
-    } catch (error: any) {
-      toast.error("Login error:", error);
-      throw error;
-    }
-  };
-  const registerStore = async (data: TStoreRegisterSchema) => {
-    try {
-      const res = await axios.post(URL + "stores/register", data);
-      if (res) {
-        const responseData = await res.data;
-        localStorage.setItem("token", responseData.token);
-        localStorage.setItem("store", JSON.stringify(responseData.store));
-        setToken(responseData.token!);
-        setStore(responseData.store);
-        toast.success("Store Created!");
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.warn(`Error no registro: ${error.stack}`);
-      }
-    }
-  };
-  const updateStore = async (data: TStoreRegisterSchema) => {
-    try {
-      const store = localStorage.getItem("store");
-      if (!store) {
-        return null;
-      }
-      const storeObj = JSON.parse(store);
-      const storeId = storeObj.id;
-      const { confirmPassword: _, ...datas } = data;
-      const res = await axios.put(URL + "stores/update/" + storeId, datas);
-      if (res) {
-        const responseData = await res.data;
-        const jsonData = JSON.stringify(responseData);
-        console.log(jsonData);
-        if (jsonData) {
-          localStorage.setItem("store", jsonData);
-          setStore(JSON.parse(jsonData));
-          console.log(JSON.parse(jsonData));
-          toast.success("Store updated!");
-        }
-      }
-    } catch (error: any) {
-      toast.warning("Update error: ", error);
-      throw error;
-    }
-  };
-  const logoutStore = () => {
-    if (!store) {
-      return null;
-    }
-    setStore({});
-    setToken("");
-    localStorage.removeItem("store");
-    localStorage.removeItem("token");
-    setIsSignedIn(false);
-    toast.info("Loja deslogada!");
-  };
+
   const value = useMemo(
     () => ({
       user,
+      token,
       loginUser,
       registerUser,
       updateUser,
       logoutUser,
-      store,
-      loginStore,
-      registerStore,
-      updateStore,
-      logoutStore,
-      setStore,
-      isSignedIn,
-      token,
     }),
     [user, isSignedIn]
   );
 
   return (
-    <AuthContext.Provider value={value}>
+    <userContext.Provider value={value}>
       {isReady ? children : null}
-    </AuthContext.Provider>
+    </userContext.Provider>
   );
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
+export const useUser = () => {
+  const context = useContext(userContext);
 
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+  if(!context) {
+    throw new Error("useUser must be used within an AuthProvider")
   }
+  
   return context;
 };

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import router from "./router.tsx";
 import { RouterProvider } from "react-router-dom";
-import AuthProvider from "./context/userContext.tsx";
+import AuthProvider from "./context/authContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
