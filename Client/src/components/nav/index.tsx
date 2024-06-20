@@ -41,6 +41,9 @@ export default function NavBar({ sticky }: NavBarProps) {
           <$.Links to="/stores">Estabelecimentos</$.Links>
         </$.LinkItem>
         <$.LinkItem>
+          <$.Links to ="/pages/favorites">Favorites</$.Links>
+        </$.LinkItem>
+        <$.LinkItem>
           <$.Links to="#">Faq</$.Links>
         </$.LinkItem>
       </$.LinksWrapper>
