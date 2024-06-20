@@ -9,6 +9,8 @@ import Home from "./pages/home";
 import ProtectedRoute from "./pages/infra/userProtected";
 import UserDash from "./pages/USER/settings";
 import StoreRegister from "./pages/STORE/register";
+import FavoriteScreen from "./pages/Favorites";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +19,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "users/login", element: <Login /> },
+      { path: "pages/favorites", element: <FavoriteScreen />},
       {
         path: "users/dashboard",
         element: (
