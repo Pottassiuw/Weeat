@@ -1,145 +1,20 @@
 import * as $ from "./styles";
 import NavBar from "../../../components/nav";
-import { useState, useEffect, useCallback } from "react";
-import { useForm } from "react-hook-form";
 import Input from "../../../components/input/styles";
 import InputWithMask from "../../../components/MaskInput/styled";
 import ErrorMessage from "../../../components/errorMessage/styles";
-import { useStore } from "../../../context/storeContext";
-import { useNavigate } from "react-router-dom";
-import { storeRegisterSchema } from "../../../lib/storeForms";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ZodError, z } from "zod";
-import axios from "axios";
-
-type Inputs = z.infer<typeof storeRegisterSchema>;
-type FieldName = keyof Inputs;
-type CepDataFieldProps = {
-  uf: string;
-  localidade: string;
-  bairro: string;
-  logradouro: string;
-};
-interface ErrorAddress {
-  bairro?: ZodError;
-  cep?: ZodError;
-  endereco?: ZodError;
-  numero?: ZodError;
-  complemento?: ZodError;
-}
-
-interface ErrorInformation {
-  name?: ZodError;
-  email?: ZodError;
-  password?: ZodError;
-  confirmPassword?: ZodError;
-}
-
-interface Errors {
-  address?: ErrorAddress;
-  information?: ErrorInformation;
-}
-
+import { useRegister } from "../../../hooks/useRegister";
 export default function Register() {
-  const { setStore } = useStore();
-  const navigate = useNavigate();
   const {
+    errors,
     register,
+    steps,
     handleSubmit,
-    trigger,
-    formState: { errors, isSubmitting },
-    reset,
-    watch,
-    setValue,
-  } = useForm<Inputs>({
-    resolver: zodResolver(storeRegisterSchema),
-    mode: "all",
-    criteriaMode: "all",
-  });
-  const steps = [
-    {
-      id: 1,
-      name: "Registro de informações",
-      fields: [
-        "information.name",
-        "information.email",
-        "information.password",
-        "information.confirmPassword",
-      ],
-    },
-    {
-      id: 2,
-      name: "Registro de endereço",
-      fields: [
-        "address.cep",
-        "address.bairro",
-        "address.endereco",
-        "address.numero",
-        "address.complemento",
-        "address.cidade",
-        "address.estado",
-      ],
-    },
-    {
-      id: 3,
-      name: "Registro Final",
-      fields: [
-        "storeInfo.storeName",
-        "storeInfo.storeDescription",
-        "storeInfo.category",
-      ],
-    },
-  ];
-
-  const zipCode = watch("address.cep");
-  const [currentStep, setCurrentStep] = useState(1);
-  const handleData = async (data: Inputs) => {
-    console.log(data);
-  };
-  const next = async () => {
-    const fields = steps[currentStep].fields;
-    if (!fields) return;
-
-    const output = await trigger(fields as FieldName[], { shouldFocus: true });
-
-    if (!output) return;
-    if (currentStep < steps.length - 1) {
-      setCurrentStep((prevStep) => prevStep + 1);
-    }
-  };
-  const prev = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prevStep) => prevStep - 1);
-    }
-  };
-
-  const handleFetchData = (data: CepDataFieldProps) => {
-    if (!data) return;
-    setValue("address.bairro", data.bairro);
-    setValue("address.cidade", data.localidade);
-    setValue("address.estado", data.uf);
-    setValue("address.endereco", data.logradouro);
-  };
-  const handleFetchAddress = useCallback(
-    async (zipCode: string) => {
-      if (zipCode.length < 9) return;
-      try {
-        const { data } = await axios.get(
-          `https://viacep.com.br/ws/${zipCode}/json`
-        );
-        handleFetchData(data);
-      } catch (error) {
-        console.error("Error fetching address:", error);
-      }
-    },
-    [setValue]
-  );
-
-  useEffect(() => {
-    if (zipCode.length >= 9) {
-      handleFetchAddress(zipCode);
-    }
-  }, [handleFetchAddress, zipCode]);
+    handleData,
+    prev,
+    next,
+    currentStep,
+  } = useRegister();
 
   return (
     <$.Section>
@@ -228,10 +103,10 @@ export default function Register() {
               </$.FormTexts>
               <$.InputWrapper>
                 <$.Label>CEP*</$.Label>
-                <Input
+                <InputWithMask
+                  mask="99999-999"
                   {...register("address.cep")}
                   type="text"
-                  maxLength={9}
                   placeholder="CEP"
                 />
                 {errors.address?.cep && (
@@ -318,6 +193,26 @@ export default function Register() {
                 <h1>Dados do Estabelecimento</h1>
                 <p>Preencha os dados de seu estabelecimento</p>
               </$.FormTexts>
+              <$.InputWrapper>
+                <$.Label>Nome da loja*</$.Label>
+                <Input
+                  {...register("storeInfo.storeName")}
+                  type="text"
+                  placeholder="Nome da loja"
+                />
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>Nome da loja*</$.Label>
+                <Input
+                  {...register("storeInfo.storeName")}
+                  type="text"
+                  placeholder="Nome da loja"
+                />
+              </$.InputWrapper>
+              <$.ButtonWrapper>
+                <$.Button onClick={prev}>Voltar</$.Button>
+                <$.Button onClick={next}>Continuar</$.Button>
+              </$.ButtonWrapper>
             </>
           )}
         </$.Form>

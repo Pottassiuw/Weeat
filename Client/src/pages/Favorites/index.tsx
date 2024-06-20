@@ -41,10 +41,10 @@ const Favorites = () => {
         </$.FavoritesNav>
         <$.FavoritesList>
           <$.FavoriteItemCard>
-            <$.Checkbox
+            {/* <$.Checkbox
               checked={favorite.isChecked}
               onChange={(e) => handleCheckboxChange(favorite, e)}
-            />
+            /> */}
             <$.FavoriteImage
               src="https://www.pexels.com/photo/still-life-photography-of-fruits-2152684/"
               alt="Imagem do estabelecimento"
@@ -64,10 +64,10 @@ const Favorites = () => {
             <$.FavoriteHeart />
           </$.FavoriteItemCard>
           <$.FavoriteItemCard>
-            <$.Checkbox
+            {/* <$.Checkbox
               checked={favorite.isChecked}
               onChange={(e) => handleCheckboxChange(favorite, e)}
-            />
+            /> */}
             <$.FavoriteImage
               src="https://www.pexels.com/photo/still-life-photography-of-fruits-2152684/"
               alt="Imagem do estabelecimento"
@@ -87,10 +87,10 @@ const Favorites = () => {
             <$.FavoriteHeart />
           </$.FavoriteItemCard>
           <$.FavoriteItemCard>
-            <$.Checkbox
+            {/* <$.Checkbox
               checked={favorite.isChecked}
               onChange={(e) => handleCheckboxChange(favorite, e)}
-            />
+            /> */}
             <$.FavoriteImage
               src="https://www.pexels.com/photo/still-life-photography-of-fruits-2152684/"
               alt="Imagem do estabelecimento"
