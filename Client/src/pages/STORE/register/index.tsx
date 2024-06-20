@@ -73,7 +73,7 @@ export default function Register() {
       id: 3,
       name: "Registro Final",
       fields: [
-        
+
       ]
     }
     { id: 3, name: "Registro de categorias" },
@@ -260,7 +260,13 @@ export default function Register() {
               </$.ButtonWrapper>
             </>
           )}
-          {currentStep === 2 && <></>}
+          {currentStep === 2 && (
+          <>
+          <$.FormTexts>
+            <h1>Dados do Estabelecimento</h1>
+            <p>Preencha os dados de seu estabelecimento</p>
+          </$.FormTexts>
+          </>)}
         </$.Form>
       </$.Container>
       <$.LinesContainer>
