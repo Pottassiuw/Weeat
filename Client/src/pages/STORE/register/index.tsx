@@ -202,11 +202,10 @@ export default function Register() {
                 />
               </$.InputWrapper>
               <$.InputWrapper>
-                <$.Label>Nome da loja*</$.Label>
-                <Input
-                  {...register("storeInfo.storeName")}
-                  type="text"
-                  placeholder="Nome da loja"
+                <$.Label>Descrição da loja!*</$.Label>
+                <$.DescriptionInput
+                  {...register("storeInfo.description")}
+                  placeholder="Descrição..."
                 />
               </$.InputWrapper>
               <$.ButtonWrapper>

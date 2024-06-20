@@ -67,6 +67,22 @@ export const InputWrapper = styled.div`
     width: 100%;
   }
 `;
+export const DescriptionInput = styled.textarea`
+  border: 2px solid #d9d9d9;
+  width: 100%;
+  height: 100px;
+  border-radius: ${(p) => p.theme.border.button};
+  padding: 10px;
+  margin-bottom: 15px;
+  resize: none;
+  box-sizing: border-box;
+  &:focus {
+    outline: 1px solid #d9d9d9;
+  }
+  &::placeholder {
+    color: #d9d9d9;
+  }
+`;
 export const InputContentWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -78,6 +94,7 @@ export const InputContentWrapper = styled.div`
 `;
 export const Label = styled.label`
   font-size: ${({ theme }) => theme.font.text};
+  margin-bottom: 1rem;
 `;
 export const EyeDiv = styled.div`
   display: flex;

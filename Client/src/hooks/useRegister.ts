@@ -1,8 +1,7 @@
-import { ZodError, z } from "zod";
-import { storeRegisterSchema } from "../../../lib/storeForms";
+import { z } from "zod";
+import { storeRegisterSchema } from "../lib/storeForms";
 import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { useStore } from "../../../context/storeContext";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -50,7 +49,6 @@ const steps = [
   },
 ];
 export const useRegister = () => {
-  const { setStore } = useStore();
   const navigate = useNavigate();
   const {
     register,
@@ -63,6 +61,7 @@ export const useRegister = () => {
   } = useForm<Inputs>({
     resolver: zodResolver(storeRegisterSchema),
     mode: "all",
+    reValidateMode: "onChange",
     criteriaMode: "all",
     defaultValues: {
       information: {
