@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { Eye, EyeOff } from "lucide-react";
-import { flexCenter } from "../../../styles/mixins";
 
 export const Section = styled.section`
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   position: relative;
   width: 100%;
   height: 100%;
@@ -21,7 +20,7 @@ export const Container = styled.div`
 export const FormPreview = styled.div`
   display: flex;
   width: 60%;
-  margin: 4% 0;
+  margin: 2% 0;
 `;
 
 export const FormPreviewDiv = styled.div`
@@ -46,6 +45,7 @@ export const FormPreviewDiv = styled.div`
 export const Form = styled.form`
   display: flex;
   width: 60%;
+  height: 70dvh;
   flex-flow: column nowrap;
 `;
 export const FormTexts = styled.div`
@@ -100,4 +100,41 @@ export const Eye_on = styled(Eye)`
 `;
 export const Eye_off = styled(EyeOff)`
   width: 100%;
+`;
+export const LinesContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 10rem;
+  position: sticky;
+  bottom: 0;
+
+`
+
+export const Line = styled.div`
+  width: 33.33333333333%;
+  height: 10px;
+  ${({ color }) => `
+    background-color: ${color};
+  `}
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+`;
+
+export const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: ${({ theme }) => theme.font.text};
+  border-radius: ${({theme})=>theme.border.button};
+  cursor: pointer;
+  transition: 200ms;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
 `;

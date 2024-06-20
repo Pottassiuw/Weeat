@@ -1,9 +1,8 @@
 import * as $ from "./styles";
 import NavBar from "../../../components/nav";
 import { useState } from "react";
-import { useForm, z } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Input from "../../../components/input/styles";
-import FormButton from "../../../components/FormButton";
 import ErrorMessage from "../../../components/errorMessage/styles";
 import { useStore } from "../../../context/storeContext";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,28 @@ import { storeRegisterSchema } from "../../../lib/storeForms";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 type Inputs = z.infer<typeof storeRegisterSchema>;
+interface ErrorAddress {
+  bairro?: FieldError;
+  cep?: FieldError;
+  endereco?: FieldError;
+  numero?: FieldError;
+  complemento?: FieldError;
+}
 
+interface ErrorInformation {
+  name?: FieldError;
+  email?: FieldError;
+  password?: FieldError;
+  confirmPassword?: FieldError;
+}
+
+interface Errors {
+  address?: ErrorAddress;
+  information?: ErrorInformation;
+  storeName?: FieldError;
+  description?: FieldError;
+  //...
+}
 export default function Register() {
   const { setStore } = useStore();
   const navigate = useNavigate();
@@ -30,7 +50,7 @@ export default function Register() {
   const steps = [
     {
       id: 1,
-      name: "Store user registration",
+      name: "Registro de informações",
       fields: [
         "information.name",
         "information.email",
@@ -40,7 +60,7 @@ export default function Register() {
     },
     {
       id: 2,
-      name: "Store address registration",
+      name: "Registro de endereço",
       fields: [
         "address.cep",
         "address.bairro",
@@ -49,7 +69,7 @@ export default function Register() {
         "address.complemento",
       ],
     },
-    { id: 3, name: "Store category registration" },
+    { id: 3, name: "Registro de categorias" },
   ];
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -79,18 +99,12 @@ export default function Register() {
       <NavBar sticky="true" />
       <$.Container>
         <$.FormPreview>
-          <$.FormPreviewDiv>
-            <h1>Passo1</h1>
-            <p>Informações de cadastro</p>
-          </$.FormPreviewDiv>
-          <$.FormPreviewDiv>
-            <h1>Passo2</h1>
-            <p>Informações de Enereço</p>
-          </$.FormPreviewDiv>
-          <$.FormPreviewDiv>
-            <h1>Passo3</h1>
-            <p>Informações do Estabelecimento</p>
-          </$.FormPreviewDiv>
+          {steps.map((step) => (
+            <$.FormPreviewDiv key={step.id}>
+              <h1>Passo {step.id}</h1>
+              <p>{step.name}</p>
+            </$.FormPreviewDiv>
+          ))}
         </$.FormPreview>
         <$.Form onSubmit={handleSubmit(handleData)}>
           {currentStep === 0 && (
@@ -153,9 +167,12 @@ export default function Register() {
                   <ErrorMessage>{`${errors.information.confirmPassword.message}`}</ErrorMessage>
                 )}
               </$.InputWrapper>
-              <FormButton onClick={next} disabled={isSubmitting}>
-                Continuar
-              </FormButton>
+              <$.ButtonWrapper>
+                <$.Button onClick={prev}>Voltar</$.Button>
+                <$.Button onClick={next} disabled={isSubmitting}>
+                  Continuar
+                </$.Button>
+              </$.ButtonWrapper>
             </>
           )}
           {currentStep === 1 && (
@@ -193,9 +210,9 @@ export default function Register() {
                   type="text"
                   placeholder="CEP"
                 />
-                {errors.bairro && (
-                  <ErrorMessage>{`${errors.bairro?.message}`}</ErrorMessage>
-                )}
+                  {errors.address?.bairro && (
+                    <ErrorMessage>{`${errors.bairro?.message}`}</ErrorMessage>
+                  )}
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>Endereço*</$.Label>
@@ -226,13 +243,21 @@ export default function Register() {
                   />
                 </$.InputWrapper>
               </$.InputContentWrapper>
-              <FormButton onClick={next} disabled={isSubmitting}>
-                Continuar
-              </FormButton>
+              <$.ButtonWrapper>
+                <$.Button onClick={prev}>Voltar</$.Button>
+                <$.Button onClick={next} disabled={isSubmitting}>
+                  Continuar
+                </$.Button>
+              </$.ButtonWrapper>
             </>
           )}
         </$.Form>
       </$.Container>
+      <$.LinesContainer>
+        <$.Line color="#FF0000"></$.Line>
+        <$.Line color="#FFA07A"></$.Line>
+        <$.Line color="#FFFF00"></$.Line>
+      </$.LinesContainer>
     </$.Section>
   );
 }

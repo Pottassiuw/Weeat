@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled from "styled-components";
 
 export const Error404Container = styled.div`
   display: flex;
@@ -10,14 +10,14 @@ export const Error404Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: ${({ theme }) => theme.font.title};
+  font-size: 28pt;
   color: #333;
   text-align: center;
   margin-bottom: 20px;
 `;
 
 export const ErrorText = styled.p`
-  font-size: ${({ theme }) => theme.font.text};
+  font-size: 12pt;
   color: #666;
   text-align: center;
   margin-bottom: 40px;
