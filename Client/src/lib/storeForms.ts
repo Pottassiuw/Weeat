@@ -26,6 +26,9 @@ export const storeRegisterSchema = z
         .string()
         .min(8, "Senha deve ter no mínimo 8 caracteres!")
         .max(64, "O limite de caracteres é de 64!"),
+    }).refine((pass) => pass.password == pass.confirmPassword, {
+      message: "As senhas não coincidem!",
+      path: ["confirmPassword"],
     }),
     address: z.object({
       cep: z
