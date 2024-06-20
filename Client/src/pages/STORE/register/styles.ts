@@ -70,6 +70,7 @@ export const InputWrapper = styled.div`
 export const InputContentWrapper = styled.div`
   display: flex;
   width: 100%;
+  height: min-content;
   gap: 3rem;
   :nth-child(2) {
     margin-bottom: 1rem;
@@ -107,8 +108,7 @@ export const LinesContainer = styled.div`
   margin-top: 10rem;
   position: sticky;
   bottom: 0;
-
-`
+`;
 
 export const Line = styled.div`
   width: 33.33333333333%;
@@ -116,7 +116,7 @@ export const Line = styled.div`
   ${({ color }) => `
     background-color: ${color};
   `}
-`
+`;
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -130,7 +130,7 @@ export const Button = styled.button`
   border: none;
   padding: 1rem 2rem;
   font-size: ${({ theme }) => theme.font.text};
-  border-radius: ${({theme})=>theme.border.button};
+  border-radius: ${({ theme }) => theme.border.button};
   cursor: pointer;
   transition: 200ms;
 

@@ -66,13 +66,14 @@ model StoreReview {
 
 model StoreAddress {
   id               Int     @id @default(autoincrement())
-  taxpayerRegistry Int     @unique
   store            Store[]
+  taxpayerRegistry Int     @unique
   street           String
-  //bairro(em ingês) colocar em baixo
+  Neighborhood     String
   address          String
+  city             String
   number           Int
-  complement       String
+  complement       String?
   zip              String
 }
 
