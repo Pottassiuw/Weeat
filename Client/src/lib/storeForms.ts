@@ -43,15 +43,18 @@ export const storeRegisterSchema = z
       numero: z.number().optional(),
       complemento: z.string().optional(),
     }),
-    storeName: z
-      .string()
-      .min(3, "O nome da loja deve ter no mínimo 3 caracteres!")
-      .max(16, "O nome da loja deve ter no máximo 16! caracteres!"),
-    description: z.string().min(1, "A loja deve conter uma descrição!"),
-    banner: z.string().optional(),
-    logo: z.string().optional(),
-    averageRating: z.number(),
-    category: z.string(),
+    storeinfo: z.object({
+      storeName: z
+        .string()
+        .min(3, "O nome da loja deve ter no mínimo 3 caracteres!")
+        .max(16, "O nome da loja deve ter no máximo 16! caracteres!"),
+      description: z.string().min(1, "A loja deve conter uma descrição!"),
+      banner: z.string().optional(),
+      logo: z.string().optional(),
+      averageRating: z.number(),
+      category: z.string(),
+      contact: z.string(),
+    })
   })
   .transform((field) => ({
     information: {
@@ -67,10 +70,14 @@ export const storeRegisterSchema = z
       numero: field.address.numero,
       complemento: field.address.complemento,
     },
-    storeName: field.storeName.toLowerCase(),
-    description: field.description.toLowerCase(),
-    banner: field.banner,
-    logo: field.logo,
-    averageRating: field.averageRating,
-    category: field.category.toLowerCase(),
+    storeInfo: {
+      contact: field.storeinfo.contact.toLocaleLowerCase(),
+      storeName: field.storeinfo.storeName.toLocaleLowerCase(),
+      description: field.storeinfo.description.toLowerCase(),
+      banner: field.storeinfo.banner,
+      logo: field.storeinfo.logo,
+      averageRating: field.storeinfo.averageRating,
+      category: field.storeinfo.category.toLowerCase(),
+    }
+
   }));

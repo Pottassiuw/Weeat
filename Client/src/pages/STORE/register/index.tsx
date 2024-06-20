@@ -8,33 +8,33 @@ import { useStore } from "../../../context/storeContext";
 import { useNavigate } from "react-router-dom";
 import { storeRegisterSchema } from "../../../lib/storeForms";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ZodError, z } from "zod";
 
 type Inputs = z.infer<typeof storeRegisterSchema>;
+type FieldName = keyof Inputs;
 interface ErrorAddress {
-  bairro?: FieldError;
-  cep?: FieldError;
-  endereco?: FieldError;
-  numero?: FieldError;
-  complemento?: FieldError;
+  bairro?: ZodError;
+  cep?: ZodError;
+  endereco?: ZodError;
+  numero?: ZodError;
+  complemento?: ZodError;
 }
 
 interface ErrorInformation {
-  name?: FieldError;
-  email?: FieldError;
-  password?: FieldError;
-  confirmPassword?: FieldError;
+  name?: ZodError;
+  email?: ZodError;
+  password?: ZodError;
+  confirmPassword?: ZodError;
 }
 
 interface Errors {
   address?: ErrorAddress;
   information?: ErrorInformation;
-  storeName?: FieldError;
-  description?: FieldError;
-  //...
 }
 export default function Register() {
   const { setStore } = useStore();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -69,6 +69,13 @@ export default function Register() {
         "address.complemento",
       ],
     },
+    {
+      id: 3,
+      name: "Registro Final",
+      fields: [
+        
+      ]
+    }
     { id: 3, name: "Registro de categorias" },
   ];
   const [currentStep, setCurrentStep] = useState(0);
@@ -79,7 +86,9 @@ export default function Register() {
 
   const next = async () => {
     const fields = steps[currentStep].fields;
-    const output = await trigger(fields, { shouldFocus: true });
+    if (!fields) return;
+
+    const output = await trigger(fields as FieldName[], { shouldFocus: true });
 
     if (!output) return;
     if (currentStep < steps.length - 1) {
@@ -189,8 +198,8 @@ export default function Register() {
                   maxLength={9}
                   placeholder="CEP"
                 />
-                {errors.cep && (
-                  <ErrorMessage>{`${errors.cep?.message}`}</ErrorMessage>
+                {errors.address?.cep && (
+                  <ErrorMessage>{`${errors.address.cep?.message}`}</ErrorMessage>
                 )}
               </$.InputWrapper>
               <$.InputContentWrapper>
@@ -210,9 +219,9 @@ export default function Register() {
                   type="text"
                   placeholder="CEP"
                 />
-                  {errors.address?.bairro && (
-                    <ErrorMessage>{`${errors.bairro?.message}`}</ErrorMessage>
-                  )}
+                {errors.address?.bairro && (
+                  <ErrorMessage>{`${errors.address.bairro.message}`}</ErrorMessage>
+                )}
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>Endereço*</$.Label>
@@ -221,8 +230,8 @@ export default function Register() {
                   type="text"
                   placeholder="CEP"
                 />
-                {errors.endereco && (
-                  <ErrorMessage>{`${errors.endereco?.message}`}</ErrorMessage>
+                {errors.address?.endereco && (
+                  <ErrorMessage>{`${errors.address.endereco?.message}`}</ErrorMessage>
                 )}
               </$.InputWrapper>
               <$.InputContentWrapper>
@@ -251,6 +260,7 @@ export default function Register() {
               </$.ButtonWrapper>
             </>
           )}
+          {currentStep === 2 && <></>}
         </$.Form>
       </$.Container>
       <$.LinesContainer>
