@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const SelectCategory = styled.select`
-  padding: 1rem 1.5rem;
-  border: 1px solid #d9d9d9;
+  padding: 0.6rem 1.5rem;
+  border: 2px solid #d9d9d9;
+  background-color: transparent;
   border-radius: ${({ theme }) => theme.border.button};
   cursor: pointer;
   transition: 200ms;

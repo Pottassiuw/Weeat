@@ -6,7 +6,7 @@ export const Section = styled.section`
   flex-flow: column nowrap;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: max-content;
 `;
 export const Container = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ export const FormPreviewDiv = styled.div`
 export const Form = styled.form`
   display: flex;
   width: 60%;
-  height: 70dvh;
+  height: 100%;
   flex-flow: column nowrap;
 `;
 export const FormTexts = styled.div`
@@ -133,8 +133,6 @@ export const LinesContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 10rem;
-  position: sticky;
-  bottom: 0;
 `;
 
 export const Line = styled.div`

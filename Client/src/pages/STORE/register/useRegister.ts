@@ -87,7 +87,7 @@ export const useRegister = () => {
     },
   });
   const cep = watch("address.cep");
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const handleData = async (data: Inputs) => {};
   const next = async () => {
     const fields = steps[currentStep].fields;

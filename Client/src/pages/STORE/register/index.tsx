@@ -233,7 +233,6 @@ export default function Register() {
                   Insira as categorias do seu restaurante
                   <p>Selecione ao menos uma categoria*.</p>
                 </$.Label>
-
                 <SelectCategory>
                   <option value="">Selecione</option>
                   <option value="">Lanchonete</option>
@@ -245,11 +244,11 @@ export default function Register() {
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>Insira o ícone do seu restaurante</$.Label>
-                <Input type="file" />
+                <input type="file" accept="image/*" />
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>Insira o banner do seu restaurante</$.Label>
-                <Input type="file" />
+                <input type="file" accept="image/*" />
               </$.InputWrapper>
               <$.ButtonWrapper>
                 <$.Button onClick={prev}>Voltar</$.Button>
