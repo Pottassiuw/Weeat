@@ -230,11 +230,11 @@ export default function Register() {
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>
-                  Insira as categorias do seu restaurante
-                  <p>Selecione ao menos uma categoria*.</p>
+                  Insira a categoria do seu Estabelecimento*
+                  <p>Importante!</p>
                 </$.Label>
                 <SelectCategory>
-                  <option value="">Selecione</option>
+                  <option value="">Selecionar</option>
                   <option value="">Lanchonete</option>
                   <option value="">Restaurante Árabe</option>
                   <option value="">Restaurante Japonês</option>
@@ -242,14 +242,23 @@ export default function Register() {
                   <option value="">Pizzarial</option>
                 </SelectCategory>
               </$.InputWrapper>
-              <$.InputWrapper>
-                <$.Label>Insira o ícone do seu restaurante</$.Label>
-                <input type="file" accept="image/*" />
-              </$.InputWrapper>
-              <$.InputWrapper>
-                <$.Label>Insira o banner do seu restaurante</$.Label>
-                <input type="file" accept="image/*" />
-              </$.InputWrapper>
+              <h1>Imagens</h1>
+              <$.FileInputWrapper>
+                <$.InputWrapper>
+                  <p>Logo</p>
+                  <$.LabelFile>
+                    <$.CrossIcon />
+                    <$.InputFile type="file" accept="image/*" />
+                  </$.LabelFile>
+                </$.InputWrapper>
+                <$.InputWrapper>
+                  <p>Banner</p>
+                  <$.LabelFile>
+                    <$.CrossIcon />
+                    <$.InputFile type="file" accept="image/*" />
+                  </$.LabelFile>
+                </$.InputWrapper>
+              </$.FileInputWrapper>
               <$.ButtonWrapper>
                 <$.Button onClick={prev}>Voltar</$.Button>
                 <$.Button onClick={next}>Continuar</$.Button>

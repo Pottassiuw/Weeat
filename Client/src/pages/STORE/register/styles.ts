@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Cross } from "lucide-react";
+import { flexCenter } from "../../../styles/mixins";
 
 export const Section = styled.section`
   display: flex;
@@ -12,7 +13,6 @@ export const Container = styled.div`
   display: flex;
   flex-flow: column wrap;
   width: inherit;
-  justify-content: center;
   margin: 0 auto;
   align-items: center;
 `;
@@ -101,8 +101,8 @@ export const Label = styled.label`
     padding-left: 5px;
   }
   p {
-    font-size: 11pt;
-    color: #8c8c8c;
+    font-size: 12pt;
+    color: ${({ theme }) => theme.colors.secondary};
     padding: 0.2rem 0;
   }
 `;
@@ -161,5 +161,52 @@ export const Button = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
+`;
+export const CrossIcon = styled(Cross)`
+  width: 30%;
+  opacity: contain;
+  height: 30%;
+  color: inherit;
+`;
+export const LabelFile = styled.label`
+  ${flexCenter}
+  width: 200px;
+  height: 200px;
+  color: ${({ theme }) => theme.colors.primary};
+  border: 3px dashed currentColor;
+  border-radius: ${(p) => p.theme.border.button};
+  cursor: pointer;
+  border-style: dotted currentColor;
+  transition: color 200ms ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+    background-color: #f2f2f2;
+  }
+  &:active {
+    border-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.secondary};
+  }
+`;
+export const InputFile = styled.input`
+  display: none;
+`;
+
+export const FileInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  ${InputWrapper} {
+    p {
+      font-size: ${({ theme }) => theme.font.text};
+      padding-bottom: 1rem;
+    }
+    width: auto;
+    &:nth-child(2) {
+      ${LabelFile} {
+        width: 600px;
+      }
+    }
   }
 `;

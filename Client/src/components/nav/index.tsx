@@ -46,7 +46,7 @@ export default function NavBar({ sticky }: NavBarProps) {
           </$.LinkItem>
         ) : null}
         <$.LinkItem>
-          <$.Links to="#">Faq</$.Links>
+          <$.Links to="/">Faq</$.Links>
         </$.LinkItem>
       </$.LinksWrapper>
       {isSignedIn ? (
