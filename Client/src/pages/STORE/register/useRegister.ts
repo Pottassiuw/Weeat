@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { storeRegisterSchema } from "../lib/storeForms";
+import { storeRegisterSchema } from "../../../lib/storeForms";
 import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -67,6 +67,7 @@ export const useRegister = () => {
       information: {
         name: "",
         email: "",
+        numeroCell: "",
         password: "",
         confirmPassword: "",
       },
@@ -86,8 +87,7 @@ export const useRegister = () => {
     },
   });
   const cep = watch("address.cep");
-
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(0);
   const handleData = async (data: Inputs) => {};
   const next = async () => {
     const fields = steps[currentStep].fields;

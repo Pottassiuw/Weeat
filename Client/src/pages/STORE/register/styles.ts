@@ -95,6 +95,16 @@ export const InputContentWrapper = styled.div`
 export const Label = styled.label`
   font-size: ${({ theme }) => theme.font.text};
   margin-bottom: 1rem;
+  span {
+    font-size: 11pt;
+    color: #8c8c8c;
+    padding-left: 5px;
+  }
+  p {
+    font-size: 11pt;
+    color: #8c8c8c;
+    padding: 0.2rem 0;
+  }
 `;
 export const EyeDiv = styled.div`
   display: flex;

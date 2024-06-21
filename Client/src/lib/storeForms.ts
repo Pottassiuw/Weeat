@@ -19,6 +19,7 @@ export const storeRegisterSchema = z
           .min(3, "O nome deve ter no mínimo 3 caracteres!")
           .max(30, "O nome deve ter no máximo 30 caracteres!"),
         email: z.string().email("Email inválido!"),
+        numeroCell: z.string().optional(),
         password: z
           .string()
           .min(8, "Senha deve ter no mínimo 8 caracteres!")
@@ -63,6 +64,7 @@ export const storeRegisterSchema = z
     information: {
       name: field.information.name.toLowerCase(),
       email: field.information.email.toLowerCase(),
+      numeroCell: field.information.numeroCell,
       password: field.information.password.toLowerCase(),
       confirmPassword: field.information.confirmPassword.toLowerCase(),
     },

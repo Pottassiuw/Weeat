@@ -3,7 +3,8 @@ import NavBar from "../../../components/nav";
 import Input from "../../../components/input/styles";
 import InputWithMask from "../../../components/MaskInput/styled";
 import ErrorMessage from "../../../components/errorMessage/styles";
-import { useRegister } from "../../../hooks/useRegister";
+import { useRegister } from "./useRegister";
+import SelectCategory from "../../../components/Category/styles";
 export default function Register() {
   const {
     errors,
@@ -36,11 +37,11 @@ export default function Register() {
                 <p>Dados pessoais</p>
               </$.FormTexts>
               <$.InputWrapper>
-                <$.Label>Nome</$.Label>
+                <$.Label>Nome*</$.Label>
                 <Input
                   {...register("information.name")}
                   type="text"
-                  placeholder="john Doe"
+                  placeholder="Ex: john Doe"
                   autoComplete="name"
                 />
                 {errors.information?.name?.message && (
@@ -48,7 +49,7 @@ export default function Register() {
                 )}
               </$.InputWrapper>
               <$.InputWrapper>
-                <$.Label>Email</$.Label>
+                <$.Label>Email*</$.Label>
                 <$.InputIconWrapper>
                   <Input
                     {...register("information.email")}
@@ -62,7 +63,24 @@ export default function Register() {
                 )}
               </$.InputWrapper>
               <$.InputWrapper>
-                <$.Label>Senha</$.Label>
+                <$.Label>
+                  Número<span>(opcional)</span>
+                </$.Label>
+                <$.InputIconWrapper>
+                  <InputWithMask
+                    mask="(99) 99999-9999"
+                    {...register("information.numeroCell")}
+                    type="text"
+                    placeholder="Ex: +55 (99) 999999999"
+                    autoComplete="email webauthn"
+                  />
+                </$.InputIconWrapper>
+                {errors.information?.numeroCell?.message && (
+                  <ErrorMessage>{`${errors.information.numeroCell.message}`}</ErrorMessage>
+                )}
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>Senha*</$.Label>
                 <$.InputIconWrapper>
                   <Input
                     {...register("information.password")}
@@ -76,7 +94,7 @@ export default function Register() {
                 )}
               </$.InputWrapper>
               <$.InputWrapper>
-                <$.Label>Confirmar Senha!</$.Label>
+                <$.Label>Confirmar Senha!*</$.Label>
                 <$.InputIconWrapper>
                   <Input
                     {...register("information.confirmPassword")}
@@ -168,12 +186,14 @@ export default function Register() {
                     placeholder="Store Name"
                     maxLength={12}
                   />
-                  {errors.address?.numero && (
+                  {errors.address?.numero?.message && (
                     <ErrorMessage>{`${errors.address.numero.message}`}</ErrorMessage>
                   )}
                 </$.InputWrapper>
                 <$.InputWrapper>
-                  <$.Label>Complemento</$.Label>
+                  <$.Label>
+                    Complemento<span>(opcional)</span>
+                  </$.Label>
                   <Input
                     {...register("address.complemento")}
                     type="text"
@@ -207,6 +227,29 @@ export default function Register() {
                   {...register("storeInfo.description")}
                   placeholder="Descrição..."
                 />
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>
+                  Insira as categorias do seu restaurante
+                  <p>Selecione ao menos uma categoria*.</p>
+                </$.Label>
+
+                <SelectCategory>
+                  <option value="">Selecione</option>
+                  <option value="">Lanchonete</option>
+                  <option value="">Restaurante Árabe</option>
+                  <option value="">Restaurante Japonês</option>
+                  <option value="">Sobremesas</option>
+                  <option value="">Pizzarial</option>
+                </SelectCategory>
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>Insira o ícone do seu restaurante</$.Label>
+                <Input type="file" />
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>Insira o banner do seu restaurante</$.Label>
+                <Input type="file" />
               </$.InputWrapper>
               <$.ButtonWrapper>
                 <$.Button onClick={prev}>Voltar</$.Button>
