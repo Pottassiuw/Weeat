@@ -234,7 +234,7 @@ export default function Register() {
                   <p>Importante!</p>
                 </$.Label>
                 <SelectCategory>
-                  <option value="">Selecionar</option>
+                  <option value="">...</option>
                   <option value="">Lanchonete</option>
                   <option value="">Restaurante Árabe</option>
                   <option value="">Restaurante Japonês</option>

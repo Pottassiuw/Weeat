@@ -92,11 +92,12 @@ export const useRegister = () => {
   const next = async () => {
     const fields = steps[currentStep].fields;
     if (!fields) return;
-
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
-
     if (!output) return;
     if (currentStep < steps.length - 1) {
+      if (currentStep === 2) {
+        handleSubmit(handleData)();
+      }
       setCurrentStep((prevStep) => prevStep + 1);
     }
   };

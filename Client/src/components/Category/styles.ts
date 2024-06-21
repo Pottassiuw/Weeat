@@ -14,6 +14,7 @@ const SelectCategory = styled.select`
     padding: 0.5rem;
     font-size: 13pt;
     cursor: pointer;
+    
   }
 `;
 
