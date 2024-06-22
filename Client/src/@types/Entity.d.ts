@@ -28,7 +28,6 @@ export interface StoreAddress {
   number?: number;
   complement?: string;
   //bairro (em inglês) colocar aqui!
-
   zip?: string;
 }
 

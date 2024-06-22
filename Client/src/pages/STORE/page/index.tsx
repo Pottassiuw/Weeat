@@ -28,7 +28,6 @@ export default function StorePage() {
     };
     getStores();
   }, [user]);
-  console.log(stores);
   return (
     <$.Container>
       <NavBar sticky="true" />
@@ -123,7 +122,7 @@ export default function StorePage() {
         </$.DiscountCardWrapper>
       </$.DiscountSection>
 
-      <$.Divisor>{/* STORES */}</$.Divisor>
+      <$.Divisor>{/* NEWSLETTER */}</$.Divisor>
 
       <$.StoresSection>
         <$.StoresTitleWrapper>
@@ -171,7 +170,7 @@ export default function StorePage() {
           ))}
         </$.StoresCardWrapper>
       </$.StoresSection>
-      <$.Divisor></$.Divisor>
+      <$.Divisor>{/* NEWSLETTER */}</$.Divisor>
       <Footer />
     </$.Container>
   );

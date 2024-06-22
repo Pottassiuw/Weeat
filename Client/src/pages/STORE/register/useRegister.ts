@@ -5,7 +5,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-
+import { ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../../firebase";
+import { toast } from "react-toastify";
 type Inputs = z.infer<typeof storeRegisterSchema>;
 type FieldName = keyof Inputs;
 type CepDataFieldProps = {
@@ -93,15 +95,18 @@ export const useRegister = () => {
     },
   });
   const cep = watch("address.cep");
-  const [currentStep, setCurrentStep] = useState(2);
+  const logo = watch("storeInfo.logo");
+  const banner = watch("storeInfo.banner");
+  const [currentStep, setCurrentStep] = useState(0);
   const handleData: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
+    toast.success("Formulário enviado com sucesso!");
+    await submitImages(data);
   };
   const next = async () => {
     const fields = steps[currentStep].fields;
     if (!fields) return;
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
-    console.log(fields);
     if (!output) return;
     if (currentStep < steps.length - 1) {
       if (currentStep === 2) {
@@ -144,7 +149,21 @@ export const useRegister = () => {
     },
     [handleFetchData]
   );
-
+  const submitImages = async (data: any) => {
+    const logoFile = data.storeInfo.logo[0];
+    const bannerFile = data.storeInfo.banner[0];
+    console.log(logoFile, bannerFile);
+    try {
+      const logoRef = ref(storage, `logos/${logoFile.name}`);
+      const bannerRef = ref(storage, `banners/${bannerFile.name}`);
+      await uploadBytes(logoRef, logoFile);
+      await uploadBytes(bannerRef, bannerFile);
+      // Send the rest of the form data to Firebase or your backend
+      console.log(data);
+    } catch (error) {
+      console.error("Error uploading images:", error);
+    }
+  };
   useEffect(() => {
     setValue("address.cep", cep);
     if (cep.length == 9) {
@@ -153,6 +172,8 @@ export const useRegister = () => {
   }, [handleFetchAddress, setValue, cep]);
 
   return {
+    logo,
+    banner,
     steps,
     register,
     errors,
@@ -160,6 +181,7 @@ export const useRegister = () => {
     handleSubmit,
     prev,
     next,
+    submitImages,
     currentStep,
   };
 };

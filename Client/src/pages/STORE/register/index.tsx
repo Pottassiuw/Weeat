@@ -9,12 +9,15 @@ export default function Register() {
   const {
     errors,
     register,
+    submitImages,
     steps,
     handleSubmit,
     handleData,
     prev,
     next,
     currentStep,
+    logo,
+    banner,
   } = useRegister();
   return (
     <$.Section>
@@ -28,7 +31,7 @@ export default function Register() {
             </$.FormPreviewDiv>
           ))}
         </$.FormPreview>
-        <$.Form onSubmit={handleSubmit(handleData)}>
+        <$.Form onSubmit={handleSubmit(submitImages)}>
           {currentStep === 0 && (
             <>
               <$.FormTexts>
@@ -242,6 +245,18 @@ export default function Register() {
                   <ErrorMessage>{`${errors.storeInfo.category.message}`}</ErrorMessage>
                 )}
               </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>
+                  Insira o(s) contato(s) de seu estabelecimento*
+                  <p>Importante!</p>
+                </$.Label>
+                <SelectCategory multiple>
+                  <option value="">Whatsapp</option>
+                  <option value="">Instagram</option>
+                  <option value="">facebook</option>
+                  <option value="">Telegram</option>
+                </SelectCategory>
+              </$.InputWrapper>
               <h1>Imagens</h1>
               <$.FileInputWrapper>
                 <$.InputWrapper>
@@ -254,6 +269,7 @@ export default function Register() {
                       accept="image/*"
                     />
                   </$.LabelFile>
+                  {logo && <p>Uploaded logo: {logo[0].name}</p>}
                   {errors.storeInfo?.logo?.message && (
                     <ErrorMessage>{`${errors.storeInfo.logo.message}`}</ErrorMessage>
                   )}
@@ -268,6 +284,7 @@ export default function Register() {
                       accept="image/*"
                     />
                   </$.LabelFile>
+                  {banner && <p>Uploaded banner: {banner[0].name}</p>}
                   {errors.storeInfo?.banner?.message && (
                     <ErrorMessage>{`${errors.storeInfo.banner.message}`}</ErrorMessage>
                   )}
@@ -276,8 +293,12 @@ export default function Register() {
             </>
           )}
           <$.ButtonWrapper>
-            <$.Button onClick={prev}>Voltar</$.Button>
-            <$.Button onClick={next}>Continuar</$.Button>
+            <$.Button onClick={prev}>
+              <$.ArrowLeftIcon />
+            </$.Button>
+            <$.Button onClick={next}>
+              <$.ArrowRightIcon />
+            </$.Button>
           </$.ButtonWrapper>
         </$.Form>
       </$.Container>

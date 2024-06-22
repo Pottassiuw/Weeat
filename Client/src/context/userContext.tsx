@@ -54,7 +54,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       }
     } catch (error: any) {
       if (error instanceof Error) {
-        const message = error.stack;
+        const message = error.message;
         toast.error(`Login error: ${message}`);
         throw error;
       }

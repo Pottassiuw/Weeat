@@ -48,7 +48,7 @@ export const storeRegisterSchema = z
         }),
       complemento: z.string().optional(),
     }),
-    storeinfo: z.object({
+    storeInfo: z.object({
       storeName: z
         .string()
         .min(3, "O nome da loja deve ter no mínimo 3 caracteres!")
@@ -78,11 +78,11 @@ export const storeRegisterSchema = z
       complemento: field.address.complemento,
     },
     storeInfo: {
-      contact: field.storeinfo.contact.toLocaleLowerCase(),
-      storeName: field.storeinfo.storeName.toLocaleLowerCase(),
-      description: field.storeinfo.description.toLowerCase(),
-      banner: field.storeinfo.banner,
-      logo: field.storeinfo.logo,
-      category: field.storeinfo.category.toLowerCase(),
+      contact: field.storeInfo.contact.toLocaleLowerCase(),
+      storeName: field.storeInfo.storeName.toLocaleLowerCase(),
+      description: field.storeInfo.description.toLowerCase(),
+      banner: field.storeInfo.banner,
+      logo: field.storeInfo.logo,
+      category: field.storeInfo.category.toLowerCase(),
     },
   }));

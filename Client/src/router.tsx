@@ -10,6 +10,7 @@ import ProtectedRoute from "./pages/infra/userProtected";
 import UserDash from "./pages/USER/settings";
 import StoreRegister from "./pages/STORE/register";
 import FavoriteScreen from "./pages/Favorites";
+import EstablishmentPage from "./pages/STORE/Establishment";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,14 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "users/login", element: <Login /> },
+      {
+        path: "stores/page",
+        element: (
+          <ProtectedRoute>
+            <EstablishmentPage />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: "users/favorites",
         element: (

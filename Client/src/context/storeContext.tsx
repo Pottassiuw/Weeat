@@ -9,20 +9,19 @@ import {
 import { URL } from "../helper/URL";
 import axios from "axios";
 import type { Store } from "../@types/Entity";
-import {
-  TStoreRegisterSchema,
-  TstoreLoginSchema,
-  TStoreAdressSchema,
-} from "../lib/storeForms";
+import { storeRegisterSchema, TstoreLoginSchema } from "../lib/storeForms";
 import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
+import { z } from "zod";
+
+type StoreRegister = z.infer<typeof storeRegisterSchema>;
 
 type StoreContextProps = {
   store: Partial<Store>;
   setStore: React.Dispatch<React.SetStateAction<Partial<Store>>>;
   loginStore: (data: TstoreLoginSchema) => void;
-  registerStore: (data: TStoreRegisterSchema) => void;
-  updateStore: (data: TStoreRegisterSchema) => void;
+  registerStore: (data: StoreRegister) => void;
+  updateStore: (data: StoreRegister) => void;
   logoutStore: () => void;
 };
 
@@ -64,7 +63,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       throw error;
     }
   };
-  const registerStore = async (data: TStoreRegisterSchema) => {
+  const registerStore = async (data: StoreRegister) => {
     try {
       const res = await axios.post(URL + "stores/register", data);
       if (res) {
@@ -81,7 +80,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
     }
   };
-  const updateStore = async (data: TStoreRegisterSchema) => {
+  const updateStore = async (data: StoreRegister) => {
     try {
       const store = localStorage.getItem("store");
       if (!store) {
@@ -89,8 +88,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
       const storeObj = JSON.parse(store);
       const storeId = storeObj.id;
-      const { confirmPassword: _, ...datas } = data;
-      const res = await axios.put(URL + "stores/update/" + storeId, datas);
+      const res = await axios.put(URL + "stores/update/" + storeId, data);
       if (res) {
         const responseData = await res.data;
         const jsonData = JSON.stringify(responseData);

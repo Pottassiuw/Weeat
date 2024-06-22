@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Eye, EyeOff, Cross } from "lucide-react";
+import { Eye, EyeOff, Cross, ArrowLeft, ArrowRight } from "lucide-react";
 import { flexCenter } from "../../../styles/mixins";
 
 export const Section = styled.section`
@@ -151,6 +151,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
+  ${flexCenter}
   background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   border: none;
@@ -210,4 +211,36 @@ export const FileInputWrapper = styled.div`
       }
     }
   }
+`;
+export const ContactInputWrapper = styled.fieldset`
+  border: none;
+  padding: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+`;
+
+export const ContactSelect = styled.input`
+  cursor: pointer;
+  width: 10%;
+  height: 50px;
+`;
+export const ContactLabel = styled.label`
+  display: inline-block;
+
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  &:hover {
+    color: #666;
+  }
+`;
+export const ArrowLeftIcon = styled(ArrowLeft)`
+  width: 100%;
+  height: 100%;
+`;
+export const ArrowRightIcon = styled(ArrowRight)`
+  width: 100%;
+  height: 100%;
 `;

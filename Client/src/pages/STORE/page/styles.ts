@@ -12,14 +12,14 @@ export const Container = styled.div`
   flex-flow: column wrap;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: max-content;
 `;
 // --------------------Reusable----------------------------------
 export const Divisor = styled.div`
   width: 100%;
-  height: 150px;
+  height: 100px;
   background-color: #e8e8e8;
-  opacity: 0.7;
+  opacity: 1;
 `;
 export const SeeMore = styled.button``;
 // --------------------------------------------------------------
@@ -28,7 +28,6 @@ export const SeeMore = styled.button``;
 export const CategoriesSection = styled.section`
   display: flex;
   width: 100dvw;
-  height: 100dvh;
   flex-flow: column nowrap;
 `;
 export const WeeatTitleWrapper = styled.div`
@@ -163,8 +162,7 @@ export const StoresCategoryButton = styled.button`
 //----------------Discount---------------------
 export const DiscountSection = styled.section`
   width: 100dvw;
-  height: 100dvh;
-  margin-top: 10%;
+  margin: 10% 0;
   padding: 0 4%;
 `;
 export const DiscountTitleWrapper = styled.div`
@@ -249,14 +247,15 @@ export const DiscountCardNewPrice = styled.p`
 //----------------Stores-----------------------
 export const StoresSection = styled.section`
   width: 100dvw;
-  height: 100dvh;
   display: flex;
   justify-content: center;
   padding: 0 4%;
+  margin-bottom: 5%;
   flex-flow: column nowrap;
 `;
 export const StoresTitleWrapper = styled.div`
   display: flex;
+  margin: 1rem 0;
   flex-flow: column nowrap;
 `;
 export const StoresTitleContent = styled.div`
