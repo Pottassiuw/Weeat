@@ -94,15 +94,26 @@ export const ButtonStore = styled.button`
   font-weight: 500;
   color: #fe2c2c;
   font-size: 12pt;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
+  }
 `;
 
 export const ButtonUser = styled.button`
-  border: 3px solid #fe2c2c;
-  background-color: #fe2c2c;
+  border: 2px solid #fe2c2c;
+  background-color: transparent;
   border-radius: ${(p) => p.theme.border.button};
-  color: white;
+  color: #fe2c2c;
   font-weight: 500;
-  color: white;
   font-size: 12pt;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
+  }
 `;
 export const UserIcon = styled(User)``;

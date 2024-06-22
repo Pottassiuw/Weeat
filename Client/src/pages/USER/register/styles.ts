@@ -89,12 +89,16 @@ export const RegisterText = styled.h2`
   margin-top: 2rem;
   font-weight: 400;
   color: #1c1c1c;
+
 `;
 
 export const Links = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 600;
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+  }
 `;
 
 export const BottomColor = styled.div`

@@ -101,13 +101,11 @@ export default function Home() {
         <$.TestimonialWrapper>
           <$.TestimonialCardWrapper>
             <$.TestimonialCard>
+              <$.TestimonialCardTitle>Avaliação ★</$.TestimonialCardTitle> 
               <$.TestimonialCardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                lorem lacus, interdum sed euismod eu, blandit ut urna. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
-                sem eget lectus porta dictum. Nulla tristique, ex vel congue
-                ultrices, mauris ante ultricies leo, eu egestas diam velit
-                efficitur lacus. 
+              "Eu descobri essa joia escondida, 'Pizzaria Bella Vita', através desse aplicativo e estou muito feliz por isso! A pizza deles é incrível e o proprietário,
+               Marco, é super amigável. As direções do aplicativo me levaram direto à porta deles e eu pude pegar uma pizza fresca para levar para casa. 
+               Altamente recomendado!"
               </$.TestimonialCardText>
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
@@ -122,13 +120,11 @@ export default function Home() {
           </$.TestimonialCardWrapper>
           <$.TestimonialCardWrapper>
             <$.TestimonialCard>
+              <$.TestimonialCardTitle>Avaliação ★</$.TestimonialCardTitle>
               <$.TestimonialCardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                lorem lacus, interdum sed euismod eu, blandit ut urna. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
-                sem eget lectus porta dictum. Nulla tristique, ex vel congue
-                ultrices, mauris ante ultricies leo, eu egestas diam velit
-                efficitur lacus. 
+              "Eu estava procurando um lugar para comprar doces artesanais e encontrei 'Doce Delícia' através desse aplicativo. 
+              Os doces deles são incríveis e a proprietária, Ana, é super atenciosa. O único motivo pelo qual não dei 5 estrelas é porque o aplicativo não mencionou que eles têm uma loja física também. 
+              Ainda assim, eu definitivamente recomendaria essa loja charmosa!"
               </$.TestimonialCardText>
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
@@ -143,13 +139,12 @@ export default function Home() {
           </$.TestimonialCardWrapper>
           <$.TestimonialCardWrapper>
             <$.TestimonialCard>
+              <$.TestimonialCardTitle>Avaliação ★</$.TestimonialCardTitle>
               <$.TestimonialCardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                lorem lacus, interdum sed euismod eu, blandit ut urna. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
-                sem eget lectus porta dictum. Nulla tristique, ex vel congue
-                ultrices, mauris ante ultricies leo, eu egestas diam velit
-                efficitur lacus. 
+              "Eu sou um conhecedor de café e estava animado para experimentar 'Café com Arte' após vê-lo nesse aplicativo.
+               O café deles é incrível e o barista, João, sabe do que está falando.
+               O único motivo pelo qual não dei 5 estrelas é porque o aplicativo não mencionou que eles têm uma área para sentar e relaxar. 
+               Ainda assim, é um ótimo lugar para pegar um copo e fazer algum trabalho."
               </$.TestimonialCardText>
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
@@ -158,7 +153,7 @@ export default function Home() {
               </$.TestimonialUserIconWrapper>
               <$.TestimonialUserReviewWrapper>
                 <$.TestimonialUserName>Matheus Reis</$.TestimonialUserName>
-                <$.TestimonialUserReview>INSANO!</$.TestimonialUserReview>
+                <$.TestimonialUserReview>ÓTIMO!</$.TestimonialUserReview>
               </$.TestimonialUserReviewWrapper>
             </$.TestimonialUsersWrapper>
           </$.TestimonialCardWrapper>

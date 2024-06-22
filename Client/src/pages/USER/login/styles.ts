@@ -90,6 +90,10 @@ export const Links = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 600;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+  }
 `;
 
 export const BottomColor = styled.div`

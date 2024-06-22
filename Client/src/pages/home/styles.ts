@@ -47,19 +47,20 @@ export const HeroButtonLink = styled(Link)`
   width: 100%;
 `
 export const HeroButton = styled.button`
+  border: 3px solid #fe2c2c;
   width: 40%;
   margin-top: 2rem;
-  border: none;
   padding: 1.3rem;
-  background: #eb4034;
-  color: white;
+  background: transparent;
+  color: #fe2c2c;
   border-radius: ${(p) => p.theme.border.button};
   font-size: 17pt;
   transition: 250ms all ease;
   cursor: pointer;
 
   &:hover {
-    scale: 0.95;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
   }
 `;
 
@@ -186,6 +187,7 @@ export const TestimonialCard = styled.div`
 `;
 export const TestimonialCardText = styled.p`
   font-weight: 500;
+  padding: 20px;
 `;
 export const TestimonialUsersWrapper = styled.div`
   display: flex;
@@ -271,6 +273,16 @@ export const FaqSummary = styled.summary`
   margin: 10px 0px;
   padding: 20px 10px;
   border-radius: 6px;
+`;
+
+export const TestimonialCardTitle = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: inline;
+  font-size: 20pt;
+  color: #ffcc00;
+  font-weight: bolder;
+ 
 `;
 export const FaqSummaryContent = styled.div``;
 export const FaqSummaryText = styled.p``;
