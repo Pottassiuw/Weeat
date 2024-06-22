@@ -147,6 +147,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
+  width: 100%;
 `;
 
 export const Button = styled.button`

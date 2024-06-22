@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { storeRegisterSchema } from "../../../lib/storeForms";
 import { useState, useEffect, useCallback } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -43,8 +43,11 @@ const steps = [
     name: "Registro Final",
     fields: [
       "storeInfo.storeName",
-      "storeInfo.storeDescription",
+      "storeInfo.description",
       "storeInfo.category",
+      "storeInfo.banner",
+      "storeInfo.logo",
+      "storeInfo.contact",
     ],
   },
 ];
@@ -80,21 +83,30 @@ export const useRegister = () => {
         estado: "",
       },
       storeInfo: {
+        contact: "",
         storeName: "",
         description: "",
         category: "",
+        logo: "",
+        banner: "",
       },
     },
   });
   const cep = watch("address.cep");
   const [currentStep, setCurrentStep] = useState(2);
-  const handleData = async (data: Inputs) => {};
+  const handleData: SubmitHandler<Inputs> = async (data) => {
+    console.log(data);
+  };
   const next = async () => {
     const fields = steps[currentStep].fields;
     if (!fields) return;
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
+    console.log(fields);
     if (!output) return;
     if (currentStep < steps.length - 1) {
+      if (currentStep === 2) {
+        await handleSubmit(handleData)();
+      }
       setCurrentStep((prevStep) => prevStep + 1);
     }
   };
@@ -139,6 +151,7 @@ export const useRegister = () => {
       handleFetchAddress(cep);
     }
   }, [handleFetchAddress, setValue, cep]);
+
   return {
     steps,
     register,

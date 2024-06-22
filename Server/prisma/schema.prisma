@@ -38,8 +38,8 @@ model Store {
   email         String         @unique
   password      String
   contact       String
-  banner        String?
-  logo          String?
+  banner        String
+  logo          String
   averageRating Float          @default(0.0)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt

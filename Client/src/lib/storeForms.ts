@@ -54,8 +54,8 @@ export const storeRegisterSchema = z
         .min(3, "O nome da loja deve ter no mínimo 3 caracteres!")
         .max(16, "O nome da loja deve ter no máximo 16! caracteres!"),
       description: z.string().min(1, "A loja deve conter uma descrição!"),
-      banner: z.string().optional(),
-      logo: z.string().optional(),
+      banner: z.any(),
+      logo: z.any(),
       category: z.string(),
       contact: z.string(),
     }),
