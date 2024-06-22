@@ -7,22 +7,26 @@ interface StoreRegistrationData {
   id?: number;
   name: string;
   storeName: string;
+  storeNumber: string;
   description: string;
   email: string;
-  taxpayerRegistry: number;
   password: string;
   contact: string;
-  banner?: string;
-  logo?: string;
+  banner: string;
+  logo: string;
   averageRating?: number;
   category: string;
 }
 
 interface StoreAddressData {
+  neighBorhood: string;
   street: string;
   city: string;
   state: string;
-  zip: string;
+  zipCode: string;
+  address: string;
+  number: number;
+  complement?: string;
 }
 type StoreWithoutPassword = Omit<Store, "password">;
 
@@ -91,6 +95,7 @@ class StoreService {
     const stores = await prisma.store.findMany({
       select: {
         id: true,
+        storeNumber: true,
         name: true,
         storeName: true,
         description: true,

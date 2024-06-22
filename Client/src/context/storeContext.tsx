@@ -17,8 +17,8 @@ import { z } from "zod";
 type StoreRegister = z.infer<typeof storeRegisterSchema>;
 
 type StoreContextProps = {
-  store: Partial<Store>;
-  setStore: React.Dispatch<React.SetStateAction<Partial<Store>>>;
+  store: Store;
+  setStore: React.Dispatch<React.SetStateAction<Store>>;
   loginStore: (data: TstoreLoginSchema) => void;
   registerStore: (data: StoreRegister) => void;
   updateStore: (data: StoreRegister) => void;
@@ -29,7 +29,7 @@ const StoreContext = createContext<StoreContextProps>({} as StoreContextProps);
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const { isSignedIn, setIsSignedIn } = useAuth();
-  const [store, setStore] = useState<Partial<Store>>({});
+  const [store, setStore] = useState<Store>({} as Store);
   // ? chamar o token se precisar
   const { setToken } = useAuth();
   const [isReady, setIsReady] = useState(false);
@@ -109,7 +109,19 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     if (!store) {
       return null;
     }
-    setStore({});
+    setStore({
+      name: "",
+      storeName: "",
+      storeNumber: "",
+      description: "",
+      email: "",
+      password: "",
+      contact: "",
+      banner: "",
+      logo: "",
+      averageRating: undefined,
+      category: "",
+    });
     setToken("");
     localStorage.removeItem("store");
     localStorage.removeItem("token");

@@ -98,10 +98,12 @@ export const useRegister = () => {
   const logo = watch("storeInfo.logo");
   const banner = watch("storeInfo.banner");
   const [currentStep, setCurrentStep] = useState(0);
+
+  // ! Enviar para o backend
   const handleData: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-    toast.success("Formulário enviado com sucesso!");
     await submitImages(data);
+    toast.success("Formulário enviado com sucesso!");
   };
   const next = async () => {
     const fields = steps[currentStep].fields;

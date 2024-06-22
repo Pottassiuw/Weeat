@@ -7,16 +7,17 @@ export interface User {
 
 export interface Store {
   id?: number;
-  name?: string;
-  email?: string;
-  password?: string;
-  storeName?: string;
-  description?: string;
-  contact?: string;
-  banner?: string;
-  logo?: string;
+  name: string;
+  storeName: string;
+  storeNumber: string;
+  description: string;
+  email: string;
+  password: string;
+  contact: string;
+  banner: string;
+  logo: string;
   averageRating?: number;
-  category?: string;
+  category: string;
 }
 
 export interface StoreAddress {
