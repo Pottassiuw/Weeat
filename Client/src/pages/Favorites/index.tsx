@@ -1,20 +1,29 @@
-import React from 'react';
+import React from "react";
 import NavBar from "../../components/nav";
+import { useState } from "react";
 import * as $ from "./styles";
 
+type Favorite = {
+  id: number;
+  isChecked: boolean;
+};
 const Favorites = () => {
-  const [favorites, setFavorites] = React.useState([
+  const [favorites, setFavorites] = useState([
     { id: 1, isChecked: false },
     { id: 2, isChecked: false },
     { id: 3, isChecked: false },
   ]);
 
-  const handleCheckboxChange = (favorite: { id: number, isChecked: boolean }, e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = (
+    favorite: Favorite,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setFavorites(
-      favorites.map((fav) => (fav.id === favorite.id ? { ...fav, isChecked: e.target.checked } : fav))
+      favorites.map((fav) =>
+        fav.id === favorite.id ? { ...fav, isChecked: e.target.checked } : fav
+      )
     );
   };
- 
 
   return (
     <>
@@ -32,9 +41,10 @@ const Favorites = () => {
         </$.FavoritesNav>
         <$.FavoritesList>
           <$.FavoriteItemCard>
-            <$.Checkbox
-      checked={favorite.isChecked}
-      onChange={(e) => handleCheckboxChange(favorite, e)} />
+            {/* <$.Checkbox
+              checked={favorite.isChecked}
+              onChange={(e) => handleCheckboxChange(favorite, e)}
+            /> */}
             <$.FavoriteImage
               src="https://www.pexels.com/photo/still-life-photography-of-fruits-2152684/"
               alt="Imagem do estabelecimento"
@@ -54,9 +64,10 @@ const Favorites = () => {
             <$.FavoriteHeart />
           </$.FavoriteItemCard>
           <$.FavoriteItemCard>
-            <$.Checkbox
-          checked={favorite.isChecked}
-          onChange={(e) => handleCheckboxChange(favorite, e)} />
+            {/* <$.Checkbox
+              checked={favorite.isChecked}
+              onChange={(e) => handleCheckboxChange(favorite, e)}
+            /> */}
             <$.FavoriteImage
               src="https://www.pexels.com/photo/still-life-photography-of-fruits-2152684/"
               alt="Imagem do estabelecimento"
@@ -76,9 +87,10 @@ const Favorites = () => {
             <$.FavoriteHeart />
           </$.FavoriteItemCard>
           <$.FavoriteItemCard>
-            <$.Checkbox
-      checked={favorite.isChecked}
-      onChange={(e) => handleCheckboxChange(favorite, e)} />
+            {/* <$.Checkbox
+              checked={favorite.isChecked}
+              onChange={(e) => handleCheckboxChange(favorite, e)}
+            /> */}
             <$.FavoriteImage
               src="https://www.pexels.com/photo/still-life-photography-of-fruits-2152684/"
               alt="Imagem do estabelecimento"

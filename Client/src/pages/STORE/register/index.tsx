@@ -1,99 +1,22 @@
 import * as $ from "./styles";
 import NavBar from "../../../components/nav";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import Input from "../../../components/input/styles";
+import InputWithMask from "../../../components/MaskInput/styled";
 import ErrorMessage from "../../../components/errorMessage/styles";
-import { useStore } from "../../../context/storeContext";
-import { useNavigate } from "react-router-dom";
-import { storeRegisterSchema } from "../../../lib/storeForms";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-type Inputs = z.infer<typeof storeRegisterSchema>;
-interface ErrorAddress {
-  bairro?: FieldError;
-  cep?: FieldError;
-  endereco?: FieldError;
-  numero?: FieldError;
-  complemento?: FieldError;
-}
-
-interface ErrorInformation {
-  name?: FieldError;
-  email?: FieldError;
-  password?: FieldError;
-  confirmPassword?: FieldError;
-}
-
-interface Errors {
-  address?: ErrorAddress;
-  information?: ErrorInformation;
-  storeName?: FieldError;
-  description?: FieldError;
-  //...
-}
+import { useRegister } from "./useRegister";
+import SelectCategory from "../../../components/Category/styles";
 export default function Register() {
-  const { setStore } = useStore();
-  const navigate = useNavigate();
   const {
+    errors,
     register,
+    steps,
     handleSubmit,
-    trigger,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<Inputs>({
-    resolver: zodResolver(storeRegisterSchema),
-    mode: "all",
-    criteriaMode: "all",
-  });
+    handleData,
+    prev,
+    next,
+    currentStep,
+  } = useRegister();
 
-  const steps = [
-    {
-      id: 1,
-      name: "Registro de informações",
-      fields: [
-        "information.name",
-        "information.email",
-        "information.password",
-        "information.confirmPassword",
-      ],
-    },
-    {
-      id: 2,
-      name: "Registro de endereço",
-      fields: [
-        "address.cep",
-        "address.bairro",
-        "address.endereco",
-        "address.numero",
-        "address.complemento",
-      ],
-    },
-    { id: 3, name: "Registro de categorias" },
-  ];
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const handleData = async (data: Inputs) => {
-    console.log(data);
-  };
-
-  const next = async () => {
-    const fields = steps[currentStep].fields;
-    const output = await trigger(fields, { shouldFocus: true });
-
-    if (!output) return;
-    if (currentStep < steps.length - 1) {
-      if (currentStep == steps.length - 2) {
-        await handleSubmit(handleData)();
-      }
-      setCurrentStep((prevStep) => prevStep + 1);
-    }
-  };
-  const prev = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prevStep) => prevStep - 1);
-    }
-  };
   return (
     <$.Section>
       <NavBar sticky="true" />
@@ -114,11 +37,11 @@ export default function Register() {
                 <p>Dados pessoais</p>
               </$.FormTexts>
               <$.InputWrapper>
-                <$.Label>Nome</$.Label>
+                <$.Label>Nome*</$.Label>
                 <Input
                   {...register("information.name")}
                   type="text"
-                  placeholder="john Doe"
+                  placeholder="Ex: john Doe"
                   autoComplete="name"
                 />
                 {errors.information?.name?.message && (
@@ -126,7 +49,7 @@ export default function Register() {
                 )}
               </$.InputWrapper>
               <$.InputWrapper>
-                <$.Label>Email</$.Label>
+                <$.Label>Email*</$.Label>
                 <$.InputIconWrapper>
                   <Input
                     {...register("information.email")}
@@ -140,7 +63,24 @@ export default function Register() {
                 )}
               </$.InputWrapper>
               <$.InputWrapper>
-                <$.Label>Senha</$.Label>
+                <$.Label>
+                  Número<span>(opcional)</span>
+                </$.Label>
+                <$.InputIconWrapper>
+                  <InputWithMask
+                    mask="(99) 99999-9999"
+                    {...register("information.numeroCell")}
+                    type="text"
+                    placeholder="Ex: +55 (99) 999999999"
+                    autoComplete="email webauthn"
+                  />
+                </$.InputIconWrapper>
+                {errors.information?.numeroCell?.message && (
+                  <ErrorMessage>{`${errors.information.numeroCell.message}`}</ErrorMessage>
+                )}
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>Senha*</$.Label>
                 <$.InputIconWrapper>
                   <Input
                     {...register("information.password")}
@@ -154,7 +94,7 @@ export default function Register() {
                 )}
               </$.InputWrapper>
               <$.InputWrapper>
-                <$.Label>Confirmar Senha!</$.Label>
+                <$.Label>Confirmar Senha!*</$.Label>
                 <$.InputIconWrapper>
                   <Input
                     {...register("information.confirmPassword")}
@@ -169,9 +109,7 @@ export default function Register() {
               </$.InputWrapper>
               <$.ButtonWrapper>
                 <$.Button onClick={prev}>Voltar</$.Button>
-                <$.Button onClick={next} disabled={isSubmitting}>
-                  Continuar
-                </$.Button>
+                <$.Button onClick={next}>Continuar</$.Button>
               </$.ButtonWrapper>
             </>
           )}
@@ -183,24 +121,38 @@ export default function Register() {
               </$.FormTexts>
               <$.InputWrapper>
                 <$.Label>CEP*</$.Label>
-                <Input
+                <InputWithMask
+                  mask="99999-999"
                   {...register("address.cep")}
                   type="text"
-                  maxLength={9}
                   placeholder="CEP"
                 />
-                {errors.cep && (
-                  <ErrorMessage>{`${errors.cep?.message}`}</ErrorMessage>
+                {errors.address?.cep && (
+                  <ErrorMessage>{`${errors.address.cep?.message}`}</ErrorMessage>
                 )}
               </$.InputWrapper>
               <$.InputContentWrapper>
                 <$.InputWrapper>
                   <$.Label>Estado*</$.Label>
-                  <Input type="text" placeholder="Store Name" />
+                  <Input
+                    {...register("address.estado")}
+                    type="text"
+                    placeholder="Store Name"
+                  />
+                  {errors.address?.estado && (
+                    <ErrorMessage>{`${errors.address.estado.message}`}</ErrorMessage>
+                  )}
                 </$.InputWrapper>
                 <$.InputWrapper>
                   <$.Label>Cidade*</$.Label>
-                  <Input type="text" placeholder="Description" />
+                  <Input
+                    {...register("address.cidade")}
+                    type="text"
+                    placeholder="Description"
+                  />
+                  {errors.address?.cidade && (
+                    <ErrorMessage>{`${errors.address.cidade.message}`}</ErrorMessage>
+                  )}
                 </$.InputWrapper>
               </$.InputContentWrapper>
               <$.InputWrapper>
@@ -210,9 +162,9 @@ export default function Register() {
                   type="text"
                   placeholder="CEP"
                 />
-                  {errors.address?.bairro && (
-                    <ErrorMessage>{`${errors.bairro?.message}`}</ErrorMessage>
-                  )}
+                {errors.address?.bairro?.message && (
+                  <ErrorMessage>{`${errors.address.bairro.message}`}</ErrorMessage>
+                )}
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>Endereço*</$.Label>
@@ -221,21 +173,27 @@ export default function Register() {
                   type="text"
                   placeholder="CEP"
                 />
-                {errors.endereco && (
-                  <ErrorMessage>{`${errors.endereco?.message}`}</ErrorMessage>
+                {errors.address?.endereco?.message && (
+                  <ErrorMessage>{`${errors.address.endereco?.message}`}</ErrorMessage>
                 )}
               </$.InputWrapper>
               <$.InputContentWrapper>
                 <$.InputWrapper>
-                  <$.Label>Número</$.Label>
+                  <$.Label>Número*</$.Label>
                   <Input
                     {...register("address.numero")}
                     type="text"
                     placeholder="Store Name"
+                    maxLength={12}
                   />
+                  {errors.address?.numero?.message && (
+                    <ErrorMessage>{`${errors.address.numero.message}`}</ErrorMessage>
+                  )}
                 </$.InputWrapper>
                 <$.InputWrapper>
-                  <$.Label>Complemento</$.Label>
+                  <$.Label>
+                    Complemento<span>(opcional)</span>
+                  </$.Label>
                   <Input
                     {...register("address.complemento")}
                     type="text"
@@ -245,9 +203,65 @@ export default function Register() {
               </$.InputContentWrapper>
               <$.ButtonWrapper>
                 <$.Button onClick={prev}>Voltar</$.Button>
-                <$.Button onClick={next} disabled={isSubmitting}>
-                  Continuar
-                </$.Button>
+                <$.Button onClick={next}>Continuar</$.Button>
+              </$.ButtonWrapper>
+            </>
+          )}
+          {currentStep === 2 && (
+            <>
+              <$.FormTexts>
+                <h1>Dados do Estabelecimento</h1>
+                <p>Preencha os dados de seu estabelecimento</p>
+              </$.FormTexts>
+              <$.InputWrapper>
+                <$.Label>Nome da loja*</$.Label>
+                <Input
+                  {...register("storeInfo.storeName")}
+                  type="text"
+                  placeholder="Nome da loja"
+                />
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>Descrição da loja!*</$.Label>
+                <$.DescriptionInput
+                  {...register("storeInfo.description")}
+                  placeholder="Descrição..."
+                />
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>
+                  Insira a categoria do seu Estabelecimento*
+                  <p>Importante!</p>
+                </$.Label>
+                <SelectCategory>
+                  <option value="">...</option>
+                  <option value="">Lanchonete</option>
+                  <option value="">Restaurante Árabe</option>
+                  <option value="">Restaurante Japonês</option>
+                  <option value="">Sobremesas</option>
+                  <option value="">Pizzarial</option>
+                </SelectCategory>
+              </$.InputWrapper>
+              <h1>Imagens</h1>
+              <$.FileInputWrapper>
+                <$.InputWrapper>
+                  <p>Logo</p>
+                  <$.LabelFile>
+                    <$.CrossIcon />
+                    <$.InputFile type="file" accept="image/*" />
+                  </$.LabelFile>
+                </$.InputWrapper>
+                <$.InputWrapper>
+                  <p>Banner</p>
+                  <$.LabelFile>
+                    <$.CrossIcon />
+                    <$.InputFile type="file" accept="image/*" />
+                  </$.LabelFile>
+                </$.InputWrapper>
+              </$.FileInputWrapper>
+              <$.ButtonWrapper>
+                <$.Button onClick={prev}>Voltar</$.Button>
+                <$.Button onClick={next}>Continuar</$.Button>
               </$.ButtonWrapper>
             </>
           )}

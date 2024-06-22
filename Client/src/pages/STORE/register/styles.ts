@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Cross } from "lucide-react";
+import { flexCenter } from "../../../styles/mixins";
 
 export const Section = styled.section`
   display: flex;
   flex-flow: column nowrap;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: max-content;
 `;
 export const Container = styled.div`
   display: flex;
   flex-flow: column wrap;
   width: inherit;
-  justify-content: center;
   margin: 0 auto;
   align-items: center;
 `;
@@ -45,7 +45,7 @@ export const FormPreviewDiv = styled.div`
 export const Form = styled.form`
   display: flex;
   width: 60%;
-  height: 70dvh;
+  height: 100%;
   flex-flow: column nowrap;
 `;
 export const FormTexts = styled.div`
@@ -67,9 +67,26 @@ export const InputWrapper = styled.div`
     width: 100%;
   }
 `;
+export const DescriptionInput = styled.textarea`
+  border: 2px solid #d9d9d9;
+  width: 100%;
+  height: 100px;
+  border-radius: ${(p) => p.theme.border.button};
+  padding: 10px;
+  margin-bottom: 15px;
+  resize: none;
+  box-sizing: border-box;
+  &:focus {
+    outline: 1px solid #d9d9d9;
+  }
+  &::placeholder {
+    color: #d9d9d9;
+  }
+`;
 export const InputContentWrapper = styled.div`
   display: flex;
   width: 100%;
+  height: min-content;
   gap: 3rem;
   :nth-child(2) {
     margin-bottom: 1rem;
@@ -77,6 +94,17 @@ export const InputContentWrapper = styled.div`
 `;
 export const Label = styled.label`
   font-size: ${({ theme }) => theme.font.text};
+  margin-bottom: 1rem;
+  span {
+    font-size: 11pt;
+    color: #8c8c8c;
+    padding-left: 5px;
+  }
+  p {
+    font-size: 12pt;
+    color: ${({ theme }) => theme.colors.secondary};
+    padding: 0.2rem 0;
+  }
 `;
 export const EyeDiv = styled.div`
   display: flex;
@@ -105,10 +133,7 @@ export const LinesContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 10rem;
-  position: sticky;
-  bottom: 0;
-
-`
+`;
 
 export const Line = styled.div`
   width: 33.33333333333%;
@@ -116,7 +141,7 @@ export const Line = styled.div`
   ${({ color }) => `
     background-color: ${color};
   `}
-`
+`;
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -130,11 +155,58 @@ export const Button = styled.button`
   border: none;
   padding: 1rem 2rem;
   font-size: ${({ theme }) => theme.font.text};
-  border-radius: ${({theme})=>theme.border.button};
+  border-radius: ${({ theme }) => theme.border.button};
   cursor: pointer;
   transition: 200ms;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
+`;
+export const CrossIcon = styled(Cross)`
+  width: 30%;
+  opacity: contain;
+  height: 30%;
+  color: inherit;
+`;
+export const LabelFile = styled.label`
+  ${flexCenter}
+  width: 200px;
+  height: 200px;
+  color: ${({ theme }) => theme.colors.primary};
+  border: 3px dashed currentColor;
+  border-radius: ${(p) => p.theme.border.button};
+  cursor: pointer;
+  border-style: dotted currentColor;
+  transition: color 200ms ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+    background-color: #f2f2f2;
+  }
+  &:active {
+    border-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.secondary};
+  }
+`;
+export const InputFile = styled.input`
+  display: none;
+`;
+
+export const FileInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  ${InputWrapper} {
+    p {
+      font-size: ${({ theme }) => theme.font.text};
+      padding-bottom: 1rem;
+    }
+    width: auto;
+    &:nth-child(2) {
+      ${LabelFile} {
+        width: 600px;
+      }
+    }
   }
 `;

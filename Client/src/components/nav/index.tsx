@@ -40,11 +40,13 @@ export default function NavBar({ sticky }: NavBarProps) {
         <$.LinkItem>
           <$.Links to="/stores">Estabelecimentos</$.Links>
         </$.LinkItem>
+        {isSignedIn ? (
+          <$.LinkItem>
+            <$.Links to="/pages/favorites">Favorites</$.Links>
+          </$.LinkItem>
+        ) : null}
         <$.LinkItem>
-          <$.Links to ="/pages/favorites">Favorites</$.Links>
-        </$.LinkItem>
-        <$.LinkItem>
-          <$.Links to="#">Faq</$.Links>
+          <$.Links to="/">Faq</$.Links>
         </$.LinkItem>
       </$.LinksWrapper>
       {isSignedIn ? (

@@ -95,7 +95,6 @@ class StoreService {
         storeName: true,
         description: true,
         email: true,
-        taxpayerRegistry: true,
         contact: true,
         banner: true,
         logo: true,
