@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { User } from "lucide-react";
-import { Store } from "lucide-react";
+import { Store, PackageSearch } from "lucide-react";
 interface NavProps {
   sticky: string;
 }
@@ -83,8 +83,7 @@ export const ButtonsWrapper = styled.div`
     justify-content: center;
   }
   align-items: center;
-  justify-content: flex-start;
-  width: 300px;
+  margin-right: 2rem;
 `;
 
 export const ButtonStore = styled.button`
@@ -96,7 +95,6 @@ export const ButtonStore = styled.button`
   color: #fe2c2c;
   font-size: 12pt;
   transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
-  width: 150px;
 
   &:hover {
     color: ${({ theme }) => theme.colors.white};
@@ -122,5 +120,8 @@ export const UserIcon = styled(User)`
   margin-right: 5px;
 `;
 export const StoreIcon = styled(Store)`
+  margin-right: 5px;
+`;
+export const ProductIcon = styled(PackageSearch)`
   margin-right: 5px;
 `;

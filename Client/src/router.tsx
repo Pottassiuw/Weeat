@@ -13,6 +13,7 @@ import UserDash from "./pages/user/settings";
 import StoreRegister from "./pages/store/register";
 import FavoriteScreen from "./pages/Favorites";
 import EstablishmentPage from "./pages/store/Establishment";
+import ProductPage from "./pages/store/products";
 
 const router = createBrowserRouter([
   {
@@ -21,15 +22,10 @@ const router = createBrowserRouter([
     errorElement: <Error404 />,
     children: [
       { path: "/", element: <Home /> },
+
+      // *Users Pages*
+
       { path: "users/login", element: <Login /> },
-      {
-        path: "stores/page",
-        element: (
-          <StoreProtected>
-            <EstablishmentPage />
-          </StoreProtected>
-        ),
-      },
       {
         path: "users/favorites",
         element: (
@@ -47,7 +43,9 @@ const router = createBrowserRouter([
         ),
       },
       { path: "users/register", element: <UserRegister /> },
-      { path: "stores/login", element: <StoreLogin /> },
+
+      // *Stores Pages*
+
       {
         path: "stores",
         element: (
@@ -56,7 +54,17 @@ const router = createBrowserRouter([
           </TokenProtected>
         ),
       },
+      { path: "stores/login", element: <StoreLogin /> },
+      {
+        path: "stores/page",
+        element: (
+          <StoreProtected>
+            <EstablishmentPage />
+          </StoreProtected>
+        ),
+      },
       { path: "stores/register", element: <StoreRegister /> },
+      { path: "stores/products", element: <ProductPage /> },
     ],
   },
 ]);

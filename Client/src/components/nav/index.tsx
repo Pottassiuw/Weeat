@@ -46,12 +46,6 @@ export default function NavBar({ sticky }: NavBarProps) {
           <$.LinkItem>
             <$.Links to="/pages/favorites">Favorites</$.Links>
           </$.LinkItem>
-        ) : isSignedIn && store ? (
-          <>
-            <$.LinkItem>
-              <$.Links to="/pages/favorites">Meus Produtos</$.Links>
-            </$.LinkItem>
-          </>
         ) : null}
       </$.LinksWrapper>
       {isSignedIn && user ? (
@@ -70,6 +64,12 @@ export default function NavBar({ sticky }: NavBarProps) {
             <$.ButtonStore>
               <$.StoreIcon />
               Minha Loja!
+            </$.ButtonStore>
+          </$.Links>
+          <$.Links to="/stores/products">
+            <$.ButtonStore>
+              <$.ProductIcon />
+              Cadastrar Produtos!
             </$.ButtonStore>
           </$.Links>
         </$.ButtonsWrapper>
