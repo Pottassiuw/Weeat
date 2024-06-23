@@ -5,10 +5,10 @@ import productService from "../services/productService";
 const isError = (error: unknown): error is Error => {
   return error instanceof Error;
 };
-
 export default class ProductController {
   async create(req: Request, res: Response) {
     const body = req.body;
+    console.log(body);
     try {
       const product = await ProductService.createProduct(body);
       res.status(201).json({ product });

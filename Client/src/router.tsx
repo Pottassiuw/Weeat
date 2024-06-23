@@ -58,9 +58,9 @@ const router = createBrowserRouter([
       {
         path: "stores/page",
         element: (
-          <StoreProtected>
+          <UserProtected>
             <EstablishmentPage />
-          </StoreProtected>
+          </UserProtected>
         ),
       },
       { path: "stores/register", element: <StoreRegister /> },

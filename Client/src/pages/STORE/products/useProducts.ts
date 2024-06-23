@@ -8,6 +8,7 @@ import axios from "axios";
 import type { Product } from "../../../@types/Entity";
 import { useCallback } from "react";
 import { toast } from "react-toastify";
+import { URL } from "../../../helper/URL";
 type Inputs = z.infer<typeof productSchema>;
 
 export const useProduct = () => {
@@ -32,7 +33,7 @@ export const useProduct = () => {
     }
   };
   const registerProduct = useCallback(
-    async (product: Partial<Product>) => {
+    async (product: Product) => {
       try {
         const image = await submitImages(product.photo);
         if (image) {
@@ -41,7 +42,7 @@ export const useProduct = () => {
           const store = JSON.parse(storeLocal);
           const storeId: number = store.id;
           const products = { ...product, storeId };
-          const res = axios.post("/products", { products });
+          const res = axios.post(URL + "products", { products });
           if (res) {
             return res;
           } else {

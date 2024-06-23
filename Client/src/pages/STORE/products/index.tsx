@@ -10,50 +10,58 @@ export default function ProductForm() {
       <NavBar sticky="true" />
       <$.Title>Cadastre seus produtos</$.Title>
       <$.Form onSubmit={handleSubmit(handleData)}>
-        <$.Label htmlFor="name">Nome do produto*</$.Label>
-        <$.Input
-          {...register("name")}
-          type="text"
-          id="name"
-          placeholder="Exemplo: Coxinha, arroz com feijão, etc..."
-        />
-        {errors.name?.message && (
-          <ErrorMessage>{`${errors.name.message}`}</ErrorMessage>
-        )}
-        <$.Label htmlFor="description">Descrição do produto</$.Label>
-        <$.DescriptionInput
-          {...register("description")}
-          id="description"
-          placeholder="Exemplo: Coxinha com frango e catupiry..."
-        />
-        {errors.description?.message && (
-          <ErrorMessage>{`${errors.description.message}`}</ErrorMessage>
-        )}
+        <$.InputWrapper>
+          <$.Label htmlFor="name">Nome do produto*</$.Label>
+          <$.Input
+            {...register("name")}
+            type="text"
+            id="name"
+            placeholder="Exemplo: Coxinha, arroz com feijão, etc..."
+          />
+          {errors.name?.message && (
+            <ErrorMessage>{`${errors.name.message}`}</ErrorMessage>
+          )}
+        </$.InputWrapper>
+        <$.InputWrapper>
+          <$.Label htmlFor="description">Descrição do produto</$.Label>
+          <$.DescriptionInput
+            {...register("description")}
+            id="description"
+            placeholder="Exemplo: Coxinha com frango e catupiry..."
+          />
+          {errors.description?.message && (
+            <ErrorMessage>{`${errors.description.message}`}</ErrorMessage>
+          )}
+        </$.InputWrapper>
         <$.ContentContainer>
           <$.PriceAndImageWrapper>
-            <$.Label htmlFor="price">Preço(R$)*</$.Label>
-            <$.PriceInput
-              {...register("price")}
-              type="number"
-              id="price"
-              placeholder="Exemplo: 10,99"
-            />
-            {errors.price?.message && (
-              <ErrorMessage>{`${errors.price.message}`}</ErrorMessage>
-            )}
-            <div>
-              <$.Label htmlFor="photo">Foto do produto</$.Label>
-              <$.LabelFile>
-                <$.CrossIcon />
-                <$.InputFile
-                  {...register("photo")}
-                  type="file"
-                  accept="image/*"
-                />
-              </$.LabelFile>
-              {errors.photo?.message && (
-                <ErrorMessage>{`${errors.photo.message}`}</ErrorMessage>
+            <$.InputWrapper>
+              <$.Label htmlFor="price">Preço(R$)*</$.Label>
+              <$.PriceInput
+                {...register("price")}
+                type="number"
+                id="price"
+                placeholder="Exemplo: 10,99"
+              />
+              {errors.price?.message && (
+                <ErrorMessage>{`${errors.price.message}`}</ErrorMessage>
               )}
+            </$.InputWrapper>
+            <div>
+              <$.InputWrapper>
+                <$.Label htmlFor="photo">Foto do produto</$.Label>
+                <$.LabelFile>
+                  <$.CrossIcon />
+                  <$.InputFile
+                    {...register("photo")}
+                    type="file"
+                    accept="image/*"
+                  />
+                </$.LabelFile>
+                {errors.photo?.message && (
+                  <ErrorMessage>{`${errors.photo.message}`}</ErrorMessage>
+                )}
+              </$.InputWrapper>
             </div>
           </$.PriceAndImageWrapper>
           <$.ImageWrapper>

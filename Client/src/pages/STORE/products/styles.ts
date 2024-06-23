@@ -22,6 +22,15 @@ export const Form = styled.form`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 `;
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  margin: 1rem 0;
+  input {
+    width: 100%;
+  }
+`;
 
 export const Label = styled.label`
   margin-bottom: 0.5rem;
