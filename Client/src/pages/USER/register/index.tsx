@@ -1,4 +1,4 @@
-import * as $ from "./styles";
+import * as $ from "./styles.ts";
 import Image from "../../../assets/login_register.png";
 import { useForm } from "react-hook-form";
 import type { TsignUpSchema } from "../../../lib/userForms.ts";
@@ -6,7 +6,7 @@ import { signUpSchema } from "../../../lib/userForms.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { FormButton } from "../../../components/FormButton/styles.ts";
-import Input from "../../../components/input/styles";
+import Input from "../../../components/input/styles.ts";
 import ErrorMessage from "../../../components/errorMessage/styles.ts";
 import { useUser } from "../../../context/userContext.tsx";
 import { useNavigate } from "react-router-dom";

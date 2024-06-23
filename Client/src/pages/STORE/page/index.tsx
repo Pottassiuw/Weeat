@@ -140,10 +140,13 @@ export default function StorePage() {
           {stores.map((store) => (
             <$.StoresCard key={store.id}>
               <$.StoresCardLogoWrapper>
-                <$.StoresCardLogo src={store.logo || "#"} alt={store.name} />
+                <$.StoresCardLogo
+                  src={store.logo || "#"}
+                  alt={`${store.storeName} Logo`}
+                />
               </$.StoresCardLogoWrapper>
               <$.StoresCardNameWrapper>
-                <$.StoresCardName>{store.name}</$.StoresCardName>
+                <$.StoresCardName>{store.storeName}</$.StoresCardName>
                 <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
               </$.StoresCardNameWrapper>
             </$.StoresCard>
@@ -162,10 +165,13 @@ export default function StorePage() {
           {stores.map((store) => (
             <$.StoresCard key={store.id}>
               <$.StoresCardLogoWrapper>
-                <$.StoresCardLogo src={store.logo || "#"} alt={store.name} />
+                <$.StoresCardLogo
+                  src={store.logo || "#"}
+                  alt={`${store.storeName} Logo`}
+                />
               </$.StoresCardLogoWrapper>
               <$.StoresCardNameWrapper>
-                <$.StoresCardName>{store.name}</$.StoresCardName>
+                <$.StoresCardName>{store.storeName}</$.StoresCardName>
                 <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
               </$.StoresCardNameWrapper>
             </$.StoresCard>

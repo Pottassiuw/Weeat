@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { User } from "lucide-react";
+import { Store } from "lucide-react";
 interface NavProps {
   sticky: string;
 }
@@ -77,9 +78,9 @@ export const ButtonsWrapper = styled.div`
   gap: 15px;
   button {
     display: flex;
-    padding: 10px;
-    height: 40px;
+    padding: 0.6rem;
     align-items: center;
+    justify-content: center;
   }
   align-items: center;
   justify-content: flex-start;
@@ -95,6 +96,7 @@ export const ButtonStore = styled.button`
   color: #fe2c2c;
   font-size: 12pt;
   transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  width: 150px;
 
   &:hover {
     color: ${({ theme }) => theme.colors.white};
@@ -116,4 +118,9 @@ export const ButtonUser = styled.button`
     background-color: #fe2c2c;
   }
 `;
-export const UserIcon = styled(User)``;
+export const UserIcon = styled(User)`
+  margin-right: 5px;
+`;
+export const StoreIcon = styled(Store)`
+  margin-right: 5px;
+`;

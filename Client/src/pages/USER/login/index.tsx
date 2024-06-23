@@ -1,13 +1,13 @@
-import * as $ from "./styles";
+import * as $ from "./styles.ts";
 import Image from "../../../assets/login_register.png";
 import { TloginSchema, loginSchema } from "../../../lib/userForms.ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { useUser } from "../../../context/userContext.tsx";
-import FormButton from "../../../components/FormButton";
+import FormButton from "../../../components/FormButton/index.tsx";
 import { useNavigate } from "react-router-dom";
-import Input from "../../../components/input/styles";
+import Input from "../../../components/input/styles.ts";
 import ErrorMessage from "../../../components/errorMessage/styles.ts";
 function Login() {
   const { loginUser } = useUser();

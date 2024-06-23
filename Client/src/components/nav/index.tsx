@@ -3,7 +3,7 @@ import LogoImage from "../../assets/logo weeat.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { useUser } from "../../context/userContext";
-import { useStore } from "../../context/storeContext";
+
 interface NavBarProps {
   sticky: string;
 }
@@ -11,8 +11,10 @@ interface NavBarProps {
 export default function NavBar({ sticky }: NavBarProps) {
   const navigate = useNavigate();
   const { isSignedIn, setIsSignedIn } = useAuth();
-  const { logoutUser, user } = useUser();
-  const { store } = useStore();
+  const { logoutUser } = useUser();
+  const user = localStorage.getItem("user");
+  const store = localStorage.getItem("store");
+
   const gotoHome = () => {
     navigate("/");
   };
@@ -44,6 +46,12 @@ export default function NavBar({ sticky }: NavBarProps) {
           <$.LinkItem>
             <$.Links to="/pages/favorites">Favorites</$.Links>
           </$.LinkItem>
+        ) : isSignedIn && store ? (
+          <>
+            <$.LinkItem>
+              <$.Links to="/pages/favorites">Meus Produtos</$.Links>
+            </$.LinkItem>
+          </>
         ) : null}
       </$.LinksWrapper>
       {isSignedIn && user ? (
@@ -58,7 +66,12 @@ export default function NavBar({ sticky }: NavBarProps) {
         </$.ButtonsWrapper>
       ) : isSignedIn && store ? (
         <$.ButtonsWrapper>
-          <$.Links to="/stores/dashboard"></$.Links>
+          <$.Links to="/stores/dashboard">
+            <$.ButtonStore>
+              <$.StoreIcon />
+              Minha Loja!
+            </$.ButtonStore>
+          </$.Links>
         </$.ButtonsWrapper>
       ) : (
         <$.ButtonsWrapper>

@@ -1,16 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Error404 from "./pages/error";
-import Login from "./pages/USER/login";
-import UserRegister from "./pages/USER/register";
-import StoresPage from "./pages/STORE/page";
-import StoreLogin from "./pages/STORE/login";
+import Login from "./pages/user/login";
+import UserRegister from "./pages/user/register";
+import StoresPage from "./pages/store/page";
+import StoreLogin from "./pages/store/login";
 import Home from "./pages/home";
-import ProtectedRoute from "./pages/infra/userProtected";
-import UserDash from "./pages/USER/settings";
-import StoreRegister from "./pages/STORE/register";
+import UserProtected from "./pages/infra/userProtected";
+import TokenProtected from "./pages/infra/tokenProtected";
+import StoreProtected from "./pages/infra/storeProtected";
+import UserDash from "./pages/user/settings";
+import StoreRegister from "./pages/store/register";
 import FavoriteScreen from "./pages/Favorites";
-import EstablishmentPage from "./pages/STORE/Establishment";
+import EstablishmentPage from "./pages/store/Establishment";
 
 const router = createBrowserRouter([
   {
@@ -23,25 +25,25 @@ const router = createBrowserRouter([
       {
         path: "stores/page",
         element: (
-          <ProtectedRoute>
+          <StoreProtected>
             <EstablishmentPage />
-          </ProtectedRoute>
+          </StoreProtected>
         ),
       },
       {
         path: "users/favorites",
         element: (
-          <ProtectedRoute>
+          <UserProtected>
             <FavoriteScreen />
-          </ProtectedRoute>
+          </UserProtected>
         ),
       },
       {
         path: "users/dashboard",
         element: (
-          <ProtectedRoute>
+          <UserProtected>
             <UserDash />
-          </ProtectedRoute>
+          </UserProtected>
         ),
       },
       { path: "users/register", element: <UserRegister /> },
@@ -49,9 +51,9 @@ const router = createBrowserRouter([
       {
         path: "stores",
         element: (
-          <ProtectedRoute>
+          <TokenProtected>
             <StoresPage />
-          </ProtectedRoute>
+          </TokenProtected>
         ),
       },
       { path: "stores/register", element: <StoreRegister /> },
