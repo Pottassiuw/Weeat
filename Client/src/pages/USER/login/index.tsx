@@ -38,7 +38,6 @@ function Login() {
           <$.WrapperInput>
             <$.Label>Email</$.Label>
             <Input
-              has_error={!!errors.email}
               {...register("email")}
               autoComplete="email"
             />
@@ -49,7 +48,6 @@ function Login() {
           <$.WrapperInput>
             <$.Label>Senha</$.Label>
             <Input
-              has_error={!!errors.password}
               {...register("password")}
               type="password"
               autoComplete="current-password"
@@ -63,7 +61,7 @@ function Login() {
           </FormButton>
           <$.RegisterText>
             Ainda não é cadastrado?{" "}
-            <$.Links to="/users/register">registre</$.Links>
+            <$.Links to="/users/register">Cadastre-se</$.Links>
           </$.RegisterText>
         </$.Form>
       </$.Wrapper>

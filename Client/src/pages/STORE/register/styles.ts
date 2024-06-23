@@ -132,7 +132,7 @@ export const Eye_off = styled(EyeOff)`
 export const LinesContainer = styled.div`
   display: flex;
   width: 100%;
-  margin-top: 10rem;
+  margin-top: 7rem;
 `;
 
 export const Line = styled.div`

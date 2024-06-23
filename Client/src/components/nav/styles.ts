@@ -9,7 +9,7 @@ export const Nav = styled.nav<NavProps>`
   position: ${(p) =>
     p.sticky === "true" ? "sticky" : p.sticky === "false" ? "absolute" : null};
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #fff;
   top: 0;
   left: 0;
   align-items: center;
@@ -29,8 +29,8 @@ export const LogoWrapper = styled.div`
   padding: 0.5rem 0;
 `;
 export const Logo = styled.img`
-  width: 65px;
-  height: 65px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 `;
 export const LogoFont = styled.div`
@@ -68,7 +68,7 @@ export const LinkItem = styled.li`
 `;
 export const Links = styled(Link)`
   text-decoration: none;
-  font-size: 17pt;
+  font-size: 18pt;
   transition: 100 all ease;
 `;
 

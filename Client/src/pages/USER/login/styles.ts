@@ -81,15 +81,15 @@ export const Image = styled.img`
 `;
 
 export const RegisterText = styled.h2`
-  font-size: ${(p) => p.theme.font.text};
+  font-size: ${({ theme }) => theme.font.text};
+  font-weight: 500;
   margin-top: 2rem;
-  font-weight: 400;
   color: #1c1c1c;
 `;
 export const Links = styled(Link)`
   text-decoration: none;
-  color: black;
   font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary};
 
   &:hover {
     color: ${({ theme }) => theme.colors.primaryDark};
