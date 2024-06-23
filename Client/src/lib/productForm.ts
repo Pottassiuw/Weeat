@@ -11,7 +11,17 @@ export const productSchema = z
   .object({
     name: z.string().min(1, "Nome do produto é obrigatório"),
     description: z.string().min(1, "A descrição do produto é obrigatória"),
-    price: z.string().min(1, "O preço é obrigatório!").transform(Number),
+    price: z.preprocess(
+      (val) => {
+        const parsed = parseFloat(val as string);
+        return isNaN(parsed) ? undefined : parsed;
+      },
+      z
+        .number({
+          required_error: "O preço é obrigatório e deve ser um número!",
+        })
+        .min(0, "O preço não pode ser negativo!")
+    ),
     photo: z
       .any()
       .refine((files) => files?.length >= 1, {

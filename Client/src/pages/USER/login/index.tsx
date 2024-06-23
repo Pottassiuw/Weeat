@@ -37,10 +37,7 @@ function Login() {
         <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
-            <Input
-              {...register("email")}
-              autoComplete="email"
-            />
+            <Input {...register("email")} autoComplete="email" />
             {errors.email && (
               <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}

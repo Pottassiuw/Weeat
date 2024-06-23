@@ -4,7 +4,8 @@ import { useProduct } from "./useProducts";
 import ErrorMessage from "../../../components/errorMessage/styles";
 import FormButton from "../../../components/FormButton";
 export default function ProductForm() {
-  const { handleSubmit, register, errors, handleData, image } = useProduct();
+  const { handleSubmit, register, errors, handleData, image, isSubmitting } =
+    useProduct();
 
   return (
     <$.Container>
@@ -66,7 +67,9 @@ export default function ProductForm() {
             </div>
           </$.PriceAndImageWrapper>
         </$.ContentContainer>
-        <FormButton type="submit">Salvar</FormButton>
+        <FormButton disabled={isSubmitting} type="submit">
+          {isSubmitting ? <p>...Cadastrando</p> : <p>Cadastrar!</p>}
+        </FormButton>
       </$.Form>
     </$.Container>
   );

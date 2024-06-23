@@ -17,10 +17,20 @@ export const useProduct = () => {
     register,
     watch,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<Inputs>({
     resolver: zodResolver(productSchema),
+    mode: "all",
+    reValidateMode: "onChange",
+    criteriaMode: "all",
+    defaultValues: {
+      name: "",
+      description: "",
+      photo: "",
+      price: 0,
+    },
   });
+  const image = watch("photo");
   const submitImage = async (image: any) => {
     try {
       const imageRef = ref(storage, `Products/${image.name}`);
@@ -68,13 +78,14 @@ export const useProduct = () => {
       toast.error("Ocorreu um erro ao cadastrar o produto!");
     }
   };
-  const image = watch("photo");
+
   return {
     register,
     errors,
     handleSubmit,
     handleData,
     submitImage,
-    image
+    isSubmitting,
+    image,
   };
 };
