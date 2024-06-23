@@ -61,7 +61,7 @@ export const useRegister = () => {
     register,
     handleSubmit,
     trigger,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
     watch,
     setValue,
@@ -148,7 +148,9 @@ export const useRegister = () => {
             complement: address.complemento,
           },
         };
-        registerStore(store);
+        await registerStore(store);
+        reset();
+        navigate("/stores")
       }
     } catch (error) {
       console.error("Error registering store:", error);

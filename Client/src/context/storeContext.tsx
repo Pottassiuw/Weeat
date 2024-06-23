@@ -12,7 +12,6 @@ import type { Store } from "../@types/Entity";
 import { TstoreLoginSchema } from "../lib/storeForms";
 import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
-import { z } from "zod";
 
 type StoreContextProps = {
   store: Store;
@@ -29,19 +28,23 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const { isSignedIn, setIsSignedIn } = useAuth();
   const [store, setStore] = useState<Store>({} as Store);
   // ? chamar o token se precisar
+  console.log("store", store);
   const { setToken } = useAuth();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const store = localStorage.getItem("store");
-    const token = localStorage.getItem("token");
-    if (store && token) {
-      setStore(JSON.parse(store))
-      console.log(store);
-      setToken(token);
-      setIsSignedIn(true);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    }
+    const setStoreData = async () => {
+      const token = localStorage.getItem("token");
+      const stores = localStorage.getItem("store");
+      if (token && stores) {
+        console.log(stores);
+        setToken(token);
+        setStore(JSON.parse(stores));
+        setIsSignedIn(true);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      }
+    };
+    setStoreData();
     setIsReady(true);
   }, []);
   const loginStore = async (data: TstoreLoginSchema) => {
@@ -58,7 +61,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         setIsReady(true);
       }
     } catch (error: any) {
-      toast.error("Login error:", error);
+      toast.error("Erro de login:");
       throw error;
     }
   };
@@ -69,9 +72,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         const responseData = await res.data;
         console.log(responseData);
         localStorage.setItem("token", responseData.token);
-        localStorage.setItem("store", JSON.stringify(responseData.store));
-        setToken(responseData.token!);
-        setStore(responseData.store);
         toast.success("Store Created!");
       }
     } catch (error) {

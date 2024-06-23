@@ -17,6 +17,15 @@ interface Store {
   banner?: string;
   logo?: string;
   category?: string;
+  addresses?: {
+    address?: string;
+    zipCode?: string;
+    neighborhood?: string;
+    state?: string;
+    city?: string;
+    number?: number;
+    complement?: string;
+  };
 }
 
 // export interface UserAddress {}

@@ -10,6 +10,13 @@ export const storeLoginSchema = z.object({
 });
 export type TstoreLoginSchema = z.infer<typeof storeLoginSchema>;
 //Register
+const MAX_FILE_SIZE = 10000000;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
 export const storeRegisterSchema = z
   .object({
     information: z
@@ -39,10 +46,7 @@ export const storeRegisterSchema = z
       cidade: z.string().min(1, "Obrigatório!"),
       bairro: z.string().min(1, "Obrigatório!"),
       endereco: z.string().min(1, "Obrigatório"),
-      numero: z
-        .string()
-        .min(1, "Obrigatório!")
-        .refine((value) => parseInt(value)),
+      numero: z.string().min(1, "Obrigatório!").transform(Number),
       complemento: z.string().optional(),
     }),
     storeInfo: z.object({
@@ -53,16 +57,26 @@ export const storeRegisterSchema = z
       description: z.string().min(1, "A loja deve conter uma descrição!"),
       banner: z
         .any()
-        .refine(
-          (file) => file instanceof File && file.size <= 10000000,
-          "O arquivo deve ter no máximo 10MB"
-        ),
+        .refine((files) => files?.length >= 1, {
+          message: "Image is required.",
+        })
+        .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
+          message: ".jpg, .jpeg, .png and .webp files are accepted.",
+        })
+        .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
+          message: `Max file size is 10MB.`,
+        }),
       logo: z
         .any()
-        .refine(
-          (file) => file instanceof File && file.size <= 10000000,
-          "O arquivo deve ter no máximo 10MB"
-        ),
+        .refine((files) => files?.length >= 1, {
+          message: "Image is required.",
+        })
+        .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
+          message: ".jpg, .jpeg, .png and .webp files are accepted.",
+        })
+        .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
+          message: `Max file size is 10MB.`,
+        }),
       category: z.string(),
       contact: z.string(),
     }),
@@ -81,7 +95,7 @@ export const storeRegisterSchema = z
       cidade: field.address.cidade.toLowerCase(),
       bairro: field.address.bairro.toLowerCase(),
       endereco: field.address.endereco.toLowerCase(),
-      numero: parseInt(field.address.numero),
+      numero: field.address.numero,
       complemento: field.address.complemento,
     },
     storeInfo: {
