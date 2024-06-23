@@ -9,12 +9,10 @@ import {
 import { URL } from "../helper/URL";
 import axios from "axios";
 import type { Store } from "../@types/Entity";
-import { storeRegisterSchema, TstoreLoginSchema } from "../lib/storeForms";
+import { TstoreLoginSchema } from "../lib/storeForms";
 import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
 import { z } from "zod";
-
-type StoreRegister = z.infer<typeof storeRegisterSchema>;
 
 type StoreContextProps = {
   store: Store;
@@ -38,7 +36,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     const store = localStorage.getItem("store");
     const token = localStorage.getItem("token");
     if (store && token) {
-      setStore(JSON.parse(store));
+      setStore(JSON.parse(store))
+      console.log(store);
       setToken(token);
       setIsSignedIn(true);
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -68,6 +67,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       const res = await axios.post(URL + "stores/register", data);
       if (res) {
         const responseData = await res.data;
+        console.log(responseData);
         localStorage.setItem("token", responseData.token);
         localStorage.setItem("store", JSON.stringify(responseData.store));
         setToken(responseData.token!);
@@ -109,26 +109,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     if (!store) {
       return null;
     }
-    setStore({
-      name: "",
-      storeName: "",
-      storeNumber: "",
-      description: "",
-      email: "",
-      password: "",
-      contact: "",
-      banner: "",
-      logo: "",
-      category: "",
-      addresses: {
-        id: 0,
-        zipCode: "",
-        neighborhood: "",
-        street: "",
-        city: "",
-        state: "",
-      },
-    });
+    setStore({});
     setToken("");
     localStorage.removeItem("store");
     localStorage.removeItem("token");

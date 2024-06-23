@@ -39,7 +39,10 @@ export const storeRegisterSchema = z
       cidade: z.string().min(1, "Obrigatório!"),
       bairro: z.string().min(1, "Obrigatório!"),
       endereco: z.string().min(1, "Obrigatório"),
-      numero: z.string().min(1, "Obrigatório!"),
+      numero: z
+        .string()
+        .min(1, "Obrigatório!")
+        .refine((value) => parseInt(value)),
       complemento: z.string().optional(),
     }),
     storeInfo: z.object({
@@ -48,8 +51,18 @@ export const storeRegisterSchema = z
         .min(3, "O nome da loja deve ter no mínimo 3 caracteres!")
         .max(16, "O nome da loja deve ter no máximo 16! caracteres!"),
       description: z.string().min(1, "A loja deve conter uma descrição!"),
-      banner: z.any(),
-      logo: z.any(),
+      banner: z
+        .any()
+        .refine(
+          (file) => file instanceof File && file.size <= 10000000,
+          "O arquivo deve ter no máximo 10MB"
+        ),
+      logo: z
+        .any()
+        .refine(
+          (file) => file instanceof File && file.size <= 10000000,
+          "O arquivo deve ter no máximo 10MB"
+        ),
       category: z.string(),
       contact: z.string(),
     }),
@@ -68,7 +81,7 @@ export const storeRegisterSchema = z
       cidade: field.address.cidade.toLowerCase(),
       bairro: field.address.bairro.toLowerCase(),
       endereco: field.address.endereco.toLowerCase(),
-      numero: field.address.numero,
+      numero: parseInt(field.address.numero),
       complemento: field.address.complemento,
     },
     storeInfo: {

@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
 import { toast } from "react-toastify";
 import { useStore } from "../../../context/storeContext";
@@ -100,38 +100,68 @@ export const useRegister = () => {
   const logo = watch("storeInfo.logo");
   const banner = watch("storeInfo.banner");
   const [currentStep, setCurrentStep] = useState(0);
-
+  const submitImages = async (logo: any, banner: any) => {
+    const logoFile = logo[0];
+    const bannerFile = banner[0];
+    console.log(logoFile, bannerFile);
+    try {
+      const logoRef = ref(storage, `Logos/${logoFile.name}`);
+      const bannerRef = ref(storage, `Banners/${bannerFile.name}`);
+      await uploadBytes(logoRef, logoFile);
+      await uploadBytes(bannerRef, bannerFile);
+      const logoUrl = await getDownloadURL(logoRef);
+      const bannerUrl = await getDownloadURL(bannerRef);
+      console.log(logo, banner);
+      return { logoUrl, bannerUrl };
+    } catch (error) {
+      console.error("Error uploading images:", error);
+    }
+  };
   // ! Enviar para o backend
   const handleData: SubmitHandler<Inputs> = async (data) => {
-    const { information, storeInfo, address } = data;
-    const store = {
-      name: information.name,
-      storeName: storeInfo.storeName,
-      storeNumber: information.numeroCell,
-      description: storeInfo.description,
-      email: information.email,
-      password: information.password,
-      contact: storeInfo.contact,
-      banner: storeInfo.banner,
-      logo: storeInfo.logo,
-      category: storeInfo.category,
-      addresses: {
-        street: address.endereco,
-        zipCode: address.cep,
-        neighborhood: address.bairro,
-        city: address.cidade,
-        state: address.estado,
-        number: address.numero,
-        complement: address.complemento,
-      },
-    };
-    registerStore(store);
+    try {
+      const { information, storeInfo, address } = data;
+      const logo = storeInfo.logo;
+      const banner = storeInfo.banner;
+      const images = await submitImages(logo, banner);
+      if (images) {
+        const logoUrl = images.logoUrl;
+        const bannerUrl = images.bannerUrl;
+        const store = {
+          name: information.name,
+          storeName: storeInfo.storeName,
+          storeNumber: information.numeroCell,
+          description: storeInfo.description,
+          email: information.email,
+          password: information.password,
+          contact: storeInfo.contact,
+          banner: bannerUrl,
+          logo: logoUrl,
+          category: storeInfo.category,
+          addresses: {
+            address: address.endereco,
+            zipCode: address.cep,
+            neighborhood: address.bairro,
+            city: address.cidade,
+            state: address.estado,
+            number: address.numero,
+            complement: address.complemento,
+          },
+        };
+        registerStore(store);
+      }
+    } catch (error) {
+      console.error("Error registering store:", error);
+      toast.error("Ocorreu um erro ao cadastrar a loja!");
+    }
   };
 
   const next = async () => {
     const fields = steps[currentStep].fields;
     if (!fields) return;
-    const output = await trigger(fields as FieldName[], { shouldFocus: true });
+    const output = await trigger(fields as FieldName[], {
+      shouldFocus: true,
+    });
     if (!output) return;
     if (currentStep < steps.length - 1) {
       if (currentStep === 2) {
@@ -174,23 +204,6 @@ export const useRegister = () => {
     },
     [handleFetchData]
   );
-
-  // TODO: Tratar para enviar no firebase
-  const submitImages = async (data: any) => {
-    const logoFile = data.storeInfo.logo[0];
-    const bannerFile = data.storeInfo.banner[0];
-    console.log(logoFile, bannerFile);
-    try {
-      const logoRef = ref(storage, `logos/${logoFile.name}`);
-      const bannerRef = ref(storage, `banners/${bannerFile.name}`);
-      await uploadBytes(logoRef, logoFile);
-      await uploadBytes(bannerRef, bannerFile);
-      // Send the rest of the form data to Firebase or your backend
-      console.log(data);
-    } catch (error) {
-      console.error("Error uploading images:", error);
-    }
-  };
 
   useEffect(() => {
     setValue("address.cep", cep);
