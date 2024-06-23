@@ -10,29 +10,17 @@ export const Error404Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 28pt;
+  font-size: 50pt;
+  font-weight: 600;
   color: #333;
   text-align: center;
   margin-bottom: 20px;
 `;
 
 export const ErrorText = styled.p`
-  font-size: 12pt;
+  font-size: 17pt;
   color: #666;
   text-align: center;
   margin-bottom: 40px;
 `;
 
-export const LinesContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 100px;
-`;
-
-export const Line = styled.span`
-  width: 33%;
-  height: 10px;
-  ${({ color }) => `
-    background-color: ${color};
-  `}
-`;
