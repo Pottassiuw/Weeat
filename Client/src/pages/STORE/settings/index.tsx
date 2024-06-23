@@ -2,12 +2,15 @@ import styled from "styled-components";
 import NavBar from "../../../components/nav";
 import { flexCenter } from "../../../styles/mixins";
 import { Store, FolderSync, ShoppingBag } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 const Section = styled.section`
   width: 100%;
   height: 100dvh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
+  overflow: hidden;
 `;
 
 const Container = styled.div`
@@ -16,18 +19,19 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  height: 80vh;
   margin: 0 auto;
 `;
 const LinesContainer = styled.div`
   display: flex;
-  height: 5px;
+  height: 10px;
   width: 100%;
   align-items: center;
 `;
 
 const Line = styled.div`
   width: 33.33333333333%;
-  height: 10px;
+  height: 100%;
   ${({ color }) => `
     background-color: ${color};
   `}
@@ -35,6 +39,7 @@ const Line = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
   justify-content: center;
   gap: 10%;
   margin-top: 10%;
@@ -70,20 +75,24 @@ const ProductsIcon = styled(ShoppingBag)`
   height: 90%;
 `;
 export default function storeSettings() {
+  const navigate = useNavigate();
+  const gotoStoreData = () => navigate("/stores/dashboard/data");
+  const gotoStoreUpdate = () => navigate("/stores/dashboard/update");
+  const gotoStoreProducts = () => navigate("/stores/dashboard/products");
   return (
     <Section>
       <NavBar sticky="true" />
       <Container>
         <ButtonWrapper>
-          <Button>
+          <Button onClick={gotoStoreData}>
             <StoreIcon />
             Dados da Loja!
           </Button>
-          <Button>
+          <Button onClick={gotoStoreUpdate}>
             <RefreshIcon />
             Atualizar seus Dados!
           </Button>
-          <Button>
+          <Button onClick={gotoStoreProducts}>
             <ProductsIcon />
             Seus Produtos!
           </Button>
