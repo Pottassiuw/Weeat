@@ -1,6 +1,6 @@
 import * as $ from "./styles";
 import NavBar from "../../../components/nav";
-// import Image1 from "../../../assets/Banner.jpg";
+import Image1 from "../../../assets/estb_image1.png";
 // import Image2 from "../../../assets/bigmac.webp";
 // import Image3 from "../../../assets/McDonalds-lanca-novo-McFlurry-Espetaculo-Kopenhagen.jpg";
 
@@ -9,7 +9,7 @@ export default function RestaurantPage() {
     <$.RestaurantContainer>
       <NavBar sticky="true" />
       <$.WrapperImage>
-        <$.Banner src={""} alt="banner restaurante" />
+        <$.Banner src={Image1} alt="banner restaurante" />
       </$.WrapperImage>
       <$.InfoContainer>
         <$.RestaurantName>
@@ -18,6 +18,10 @@ export default function RestaurantPage() {
             <$.Star> ☆☆☆☆☆ </$.Star>
             <$.RatingNumber>(4,7)</$.RatingNumber>
           </$.Rating>
+        <$.MoreButtons>
+          <$.ContactsButton type="button">Contato</$.ContactsButton>
+          <$.FavoritesButton type="button">Favoritos</$.FavoritesButton>
+        </$.MoreButtons>
         </$.RestaurantName>
         <$.RestaurantDistance>
           <$.DetailsItem>Lanches - 2,0 km</$.DetailsItem>
@@ -27,8 +31,10 @@ export default function RestaurantPage() {
         </$.RestaurantTime>
         <$.ButtonsContainer>
           <$.Button type="button">Próximo de você</$.Button>
-          <$.ContactsButton type="button">Contato</$.ContactsButton>
-          <$.FavoritesButton type="button">Favoritos</$.FavoritesButton>
+          <$.Button type="button">Próximo de você</$.Button>
+          <$.Button type="button">Próximo de você</$.Button>
+          <$.Button type="button">Próximo de você</$.Button>
+          <$.Button type="button">Próximo de você</$.Button>
         </$.ButtonsContainer>
         <$.MenuContainer>
           <$.MenuItem type="button">Lanches</$.MenuItem>
@@ -42,7 +48,7 @@ export default function RestaurantPage() {
           <$.PromotionTitle>Lanches</$.PromotionTitle>
           <$.PromotionList>
             <$.PromotionItem>
-              <$.PromotionImage src={""} alt="promotion image" />
+              <$.PromotionImage src={Image1} alt="promotion image" />
               <$.PromotionInfo>
                 <$.PromotionName>McFlurry</$.PromotionName>
                 <$.PromotionDescription>
@@ -53,7 +59,7 @@ export default function RestaurantPage() {
               <$.Button2 type="button">Saiba mais</$.Button2>
             </$.PromotionItem>
             <$.PromotionItem>
-              <$.PromotionImage src={""} alt="promotion image" />
+              <$.PromotionImage src={Image1} alt="promotion image" />
               <$.PromotionInfo>
                 <$.PromotionName>Big Mac</$.PromotionName>
                 <$.PromotionDescription>
@@ -64,7 +70,7 @@ export default function RestaurantPage() {
               <$.Button2 type="button">Saiba mais</$.Button2>
             </$.PromotionItem>
             <$.PromotionItem>
-              <$.PromotionImage src={""} alt="promotion image" />
+              <$.PromotionImage src={Image1} alt="promotion image" />
               <$.PromotionInfo>
                 <$.PromotionName>Batata frita</$.PromotionName>
                 <$.PromotionDescription>
@@ -75,7 +81,7 @@ export default function RestaurantPage() {
               <$.Button2 type="button">Saiba mais</$.Button2>
             </$.PromotionItem>
             <$.PromotionItem>
-              <$.PromotionImage src={""} alt="promotion image" />
+              <$.PromotionImage src={Image1} alt="promotion image" />
               <$.PromotionInfo>
                 <$.PromotionName>Coca-Cola</$.PromotionName>
                 <$.PromotionDescription>
@@ -86,7 +92,7 @@ export default function RestaurantPage() {
               <$.Button2 type="button">Saiba mais</$.Button2>
             </$.PromotionItem>
             <$.PromotionItem>
-              <$.PromotionImage src={""} alt="promotion image" />
+              <$.PromotionImage src={Image1} alt="promotion image" />
               <$.PromotionInfo>
                 <$.PromotionName>Casquinha</$.PromotionName>
                 <$.PromotionDescription>

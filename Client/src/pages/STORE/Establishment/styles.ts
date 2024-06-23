@@ -50,38 +50,43 @@ export const RatingNumber = styled.span`
 `;
 
 export const RestaurantDistance = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #000;
+  font-weight: 600;
   font-size: 20px;
 `;
 
 export const RestaurantTime = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: 1rem;
   color: #7e7e7e;
 `;
 
 export const DetailsItem = styled.span`
+  font-size: 17pt;
   margin-bottom: 0.5rem;
+  margin-right: 100rem;
 `;
 
 export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 `;
+
+export const MoreButtons = styled.div`
+  display: flex;
+  justify-content: inline;
+  margin-bottom: 1rem;
+  margin-left: 45rem;
+`;
+
 
 export const Button = styled.button`
   margin: 0 2rem;
-  padding: 0.5rem 1rem;
-  border-width: 0.18rem;
+  font-size: 16pt;
   border-color: #ff0000;
   border-radius: 0.25rem;
   color: #ff0000;
+  background-color: #fff;
   cursor: default;
   width: 200px;
   height: 60px;
@@ -91,21 +96,26 @@ export const MenuContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 `;
+
 
 export const MenuItem = styled.button`
   margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   border: none;
   font-size: 15pt;
-  border-radius: 0.25rem;
-  background-color: #f2f2f2;
-  color: #000000;
+  border-radius: 0.4rem;
+  background-color: #fff;
   cursor: pointer;
   font-weight: bold;
+  transition: border 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out, scale 0.15s ease-in-out;
 
   &:hover {
-    background-color: #e6e6e6;
+    border: solid 1px;
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+    scale: 1.02;
   }
 `;
 
@@ -121,9 +131,7 @@ export const PromotionsContainer = styled.div`
   margin-top: 2rem;
   padding: 1rem;
   width: 100%;
-  background-color: #f7f7f7;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 `;
 
 export const PromotionTitle = styled.h2`
@@ -144,7 +152,7 @@ export const PromotionItem = styled.li`
   display: flex;
   align-items: center;
   padding: 2rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 4px solid #ddd;
 `;
 
 export const PromotionImage = styled.img`
@@ -176,17 +184,24 @@ export const PromotionPrice = styled.span`
 `;
 
 export const Button2 = styled.button`
+  position: sticky;
+  left: 100%;
+  border-color: ${({ theme }) => theme.colors.primary};
+  font-size: 16pt;
+  font-weight: 600;
   margin: 0 0.5rem;
   padding: 0.5rem 1rem;
-  height: 3.3rem;
+  height: 4rem;
+  width: 10rem;
   border-radius: 0.25rem;
-  color: #fff;
-  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
+  background-color: #fff;
   cursor: pointer;
-  transition: background-color 0.3 ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primaryDark};
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -194,33 +209,41 @@ export const ContactsButton = styled.button`
   margin: 0 2rem;
   padding: 0.5rem 1rem;
   height: 3.3rem;
+  font-size: 16pt;
+  font-weight: 600;
+  border-color: #ff0000;
   border-radius: 0.25rem;
-  color: #fff;
-  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
+  background-color: #fff;
   cursor: pointer;
   transition: background-color 0.3 ease-in-out;
   width: 150px;
   height: 60px;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primaryDark};
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
 export const FavoritesButton = styled.button`
   margin: 0 2rem;
   padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 16pt;
   height: 3.3rem;
   border-radius: 0.25rem;
   border-color: #ff0000;
   background-color: #fff;
-  color: #ff0000;
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  transition: background-color 0.3 ease-in-out;
   width: 150px;
   height: 60px;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: #dcdcdc;
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
