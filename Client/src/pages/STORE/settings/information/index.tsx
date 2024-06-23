@@ -1,14 +1,9 @@
 import styled from "styled-components";
 import NavBar from "../../../../components/nav";
-
+import { flexCenter } from "../../../../styles/mixins";
+import { useStore } from "../../../../context/storeContext";
 const StoreDataPage = () => {
-  const storeData = {
-    name: "My Store",
-    email: "my@store.com",
-    address: "123 Main St, Anytown, USA",
-    logo: "https://example.com/logo.png",
-    banner: "https://example.com/banner.jpg",
-  };
+  const { store } = useStore();
 
   return (
     <Container>
@@ -16,16 +11,15 @@ const StoreDataPage = () => {
       <MainContent>
         <HeaderContainer>
           <Header>
-            <Logo src={storeData.logo} alt="Store Logo" />
-            <StoreName>{storeData.name}</StoreName>
+            <Logo src={store.logo} alt="Store Logo" />
+            <StoreName>{store.name}</StoreName>
           </Header>
         </HeaderContainer>
-        <Banner src={storeData.banner} alt="Store Banner" />
+        <Banner src={store.banner} alt="Store Banner" />
         <InfoContainer>
           <InfoLabel>Email:</InfoLabel>
-          <InfoValue>{storeData.email}</InfoValue>
+          <InfoValue>{store.email}</InfoValue>
           <InfoLabel>Address:</InfoLabel>
-          <InfoValue>{storeData.address}</InfoValue>
         </InfoContainer>
       </MainContent>
     </Container>
@@ -37,11 +31,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100dvh;
-  
 `;
 
 const MainContent = styled.div`
-  display: flex;
+  ${flexCenter}
   border-radius: ${({ theme }) => theme.border.button};
   min-width: 80%;
   min-height: 80dvh;
@@ -51,23 +44,29 @@ const MainContent = styled.div`
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  gap: 10rem;
 `;
 
 const HeaderContainer = styled.div`
-  display: flex;
-  background-color: #f7f7f7;
+  height: 50%;
+  width: 50%;
+
   padding: 20px;
-  border-bottom: 1px solid #ddd;
 `;
 
 const Header = styled.div`
+  ${flexCenter};
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
+  height: 100%;
 `;
 
 const Logo = styled.img`
-  width: 50px;
-  height: 50px;
+  border-radius: ${({ theme }) => theme.border.button};
+  width: 400px;
+  height: 90%;
+  object-fit: cover;
   margin-right: 10px;
 `;
 
@@ -78,16 +77,15 @@ const StoreName = styled.h1`
 `;
 
 const Banner = styled.img`
-  width: 100%;
-  height: 150px;
   object-fit: cover;
   margin-bottom: 20px;
 `;
 
 const InfoContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  width: 30%;
+  flex-flow: column wrap;
+background-color: turquoise;
 `;
 
 const InfoLabel = styled.span`
