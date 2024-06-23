@@ -1,11 +1,11 @@
-export interface User {
+export type User = {
   id?: number;
   name?: string;
   email?: string;
   password?: string;
-}
+};
 
-interface Store {
+export type Store = {
   id?: number;
   name?: string;
   storeName?: string;
@@ -26,6 +26,15 @@ interface Store {
     number?: number;
     complement?: string;
   };
-}
+};
+
+export type Product = {
+  id?: number;
+  name?: string;
+  description?: string;
+  photo?: string;
+  price?: number;
+  storeId?: number;
+};
 
 // export interface UserAddress {}

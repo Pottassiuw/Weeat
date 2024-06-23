@@ -58,24 +58,24 @@ export const storeRegisterSchema = z
       banner: z
         .any()
         .refine((files) => files?.length >= 1, {
-          message: "Image is required.",
+          message: "O estabelecimento precisa de um banner!",
         })
         .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
-          message: ".jpg, .jpeg, .png and .webp files are accepted.",
+          message: "Apenas imagens .jpg, .jpeg, .png and .webp são aceitas!",
         })
         .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
-          message: `Max file size is 10MB.`,
+          message: `Tamanho máximo de 10MB`,
         }),
       logo: z
         .any()
         .refine((files) => files?.length >= 1, {
-          message: "Image is required.",
+          message: "O estabelecimento precisa de uma logo!",
         })
         .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
-          message: ".jpg, .jpeg, .png and .webp files are accepted.",
+          message: "Apenas imagens .jpg, .jpeg, .png and .webp são aceitas!",
         })
         .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
-          message: `Max file size is 10MB.`,
+          message: `Tamanho máximo de 10MB`,
         }),
       category: z.string(),
       contact: z.string(),

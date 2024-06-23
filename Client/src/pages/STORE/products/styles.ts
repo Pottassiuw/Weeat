@@ -15,10 +15,11 @@ export const Title = styled.h1`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 45dvw;
+  width: 55dvw;
   height: 100%;
   padding: 2rem;
   border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 `;
 
@@ -76,11 +77,6 @@ export const Button = styled.button`
   }
 `;
 
-export const ErrorMessage = styled.p`
-  color: #dc3545;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-`;
 export const LabelFile = styled.label`
   ${flexCenter}
   width: 200px;
