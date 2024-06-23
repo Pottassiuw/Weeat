@@ -14,6 +14,8 @@ import StoreRegister from "./pages/store/register";
 import FavoriteScreen from "./pages/Favorites";
 import EstablishmentPage from "./pages/store/Establishment";
 import ProductPage from "./pages/store/products";
+import StoreSettings from "./pages/store/settings";
+import UpdateStore from "./pages/store/settings/update";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +67,38 @@ const router = createBrowserRouter([
       },
       { path: "stores/register", element: <StoreRegister /> },
       { path: "stores/products", element: <ProductPage /> },
+      {
+        path: "stores/dashboard",
+        element: (
+          <StoreProtected>
+            <StoreSettings />
+          </StoreProtected>
+        ),
+      },
+      {
+        path: "stores/dashboard/update",
+        element: (
+          <StoreProtected>
+            <UpdateStore />
+          </StoreProtected>
+        ),
+      },
+      {
+        path: "stores/dashboard/data",
+        element: (
+          <StoreProtected>
+            <StoreSettings />
+          </StoreProtected>
+        ),
+      },
+      {
+        path: "stores/dashboard/products",
+        element: (
+          <StoreProtected>
+            <StoreSettings />
+          </StoreProtected>
+        ),
+      },
     ],
   },
 ]);
