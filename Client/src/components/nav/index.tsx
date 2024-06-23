@@ -3,7 +3,7 @@ import LogoImage from "../../assets/logo weeat.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { useUser } from "../../context/userContext";
-
+import { useStore } from "../../context/storeContext";
 interface NavBarProps {
   sticky: string;
 }
@@ -11,8 +11,8 @@ interface NavBarProps {
 export default function NavBar({ sticky }: NavBarProps) {
   const navigate = useNavigate();
   const { isSignedIn, setIsSignedIn } = useAuth();
-  const { logoutUser } = useUser();
-
+  const { logoutUser, user } = useUser();
+  const { store } = useStore();
   const gotoHome = () => {
     navigate("/");
   };
@@ -40,13 +40,13 @@ export default function NavBar({ sticky }: NavBarProps) {
         <$.LinkItem>
           <$.Links to="/stores">Estabelecimentos</$.Links>
         </$.LinkItem>
-        {isSignedIn ? (
+        {isSignedIn && user ? (
           <$.LinkItem>
             <$.Links to="/pages/favorites">Favorites</$.Links>
           </$.LinkItem>
         ) : null}
       </$.LinksWrapper>
-      {isSignedIn ? (
+      {isSignedIn && user ? (
         <$.ButtonsWrapper>
           <$.Links to="/users/dashboard">
             <$.ButtonUser onClick={gotoDashboard}>
@@ -56,10 +56,14 @@ export default function NavBar({ sticky }: NavBarProps) {
           </$.Links>
           <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>
         </$.ButtonsWrapper>
+      ) : isSignedIn && store ? (
+        <$.ButtonsWrapper>
+          <$.Links to="/stores/dashboard"></$.Links>
+        </$.ButtonsWrapper>
       ) : (
         <$.ButtonsWrapper>
           <$.Links to="/stores/login">
-            <$.ButtonStore>Login Loja</$.ButtonStore>
+            <$.ButtonUser>Login loja</$.ButtonUser>
           </$.Links>
           <$.Links to="/users/login">
             <$.ButtonUser>Login Usuário</$.ButtonUser>

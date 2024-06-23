@@ -13,7 +13,7 @@ import { TloginSchema, TsignUpSchema } from "../lib/userForms";
 import { toast } from "react-toastify";
 import { useAuth } from "./authContext";
 type UserContextProps = {
-  user?: User;
+  user: User;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
   updateUser: (data: TsignUpSchema) => void;
@@ -26,7 +26,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>({} as User);
   const { token, setToken, isSignedIn, setIsSignedIn } = useAuth();
   const [isReady, setIsReady] = useState(false);
-
   useEffect(() => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
