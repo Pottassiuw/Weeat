@@ -3,7 +3,7 @@ import Footer from "../../../components/Footer";
 import NavBar from "../../../components/nav";
 import * as $ from "./styles";
 import axios from "axios";
-import { URL } from "../../../helper/URL";
+import { Url } from "../../../helper/URL";
 import { useUser } from "../../../context/userContext";
 import { useAuth } from "../../../context/authContext";
 import type { Store } from "../../../@types/Entity";
@@ -17,7 +17,7 @@ export default function StorePage() {
     const getStores = async () => {
       try {
         if (user && token) {
-          const response = await axios.get(`${URL}stores`);
+          const response = await axios.get(`${Url}stores`);
           if (response.data && Array.isArray(response.data)) {
             setStores(response.data);
           } else {

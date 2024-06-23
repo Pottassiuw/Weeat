@@ -4,18 +4,19 @@ import { useProduct } from "./useProducts";
 import ErrorMessage from "../../../components/errorMessage/styles";
 import FormButton from "../../../components/FormButton";
 export default function ProductForm() {
-  const { handleSubmit, register, errors, handleData } = useProduct();
+  const { handleSubmit, register, errors, handleData, image } = useProduct();
+
   return (
     <$.Container>
       <NavBar sticky="true" />
       <$.Title>Cadastre seus produtos</$.Title>
       <$.Form onSubmit={handleSubmit(handleData)}>
         <$.InputWrapper>
-          <$.Label htmlFor="name">Nome do produto*</$.Label>
+          <$.Label htmlFor="namse">Nome do produto*</$.Label>
           <$.Input
             {...register("name")}
             type="text"
-            id="name"
+            id="namse"
             placeholder="Exemplo: Coxinha, arroz com feijão, etc..."
           />
           {errors.name?.message && (
@@ -39,7 +40,6 @@ export default function ProductForm() {
               <$.Label htmlFor="price">Preço(R$)*</$.Label>
               <$.PriceInput
                 {...register("price")}
-                type="number"
                 id="price"
                 placeholder="Exemplo: 10,99"
               />
@@ -61,12 +61,10 @@ export default function ProductForm() {
                 {errors.photo?.message && (
                   <ErrorMessage>{`${errors.photo.message}`}</ErrorMessage>
                 )}
+                {image && <p>Uploaded image: {image[0].name}</p>}
               </$.InputWrapper>
             </div>
           </$.PriceAndImageWrapper>
-          <$.ImageWrapper>
-            <$.ImagePreview alt="Preview" />
-          </$.ImageWrapper>
         </$.ContentContainer>
         <FormButton type="submit">Salvar</FormButton>
       </$.Form>

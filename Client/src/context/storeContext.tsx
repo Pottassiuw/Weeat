@@ -6,7 +6,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { URL } from "../helper/URL";
+import { Url } from "../helper/URL";
 import axios from "axios";
 import type { Store } from "../@types/Entity";
 import { TstoreLoginSchema } from "../lib/storeForms";
@@ -49,7 +49,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
   const loginStore = async (data: TstoreLoginSchema) => {
     try {
-      const res = await axios.post(URL + "stores/login", data);
+      const res = await axios.post(Url + "stores/login", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -67,7 +67,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   };
   const registerStore = async (data: Store) => {
     try {
-      const res = await axios.post(URL + "stores/register", data);
+      const res = await axios.post(Url + "stores/register", data);
       if (res) {
         const responseData = await res.data;
         console.log(responseData);
@@ -88,7 +88,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
       const storeObj = JSON.parse(store);
       const storeId = storeObj.id;
-      const res = await axios.put(URL + "stores/update/" + storeId, data);
+      const res = await axios.put(Url + "stores/update/" + storeId, data);
       if (res) {
         const responseData = await res.data;
         const jsonData = JSON.stringify(responseData);

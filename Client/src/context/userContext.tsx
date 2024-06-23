@@ -6,7 +6,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { URL } from "../helper/URL";
+import { Url } from "../helper/URL";
 import axios from "axios";
 import type { User } from "../@types/Entity";
 import { TloginSchema, TsignUpSchema } from "../lib/userForms";
@@ -40,7 +40,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const loginUser = async (data: TloginSchema) => {
     try {
-      const res = await axios.post(URL + "users/login", data);
+      const res = await axios.post(Url + "users/login", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -61,7 +61,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
   const registerUser = async (data: TsignUpSchema) => {
     try {
-      const res = await axios.post(URL + "users/register", data);
+      const res = await axios.post(Url + "users/register", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -84,7 +84,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       const userObj = JSON.parse(user);
       const userId = userObj.id;
       const { confirmPassword: _, ...datas } = data;
-      const res = await axios.put(URL + "users/update/" + userId, datas);
+      const res = await axios.put(Url + "users/update/" + userId, datas);
       if (res) {
         const responseData = await res.data;
         const jsonData = JSON.stringify(responseData);
