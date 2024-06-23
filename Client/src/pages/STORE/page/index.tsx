@@ -5,16 +5,18 @@ import * as $ from "./styles";
 import axios from "axios";
 import { URL } from "../../../helper/URL";
 import { useUser } from "../../../context/userContext";
+import { useAuth } from "../../../context/authContext";
 import type { Store } from "../../../@types/Entity";
 
 export default function StorePage() {
   const { user } = useUser();
+  const { token } = useAuth();
   const [stores, setStores] = useState<Store[]>([]);
 
   useEffect(() => {
     const getStores = async () => {
       try {
-        if (user) {
+        if (user && token) {
           const response = await axios.get(`${URL}stores`);
           if (response.data && Array.isArray(response.data)) {
             setStores(response.data);
@@ -27,7 +29,7 @@ export default function StorePage() {
       }
     };
     getStores();
-  }, [user]);
+  }, [token, user]);
   return (
     <$.Container>
       <NavBar sticky="true" />

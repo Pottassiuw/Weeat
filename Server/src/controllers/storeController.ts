@@ -165,7 +165,7 @@ export default class StoreController {
     }
   }
 
-  async getAddress(req: Request, res: Response) {
+  async getAddressById(req: Request, res: Response) {
     try {
       if (!req.entity) {
         return res.status(500).json({ error: "Unauthorized" });
