@@ -40,10 +40,10 @@ model Store {
   contact       String
   banner        String
   logo          String
+  category      String
   averageRating Float          @default(0.0)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  category      String
   addresses     StoreAddress[]
   products      Product[]
   Favorite      Favorite[]
@@ -66,15 +66,15 @@ model StoreReview {
 }
 
 model StoreAddress {
-  id               Int     @id @default(autoincrement())
-  store            Store[]
-  street           String
-  neighborhood     String
-  address          String
-  city             String
-  number           Int
-  complement       String?
-  zipCode             String
+  id           Int     @id @default(autoincrement())
+  store        Store[]
+  neighborhood String
+  state        String
+  address      String
+  city         String
+  number       Int
+  complement   String?
+  zipCode      String
 }
 
 model Product {

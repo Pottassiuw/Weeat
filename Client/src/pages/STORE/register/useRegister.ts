@@ -8,6 +8,7 @@ import axios from "axios";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../../firebase";
 import { toast } from "react-toastify";
+import { useStore } from "../../../context/storeContext";
 type Inputs = z.infer<typeof storeRegisterSchema>;
 type FieldName = keyof Inputs;
 type CepDataFieldProps = {
@@ -55,6 +56,7 @@ const steps = [
 ];
 export const useRegister = () => {
   const navigate = useNavigate();
+  const { registerStore } = useStore();
   const {
     register,
     handleSubmit,
@@ -101,10 +103,31 @@ export const useRegister = () => {
 
   // ! Enviar para o backend
   const handleData: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
-    await submitImages(data);
-    toast.success("Formulário enviado com sucesso!");
+    const { information, storeInfo, address } = data;
+    const store = {
+      name: information.name,
+      storeName: storeInfo.storeName,
+      storeNumber: information.numeroCell,
+      description: storeInfo.description,
+      email: information.email,
+      password: information.password,
+      contact: storeInfo.contact,
+      banner: storeInfo.banner,
+      logo: storeInfo.logo,
+      category: storeInfo.category,
+      addresses: {
+        street: address.endereco,
+        zipCode: address.cep,
+        neighborhood: address.bairro,
+        city: address.cidade,
+        state: address.estado,
+        number: address.numero,
+        complement: address.complemento,
+      },
+    };
+    registerStore(store);
   };
+
   const next = async () => {
     const fields = steps[currentStep].fields;
     if (!fields) return;
@@ -151,6 +174,8 @@ export const useRegister = () => {
     },
     [handleFetchData]
   );
+
+  // TODO: Tratar para enviar no firebase
   const submitImages = async (data: any) => {
     const logoFile = data.storeInfo.logo[0];
     const bannerFile = data.storeInfo.banner[0];
@@ -166,6 +191,7 @@ export const useRegister = () => {
       console.error("Error uploading images:", error);
     }
   };
+
   useEffect(() => {
     setValue("address.cep", cep);
     if (cep.length == 9) {

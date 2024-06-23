@@ -3,41 +3,55 @@ import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
-interface StoreRegistrationData {
-  id?: number;
+type TStore = {
   name: string;
   storeName: string;
-  storeNumber: string;
+  storeNumber: string | null;
   description: string;
   email: string;
   password: string;
   contact: string;
   banner: string;
   logo: string;
-  averageRating?: number;
   category: string;
-}
+};
 
-interface StoreAddressData {
-  neighBorhood: string;
-  street: string;
-  city: string;
+type AddressData = {
+  neighborhood: string;
   state: string;
-  zipCode: string;
   address: string;
+  city: string;
   number: number;
-  complement?: string;
-}
+  complement: string | null;
+  zipCode: string;
+};
+
 type StoreWithoutPassword = Omit<Store, "password">;
 
 class StoreService {
-  async registerStore(storeData: StoreRegistrationData): Promise<Store> {
+  async registerStore(
+    storeData: TStore,
+    addressData: AddressData
+  ): Promise<Store> {
     const hashedPassword = await bcrypt.hash(storeData.password, 10);
     const store = await prisma.store.create({
       data: {
         ...storeData,
         password: hashedPassword,
-        averageRating: storeData.averageRating || 0,
+        addresses: {
+          create: {
+            neighborhood: addressData.neighborhood,
+            city: addressData.city,
+            state: addressData.state,
+            zipCode: addressData.zipCode,
+            address: addressData.address,
+            number: addressData.number,
+            complement: addressData.complement,
+          },
+        },
+      },
+      include: {
+        addresses: true,
       },
     });
     return store;
@@ -73,7 +87,7 @@ class StoreService {
 
   async addStoreAddress(
     id: number,
-    addressData: StoreAddressData
+    addressData: AddressData
   ): Promise<StoreAddress> {
     const address = await prisma.storeAddress.create({
       data: {

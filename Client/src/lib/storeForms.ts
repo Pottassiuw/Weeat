@@ -39,13 +39,7 @@ export const storeRegisterSchema = z
       cidade: z.string().min(1, "Obrigatório!"),
       bairro: z.string().min(1, "Obrigatório!"),
       endereco: z.string().min(1, "Obrigatório"),
-      numero: z
-        .string()
-        .min(1, "Obrigatório!")
-        .transform((val) => Number(val))
-        .refine((val) => !isNaN(Number(val)), {
-          message: "O campo deve ser um número!",
-        }),
+      numero: z.string().min(1, "Obrigatório!"),
       complemento: z.string().optional(),
     }),
     storeInfo: z.object({
