@@ -100,6 +100,14 @@ const router = createBrowserRouter([
           </StoreProtected>
         ),
       },
+      {
+        path: "stores/products",
+        element: (
+          <StoreProtected>
+            <ProductPage />
+          </StoreProtected>
+        ),
+      },
     ],
   },
 ]);
