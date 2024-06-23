@@ -1,21 +1,26 @@
 import styled from "styled-components";
 import NavBar from "../../../components/nav";
 import { flexCenter } from "../../../styles/mixins";
-import { Store } from "lucide-react";
+import { Store, FolderSync, ShoppingBag } from "lucide-react";
 const Section = styled.section`
   width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 `;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
-  height: 100dvh;
   margin: 0 auto;
 `;
 const LinesContainer = styled.div`
   display: flex;
+  height: 5px;
   width: 100%;
   align-items: center;
 `;
@@ -49,10 +54,18 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.colors.white};
-    background-color: ${({theme}) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 const StoreIcon = styled(Store)`
+  width: 90%;
+  height: 90%;
+`;
+const RefreshIcon = styled(FolderSync)`
+  width: 90%;
+  height: 90%;
+`;
+const ProductsIcon = styled(ShoppingBag)`
   width: 90%;
   height: 90%;
 `;
@@ -66,8 +79,14 @@ export default function storeSettings() {
             <StoreIcon />
             Dados da Loja!
           </Button>
-          <Button>Atualizar seus Dados!</Button>
-          <Button>Seus Produtos!</Button>
+          <Button>
+            <RefreshIcon />
+            Atualizar seus Dados!
+          </Button>
+          <Button>
+            <ProductsIcon />
+            Seus Produtos!
+          </Button>
         </ButtonWrapper>
       </Container>
       <LinesContainer>
