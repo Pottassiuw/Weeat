@@ -20,8 +20,8 @@ type StoreContextProps = {
   store: Store;
   setStore: React.Dispatch<React.SetStateAction<Store>>;
   loginStore: (data: TstoreLoginSchema) => void;
-  registerStore: (data: StoreRegister) => void;
-  updateStore: (data: StoreRegister) => void;
+  registerStore: (data: Store) => void;
+  updateStore: (data: Store) => void;
   logoutStore: () => void;
 };
 
@@ -63,7 +63,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       throw error;
     }
   };
-  const registerStore = async (data: StoreRegister) => {
+  const registerStore = async (data: Store) => {
     try {
       const res = await axios.post(URL + "stores/register", data);
       if (res) {
@@ -80,7 +80,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
     }
   };
-  const updateStore = async (data: StoreRegister) => {
+  const updateStore = async (data: Store) => {
     try {
       const store = localStorage.getItem("store");
       if (!store) {
@@ -119,8 +119,15 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       contact: "",
       banner: "",
       logo: "",
-      averageRating: undefined,
       category: "",
+      addresses: {
+        id: 0,
+        zipCode: "",
+        neighborhood: "",
+        street: "",
+        city: "",
+        state: "",
+      },
     });
     setToken("");
     localStorage.removeItem("store");

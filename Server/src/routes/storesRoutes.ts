@@ -9,7 +9,7 @@ router.post("/register", controller.register);
 router.post("/login", controller.login);
 
 router.post("/address", authenticate, authorizeStore, controller.addAddress);
-router.get("/address/:id", authenticate, controller.getAddress);
+router.get("/address/:id", authenticate, controller.getAddressById);
 
 router.get("/", authenticate, controller.getStores);
 router.get("/:id", authenticate, controller.getById);
@@ -20,5 +20,4 @@ router.get(
   authorizeStore,
   controller.getByCategory
 );
-
 export default router;

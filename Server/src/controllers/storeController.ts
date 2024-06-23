@@ -1,13 +1,81 @@
 import { Request, Response } from "express";
 import AuthService from "../services/authService";
 import StoreService from "../services/storeService";
-
+type TStore = {
+  name: string;
+  storeName: string;
+  storeNumber: string | null;
+  description: string;
+  email: string;
+  password: string;
+  contact: string;
+  banner: string;
+  logo: string;
+  category: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
+type AddressData = {
+  neighborhood: string;
+  state: string;
+  address: string;
+  city: string;
+  number: number;
+  complement: string | null;
+  zipCode: string;
+};
 export default class StoreController {
   async register(req: Request, res: Response) {
     try {
-      const store = await StoreService.registerStore(req.body);
-      const { password: _, ...storeData } = store;
-      return res.status(201).json(storeData);
+      if (req.body && req.body.addresses) {
+        const {
+          name,
+          storeName,
+          storeNumber,
+          description,
+          email,
+          password,
+          contact,
+          banner,
+          category,
+          logo,
+        } = req.body;
+
+        const StoreData: TStore = {
+          name,
+          storeName,
+          storeNumber,
+          description,
+          email,
+          password,
+          contact,
+          banner,
+          logo,
+          category,
+        };
+        const {
+          neighborhood,
+          state,
+          address,
+          city,
+          number,
+          complement,
+          zipCode,
+        } = req.body.addresses;
+        const AddressData: AddressData = {
+          neighborhood,
+          state,
+          address,
+          city,
+          number,
+          complement,
+          zipCode,
+        };
+        console.log(req.body);
+        const store = await StoreService.registerStore(StoreData, AddressData);
+        const { password: _, ...storeData } = store;
+        return res.status(201).json({ storeData, AddressData });
+      }
     } catch (error) {
       if (error instanceof Error) {
         const message = error.message;
@@ -97,7 +165,7 @@ export default class StoreController {
     }
   }
 
-  async getAddress(req: Request, res: Response) {
+  async getAddressById(req: Request, res: Response) {
     try {
       if (!req.entity) {
         return res.status(500).json({ error: "Unauthorized" });

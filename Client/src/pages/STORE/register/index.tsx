@@ -9,7 +9,6 @@ export default function Register() {
   const {
     errors,
     register,
-    submitImages,
     steps,
     handleSubmit,
     handleData,
@@ -31,7 +30,7 @@ export default function Register() {
             </$.FormPreviewDiv>
           ))}
         </$.FormPreview>
-        <$.Form onSubmit={handleSubmit(submitImages)}>
+        <$.Form onSubmit={handleSubmit(handleData)}>
           {currentStep === 0 && (
             <>
               <$.FormTexts>
