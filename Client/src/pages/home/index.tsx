@@ -75,20 +75,20 @@ export default function Home() {
           <$.BenefitContentWrapper>
             <$.BenfitImage src={Feature1} />
             <$.BenefitText>
-              Cadastrar o seu estabelecimento nunca se tornou mais facil!
+              Cadastrar o seu estabelecimento nunca se tornou mais <$.BenefitDecoration>facil!</$.BenefitDecoration>
             </$.BenefitText>
           </$.BenefitContentWrapper>
           <$.BenefitContentWrapper>
             <$.BenefitText>
               Encontrar estabelecimentos próximos de você se torna uma tarefa
-              simples!{" "}
+              <$.BenefitDecoration>simples!</$.BenefitDecoration>
             </$.BenefitText>
             <$.BenfitImage src={Feature2} />
           </$.BenefitContentWrapper>
           <$.BenefitContentWrapper>
             <$.BenfitImage src={Feature3} />
             <$.BenefitText>
-              Você terá oportunidade de Divulgar sua empresa!
+              Você terá a oportunidade de <$.BenefitDecoration>Divulgar sua empresa!</$.BenefitDecoration>
             </$.BenefitText>
           </$.BenefitContentWrapper>
         </$.BenefitWrapper>
@@ -105,7 +105,7 @@ export default function Home() {
               <$.TestimonialCardText>
               "Eu descobri essa joia escondida, 'Pizzaria Bella Vita', através desse aplicativo e estou muito feliz por isso! A pizza deles é incrível e o proprietário,
                Marco, é super amigável. As direções do aplicativo me levaram direto à porta deles e eu pude pegar uma pizza fresca para levar para casa. 
-               Altamente recomendado!"
+               Altamente recomendado este webapp feito para procurar por estabelecimentos, usarei novamente!"
               </$.TestimonialCardText>
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
@@ -198,45 +198,57 @@ export default function Home() {
         <$.FaqTitle>FAQ</$.FaqTitle>
         <$.FaqWrapper>
           <$.FaqDetails>
-            <$.FaqSummary>Doubt 1</$.FaqSummary>
+            <$.FaqSummary>1. Como posso cadastrar meu estabelecimento de comida no site?</$.FaqSummary>
             <$.FaqSummaryContent>
-              <$.FaqSummaryText>TEXT EXAMPLE1...</$.FaqSummaryText>
+              <$.FaqSummaryText>Para cadastrar seu estabelecimento de comida, 
+              basta clicar no botão "Cadastrar Estabelecimento" na página inicial do site e preencher o foFrmulário com as informações solicitadas,
+               como nome do estabelecimento, endereço, contato e cardápio. 
+              Nossa equipe verificará as informações e aprovará sua solicitação em breve.</$.FaqSummaryText>
             </$.FaqSummaryContent>
           </$.FaqDetails>
           <$.FaqDetails>
-            <$.FaqSummary>Doubt 2</$.FaqSummary>
+            <$.FaqSummary>2. Quais são os benefícios de cadastrar meu estabelecimento de comida no site?</$.FaqSummary>
             <$.FaqSummaryContent>
-              <$.FaqSummaryText>TEXT EXAMPLE2...</$.FaqSummaryText>
+              <$.FaqSummaryText>Cadastrar seu estabelecimento de comida no site permite que você alcance um público mais amplo e aumente sua visibilidade.
+               Além disso, você pode atualizar suas informações e cardápio em tempo real, 
+              tornando mais fácil para os clientes encontrarem e contatarem você.</$.FaqSummaryText>
             </$.FaqSummaryContent>
           </$.FaqDetails>
           <$.FaqDetails>
-            <$.FaqSummary>Doubt 3</$.FaqSummary>
+            <$.FaqSummary>3. Como posso atualizar minhas informações e cardápio no site?</$.FaqSummary>
             <$.FaqSummaryContent>
-              <$.FaqSummaryText>TEXT EXAMPLE3...</$.FaqSummaryText>
+              <$.FaqSummaryText>Para atualizar suas informações e cardápio, basta logar em sua conta e acessar a página de perfil do seu estabelecimento.
+                   Lá, você pode editar as informações e uploadar novas imagens do cardápio.</$.FaqSummaryText>
             </$.FaqSummaryContent>
           </$.FaqDetails>
           <$.FaqDetails>
-            <$.FaqSummary>Doubt 4</$.FaqSummary>
+            <$.FaqSummary>4. Como os usuários podem encontrar meu estabelecimento de comida no site?</$.FaqSummary>
             <$.FaqSummaryContent>
-              <$.FaqSummaryText>TEXT EXAMPLE4...</$.FaqSummaryText>
+              <$.FaqSummaryText>Os usuários podem encontrar seu estabelecimento de comida pesquisando por localização,
+               nome do estabelecimento ou tipo de comida. 
+              Além disso, podemos sugerir estabelecimentos próximos à localização do usuário.</$.FaqSummaryText>
             </$.FaqSummaryContent>
           </$.FaqDetails>
           <$.FaqDetails>
-            <$.FaqSummary>Doubt 5</$.FaqSummary>
+            <$.FaqSummary>5. Posso deletar minha conta e informações do site?</$.FaqSummary>
             <$.FaqSummaryContent>
-              <$.FaqSummaryText>TEXT EXAMPLE5...</$.FaqSummaryText>
+              <$.FaqSummaryText>Sim, você pode deletar sua conta e informações do site a qualquer momento. 
+                Basta logar em sua conta e acessar a página de configurações,
+               onde você encontrará a opção de deletar sua conta.</$.FaqSummaryText>
             </$.FaqSummaryContent>
           </$.FaqDetails>
           <$.FaqDetails>
-            <$.FaqSummary>Doubt 6</$.FaqSummary>
+            <$.FaqSummary>6. Como posso entrar em contato com o suporte do site?</$.FaqSummary>
             <$.FaqSummaryContent>
-              <$.FaqSummaryText>TEXT EXAMPLE5...</$.FaqSummaryText>
+              <$.FaqSummaryText>Você pode entrar em contato conosco através do formulário de contato na página de suporte do site.
+               Nossa equipe responderá às suas dúvidas e solicitações em breve.</$.FaqSummaryText>
             </$.FaqSummaryContent>
           </$.FaqDetails>
           <$.FaqDetails>
-            <$.FaqSummary>Doubt 7</$.FaqSummary>
+            <$.FaqSummary>7. O site é seguro e protege minhas informações?</$.FaqSummary>
             <$.FaqSummaryContent>
-              <$.FaqSummaryText>TEXT EXAMPLE5...</$.FaqSummaryText>
+              <$.FaqSummaryText>Sim, nosso site utiliza tecnologias de segurança avançadas para proteger as informações dos usuários e estabelecimentos cadastrados. 
+              Nós também seguimos as melhores práticas de segurança e privacidade para garantir que suas informações sejam tratadas com confiança.</$.FaqSummaryText>
             </$.FaqSummaryContent>
           </$.FaqDetails>
         </$.FaqWrapper>

@@ -93,8 +93,8 @@ export const RegisterText = styled.h2`
 `;
 
 export const Links = styled(Link)`
-  text-decoration: none;
-  color: black;
+  text-decoration: none;  
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 600;
   &:hover {
     color: ${({ theme }) => theme.colors.primaryDark};

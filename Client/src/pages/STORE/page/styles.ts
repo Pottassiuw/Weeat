@@ -95,13 +95,20 @@ export const SearchBar = styled.input`
 `;
 export const SearchContentButton = styled.button`
   margin-left: 1rem;
+  border-color: #ff0000;
+  border-width: 2px;
   border-radius: 0.6rem;
-  border: 1px solid black;
-  background: black;
+  background-color: #fff;
   padding: 0.7rem;
-  color: white;
+  color: #ff0000;
   font-weight: 600;
   width: 150px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+  
+  &:hover {
+    background-color: #ff0000;
+    color: #fff;
+  }
 `;
 export const GreetingsWrapper = styled.div`
   display: flex;
@@ -151,11 +158,22 @@ export const StoresCategoryWrapper = styled.div`
 export const StoresCategoryButton = styled.button`
   height: 350px;
   width: 250px;
+  font-size: 14pt;
+  font-weight: bold;
   border-radius: 5px;
-  border: 2px solid black;
+  border-color: #000;
+  border-width: 4px;
   margin: 0 auto;
   color: #eb4032;
-  background-color: transparent;
+  background-color: white;
+  margin-bottom: 30px;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, scale 0.2s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+    border-color: ${({ theme }) => theme.colors.primaryDark};
+    scale: 0.99;
+  }
 `;
 //----------------Categories---------------------
 
