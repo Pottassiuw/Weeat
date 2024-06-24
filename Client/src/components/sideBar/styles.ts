@@ -7,7 +7,7 @@ export const Section = styled.section`
 `;
 
 export const Sidebar = styled.div`
-  width: 200px;
+  width: 250px;
   height: 100vh;
   background-color: #f8f8f8;
   padding: 20px;
@@ -21,10 +21,18 @@ export const SidebarLink = styled(Link)`
   display: block;
   font-weight: 600;
   margin-bottom: 10px;
-  border-bottom: 3px solid ${({ theme }) => theme.colors.primary};
   color: #333;
   text-decoration: none;
   font-size: 14pt;
+  transition: border 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out, padding 0.15s ease-in-out;
+
+  &:hover {
+    border: solid 1px;
+    border-radius: 25px;
+    padding: 10px;
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 
 // Existing styles for the main content, containers, form, etc.

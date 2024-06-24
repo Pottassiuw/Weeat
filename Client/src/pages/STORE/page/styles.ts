@@ -302,7 +302,7 @@ export const StoresCardWrapper = styled.div`
 export const StoresCard = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  border: 1px solid #d9d9d9;
+  border: 4px solid #d9d9d9;
   width: 400px;
   height: 200px;
   border-radius: 12px;
@@ -321,15 +321,18 @@ export const StoresCardNameWrapper = styled.div`
   justify-content: center;
 `;
 export const StoresCardLogo = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
 `;
 export const StoresCardName = styled.p`
   font-size: ${(p) => p.theme.font.text};
+  font-weight: 600;
 `;
 export const StoresCardCategory = styled.p`
   color: ${(p) => p.theme.colors.secondary};
   font-weight: 500;
   font-size: ${(p) => p.theme.font.text};
 `;
+
 //----------------Stores-----------------------

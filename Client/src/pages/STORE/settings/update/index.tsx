@@ -249,7 +249,7 @@ export default function updateStore() {
                   <option value="">Telegram</option>
                 </SelectCategory>
               </$.InputWrapper>
-              <h1>Imagens</h1>
+              <$.filetitletext><h1>Imagens</h1></$.filetitletext>
               <$.FileInputWrapper>
                 <$.InputWrapper>
                   <p>Logo</p>

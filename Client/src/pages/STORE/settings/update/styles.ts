@@ -81,7 +81,7 @@ export const DescriptionInput = styled.textarea`
   resize: none;
   box-sizing: border-box;
   &:focus {
-    outline: 1px solid #d9d9d9;
+    outline: 1px solid #aaa;
   }
   &::placeholder {
     color: #d9d9d9;
@@ -209,6 +209,9 @@ export const FileInputWrapper = styled.div`
     p {
       font-size: ${({ theme }) => theme.font.text};
       padding-bottom: 1rem;
+      &:focus {
+       outline: 1px solid #aaa;
+      }
     }
     width: auto;
     &:nth-child(2) {
@@ -249,4 +252,13 @@ export const ArrowLeftIcon = styled(ArrowLeft)`
 export const ArrowRightIcon = styled(ArrowRight)`
   width: 100%;
   height: 100%;
+`;
+
+export const filetitletext = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+  h1 {
+    font-size: ${({ theme }) => theme.font.subtitleG};
+    margin-left: 10rem;
+  }
 `;
