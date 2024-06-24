@@ -95,7 +95,7 @@ export default function StorePage() {
 
       <$.DiscountSection>
         <$.DiscountTitleWrapper>
-          <$.DiscountTitle>Produtos com discontão!</$.DiscountTitle>
+          <$.DiscountTitle>Produtos com DESCONTÃO!</$.DiscountTitle>
           <$.DiscountTitleIcon />
         </$.DiscountTitleWrapper>
         <$.DiscountCardWrapper>
@@ -166,7 +166,7 @@ export default function StorePage() {
                 <$.StoresCardName>{store.storeName}</$.StoresCardName>
                 <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
               </$.StoresCardNameWrapper>
-            </$.StoresCard>
+            </$.StoresCard>          
           ))}
         </$.StoresCardWrapper>
         <$.StoresTitleWrapper>

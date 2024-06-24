@@ -57,6 +57,8 @@ const Button = styled.button`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${({ theme }) => theme.font.subtitle};
   cursor: pointer;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+  
   &:hover {
     color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.primary};

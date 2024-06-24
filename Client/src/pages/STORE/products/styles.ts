@@ -44,10 +44,14 @@ export const Input = styled.input`
   border-radius: ${({ theme }) => theme.border.button};
   margin-bottom: 1rem;
   font-size: 1rem;
+
+  &:focus {
+    outline: 1px solid #aaa;
+  }
 `;
 
 export const DescriptionInput = styled.textarea`
-  border: 2px solid #d9d9d9;
+  border: 2px solid #ccc;
   width: 100%;
   border-radius: ${(p) => p.theme.border.button};
   padding: 1rem;
@@ -56,10 +60,7 @@ export const DescriptionInput = styled.textarea`
   box-sizing: border-box;
   resize: vertical;
   &:focus {
-    outline: 1px solid #d9d9d9;
-  }
-  &::placeholder {
-    color: #d9d9d9;
+    outline: 1px solid #aaa;
   }
 `;
 
@@ -70,6 +71,10 @@ export const PriceInput = styled.input`
   margin-bottom: 1rem;
   font-size: 1rem;
   width: 200px;
+
+  &:focus {
+    outline: 1px solid #aaa;
+  }
 `;
 
 export const Button = styled.button`
