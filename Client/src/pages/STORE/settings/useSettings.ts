@@ -9,8 +9,13 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
 import { toast } from "react-toastify";
 import { useStore } from "../../../context/storeContext";
+import { Url } from "../../../helper/URL";
 type Inputs = z.infer<typeof storeRegisterSchema>;
+type AddressType = Pick<Inputs, "address">["address"];
+type StoreDataType = Pick<Inputs, "information" | "storeInfo">["information"] &
+  Pick<Inputs, "information" | "storeInfo">["storeInfo"];
 type FieldName = keyof Inputs;
+
 type CepDataFieldProps = {
   uf: string;
   localidade: string;
@@ -56,7 +61,7 @@ const steps = [
 ];
 export const useRegister = () => {
   const navigate = useNavigate();
-  const { registerStore } = useStore();
+  const { updateStore, store } = useStore();
   const {
     register,
     handleSubmit,
@@ -118,45 +123,6 @@ export const useRegister = () => {
     }
   };
   // ! Enviar para o backend
-  const handleData: SubmitHandler<Inputs> = async (data) => {
-    try {
-      const { information, storeInfo, address } = data;
-      const logo = storeInfo.logo;
-      const banner = storeInfo.banner;
-      const images = await submitImages(logo, banner);
-      if (images) {
-        const logoUrl = images.logoUrl;
-        const bannerUrl = images.bannerUrl;
-        const store = {
-          name: information.name,
-          storeName: storeInfo.storeName,
-          storeNumber: information.numeroCell,
-          description: storeInfo.description,
-          email: information.email,
-          password: information.password,
-          contact: storeInfo.contact,
-          banner: bannerUrl,
-          logo: logoUrl,
-          category: storeInfo.category,
-          addresses: {
-            address: address.endereco,
-            zipCode: address.cep,
-            neighborhood: address.bairro,
-            city: address.cidade,
-            state: address.estado,
-            number: address.numero,
-            complement: address.complemento,
-          },
-        };
-        await registerStore(store);
-        reset();
-        navigate("/stores/login");
-      }
-    } catch (error) {
-      console.error("Error registering store:", error);
-      toast.error("Ocorreu um erro ao cadastrar a loja!");
-    }
-  };
 
   const next = async () => {
     const fields = steps[currentStep].fields;
@@ -167,7 +133,7 @@ export const useRegister = () => {
     if (!output) return;
     if (currentStep < steps.length - 1) {
       if (currentStep === 2) {
-        await handleSubmit(handleData)();
+        await handleSubmit(handleUpdate)();
       }
       setCurrentStep((prevStep) => prevStep + 1);
     }
@@ -177,7 +143,6 @@ export const useRegister = () => {
       setCurrentStep((prevStep) => prevStep - 1);
     }
   };
-
   const handleFetchData = useCallback(
     async (data: CepDataFieldProps) => {
       if (!data) return;
@@ -206,25 +171,87 @@ export const useRegister = () => {
     },
     [handleFetchData]
   );
+  const getStoreAddress = useCallback(
+    async (storeId: number) => {
+      try {
+        const res = axios.get(Url + `stores/address/store/${storeId}`);
+        console.log(res);
+        return res;
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Error fetching store address:", error.message);
+        }
+      }
+    },
+    [store]
+  );
 
+  const handleUpdate = async (data: Inputs) => {
+    if (store) {
+      const images = await submitImages(
+        data.storeInfo.logo,
+        data.storeInfo.banner
+      );
+      if (!images) return;
+      const logo = images?.logoUrl;
+      const banner = images?.bannerUrl;
+      const { name, email, numeroCell, password } = data.information;
+      const { numero, bairro, cep, cidade, complemento, endereco, estado } =
+        data.address;
+      const { category, contact, description, storeName } = data.storeInfo;
+      const NewStoreData = {
+        name,
+        email,
+        storeNumber: numeroCell,
+        password,
+        contact,
+        category,
+        description,
+        logo,
+        banner,
+        storeName,
+      };
+      const NewAddressData = {
+        storeNumber: numero,
+        neighborhood: bairro,
+        zipCode: cep,
+        city: cidade,
+        address: endereco,
+        complement: complemento,
+        state: estado,
+      };
+      updateStore(NewStoreData, NewAddressData);
+    }
+  };
   useEffect(() => {
     setValue("address.cep", cep);
     if (cep.length == 9) {
       handleFetchAddress(cep);
     }
-  }, [handleFetchAddress, setValue, cep]);
+    if (store) {
+      setValue("information.name", store?.name!);
+      setValue("information.email", store?.email!);
+      setValue("information.numeroCell", store?.storeNumber!);
+      setValue("storeInfo.storeName", store?.storeName!);
+      setValue("storeInfo.logo", store?.logo!);
+      setValue("storeInfo.description", store?.description!);
+      setValue("storeInfo.banner", store?.banner!);
+      setValue("storeInfo.category", store?.category!);
+      setValue("storeInfo.contact", store?.contact!);
+    }
+  }, [handleFetchAddress, setValue, cep, store]);
 
   return {
     logo,
     banner,
     steps,
     register,
-    errors,
-    handleData,
     handleSubmit,
     prev,
     next,
     submitImages,
+    handleUpdate,
     currentStep,
+    errors,
   };
 };
