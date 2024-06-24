@@ -1,19 +1,14 @@
 import { z } from "zod";
 import { storeRegisterSchema } from "../../../lib/storeForms";
 import { useState, useEffect, useCallback } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
-import { toast } from "react-toastify";
 import { useStore } from "../../../context/storeContext";
 import { Url } from "../../../helper/URL";
 type Inputs = z.infer<typeof storeRegisterSchema>;
-type AddressType = Pick<Inputs, "address">["address"];
-type StoreDataType = Pick<Inputs, "information" | "storeInfo">["information"] &
-  Pick<Inputs, "information" | "storeInfo">["storeInfo"];
 type FieldName = keyof Inputs;
 
 type CepDataFieldProps = {
@@ -60,14 +55,12 @@ const steps = [
   },
 ];
 export const useRegister = () => {
-  const navigate = useNavigate();
   const { updateStore, store } = useStore();
   const {
     register,
     handleSubmit,
     trigger,
     formState: { errors },
-    reset,
     watch,
     setValue,
   } = useForm<Inputs>({
@@ -174,9 +167,9 @@ export const useRegister = () => {
   const getStoreAddress = useCallback(
     async (storeId: number) => {
       try {
-        const res = axios.get(Url + `stores/address/store/${storeId}`);
+        const res = await axios.get(Url + `stores/address/store/${storeId}`);
         console.log(res);
-        return res;
+        return res.data;
       } catch (error) {
         if (error instanceof Error) {
           console.error("Error fetching store address:", error.message);
@@ -228,6 +221,26 @@ export const useRegister = () => {
     if (cep.length == 9) {
       handleFetchAddress(cep);
     }
+    if (!getStoreAddress) return;
+    const storeAddress = getStoreAddress(store?.id!)
+      .then((res) => {
+        const address = res;
+        const street = address.address;
+        const number = address.number;
+        const neighborhood = address.neighborhood;
+        const city = address.city;
+        const state = address.state;
+        const zipCode = address.zipCode;
+        setValue("address.endereco", street);
+        setValue("address.numero", number);
+        setValue("address.bairro", neighborhood);
+        setValue("address.cidade", city);
+        setValue("address.estado", state);
+        setValue("address.cep", zipCode);
+      })
+      .catch((error) => {
+        console.error("Error fetching store address:", error);
+      });
     if (store) {
       setValue("information.name", store?.name!);
       setValue("information.email", store?.email!);
