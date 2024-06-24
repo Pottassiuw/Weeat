@@ -196,4 +196,40 @@ export default class StoreController {
       }
     }
   }
+
+  async getAddressByStoreId(req: Request, res: Response) {
+    try {
+      if (!req.entity) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      const store = await StoreService.getStoreAdressByStoreId(
+        parseInt(req.params.id)
+      );
+      res.status(201).json(store);
+    } catch (error) {
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
+    }
+  }
+  async updateAddress(req: Request, res: Response) {
+    try {
+      if (!req.entity) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      const addressId = req.params.id;
+      const { addressData } = req.body;
+      const store = await StoreService.updateStoreAddress(
+        parseInt(addressId),
+        addressData
+      );
+      res.status(201).json({ store });
+    } catch (error) {
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
+    }
+  }
 }

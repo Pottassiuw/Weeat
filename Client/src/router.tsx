@@ -11,7 +11,7 @@ import TokenProtected from "./pages/infra/tokenProtected";
 import StoreProtected from "./pages/infra/storeProtected";
 import UserDash from "./pages/user/settings";
 import StoreRegister from "./pages/store/register";
-import FavoriteScreen from "./pages/favorites";
+import FavoriteScreen from "./pages/Favorites";
 import EstablishmentPage from "./pages/store/Establishment";
 import ProductPage from "./pages/store/products";
 import StoreSettings from "./pages/store/settings";

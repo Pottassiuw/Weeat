@@ -8,7 +8,7 @@ import {
 } from "react";
 import { Url } from "../helper/URL";
 import axios from "axios";
-import type { Store } from "../@types/Entity";
+import type { Store, OnlyStore, OnlyAddress } from "../@types/Entity";
 import { TstoreLoginSchema } from "../lib/storeForms";
 import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
@@ -18,7 +18,10 @@ type StoreContextProps = {
   setStore: React.Dispatch<React.SetStateAction<Store>>;
   loginStore: (data: TstoreLoginSchema) => void;
   registerStore: (data: Store) => void;
-  updateStore: (data: Store) => void;
+  updateStore: (
+    StoreData: Partial<OnlyStore>,
+    AddressData: Partial<OnlyAddress>
+  ) => void;
   logoutStore: () => void;
 };
 
@@ -80,29 +83,30 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
     }
   };
-  const updateStore = async (data: Store) => {
+  const updateStore = async (
+    StoreData: Partial<OnlyStore>,
+    AddressData: Partial<OnlyAddress>
+  ) => {
     try {
-      const store = localStorage.getItem("store");
-      if (!store) {
-        return null;
+      console.log("addressData", AddressData);
+      console.log("StoreData", StoreData);
+      const storeId = store.id;
+      const resStoreData = await axios.put(
+        Url + `stores/${storeId}`,
+        StoreData
+      );
+      const resStoreAddress = await axios.put(
+        Url + `stores/address/${store.id}`,
+        AddressData
+      );
+      console.log(resStoreData);
+      console.log(resStoreAddress);
+      toast.success("Atualização feita com sucesso!");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Error updating store:", error.message);
+        toast.error("Ocorreu um erro ao tentar fazer o registro!");
       }
-      const storeObj = JSON.parse(store);
-      const storeId = storeObj.id;
-      const res = await axios.put(Url + "stores/update/" + storeId, data);
-      if (res) {
-        const responseData = await res.data;
-        const jsonData = JSON.stringify(responseData);
-        console.log(jsonData);
-        if (jsonData) {
-          localStorage.setItem("store", jsonData);
-          setStore(JSON.parse(jsonData));
-          console.log(JSON.parse(jsonData));
-          toast.success("Store updated!");
-        }
-      }
-    } catch (error: any) {
-      toast.warning("Update error: ", error);
-      throw error;
     }
   };
   const logoutStore = () => {

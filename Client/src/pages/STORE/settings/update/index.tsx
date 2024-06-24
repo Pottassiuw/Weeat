@@ -6,24 +6,25 @@ import InputWithMask from "../../../../components/MaskInput/styled";
 import ErrorMessage from "../../../../components/errorMessage/styles";
 import SelectCategory from "../../../../components/Category/styles";
 import Sidebar from "../../../../components/sideBar";
+
 export default function updateStore() {
   const {
     errors,
     register,
     handleSubmit,
-    handleData,
     prev,
     next,
     currentStep,
     logo,
     banner,
+    handleUpdate,
   } = useRegister();
   return (
     <$.Section>
       <NavBar sticky="true" />
       <$.Container>
         <Sidebar />
-        <$.Form onSubmit={handleSubmit(handleData)}>
+        <$.Form onSubmit={handleSubmit(handleUpdate)}>
           {currentStep === 0 && (
             <>
               <$.FormTexts>

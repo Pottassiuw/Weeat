@@ -104,7 +104,12 @@ class StoreService {
     });
     return addresses;
   }
-
+  async getStoreAdressByStoreId(storeId: number): Promise<StoreAddress | null> {
+    const address = await prisma.storeAddress.findFirst({
+      where: { id: storeId },
+    });
+    return address;
+  }
   async getAllStores(): Promise<StoreWithoutPassword[]> {
     const stores = await prisma.store.findMany({
       select: {
@@ -150,6 +155,16 @@ class StoreService {
       where: { id: storeId },
       data: { averageRating },
     });
+  }
+  async updateStoreAddress(
+    addressId: number,
+    addressData: Partial<StoreAddress>
+  ): Promise<StoreAddress> {
+    const storeAddress = await prisma.storeAddress.update({
+      where: { id: addressId },
+      data: { ...addressData }, // spread the addressData object
+    });
+    return storeAddress;
   }
 }
 
