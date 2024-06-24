@@ -19,14 +19,12 @@ export const Sidebar = styled.div`
 
 export const SidebarLink = styled(Link)`
   display: block;
+  font-weight: 600;
   margin-bottom: 10px;
+  border-bottom: 3px solid ${({ theme }) => theme.colors.primary};
   color: #333;
   text-decoration: none;
-  font-size: 16px;
-
-  &:hover {
-    color: #007bff;
-  }
+  font-size: 14pt;
 `;
 
 // Existing styles for the main content, containers, form, etc.

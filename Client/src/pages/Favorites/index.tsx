@@ -1,7 +1,8 @@
+import * as $ from "./styles";
 import React from "react";
 import NavBar from "../../components/nav";
 import { useState } from "react";
-import * as $ from "./styles";
+
 
 type Favorite = {
   id: number;
