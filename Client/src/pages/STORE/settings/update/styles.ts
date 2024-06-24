@@ -52,9 +52,13 @@ export const FormTexts = styled.div`
   flex-flow: column nowrap;
   h1 {
     font-size: ${({ theme }) => theme.font.subtitleG};
+    text-align: center;
+    margin-left: 19rem;
   }
   p {
     font-size: ${({ theme }) => theme.font.text};
+    margin-left: 19rem;
+    text-align: center;
   }
 `;
 export const InputWrapper = styled.div`
@@ -62,6 +66,7 @@ export const InputWrapper = styled.div`
   flex-flow: column nowrap;
   width: 100%;
   margin: 1rem 0;
+  margin-left: 10rem;
   input {
     width: 100%;
   }
@@ -154,6 +159,7 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   border: none;
+  margin-left: 18rem;
   padding: 1rem 2rem;
   font-size: ${({ theme }) => theme.font.text};
   border-radius: ${({ theme }) => theme.border.button};
@@ -164,6 +170,7 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.primaryDark};
   }
 `;
+
 export const CrossIcon = styled(Cross)`
   width: 30%;
   opacity: contain;
