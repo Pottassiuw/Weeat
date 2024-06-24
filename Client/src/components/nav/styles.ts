@@ -33,10 +33,22 @@ export const Logo = styled.img`
   width: 80px;
   height: 80px;
   object-fit: contain;
+  transition: opacity 0.1s ease-in-out, scale 0.1s ease-in-out;
+
+&:hover {
+  opacity: 0.9;
+  scale: 0.98;
+}
 `;
 export const LogoFont = styled.div`
   font-size: ${(p) => p.theme.font.title};
   font-weight: 600;
+  transition: opacity 0.1s ease-in-out, scale 0.1s ease-in-out;
+
+  &:hover {
+    opacity: 0.9;
+    scale: 0.98;
+  }
 `;
 
 export const LinksWrapper = styled.ul`

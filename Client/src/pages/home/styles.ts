@@ -278,7 +278,7 @@ export const FaqSummary = styled.summary`
   background-color: #f2f5f7;
   margin: 10px 0px;
   padding: 20px 10px;
-  border-radius: 6px;
+  border-radius: 15px;
   font-size: 14pt;
   font-weight: bold;
 `;
@@ -291,7 +291,8 @@ export const TestimonialCardTitle = styled.p`
   color: #ffcc00;
   font-weight: bolder;
 `;
-export const FaqSummaryContent = styled.div``;
+export const FaqSummaryContent = styled.div`
+  `;
 
 
 export const FaqSummaryText = styled.p`

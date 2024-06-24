@@ -105,7 +105,7 @@ export default function Home() {
               <$.TestimonialCardText>
               "Eu descobri essa joia escondida, 'Pizzaria Bella Vita', através desse aplicativo e estou muito feliz por isso! A pizza deles é incrível e o proprietário,
                Marco, é super amigável. As direções do aplicativo me levaram direto à porta deles e eu pude pegar uma pizza fresca para levar para casa. 
-               Altamente recomendado este webapp feito para procurar por estabelecimentos, usarei novamente!"
+               Altamente recomendado este webapp feito para procurar por estabelecimentos!"
               </$.TestimonialCardText>
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
@@ -201,7 +201,7 @@ export default function Home() {
             <$.FaqSummary>1. Como posso cadastrar meu estabelecimento de comida no site?</$.FaqSummary>
             <$.FaqSummaryContent>
               <$.FaqSummaryText>Para cadastrar seu estabelecimento de comida, 
-              basta clicar no botão "Cadastrar Estabelecimento" na página inicial do site e preencher o foFrmulário com as informações solicitadas,
+              basta clicar no botão "Cadastrar Estabelecimento" na página inicial do site e preencher o Formulário com as informações solicitadas,
                como nome do estabelecimento, endereço, contato e cardápio. 
               Nossa equipe verificará as informações e aprovará sua solicitação em breve.</$.FaqSummaryText>
             </$.FaqSummaryContent>

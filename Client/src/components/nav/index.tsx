@@ -49,7 +49,7 @@ export default function NavBar({ sticky }: NavBarProps) {
           </$.Links>
           <$.ButtonFavorite onClick={gotoFavorites}>
             <$.FavoriteIcon />
-            Favorites
+            Favoritos
           </$.ButtonFavorite>
         </$.ButtonsWrapper>
       ) : isSignedIn && store ? (

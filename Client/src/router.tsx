@@ -13,11 +13,11 @@ import UserDash from "./pages/user/settings";
 import StoreRegister from "./pages/store/register";
 import FavoriteScreen from "./pages/Favorites";
 import EstablishmentPage from "./pages/store/Establishment";
-import ProductPage from "./pages/store/products";
 import StoreSettings from "./pages/store/settings";
 import UpdateStore from "./pages/store/settings/update";
 import StoreData from "./pages/store/settings/information";
-import StoreProducts from "./pages/store/products";
+import ProductsRegister from "./pages/store/products";
+import ProductsPage from "./pages/store/settings/products";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -90,18 +90,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "stores/dashboard/products",
+        path: "stores/products",
         element: (
           <StoreProtected>
-            <StoreProducts />
+            <ProductsRegister />
           </StoreProtected>
         ),
       },
       {
-        path: "stores/products",
+        path: "stores/dashboard/products",
         element: (
           <StoreProtected>
-            <ProductPage />
+            <ProductsPage />
           </StoreProtected>
         ),
       },
