@@ -61,4 +61,14 @@ export default class ProductController {
       res.status(500).json({ message });
     }
   }
+  async getInStore(req: Request, res: Response) {
+    const storeId = parseInt(req.params.storeId);
+    try {
+      const product = await productService.getProductsInStore(storeId);
+      res.status(201).json({ product });
+    } catch (error) {
+      const message = isError(error) ? error.message : "Unknown error";
+      res.status(500).json({ message });
+    }
+  }
 }

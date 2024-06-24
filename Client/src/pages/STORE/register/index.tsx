@@ -232,13 +232,15 @@ export default function Register() {
                   Insira a categoria do seu Estabelecimento*
                   <p>Importante!</p>
                 </$.Label>
-                <SelectCategory>
+                <SelectCategory {...register("storeInfo.category")}>
                   <option value="">...</option>
-                  <option value="">Lanchonete</option>
-                  <option value="">Restaurante Árabe</option>
-                  <option value="">Restaurante Japonês</option>
-                  <option value="">Sobremesas</option>
-                  <option value="">Pizzarial</option>
+                  <option value="Lanchonete">Lanchonete</option>
+                  <option value="Restaurante Árabe">Restaurante Árabe</option>
+                  <option value="Restaurante Japonês">
+                    Restaurante Japonês
+                  </option>
+                  <option value="Sobremesas">Sobremesas</option>
+                  <option value="Pizzaria">Pizzarial</option>
                 </SelectCategory>
                 {errors.storeInfo?.category?.message && (
                   <ErrorMessage>{`${errors.storeInfo.category.message}`}</ErrorMessage>
@@ -249,11 +251,11 @@ export default function Register() {
                   Insira o(s) contato(s) de seu estabelecimento*
                   <p>Importante!</p>
                 </$.Label>
-                <SelectCategory multiple>
-                  <option value="">Whatsapp</option>
-                  <option value="">Instagram</option>
-                  <option value="">facebook</option>
-                  <option value="">Telegram</option>
+                <SelectCategory {...register("storeInfo.contact")}>
+                  <option value="Whatsapp">Whatsapp</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Facebook">facebook</option>
+                  <option value="Telegram">Telegram</option>
                 </SelectCategory>
               </$.InputWrapper>
               <h1>Imagens</h1>

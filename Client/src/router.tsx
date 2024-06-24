@@ -25,12 +25,10 @@ const router = createBrowserRouter([
     errorElement: <Error404 />,
     children: [
       { path: "/", element: <Home /> },
-
       // *Users Pages*
-
       { path: "users/login", element: <Login /> },
       {
-        path: "pages/favorites",
+        path: "users/favorites",
         element: (
           <UserProtected>
             <FavoriteScreen />
@@ -59,7 +57,7 @@ const router = createBrowserRouter([
       },
       { path: "stores/login", element: <StoreLogin /> },
       {
-        path: "stores/page",
+        path: "stores/page/:id",
         element: (
           <UserProtected>
             <EstablishmentPage />
@@ -67,7 +65,6 @@ const router = createBrowserRouter([
         ),
       },
       { path: "stores/register", element: <StoreRegister /> },
-      { path: "stores/products", element: <ProductPage /> },
       {
         path: "stores/dashboard",
         element: (

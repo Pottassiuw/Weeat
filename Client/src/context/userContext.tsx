@@ -33,10 +33,12 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setUser(JSON.parse(user));
       setToken(token);
       setIsSignedIn(true);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
     setIsReady(true);
   }, []);
+  useEffect(() => {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }, [token]);
 
   const loginUser = async (data: TloginSchema) => {
     try {

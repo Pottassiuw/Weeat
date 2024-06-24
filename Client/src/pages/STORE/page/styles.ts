@@ -6,6 +6,7 @@ import {
   Sparkles,
   TicketPercent,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -53,8 +54,6 @@ export const SearchWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 20dvh;
-  background-color: #fff;
   padding: 3rem;
   border-radius: 10px;
   flex-flow: column nowrap;
@@ -73,12 +72,11 @@ export const SearchContentWrapper = styled.div`
 export const SearchContentContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  position: relative;
   border-radius: 0.6rem;
   border: 1px solid black;
   padding: 0.5rem;
   align-items: center;
-  width: 70%;
+  width: 100%;
 `;
 
 export const SearchIcon = styled(Search)`
@@ -88,7 +86,6 @@ export const SearchBar = styled.input`
   height: 100%;
   width: 100%;
   border: none;
-
   &:focus {
     outline: none;
   }
@@ -104,10 +101,104 @@ export const SearchContentButton = styled.button`
   font-weight: 600;
   width: 150px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-  
+
   &:hover {
     background-color: #ff0000;
     color: #fff;
+  }
+`;
+export const SearchResultsWrapper = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: ${({ theme }) => theme.border.button};
+`;
+export const NoStoresMessage = styled.p`
+  font-size: ${({ theme }) => theme.font.text};
+  width: 100%;
+  padding: 1rem;
+  color: ${({ theme }) => theme.colors.primary};
+  border: 2px dotted currentColor;
+  opacity: 0.9;
+  border-radius: ${({ theme }) => theme.border.button};
+`;
+
+export const StoreCard = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 2rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
+export const StoreLogo = styled.img`
+  width: 170px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: contain;
+`;
+
+export const StoreInfo = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: 1rem;
+`;
+
+export const StoreName = styled.h2`
+  font-size: ${({ theme }) => theme.font.subtitle};
+  color: ${({ theme }) => theme.colors.primaryDark};
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+export const StoreDescription = styled.p`
+  font-size: ${({ theme }) => theme.font.text};
+  color: #666;
+  margin-bottom: 10px;
+`;
+
+export const StoreRating = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+`;
+export const StoreCategory = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+`;
+
+export const StoreLink = styled(Link)`
+  text-decoration: none;
+  color: #337ab7;
+  transition: color 0.2s ease;
+  &:hover {
+    color: #23527c;
+  }
+`;
+export const StoreLinkButton = styled.button`
+  border: 2px solid #fe2c2c;
+  background-color: transparent;
+  border-radius: ${(p) => p.theme.border.button};
+  color: #fe2c2c;
+  font-weight: 500;
+  width: 100px;
+  padding: 0.6rem;
+  font-size: 12pt;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
   }
 `;
 export const GreetingsWrapper = styled.div`
@@ -167,7 +258,8 @@ export const StoresCategoryButton = styled.button`
   color: #eb4032;
   background-color: white;
   margin-bottom: 30px;
-  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, scale 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    scale 0.2s ease-in-out;
 
   &:hover {
     color: ${({ theme }) => theme.colors.primaryDark};

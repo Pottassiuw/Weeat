@@ -10,10 +10,10 @@ export const Section = styled.section`
 `;
 export const Container = styled.div`
   display: flex;
-
   width: inherit;
   margin: 0 auto;
   align-items: center;
+  justify-content: center;
 `;
 
 export const FormPreview = styled.div`
@@ -42,7 +42,7 @@ export const FormPreviewDiv = styled.div`
 `;
 
 export const Form = styled.form`
-  display: flex;
+  ${flexCenter}
   width: 60%;
   height: 100%;
   flex-flow: column nowrap;
@@ -53,11 +53,9 @@ export const FormTexts = styled.div`
   h1 {
     font-size: ${({ theme }) => theme.font.subtitleG};
     text-align: center;
-    margin-left: 19rem;
   }
   p {
     font-size: ${({ theme }) => theme.font.text};
-    margin-left: 19rem;
     text-align: center;
   }
 `;
@@ -66,7 +64,6 @@ export const InputWrapper = styled.div`
   flex-flow: column nowrap;
   width: 100%;
   margin: 1rem 0;
-  margin-left: 10rem;
   input {
     width: 100%;
   }
@@ -159,13 +156,11 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   border: none;
-  margin-left: 18rem;
   padding: 1rem 2rem;
   font-size: ${({ theme }) => theme.font.text};
   border-radius: ${({ theme }) => theme.border.button};
   cursor: pointer;
   transition: 200ms;
-
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};
   }

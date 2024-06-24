@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { storeRegisterSchema } from "../../../lib/storeForms";
+import { storeRegisterUpdateSchema } from "../../../lib/storeForms";
 import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,7 +8,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
 import { useStore } from "../../../context/storeContext";
 import { Url } from "../../../helper/URL";
-type Inputs = z.infer<typeof storeRegisterSchema>;
+type Inputs = z.infer<typeof storeRegisterUpdateSchema>;
 type FieldName = keyof Inputs;
 
 type CepDataFieldProps = {
@@ -64,7 +64,7 @@ export const useRegister = () => {
     watch,
     setValue,
   } = useForm<Inputs>({
-    resolver: zodResolver(storeRegisterSchema),
+    resolver: zodResolver(storeRegisterUpdateSchema),
     mode: "all",
     reValidateMode: "onChange",
     criteriaMode: "all",
@@ -109,7 +109,6 @@ export const useRegister = () => {
       await uploadBytes(bannerRef, bannerFile);
       const logoUrl = await getDownloadURL(logoRef);
       const bannerUrl = await getDownloadURL(bannerRef);
-      console.log(logo, banner);
       return { logoUrl, bannerUrl };
     } catch (error) {
       console.error("Error uploading images:", error);
@@ -120,10 +119,7 @@ export const useRegister = () => {
   const next = async () => {
     const fields = steps[currentStep].fields;
     if (!fields) return;
-    const output = await trigger(fields as FieldName[], {
-      shouldFocus: true,
-    });
-    if (!output) return;
+
     if (currentStep < steps.length - 1) {
       if (currentStep === 2) {
         await handleSubmit(handleUpdate)();
@@ -218,7 +214,7 @@ export const useRegister = () => {
   };
   useEffect(() => {
     setValue("address.cep", cep);
-    if (cep.length == 9) {
+    if (cep?.length == 9) {
       handleFetchAddress(cep);
     }
     if (!getStoreAddress) return;
@@ -246,9 +242,7 @@ export const useRegister = () => {
       setValue("information.email", store?.email!);
       setValue("information.numeroCell", store?.storeNumber!);
       setValue("storeInfo.storeName", store?.storeName!);
-      setValue("storeInfo.logo", store?.logo!);
       setValue("storeInfo.description", store?.description!);
-      setValue("storeInfo.banner", store?.banner!);
       setValue("storeInfo.category", store?.category!);
       setValue("storeInfo.contact", store?.contact!);
     }

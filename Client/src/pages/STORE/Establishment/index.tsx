@@ -1,27 +1,55 @@
 import * as $ from "./styles";
 import NavBar from "../../../components/nav";
 import Image1 from "../../../assets/estb_image1.png";
-// import Image2 from "../../../assets/bigmac.webp";
-// import Image3 from "../../../assets/McDonalds-lanca-novo-McFlurry-Espetaculo-Kopenhagen.jpg";
-
+import { useState, useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import type { Store } from "../../../@types/Entity";
+import { Url } from "../../../helper/URL";
 export default function RestaurantPage() {
+  const { id } = useParams();
+  const [restaurant, setRestaurant] = useState<Store>({});
+  const [products, setProducts] = useState<any[]>([]);
+  useEffect(() => {
+    const getRestaurant = async () => {
+      try {
+        const response = await axios.get(`${Url}stores/${id}`);
+        const { data } = await response;
+        setRestaurant(data.store);
+      } catch (error) {
+        console.error("Error fetching restaurant", error);
+      }
+    };
+    getProducts();
+    getRestaurant();
+  }, []);
+  const getProducts = useCallback(async () => {
+    try {
+      const response = await axios.get(`${Url}products/store/${id}`);
+      const { data } = await response;
+      setProducts(data.product);
+    } catch (error) {
+      console.error("Error fetching products", error);
+    }
+  }, [products]);
+
   return (
     <$.RestaurantContainer>
       <NavBar sticky="true" />
       <$.WrapperImage>
-        <$.Banner src={Image1} alt="banner restaurante" />
+        <$.Banner src={restaurant.banner} alt="banner restaurante" />
       </$.WrapperImage>
       <$.InfoContainer>
         <$.RestaurantName>
-          <h1>Mcdonald's - Vale Sul</h1>
+          <h1>{restaurant.storeName}</h1>
           <$.Rating>
             <$.Star> ☆☆☆☆☆ </$.Star>
             <$.RatingNumber>(4,7)</$.RatingNumber>
           </$.Rating>
-        <$.MoreButtons>
-          <$.ContactsButton type="button">Contato</$.ContactsButton>
-          <$.FavoritesButton type="button">Favoritos</$.FavoritesButton>
-        </$.MoreButtons>
+          <$.MoreButtons>
+            <$.ContactsButton type="button">Contato</$.ContactsButton>
+            <$.FavoritesButton type="button">Favoritos</$.FavoritesButton>
+          </$.MoreButtons>
         </$.RestaurantName>
         <$.RestaurantDistance>
           <$.DetailsItem>Lanches - 2,0 km</$.DetailsItem>
@@ -47,61 +75,19 @@ export default function RestaurantPage() {
         <$.PromotionsContainer>
           <$.PromotionTitle>Lanches</$.PromotionTitle>
           <$.PromotionList>
-            <$.PromotionItem>
-              <$.PromotionImage src={Image1} alt="promotion image" />
-              <$.PromotionInfo>
-                <$.PromotionName>McFlurry</$.PromotionName>
-                <$.PromotionDescription>
-                  McFlurry de chocolate com nozes
-                </$.PromotionDescription>
-                <$.PromotionPrice>R$ 15,90</$.PromotionPrice>
-              </$.PromotionInfo>
-              <$.Button2 type="button">Saiba mais</$.Button2>
-            </$.PromotionItem>
-            <$.PromotionItem>
-              <$.PromotionImage src={Image1} alt="promotion image" />
-              <$.PromotionInfo>
-                <$.PromotionName>Big Mac</$.PromotionName>
-                <$.PromotionDescription>
-                  Big Mac com queijo e bacon
-                </$.PromotionDescription>
-                <$.PromotionPrice>R$ 24,90</$.PromotionPrice>
-              </$.PromotionInfo>
-              <$.Button2 type="button">Saiba mais</$.Button2>
-            </$.PromotionItem>
-            <$.PromotionItem>
-              <$.PromotionImage src={Image1} alt="promotion image" />
-              <$.PromotionInfo>
-                <$.PromotionName>Batata frita</$.PromotionName>
-                <$.PromotionDescription>
-                  Batata frita grande
-                </$.PromotionDescription>
-                <$.PromotionPrice>R$ 12,90</$.PromotionPrice>
-              </$.PromotionInfo>
-              <$.Button2 type="button">Saiba mais</$.Button2>
-            </$.PromotionItem>
-            <$.PromotionItem>
-              <$.PromotionImage src={Image1} alt="promotion image" />
-              <$.PromotionInfo>
-                <$.PromotionName>Coca-Cola</$.PromotionName>
-                <$.PromotionDescription>
-                  Coca-Cola grande com gelo
-                </$.PromotionDescription>
-                <$.PromotionPrice>R$ 10,90</$.PromotionPrice>
-              </$.PromotionInfo>
-              <$.Button2 type="button">Saiba mais</$.Button2>
-            </$.PromotionItem>
-            <$.PromotionItem>
-              <$.PromotionImage src={Image1} alt="promotion image" />
-              <$.PromotionInfo>
-                <$.PromotionName>Casquinha</$.PromotionName>
-                <$.PromotionDescription>
-                  Casquinha de sorvete
-                </$.PromotionDescription>
-                <$.PromotionPrice>R$ 24,90</$.PromotionPrice>
-              </$.PromotionInfo>
-              <$.Button2 type="button">Saiba mais</$.Button2>
-            </$.PromotionItem>
+            {products.map((product) => (
+              <$.PromotionItem key={product.id}>
+                <$.PromotionImage src={product.photo} alt="promotion image" />
+                <$.PromotionInfo>
+                  <$.PromotionName>{product.name}</$.PromotionName>
+                  <$.PromotionDescription>
+                    {product.description}
+                  </$.PromotionDescription>
+                  <$.PromotionPrice>R$: {product.price}</$.PromotionPrice>
+                </$.PromotionInfo>
+                <$.Button2 type="button">Saiba mais</$.Button2>
+              </$.PromotionItem>
+            ))}
           </$.PromotionList>
         </$.PromotionsContainer>
       </$.InfoContainer>

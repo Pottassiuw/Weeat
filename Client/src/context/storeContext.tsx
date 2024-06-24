@@ -12,7 +12,7 @@ import type { Store, OnlyStore, OnlyAddress } from "../@types/Entity";
 import { TstoreLoginSchema } from "../lib/storeForms";
 import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
-
+import { Navigate } from "react-router-dom";
 type StoreContextProps = {
   store: Store;
   setStore: React.Dispatch<React.SetStateAction<Store>>;
@@ -31,7 +31,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const { isSignedIn, setIsSignedIn } = useAuth();
   const [store, setStore] = useState<Store>({} as Store);
   // ? chamar o token se precisar
-  console.log("store", store);
   const { setToken } = useAuth();
   const [isReady, setIsReady] = useState(false);
 
@@ -40,7 +39,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       const token = localStorage.getItem("token");
       const stores = localStorage.getItem("store");
       if (token && stores) {
-        console.log(stores);
         setToken(token);
         setStore(JSON.parse(stores));
         setIsSignedIn(true);
@@ -73,7 +71,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       const res = await axios.post(Url + "stores/register", data);
       if (res) {
         const responseData = await res.data;
-        console.log(responseData);
         localStorage.setItem("token", responseData.token);
         toast.success("Store Created!");
       }
@@ -88,19 +85,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     AddressData: Partial<OnlyAddress>
   ) => {
     try {
-      console.log("addressData", AddressData);
-      console.log("StoreData", StoreData);
       const storeId = store.id;
-      const resStoreData = await axios.put(
-        Url + `stores/${storeId}`,
-        StoreData
-      );
-      const resStoreAddress = await axios.put(
-        Url + `stores/address/${store.id}`,
-        AddressData
-      );
-      console.log(resStoreData);
-      console.log(resStoreAddress);
+      await axios.put(Url + `stores/${storeId}`, StoreData);
+      await axios.put(Url + `stores/address/${store.id}`, AddressData);
       toast.success("Atualização feita com sucesso!");
     } catch (error) {
       if (error instanceof Error) {
@@ -113,12 +100,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     if (!store) {
       return null;
     }
+
     setStore({});
     setToken("");
     localStorage.removeItem("store");
     localStorage.removeItem("token");
     setIsSignedIn(false);
     toast.info("Loja deslogada!");
+    return <Navigate to="/stores/login" />;
   };
 
   const value = useMemo(

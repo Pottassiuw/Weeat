@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "../../../context/userContext";
 
 export default function index() {
-  const { updateUser, user } = useUser();
+  const { updateUser, user, logoutUser } = useUser();
   const [userD, setUserD] = useState<TsignUpSchema | null>(null);
   const [shouldFetchUserData, setShouldFetchUserData] = useState(true);
   const {
@@ -94,6 +94,7 @@ export default function index() {
               Atualizar
             </S.DataButton>
           </S.DataButtonWrapper>
+          <S.LogouButton onClick={logoutUser}>Sair</S.LogouButton>
         </S.DataForm>
       </S.DataSection>
     </S.Container>

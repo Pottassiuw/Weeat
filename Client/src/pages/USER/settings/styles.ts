@@ -51,5 +51,20 @@ export const ErrorMessage = styled.p`
   font-size: 0.875rem;
   height: 4px;
 `;
-
+export const LogouButton = styled.button`
+  margin-top: 20px;
+  border: 2px solid #fe2c2c;
+  background-color: transparent;
+  border-radius: ${(p) => p.theme.border.button};
+  color: #fe2c2c;
+  font-weight: 500;
+  font-size: 12pt;
+  padding: 0.6rem;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  width: 20%;
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
+  }
+`;
 //-----------------User Settings------------------

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { User } from "lucide-react";
-import { ShoppingBasket, PackageSearch } from "lucide-react";
+import { ShoppingBasket, PackageSearch, Star } from "lucide-react";
 interface NavProps {
   sticky: string;
 }
@@ -115,6 +115,23 @@ export const ButtonUser = styled.button`
     color: ${({ theme }) => theme.colors.white};
     background-color: #fe2c2c;
   }
+`;
+export const ButtonFavorite = styled.button`
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
+  background-color: transparent;
+  border-radius: ${(p) => p.theme.border.button};
+  color: ${({ theme }) => theme.colors.secondary};
+  font-weight: 500;
+  font-size: 12pt;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.secondary};
+  }
+`;
+export const FavoriteIcon = styled(Star)`
+  margin-right: 5px;
 `;
 export const UserIcon = styled(User)`
   margin-right: 5px;

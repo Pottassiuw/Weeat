@@ -56,6 +56,13 @@ class ProductService {
     const products = await prisma.product.findMany();
     return products;
   }
+
+  async getProductsInStore(storeId: number): Promise<Product[]> {
+    const products = await prisma.product.findMany({
+      where: { storeId },
+    });
+    return products;
+  }
 }
 
 export default new ProductService();

@@ -2,7 +2,6 @@ import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { useUser } from "../../context/userContext";
 
 interface NavBarProps {
   sticky: string;
@@ -10,8 +9,7 @@ interface NavBarProps {
 
 export default function NavBar({ sticky }: NavBarProps) {
   const navigate = useNavigate();
-  const { isSignedIn, setIsSignedIn } = useAuth();
-  const { logoutUser } = useUser();
+  const { isSignedIn } = useAuth();
   const user = localStorage.getItem("user");
   const store = localStorage.getItem("store");
 
@@ -23,10 +21,8 @@ export default function NavBar({ sticky }: NavBarProps) {
     navigate("/users/dashboard");
   };
 
-  const handleLogout = () => {
-    logoutUser();
-    setIsSignedIn(false);
-    navigate("/");
+  const gotoFavorites = () => {
+    navigate("/users/favorites");
   };
 
   return (
@@ -42,11 +38,6 @@ export default function NavBar({ sticky }: NavBarProps) {
         <$.LinkItem>
           <$.Links to="/stores">Estabelecimentos</$.Links>
         </$.LinkItem>
-        {isSignedIn && user ? (
-          <$.LinkItem>
-            <$.Links to="/pages/favorites">Favorites</$.Links>
-          </$.LinkItem>
-        ) : null}
       </$.LinksWrapper>
       {isSignedIn && user ? (
         <$.ButtonsWrapper>
@@ -56,7 +47,10 @@ export default function NavBar({ sticky }: NavBarProps) {
               Usuário
             </$.ButtonUser>
           </$.Links>
-          <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>
+          <$.ButtonFavorite onClick={gotoFavorites}>
+            <$.FavoriteIcon />
+            Favorites
+          </$.ButtonFavorite>
         </$.ButtonsWrapper>
       ) : isSignedIn && store ? (
         <$.ButtonsWrapper>

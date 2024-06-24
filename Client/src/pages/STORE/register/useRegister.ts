@@ -150,7 +150,7 @@ export const useRegister = () => {
         };
         await registerStore(store);
         reset();
-        navigate("/stores/login")
+        navigate("/stores/login");
       }
     } catch (error) {
       console.error("Error registering store:", error);

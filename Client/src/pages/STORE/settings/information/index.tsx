@@ -3,7 +3,7 @@ import NavBar from "../../../../components/nav";
 import { flexCenter } from "../../../../styles/mixins";
 import { useStore } from "../../../../context/storeContext";
 const StoreDataPage = () => {
-  const { store } = useStore();
+  const { store, logoutStore } = useStore();
 
   return (
     <Container>
@@ -20,6 +20,7 @@ const StoreDataPage = () => {
           <InfoLabel>Email:</InfoLabel>
           <InfoValue>{store.email}</InfoValue>
           <InfoLabel>Address:</InfoLabel>
+          <Button onClick={logoutStore}>Logout!</Button>
         </InfoContainer>
       </MainContent>
     </Container>
@@ -83,20 +84,35 @@ const Banner = styled.img`
 
 const InfoContainer = styled.div`
   display: flex;
-  width: 30%;
+  width: 50%;
   flex-flow: column wrap;
-background-color: turquoise;
 `;
 
 const InfoLabel = styled.span`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.font.text};
   font-weight: bold;
   margin-right: 10px;
 `;
 
 const InfoValue = styled.span`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.font.text};
   color: #666;
 `;
+const Button = styled.button`
+  border: 2px solid #fe2c2c;
+  background-color: transparent;
+  border-radius: ${(p) => p.theme.border.button};
+  color: #fe2c2c;
+  font-weight: 500;
+  font-size: 12pt;
+  width: 100%;
+  padding: 1rem;
+  font-size: ${({ theme }) => theme.font.text};
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
 
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
+  }
+`;
 export default StoreDataPage;

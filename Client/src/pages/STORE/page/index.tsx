@@ -1,35 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "../../../components/Footer";
 import NavBar from "../../../components/nav";
 import * as $ from "./styles";
-import axios from "axios";
-import { Url } from "../../../helper/URL";
-import { useUser } from "../../../context/userContext";
-import { useAuth } from "../../../context/authContext";
-import type { Store } from "../../../@types/Entity";
-
+import { usePage } from "./usePage";
 export default function StorePage() {
-  const { user } = useUser();
-  const { token } = useAuth();
-  const [stores, setStores] = useState<Store[]>([]);
-
+  const {
+    token,
+    user,
+    getStores,
+    Allstores,
+    handleSearch,
+    filteredStores,
+    searchQuery,
+  } = usePage();
   useEffect(() => {
-    const getStores = async () => {
-      try {
-        if (user && token) {
-          const response = await axios.get(`${Url}stores`);
-          if (response.data && Array.isArray(response.data)) {
-            setStores(response.data);
-          } else {
-            console.error("Unexpected response data format:", response.data);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching stores:", error);
-      }
-    };
     getStores();
   }, [token, user]);
+
   return (
     <$.Container>
       <NavBar sticky="true" />
@@ -50,20 +37,50 @@ export default function StorePage() {
             </$.Greetings>
           </$.GreetingsWrapper>
 
+          {/*//!  */}
           <$.SearchWrapper>
             <$.SearchContentText>
               Procure por Estabelecimentos!
             </$.SearchContentText>
+
             <$.SearchContentWrapper>
               <$.SearchContentContainer>
                 <$.SearchIcon />
-                <$.SearchBar />
+                <$.SearchBar
+                  value={searchQuery}
+                  onChange={(event) => handleSearch(event.target.value)}
+                />
               </$.SearchContentContainer>
               <$.SearchContentButton>Pesquisar!</$.SearchContentButton>
             </$.SearchContentWrapper>
+            <$.SearchResultsWrapper>
+              {filteredStores.length > 0
+                ? filteredStores.map((store) => (
+                    <$.StoreCard key={store.id}>
+                      <$.StoreLogo src={store.logo} />
+                      <$.StoreInfo>
+                        <$.StoreName>{store.storeName}</$.StoreName>
+                        <$.StoreDescription>
+                          {store.description}
+                        </$.StoreDescription>
+                        <div>
+                          <$.StoreRating>estrelas</$.StoreRating>
+                          <$.StoreCategory>{store.category}</$.StoreCategory>
+                          <$.StoreLink to={`/stores/page/${store.id}`}>
+                            <$.StoreLinkButton>Ver Loja</$.StoreLinkButton>
+                          </$.StoreLink>
+                        </div>
+                      </$.StoreInfo>
+                    </$.StoreCard>
+                  ))
+                : searchQuery.trim() !== "" && (
+                    <$.NoStoresMessage>
+                      Nenhum resultado encontrado.
+                    </$.NoStoresMessage>
+                  )}
+            </$.SearchResultsWrapper>
           </$.SearchWrapper>
-
-          <$.CategoryWrapper></$.CategoryWrapper>
+          {/*//! */}
         </$.CategoriesWrapper>
         <$.StoresCategoryWrapper>
           <$.StoresCategoryButton>Lanchonete</$.StoresCategoryButton>
@@ -137,7 +154,7 @@ export default function StorePage() {
           </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
-          {stores.map((store) => (
+          {Allstores.map((store) => (
             <$.StoresCard key={store.id}>
               <$.StoresCardLogoWrapper>
                 <$.StoresCardLogo
@@ -162,7 +179,7 @@ export default function StorePage() {
           </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
-          {stores.map((store) => (
+          {Allstores.map((store) => (
             <$.StoresCard key={store.id}>
               <$.StoresCardLogoWrapper>
                 <$.StoresCardLogo

@@ -5,7 +5,6 @@ import Input from "../../../../components/input/styles";
 import InputWithMask from "../../../../components/MaskInput/styled";
 import ErrorMessage from "../../../../components/errorMessage/styles";
 import SelectCategory from "../../../../components/Category/styles";
-import Sidebar from "../../../../components/sideBar";
 
 export default function updateStore() {
   const {
@@ -23,7 +22,6 @@ export default function updateStore() {
     <$.Section>
       <NavBar sticky="true" />
       <$.Container>
-        <Sidebar />
         <$.Form onSubmit={handleSubmit(handleUpdate)}>
           {currentStep === 0 && (
             <>

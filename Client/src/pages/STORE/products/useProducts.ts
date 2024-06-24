@@ -27,13 +27,13 @@ export const useProduct = () => {
       name: "",
       description: "",
       photo: "",
-      price: 0,
     },
   });
   const image = watch("photo");
   const submitImage = async (image: any) => {
     try {
-      const imageRef = ref(storage, `Products/${image.name}`);
+      console.log("image", image);
+      const imageRef = ref(storage, `Products/${image[0].name}`);
       await uploadBytes(imageRef, image);
       const imageUrl = await getDownloadURL(imageRef);
       console.log(imageUrl);
