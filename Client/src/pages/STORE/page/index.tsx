@@ -3,6 +3,7 @@ import Footer from "../../../components/Footer";
 import NavBar from "../../../components/nav";
 import * as $ from "./styles";
 import { usePage } from "./usePage";
+import { useNavigate } from "react-router-dom";
 export default function StorePage() {
   const {
     token,
@@ -12,10 +13,12 @@ export default function StorePage() {
     handleSearch,
     filteredStores,
     searchQuery,
+    gotoStorePage,
   } = usePage();
   useEffect(() => {
     getStores();
   }, [token, user]);
+  const navigate = useNavigate();
 
   return (
     <$.Container>
@@ -83,11 +86,41 @@ export default function StorePage() {
           {/*//! */}
         </$.CategoriesWrapper>
         <$.StoresCategoryWrapper>
-          <$.StoresCategoryButton>Lanchonete</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Pizzaria</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Japonês</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Árabe</$.StoresCategoryButton>
-          <$.StoresCategoryButton>Açaíteria</$.StoresCategoryButton>
+          <$.StoresCategoryButton
+            onClick={() => {
+              navigate("category/Lanchonete");
+            }}
+          >
+            Lanchonete
+          </$.StoresCategoryButton>
+          <$.StoresCategoryButton
+            onClick={() => {
+              navigate("category/Pizzaria");
+            }}
+          >
+            Pizzaria
+          </$.StoresCategoryButton>
+          <$.StoresCategoryButton
+            onClick={() => {
+              navigate("category/restaurantejapones");
+            }}
+          >
+            Japonês
+          </$.StoresCategoryButton>
+          <$.StoresCategoryButton
+            onClick={() => {
+              navigate("category/restaurantearabe");
+            }}
+          >
+            Árabe
+          </$.StoresCategoryButton>
+          <$.StoresCategoryButton
+            onClick={() => {
+              navigate("category/Sobremesas");
+            }}
+          >
+            Sobremesas
+          </$.StoresCategoryButton>
         </$.StoresCategoryWrapper>
       </$.CategoriesSection>
 
@@ -155,7 +188,12 @@ export default function StorePage() {
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
           {Allstores.map((store) => (
-            <$.StoresCard key={store.id}>
+            <$.StoresCard
+              key={store.id}
+              onClick={() => {
+                if (store.id !== undefined) gotoStorePage(store.id!);
+              }}
+            >
               <$.StoresCardLogoWrapper>
                 <$.StoresCardLogo
                   src={store.logo || "#"}
@@ -180,7 +218,12 @@ export default function StorePage() {
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
           {Allstores.map((store) => (
-            <$.StoresCard key={store.id}>
+            <$.StoresCard
+              key={store.id}
+              onClick={() => {
+                if (store.id !== undefined) gotoStorePage(store.id!);
+              }}
+            >
               <$.StoresCardLogoWrapper>
                 <$.StoresCardLogo
                   src={store.logo || "#"}

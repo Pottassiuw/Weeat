@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface FavoriteItemProps {
@@ -18,7 +19,7 @@ export const Container = styled.div`
 `;
 
 export const FavoritesTitle = styled.h1`
-  font-size: 24px;
+  font-size: ${({ theme }) => theme.font.title};
   font-weight: bold;
   margin-bottom: 20px;
   display: flex;
@@ -45,8 +46,8 @@ export const FavoriteItem = styled.button<FavoriteItemProps>`
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  color: ${(props) => (props.active? "#ffcc00" : "#000")};
-  border-bottom: ${(props) => (props.active? "3px solid #ffcc00" : "none")};
+  color: ${(props) => (props.active ? "#ffcc00" : "#000")};
+  border-bottom: ${(props) => (props.active ? "3px solid #ffcc00" : "none")};
 `;
 
 export const Checkbox = styled.input<CheckboxProps>`
@@ -105,24 +106,30 @@ export const FavoriteDescription = styled.p`
   margin-bottom: 5px;
 `;
 
-export const FavoriteRating = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 14px;
+export const FavoriteCategory = styled.p`
+  font-size: ${({ theme }) => theme.font.text};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const FavoriteButton = styled.button`
-  background-color: #ffcc00;
-  border: none;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px;
-  color: #fff;
-`;
+  border: 2px solid #fe2c2c;
+  background-color: transparent;
+  border-radius: ${(p) => p.theme.border.button};
+  color: #fe2c2c;
+  font-weight: 500;
+  padding: 0.6rem;
+  width: 20%;
+  color: #fe2c2c;
+  font-size: 12pt;
+  margin: 0 1rem 0 0;
+  transition: background-color 0.25s ease-in-out, color 0.15s ease-in-out;
 
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
+  }
+`;
+export const FavoriteLink = styled(Link)``;
 export const FavoriteDisclaimer = styled.p`
   font-size: 12px;
   color: #666;

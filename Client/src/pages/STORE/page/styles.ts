@@ -7,6 +7,7 @@ import {
   TicketPercent,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { flexCenter } from "../../../styles/mixins";
 
 export const Container = styled.div`
   display: flex;
@@ -181,11 +182,8 @@ export const StoreCategory = styled.p`
 
 export const StoreLink = styled(Link)`
   text-decoration: none;
-  color: #337ab7;
+  color: ${({ theme }) => theme.colors.primary};
   transition: color 0.2s ease;
-  &:hover {
-    color: #23527c;
-  }
 `;
 export const StoreLinkButton = styled.button`
   border: 2px solid #fe2c2c;
@@ -400,6 +398,37 @@ export const StoresCard = styled.div`
   height: 200px;
   border-radius: 12px;
   margin: 2rem auto 0 0;
+  overflow: hidden;
+  position: relative;
+  transition: 200ms ease;
+
+  &:hover {
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+  }
+  &::after {
+    content: "Ver Estabelecimento";
+    border-radius: ${({ theme }) => theme.border.button};
+    ${flexCenter}
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    height: 0;
+    backdrop-filter: blur(5px);
+    font-weight: bold;
+    transform: translateX(-50%);
+    color: transparent;
+    text-align: center;
+    transition: 200ms ease-in-out;
+    background-color: #fff;
+    opacity: 0.9;
+  }
+  &:hover::after {
+    height: 70%;
+    transform: translateX(-50%);
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 export const StoresCardLogoWrapper = styled.div`
   display: flex;

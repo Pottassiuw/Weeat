@@ -18,6 +18,7 @@ import UpdateStore from "./pages/store/settings/update";
 import StoreData from "./pages/store/settings/information";
 import ProductsRegister from "./pages/store/products";
 import ProductsPage from "./pages/store/settings/products";
+import StoreCategoryPage from "./pages/store/page/category";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
           <StoreProtected>
             <StoreSettings />
           </StoreProtected>
+        ),
+      },
+      {
+        path: "stores/category/:category",
+        element: (
+          <TokenProtected>
+            <StoreCategoryPage />
+          </TokenProtected>
         ),
       },
       {

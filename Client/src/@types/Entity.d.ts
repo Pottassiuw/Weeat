@@ -58,4 +58,11 @@ export type Product = {
   storeId?: number;
 };
 
-// export interface UserAddress {}
+export type Favorite = {
+  id?: number;
+  userId: number;
+  storeId: number;
+  createdAt: string;
+  updatedAt: string;
+  store: OnlyStore;
+};

@@ -4,10 +4,12 @@ import { useAuth } from "../../../context/authContext";
 import type { Store } from "../../../@types/Entity";
 import { Url } from "../../../helper/URL";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const usePage = () => {
   const { user } = useUser();
   const { token } = useAuth();
+  const navigate = useNavigate();
   const [Allstores, setAllStores] = useState<Store[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredStores, setFilteredStores] = useState(Allstores);
@@ -45,6 +47,12 @@ export const usePage = () => {
       console.error("Error fetching stores:", error);
     }
   };
+
+  const gotoStorePage = (storeId: number) => {
+    if (storeId) {
+      navigate("/stores/page/" + storeId);
+    }
+  };
   return {
     getStores,
     token,
@@ -53,5 +61,6 @@ export const usePage = () => {
     filteredStores,
     handleSearch,
     searchQuery,
+    gotoStorePage,
   };
 };
