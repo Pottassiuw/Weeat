@@ -78,6 +78,7 @@ const StoreName = styled.h1`
 `;
 
 const Banner = styled.img`
+  border-radius: ${({ theme }) => theme.border.button};
   object-fit: cover;
   margin-bottom: 20px;
 `;

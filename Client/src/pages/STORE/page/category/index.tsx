@@ -60,7 +60,7 @@ const Container = styled.div`
 `;
 
 const CategoryTitle = styled.h1`
-  font-size: 24px;
+  font-size: 19pt;
   font-weight: bold;
   margin-bottom: 20px;
   display: flex;
@@ -102,9 +102,11 @@ const StoresCard = styled.div`
     opacity: 0.9;
   }
   &:hover::after {
-    height: 70%;
+    height: 45%;
     transform: translateX(-50%);
     color: ${({ theme }) => theme.colors.primary};
+    font-size: 14pt;
+    font-weight: 600;
   }
 `;
 const CategoryList = styled.div`

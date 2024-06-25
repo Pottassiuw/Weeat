@@ -191,8 +191,15 @@ export const LabelFile = styled.label`
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;
+
+export const AcceptedFileText = styled.div `
+  margin-top: 20px;
+
+`;
+
 export const InputFile = styled.input`
   display: none;
+
 `;
 
 export const FileInputWrapper = styled.div`
@@ -201,8 +208,10 @@ export const FileInputWrapper = styled.div`
 
   ${InputWrapper} {
     p {
-      font-size: ${({ theme }) => theme.font.text};
       padding-bottom: 1rem;
+      font-size: 13pt;
+      color: default;
+      font-weight: 600;
     }
     width: auto;
     &:nth-child(2) {
@@ -243,4 +252,9 @@ export const ArrowLeftIcon = styled(ArrowLeft)`
 export const ArrowRightIcon = styled(ArrowRight)`
   width: 100%;
   height: 100%;
+`;
+
+export const NumberInput = styled.textarea`
+
+
 `;

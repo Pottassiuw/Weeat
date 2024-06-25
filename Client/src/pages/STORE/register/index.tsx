@@ -3,6 +3,7 @@ import NavBar from "../../../components/nav";
 import Input from "../../../components/input/styles";
 import InputWithMask from "../../../components/MaskInput/styled";
 import ErrorMessage from "../../../components/errorMessage/styles";
+import ErrorMessage2 from "../../../components/errorMessage/styles";
 import { useRegister } from "./useRegister";
 import SelectCategory from "../../../components/Category/styles";
 export default function Register() {
@@ -253,10 +254,19 @@ export default function Register() {
                 </$.Label>
                 <SelectCategory {...register("storeInfo.contact")}>
                   <option value="Whatsapp">Whatsapp</option>
-                  <option value="Instagram">Instagram</option>
-                  <option value="Facebook">facebook</option>
-                  <option value="Telegram">Telegram</option>
                 </SelectCategory>
+              </$.InputWrapper>
+              <$.InputWrapper>
+              <$.Label>
+                Insira o número comercial da sua loja
+              </$.Label>
+              <$.NumberInput
+                {...register("information.number")}
+                placeholder="Número comercial"
+                type="text"
+              >
+                
+              </$.NumberInput>
               </$.InputWrapper>
               <h1>Imagens</h1>
               <$.FileInputWrapper>
@@ -270,9 +280,11 @@ export default function Register() {
                       accept="image/*"
                     />
                   </$.LabelFile>
-                  {logo && <p>Uploaded logo: {logo[0].name}</p>}
+                  <$.AcceptedFileText>
+                  {logo && <p>Sua logo foi inserida com sucesso!</p>}
+                  </$.AcceptedFileText>
                   {errors.storeInfo?.logo?.message && (
-                    <ErrorMessage>{`${errors.storeInfo.logo.message}`}</ErrorMessage>
+                    <ErrorMessage2><p>O estabelecimento precisa de uma logo!</p></ErrorMessage2>
                   )}
                 </$.InputWrapper>
                 <$.InputWrapper>
@@ -285,9 +297,11 @@ export default function Register() {
                       accept="image/*"
                     />
                   </$.LabelFile>
-                  {banner && <p>Uploaded banner: {banner[0].name}</p>}
+                  <$.AcceptedFileText>
+                  {banner && <p>Seu banner foi inserido com sucesso!</p>}
+                  </$.AcceptedFileText>
                   {errors.storeInfo?.banner?.message && (
-                    <ErrorMessage>{`${errors.storeInfo.banner.message}`}</ErrorMessage>
+                    <ErrorMessage2><p>O estabelecimento precisa de um banner!</p></ErrorMessage2>
                   )}
                 </$.InputWrapper>
               </$.FileInputWrapper>
