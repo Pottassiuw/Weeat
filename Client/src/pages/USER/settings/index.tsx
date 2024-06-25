@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "../../../context/userContext";
 
 export default function index() {
-  const { updateUser, user } = useUser();
+  const { updateUser, user, logoutUser } = useUser();
   const [userD, setUserD] = useState<TsignUpSchema | null>(null);
   const [shouldFetchUserData, setShouldFetchUserData] = useState(true);
   const {
@@ -63,36 +63,28 @@ export default function index() {
           <S.DataTitle>Dados do usuário</S.DataTitle>
           <S.DataInputWrapper>
             <S.DataLabel>Nome</S.DataLabel>
-            <Input {...register("name")} has_error={!!errors.name} />
+            <Input {...register("name")} />
             {errors?.name && (
               <S.ErrorMessage>{`${errors.name?.message}`}</S.ErrorMessage>
             )}
           </S.DataInputWrapper>
           <S.DataInputWrapper>
             <S.DataLabel>Email</S.DataLabel>
-            <Input {...register("email")} has_error={!!errors.email} />
+            <Input {...register("email")} />
             {errors?.email && (
               <S.ErrorMessage>{`${errors.email?.message}`}</S.ErrorMessage>
             )}
           </S.DataInputWrapper>
           <S.DataInputWrapper>
             <S.DataLabel>Senha</S.DataLabel>
-            <Input
-              type="password"
-              {...register("password")}
-              has_error={!!errors.password}
-            />
+            <Input type="password" {...register("password")} />
             {errors?.password && (
               <S.ErrorMessage>{`${errors.password?.message}`}</S.ErrorMessage>
             )}
           </S.DataInputWrapper>
           <S.DataInputWrapper>
             <S.DataLabel>Confirmar Senha:</S.DataLabel>
-            <Input
-              type="password"
-              {...register("confirmPassword")}
-              has_error={!!errors.confirmPassword}
-            />
+            <Input type="password" {...register("confirmPassword")} />
             {errors?.confirmPassword && (
               <S.ErrorMessage>{`${errors.confirmPassword?.message}`}</S.ErrorMessage>
             )}
@@ -102,6 +94,7 @@ export default function index() {
               Atualizar
             </S.DataButton>
           </S.DataButtonWrapper>
+          <S.LogouButton onClick={logoutUser}>Sair</S.LogouButton>
         </S.DataForm>
       </S.DataSection>
     </S.Container>

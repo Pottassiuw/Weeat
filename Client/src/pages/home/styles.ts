@@ -47,19 +47,20 @@ export const HeroButtonLink = styled(Link)`
   width: 100%;
 `
 export const HeroButton = styled.button`
+  border: 3px solid #fe2c2c;
   width: 40%;
   margin-top: 2rem;
-  border: none;
   padding: 1.3rem;
-  background: #eb4034;
-  color: white;
+  background: transparent;
+  color: #fe2c2c;
   border-radius: ${(p) => p.theme.border.button};
   font-size: 17pt;
   transition: 250ms all ease;
   cursor: pointer;
 
   &:hover {
-    scale: 0.95;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
   }
 `;
 
@@ -128,7 +129,7 @@ export const BenefitContentWrapper = styled.div`
   width: 80%;
   padding-left: 13%;
   &:nth-child(2) {
-    justify-content: end;
+    text-align: end;
     padding-right: 13%;
   }
 
@@ -145,6 +146,10 @@ export const BenefitText = styled.h1`
   font-size: 22pt;
 `;
 
+export const BenefitDecoration = styled.p`
+  color: #FB3232;
+`;
+
 // Testimonials Section
 export const TestimonialsSection = styled.section`
   display: flex;
@@ -155,7 +160,6 @@ export const TestimonialsSection = styled.section`
 export const TestimonialTitle = styled.h1`
   text-align: center;
   color: #eb4034;
-  margin-bottom: 5%;
 `;
 export const TestimonialWrapper = styled.div`
   display: flex;
@@ -186,6 +190,7 @@ export const TestimonialCard = styled.div`
 `;
 export const TestimonialCardText = styled.p`
   font-weight: 500;
+  padding: 20px;
 `;
 export const TestimonialUsersWrapper = styled.div`
   display: flex;
@@ -230,15 +235,18 @@ export const FeaturesWrapper = styled.div`
 export const FeaturesContentWrapper = styled.div`
   display: flex;
   border-radius: 1rem;
-  background-color: #fff;
+  background-color: #FB3232;
   margin: 25px 40px;
   padding: 1rem;
   width: 40%;
   align-items: center;
+  opacity: 0.97;
+  justify-content: center;
 `;
 export const FeaturesContent = styled.div``;
 export const FeatureIcon = styled.img``;
 export const FeaturesText = styled.h1`
+  color: #fff;
   font-size: 18pt;
 `;
 
@@ -267,10 +275,27 @@ export const FaqDetails = styled.details`
   width: 80%;
 `;
 export const FaqSummary = styled.summary`
-  background-color: #fff;
+  background-color: #f2f5f7;
   margin: 10px 0px;
   padding: 20px 10px;
-  border-radius: 6px;
+  border-radius: 15px;
+  font-size: 14pt;
+  font-weight: bold;
 `;
-export const FaqSummaryContent = styled.div``;
-export const FaqSummaryText = styled.p``;
+
+export const TestimonialCardTitle = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: inline;
+  font-size: 20pt;
+  color: #ffcc00;
+  font-weight: bolder;
+`;
+export const FaqSummaryContent = styled.div`
+  `;
+
+
+export const FaqSummaryText = styled.p`
+  font-size: 13pt;
+  font-weight: medium;
+`;

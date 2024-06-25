@@ -6,7 +6,7 @@ interface ProductData {
   name: string;
   description: string;
   price: number;
-  photo?: string | null;
+  photo: string | null;
   averageRating?: number;
   storeId: number;
 }
@@ -15,8 +15,11 @@ class ProductService {
   async createProduct(productData: ProductData): Promise<Product> {
     const product = await prisma.product.create({
       data: {
-        ...productData,
-        averageRating: productData.averageRating || 0,
+        name: productData.name,
+        description: productData.description,
+        price: productData.price,
+        photo: productData.photo,
+        storeId: productData.storeId,
       },
     });
     return product;
@@ -51,6 +54,13 @@ class ProductService {
 
   async getAllProducts(): Promise<Product[]> {
     const products = await prisma.product.findMany();
+    return products;
+  }
+
+  async getProductsInStore(storeId: number): Promise<Product[]> {
+    const products = await prisma.product.findMany({
+      where: { storeId },
+    });
     return products;
   }
 }

@@ -5,10 +5,10 @@ import productService from "../services/productService";
 const isError = (error: unknown): error is Error => {
   return error instanceof Error;
 };
-
 export default class ProductController {
   async create(req: Request, res: Response) {
     const body = req.body;
+    console.log(body);
     try {
       const product = await ProductService.createProduct(body);
       res.status(201).json({ product });
@@ -55,6 +55,16 @@ export default class ProductController {
   async getAll(req: Request, res: Response) {
     try {
       const product = await productService.getAllProducts();
+      res.status(201).json({ product });
+    } catch (error) {
+      const message = isError(error) ? error.message : "Unknown error";
+      res.status(500).json({ message });
+    }
+  }
+  async getInStore(req: Request, res: Response) {
+    const storeId = parseInt(req.params.storeId);
+    try {
+      const product = await productService.getProductsInStore(storeId);
       res.status(201).json({ product });
     } catch (error) {
       const message = isError(error) ? error.message : "Unknown error";

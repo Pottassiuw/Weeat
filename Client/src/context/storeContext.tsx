@@ -6,23 +6,22 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { URL } from "../helper/URL";
+import { Url } from "../helper/URL";
 import axios from "axios";
-import type { Store } from "../@types/Entity";
-import {
-  TStoreRegisterSchema,
-  TstoreLoginSchema,
-  TStoreAdressSchema,
-} from "../lib/storeForms";
+import type { Store, OnlyStore, OnlyAddress } from "../@types/Entity";
+import { TstoreLoginSchema } from "../lib/storeForms";
 import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
-
+import { Navigate } from "react-router-dom";
 type StoreContextProps = {
-  store: Partial<Store>;
-  setStore: React.Dispatch<React.SetStateAction<Partial<Store>>>;
+  store: Store;
+  setStore: React.Dispatch<React.SetStateAction<Store>>;
   loginStore: (data: TstoreLoginSchema) => void;
-  registerStore: (data: TStoreRegisterSchema) => void;
-  updateStore: (data: TStoreRegisterSchema) => void;
+  registerStore: (data: Store) => void;
+  updateStore: (
+    StoreData: Partial<OnlyStore>,
+    AddressData: Partial<OnlyAddress>
+  ) => void;
   logoutStore: () => void;
 };
 
@@ -30,25 +29,28 @@ const StoreContext = createContext<StoreContextProps>({} as StoreContextProps);
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const { isSignedIn, setIsSignedIn } = useAuth();
-  const [store, setStore] = useState<Partial<Store>>({});
+  const [store, setStore] = useState<Store>({} as Store);
   // ? chamar o token se precisar
   const { setToken } = useAuth();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const store = localStorage.getItem("store");
-    const token = localStorage.getItem("token");
-    if (store && token) {
-      setStore(JSON.parse(store));
-      setToken(token);
-      setIsSignedIn(true);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    }
+    const setStoreData = async () => {
+      const token = localStorage.getItem("token");
+      const stores = localStorage.getItem("store");
+      if (token && stores) {
+        setToken(token);
+        setStore(JSON.parse(stores));
+        setIsSignedIn(true);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      }
+    };
+    setStoreData();
     setIsReady(true);
   }, []);
   const loginStore = async (data: TstoreLoginSchema) => {
     try {
-      const res = await axios.post(URL + "stores/login", data);
+      const res = await axios.post(Url + "stores/login", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -60,19 +62,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         setIsReady(true);
       }
     } catch (error: any) {
-      toast.error("Login error:", error);
+      toast.error("Erro de login:");
       throw error;
     }
   };
-  const registerStore = async (data: TStoreRegisterSchema) => {
+  const registerStore = async (data: Store) => {
     try {
-      const res = await axios.post(URL + "stores/register", data);
+      const res = await axios.post(Url + "stores/register", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
-        localStorage.setItem("store", JSON.stringify(responseData.store));
-        setToken(responseData.token!);
-        setStore(responseData.store);
         toast.success("Store Created!");
       }
     } catch (error) {
@@ -81,42 +80,34 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
     }
   };
-  const updateStore = async (data: TStoreRegisterSchema) => {
+  const updateStore = async (
+    StoreData: Partial<OnlyStore>,
+    AddressData: Partial<OnlyAddress>
+  ) => {
     try {
-      const store = localStorage.getItem("store");
-      if (!store) {
-        return null;
+      const storeId = store.id;
+      await axios.put(Url + `stores/${storeId}`, StoreData);
+      await axios.put(Url + `stores/address/${store.id}`, AddressData);
+      toast.success("Atualização feita com sucesso!");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Error updating store:", error.message);
+        toast.error("Ocorreu um erro ao tentar fazer o registro!");
       }
-      const storeObj = JSON.parse(store);
-      const storeId = storeObj.id;
-      const { confirmPassword: _, ...datas } = data;
-      const res = await axios.put(URL + "stores/update/" + storeId, datas);
-      if (res) {
-        const responseData = await res.data;
-        const jsonData = JSON.stringify(responseData);
-        console.log(jsonData);
-        if (jsonData) {
-          localStorage.setItem("store", jsonData);
-          setStore(JSON.parse(jsonData));
-          console.log(JSON.parse(jsonData));
-          toast.success("Store updated!");
-        }
-      }
-    } catch (error: any) {
-      toast.warning("Update error: ", error);
-      throw error;
     }
   };
   const logoutStore = () => {
     if (!store) {
       return null;
     }
+
     setStore({});
     setToken("");
     localStorage.removeItem("store");
     localStorage.removeItem("token");
     setIsSignedIn(false);
     toast.info("Loja deslogada!");
+    return <Navigate to="/stores/login" />;
   };
 
   const value = useMemo(

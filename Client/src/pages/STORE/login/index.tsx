@@ -44,7 +44,6 @@ export default function LoginEstablishment() {
               <$.Label>Email</$.Label>
               <Input
                 {...register("email")}
-                has_error={!!errors.email}
                 type="text"
                 placeholder="Ex: email@email.email"
                 autoComplete="email"
@@ -58,7 +57,6 @@ export default function LoginEstablishment() {
               <$.InputIconWrapper>
                 <Input
                   {...register("password")}
-                  has_error={!!errors.password}
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Ex: 12345678"
                   autoComplete="current-password webauthn"

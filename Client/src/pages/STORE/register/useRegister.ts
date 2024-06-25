@@ -1,11 +1,14 @@
 import { z } from "zod";
 import { storeRegisterSchema } from "../../../lib/storeForms";
 import { useState, useEffect, useCallback } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../firebase";
+import { toast } from "react-toastify";
+import { useStore } from "../../../context/storeContext";
 type Inputs = z.infer<typeof storeRegisterSchema>;
 type FieldName = keyof Inputs;
 type CepDataFieldProps = {
@@ -43,18 +46,22 @@ const steps = [
     name: "Registro Final",
     fields: [
       "storeInfo.storeName",
-      "storeInfo.storeDescription",
+      "storeInfo.description",
       "storeInfo.category",
+      "storeInfo.banner",
+      "storeInfo.logo",
+      "storeInfo.contact",
     ],
   },
 ];
 export const useRegister = () => {
   const navigate = useNavigate();
+  const { registerStore } = useStore();
   const {
     register,
     handleSubmit,
     trigger,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
     watch,
     setValue,
@@ -80,21 +87,88 @@ export const useRegister = () => {
         estado: "",
       },
       storeInfo: {
+        contact: "",
         storeName: "",
         description: "",
         category: "",
+        logo: "",
+        banner: "",
       },
     },
   });
   const cep = watch("address.cep");
-  const [currentStep, setCurrentStep] = useState(2);
-  const handleData = async (data: Inputs) => {};
+  const logo = watch("storeInfo.logo");
+  const banner = watch("storeInfo.banner");
+  const [currentStep, setCurrentStep] = useState(0);
+  const submitImages = async (logo: any, banner: any) => {
+    const logoFile = logo[0];
+    const bannerFile = banner[0];
+    console.log(logoFile, bannerFile);
+    try {
+      const logoRef = ref(storage, `Logos/${logoFile.name}`);
+      const bannerRef = ref(storage, `Banners/${bannerFile.name}`);
+      await uploadBytes(logoRef, logoFile);
+      await uploadBytes(bannerRef, bannerFile);
+      const logoUrl = await getDownloadURL(logoRef);
+      const bannerUrl = await getDownloadURL(bannerRef);
+      console.log(logo, banner);
+      return { logoUrl, bannerUrl };
+    } catch (error) {
+      console.error("Error uploading images:", error);
+    }
+  };
+  // ! Enviar para o backend
+  const handleData: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const { information, storeInfo, address } = data;
+      const logo = storeInfo.logo;
+      const banner = storeInfo.banner;
+      const images = await submitImages(logo, banner);
+      if (images) {
+        const logoUrl = images.logoUrl;
+        const bannerUrl = images.bannerUrl;
+        const store = {
+          name: information.name,
+          storeName: storeInfo.storeName,
+          storeNumber: information.numeroCell,
+          description: storeInfo.description,
+          email: information.email,
+          password: information.password,
+          contact: storeInfo.contact,
+          banner: bannerUrl,
+          logo: logoUrl,
+          category: storeInfo.category,
+          addresses: {
+            address: address.endereco,
+            zipCode: address.cep,
+            neighborhood: address.bairro,
+            city: address.cidade,
+            state: address.estado,
+            number: address.numero,
+            complement: address.complemento,
+          },
+        };
+        await registerStore(store);
+        reset();
+        navigate("/stores/login");
+      }
+    } catch (error) {
+      console.error("Error registering store:", error);
+      toast.error("Ocorreu um erro ao cadastrar a loja!");
+    }
+  };
+
   const next = async () => {
     const fields = steps[currentStep].fields;
     if (!fields) return;
-    const output = await trigger(fields as FieldName[], { shouldFocus: true });
+    const output = await trigger(fields as FieldName[], {
+      shouldFocus: true,
+    });
     if (!output) return;
     if (currentStep < steps.length - 1) {
+      if (currentStep === 2) {
+        await handleSubmit(handleData)();
+      }
       setCurrentStep((prevStep) => prevStep + 1);
     }
   };
@@ -139,7 +213,10 @@ export const useRegister = () => {
       handleFetchAddress(cep);
     }
   }, [handleFetchAddress, setValue, cep]);
+
   return {
+    logo,
+    banner,
     steps,
     register,
     errors,
@@ -147,6 +224,7 @@ export const useRegister = () => {
     handleSubmit,
     prev,
     next,
+    submitImages,
     currentStep,
   };
 };

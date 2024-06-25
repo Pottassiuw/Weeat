@@ -1,34 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "../../../components/Footer";
 import NavBar from "../../../components/nav";
 import * as $ from "./styles";
-import axios from "axios";
-import { URL } from "../../../helper/URL";
-import { useUser } from "../../../context/userContext";
-import type { Store } from "../../../@types/Entity";
-
+import { usePage } from "./usePage";
 export default function StorePage() {
-  const { user } = useUser();
-  const [stores, setStores] = useState<Store[]>([]);
-
+  const {
+    token,
+    user,
+    getStores,
+    Allstores,
+    handleSearch,
+    filteredStores,
+    searchQuery,
+  } = usePage();
   useEffect(() => {
-    const getStores = async () => {
-      try {
-        if (user) {
-          const response = await axios.get(`${URL}stores`);
-          if (response.data && Array.isArray(response.data)) {
-            setStores(response.data);
-          } else {
-            console.error("Unexpected response data format:", response.data);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching stores:", error);
-      }
-    };
     getStores();
-  }, [user]);
-  console.log(stores);
+  }, [token, user]);
+
   return (
     <$.Container>
       <NavBar sticky="true" />
@@ -49,20 +37,50 @@ export default function StorePage() {
             </$.Greetings>
           </$.GreetingsWrapper>
 
+          {/*//!  */}
           <$.SearchWrapper>
             <$.SearchContentText>
               Procure por Estabelecimentos!
             </$.SearchContentText>
+
             <$.SearchContentWrapper>
               <$.SearchContentContainer>
                 <$.SearchIcon />
-                <$.SearchBar />
+                <$.SearchBar
+                  value={searchQuery}
+                  onChange={(event) => handleSearch(event.target.value)}
+                />
               </$.SearchContentContainer>
               <$.SearchContentButton>Pesquisar!</$.SearchContentButton>
             </$.SearchContentWrapper>
+            <$.SearchResultsWrapper>
+              {filteredStores.length > 0
+                ? filteredStores.map((store) => (
+                    <$.StoreCard key={store.id}>
+                      <$.StoreLogo src={store.logo} />
+                      <$.StoreInfo>
+                        <$.StoreName>{store.storeName}</$.StoreName>
+                        <$.StoreDescription>
+                          {store.description}
+                        </$.StoreDescription>
+                        <div>
+                          <$.StoreRating>estrelas</$.StoreRating>
+                          <$.StoreCategory>{store.category}</$.StoreCategory>
+                          <$.StoreLink to={`/stores/page/${store.id}`}>
+                            <$.StoreLinkButton>Ver Loja</$.StoreLinkButton>
+                          </$.StoreLink>
+                        </div>
+                      </$.StoreInfo>
+                    </$.StoreCard>
+                  ))
+                : searchQuery.trim() !== "" && (
+                    <$.NoStoresMessage>
+                      Nenhum resultado encontrado.
+                    </$.NoStoresMessage>
+                  )}
+            </$.SearchResultsWrapper>
           </$.SearchWrapper>
-
-          <$.CategoryWrapper></$.CategoryWrapper>
+          {/*//! */}
         </$.CategoriesWrapper>
         <$.StoresCategoryWrapper>
           <$.StoresCategoryButton>Lanchonete</$.StoresCategoryButton>
@@ -77,7 +95,7 @@ export default function StorePage() {
 
       <$.DiscountSection>
         <$.DiscountTitleWrapper>
-          <$.DiscountTitle>Produtos com discontão!</$.DiscountTitle>
+          <$.DiscountTitle>Produtos com DESCONTÃO!</$.DiscountTitle>
           <$.DiscountTitleIcon />
         </$.DiscountTitleWrapper>
         <$.DiscountCardWrapper>
@@ -123,7 +141,7 @@ export default function StorePage() {
         </$.DiscountCardWrapper>
       </$.DiscountSection>
 
-      <$.Divisor>{/* STORES */}</$.Divisor>
+      <$.Divisor>{/* NEWSLETTER */}</$.Divisor>
 
       <$.StoresSection>
         <$.StoresTitleWrapper>
@@ -136,16 +154,19 @@ export default function StorePage() {
           </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
-          {stores.map((store) => (
+          {Allstores.map((store) => (
             <$.StoresCard key={store.id}>
               <$.StoresCardLogoWrapper>
-                <$.StoresCardLogo src={store.logo || "#"} alt={store.name} />
+                <$.StoresCardLogo
+                  src={store.logo || "#"}
+                  alt={`${store.storeName} Logo`}
+                />
               </$.StoresCardLogoWrapper>
               <$.StoresCardNameWrapper>
-                <$.StoresCardName>{store.name}</$.StoresCardName>
+                <$.StoresCardName>{store.storeName}</$.StoresCardName>
                 <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
               </$.StoresCardNameWrapper>
-            </$.StoresCard>
+            </$.StoresCard>          
           ))}
         </$.StoresCardWrapper>
         <$.StoresTitleWrapper>
@@ -158,20 +179,23 @@ export default function StorePage() {
           </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
-          {stores.map((store) => (
+          {Allstores.map((store) => (
             <$.StoresCard key={store.id}>
               <$.StoresCardLogoWrapper>
-                <$.StoresCardLogo src={store.logo || "#"} alt={store.name} />
+                <$.StoresCardLogo
+                  src={store.logo || "#"}
+                  alt={`${store.storeName} Logo`}
+                />
               </$.StoresCardLogoWrapper>
               <$.StoresCardNameWrapper>
-                <$.StoresCardName>{store.name}</$.StoresCardName>
+                <$.StoresCardName>{store.storeName}</$.StoresCardName>
                 <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
               </$.StoresCardNameWrapper>
             </$.StoresCard>
           ))}
         </$.StoresCardWrapper>
       </$.StoresSection>
-      <$.Divisor></$.Divisor>
+      <$.Divisor>{/* NEWSLETTER */}</$.Divisor>
       <Footer />
     </$.Container>
   );

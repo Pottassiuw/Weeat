@@ -1,13 +1,13 @@
-import * as $ from "./styles";
+import * as $ from "./styles.ts";
 import Image from "../../../assets/login_register.png";
 import { TloginSchema, loginSchema } from "../../../lib/userForms.ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { useUser } from "../../../context/userContext.tsx";
-import FormButton from "../../../components/FormButton";
+import FormButton from "../../../components/FormButton/index.tsx";
 import { useNavigate } from "react-router-dom";
-import Input from "../../../components/input/styles";
+import Input from "../../../components/input/styles.ts";
 import ErrorMessage from "../../../components/errorMessage/styles.ts";
 function Login() {
   const { loginUser } = useUser();
@@ -37,11 +37,7 @@ function Login() {
         <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
-            <Input
-              has_error={!!errors.email}
-              {...register("email")}
-              autoComplete="email"
-            />
+            <Input {...register("email")} autoComplete="email" />
             {errors.email && (
               <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
@@ -49,7 +45,6 @@ function Login() {
           <$.WrapperInput>
             <$.Label>Senha</$.Label>
             <Input
-              has_error={!!errors.password}
               {...register("password")}
               type="password"
               autoComplete="current-password"
@@ -63,7 +58,7 @@ function Login() {
           </FormButton>
           <$.RegisterText>
             Ainda não é cadastrado?{" "}
-            <$.Links to="/users/register">registre</$.Links>
+            <$.Links to="/users/register">Cadastre-se</$.Links>
           </$.RegisterText>
         </$.Form>
       </$.Wrapper>

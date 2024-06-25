@@ -5,13 +5,14 @@ import { toast } from "react-toastify";
 
 type ProtectedRouteProps = PropsWithChildren;
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
+export default function ProtectedUser({ children }: ProtectedRouteProps) {
   const { isSignedIn } = useAuth();
+  const user = localStorage.getItem("user");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isSignedIn) {
-      toast.error("Login Necessário");
+    if (!user) {
+      toast.error("Página reservada para usuários");
       navigate("/users/login", { replace: true });
     }
   }, [isSignedIn, navigate]);

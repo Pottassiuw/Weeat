@@ -6,14 +6,14 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { URL } from "../helper/URL";
+import { Url } from "../helper/URL";
 import axios from "axios";
 import type { User } from "../@types/Entity";
 import { TloginSchema, TsignUpSchema } from "../lib/userForms";
 import { toast } from "react-toastify";
 import { useAuth } from "./authContext";
 type UserContextProps = {
-  user?: User;
+  user: User;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
   updateUser: (data: TsignUpSchema) => void;
@@ -26,7 +26,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>({} as User);
   const { token, setToken, isSignedIn, setIsSignedIn } = useAuth();
   const [isReady, setIsReady] = useState(false);
-
   useEffect(() => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
@@ -34,14 +33,16 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setUser(JSON.parse(user));
       setToken(token);
       setIsSignedIn(true);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
     setIsReady(true);
   }, []);
+  useEffect(() => {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }, [token]);
 
   const loginUser = async (data: TloginSchema) => {
     try {
-      const res = await axios.post(URL + "users/login", data);
+      const res = await axios.post(Url + "users/login", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -54,7 +55,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       }
     } catch (error: any) {
       if (error instanceof Error) {
-        const message = error.stack;
+        const message = error.message;
         toast.error(`Login error: ${message}`);
         throw error;
       }
@@ -62,7 +63,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
   const registerUser = async (data: TsignUpSchema) => {
     try {
-      const res = await axios.post(URL + "users/register", data);
+      const res = await axios.post(Url + "users/register", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -85,7 +86,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       const userObj = JSON.parse(user);
       const userId = userObj.id;
       const { confirmPassword: _, ...datas } = data;
-      const res = await axios.put(URL + "users/update/" + userId, datas);
+      const res = await axios.put(Url + "users/update/" + userId, datas);
       if (res) {
         const responseData = await res.data;
         const jsonData = JSON.stringify(responseData);

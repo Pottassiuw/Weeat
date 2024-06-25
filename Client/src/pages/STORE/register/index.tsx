@@ -15,8 +15,9 @@ export default function Register() {
     prev,
     next,
     currentStep,
+    logo,
+    banner,
   } = useRegister();
-
   return (
     <$.Section>
       <NavBar sticky="true" />
@@ -107,10 +108,6 @@ export default function Register() {
                   <ErrorMessage>{`${errors.information.confirmPassword.message}`}</ErrorMessage>
                 )}
               </$.InputWrapper>
-              <$.ButtonWrapper>
-                <$.Button onClick={prev}>Voltar</$.Button>
-                <$.Button onClick={next}>Continuar</$.Button>
-              </$.ButtonWrapper>
             </>
           )}
           {currentStep === 1 && (
@@ -201,10 +198,6 @@ export default function Register() {
                   />
                 </$.InputWrapper>
               </$.InputContentWrapper>
-              <$.ButtonWrapper>
-                <$.Button onClick={prev}>Voltar</$.Button>
-                <$.Button onClick={next}>Continuar</$.Button>
-              </$.ButtonWrapper>
             </>
           )}
           {currentStep === 2 && (
@@ -220,6 +213,9 @@ export default function Register() {
                   type="text"
                   placeholder="Nome da loja"
                 />
+                {errors.storeInfo?.storeName?.message && (
+                  <ErrorMessage>{`${errors.storeInfo.storeName.message}`}</ErrorMessage>
+                )}
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>Descrição da loja!*</$.Label>
@@ -227,19 +223,39 @@ export default function Register() {
                   {...register("storeInfo.description")}
                   placeholder="Descrição..."
                 />
+                {errors.storeInfo?.description?.message && (
+                  <ErrorMessage>{`${errors.storeInfo.description.message}`}</ErrorMessage>
+                )}
               </$.InputWrapper>
               <$.InputWrapper>
                 <$.Label>
                   Insira a categoria do seu Estabelecimento*
                   <p>Importante!</p>
                 </$.Label>
-                <SelectCategory>
+                <SelectCategory {...register("storeInfo.category")}>
                   <option value="">...</option>
-                  <option value="">Lanchonete</option>
-                  <option value="">Restaurante Árabe</option>
-                  <option value="">Restaurante Japonês</option>
-                  <option value="">Sobremesas</option>
-                  <option value="">Pizzarial</option>
+                  <option value="Lanchonete">Lanchonete</option>
+                  <option value="Restaurante Árabe">Restaurante Árabe</option>
+                  <option value="Restaurante Japonês">
+                    Restaurante Japonês
+                  </option>
+                  <option value="Sobremesas">Sobremesas</option>
+                  <option value="Pizzaria">Pizzarial</option>
+                </SelectCategory>
+                {errors.storeInfo?.category?.message && (
+                  <ErrorMessage>{`${errors.storeInfo.category.message}`}</ErrorMessage>
+                )}
+              </$.InputWrapper>
+              <$.InputWrapper>
+                <$.Label>
+                  Insira o(s) contato(s) de seu estabelecimento*
+                  <p>Importante!</p>
+                </$.Label>
+                <SelectCategory {...register("storeInfo.contact")}>
+                  <option value="Whatsapp">Whatsapp</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Facebook">facebook</option>
+                  <option value="Telegram">Telegram</option>
                 </SelectCategory>
               </$.InputWrapper>
               <h1>Imagens</h1>
@@ -248,23 +264,43 @@ export default function Register() {
                   <p>Logo</p>
                   <$.LabelFile>
                     <$.CrossIcon />
-                    <$.InputFile type="file" accept="image/*" />
+                    <$.InputFile
+                      {...register("storeInfo.logo")}
+                      type="file"
+                      accept="image/*"
+                    />
                   </$.LabelFile>
+                  {logo && <p>Uploaded logo: {logo[0].name}</p>}
+                  {errors.storeInfo?.logo?.message && (
+                    <ErrorMessage>{`${errors.storeInfo.logo.message}`}</ErrorMessage>
+                  )}
                 </$.InputWrapper>
                 <$.InputWrapper>
                   <p>Banner</p>
                   <$.LabelFile>
                     <$.CrossIcon />
-                    <$.InputFile type="file" accept="image/*" />
+                    <$.InputFile
+                      {...register("storeInfo.banner")}
+                      type="file"
+                      accept="image/*"
+                    />
                   </$.LabelFile>
+                  {banner && <p>Uploaded banner: {banner[0].name}</p>}
+                  {errors.storeInfo?.banner?.message && (
+                    <ErrorMessage>{`${errors.storeInfo.banner.message}`}</ErrorMessage>
+                  )}
                 </$.InputWrapper>
               </$.FileInputWrapper>
-              <$.ButtonWrapper>
-                <$.Button onClick={prev}>Voltar</$.Button>
-                <$.Button onClick={next}>Continuar</$.Button>
-              </$.ButtonWrapper>
             </>
           )}
+          <$.ButtonWrapper>
+            <$.Button onClick={prev}>
+              <$.ArrowLeftIcon />
+            </$.Button>
+            <$.Button onClick={next}>
+              <$.ArrowRightIcon />
+            </$.Button>
+          </$.ButtonWrapper>
         </$.Form>
       </$.Container>
       <$.LinesContainer>

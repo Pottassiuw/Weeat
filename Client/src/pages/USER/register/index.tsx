@@ -1,4 +1,4 @@
-import * as $ from "./styles";
+import * as $ from "./styles.ts";
 import Image from "../../../assets/login_register.png";
 import { useForm } from "react-hook-form";
 import type { TsignUpSchema } from "../../../lib/userForms.ts";
@@ -6,7 +6,7 @@ import { signUpSchema } from "../../../lib/userForms.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { FormButton } from "../../../components/FormButton/styles.ts";
-import Input from "../../../components/input/styles";
+import Input from "../../../components/input/styles.ts";
 import ErrorMessage from "../../../components/errorMessage/styles.ts";
 import { useUser } from "../../../context/userContext.tsx";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="name">Usuário</$.Label>
             <Input
-              has_error={!!errors.name}
               id="name"
               {...register("name")}
               autoComplete="username"
@@ -56,7 +55,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="email">Email</$.Label>
             <Input
-              has_error={!!errors.email}
               id="email"
               {...register("email")}
               autoComplete="email"
@@ -68,7 +66,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="password">Senha</$.Label>
             <Input
-              has_error={!!errors.password}
               id="password"
               {...register("password")}
               type="password"
@@ -80,7 +77,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
             <Input
-              has_error={!!errors.confirmPassword}
               id="confirmPassword"
               {...register("confirmPassword")}
               type="password"
@@ -93,7 +89,7 @@ export default function Register() {
             {isSubmitting ? <p>...Loading</p> : <p>Cadastrar</p>}
           </FormButton>
           <$.RegisterText>
-            Já possuí uma conta? <$.Links to="/users/login">Logar</$.Links>
+            Já possuí uma conta? <$.Links to="/users/login">Entrar</$.Links>
           </$.RegisterText>
         </$.Form>
       </$.Wrapper>
