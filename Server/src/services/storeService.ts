@@ -16,6 +16,7 @@ type TStore = {
   banner: string;
   logo: string;
   category: string;
+  commercialNumber: string;
 };
 
 type AddressData = {
@@ -121,6 +122,7 @@ class StoreService {
         storeName: true,
         description: true,
         email: true,
+        commercialNumber: true,
         contact: true,
         banner: true,
         logo: true,
