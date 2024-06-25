@@ -1,4 +1,4 @@
-import { Theme } from "../@types/styled";
+import type { Theme } from "../@types/styled.d.ts";
 
 export default <Theme>{
   colors: {
@@ -9,7 +9,8 @@ export default <Theme>{
   },
   font: {
     text: "14pt",
-    subtitle: "15pt",
+    errorMessage: "11pt",
+    subtitle: "17pt",
     subtitleG: "26pt",
     title: "38pt",
     titleG: "45pt",

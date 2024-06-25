@@ -1,15 +1,16 @@
-import * as $ from "./styles";
+import * as $ from "./styles.ts";
 import Image from "../../../assets/login_register.png";
-import { TloginSchema } from "../../../@types/userform";
-import { loginSchema } from "../../../@types/userform";
+import { TloginSchema, loginSchema } from "../../../lib/userForms.ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
-import { useAuth } from "../../../context/authProvider.tsx";
-import FormButton from "../../../components/FormButton";
+import { useUser } from "../../../context/userContext.tsx";
+import FormButton from "../../../components/FormButton/index.tsx";
 import { useNavigate } from "react-router-dom";
+import Input from "../../../components/input/styles.ts";
+import ErrorMessage from "../../../components/errorMessage/styles.ts";
 function Login() {
-  const { loginUser } = useAuth();
+  const { loginUser } = useUser();
   const navigate = useNavigate();
   const {
     register,
@@ -36,25 +37,20 @@ function Login() {
         <$.Form onSubmit={handleSubmit(handleLogin)}>
           <$.WrapperInput>
             <$.Label>Email</$.Label>
-            <$.Input
-              hasError={!!errors.email}
-              {...register("email")}
-              autoComplete="email"
-            />
-            {errors?.email && (
-              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+            <Input {...register("email")} autoComplete="email" />
+            {errors.email && (
+              <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label>Senha</$.Label>
-            <$.Input
-              hasError={!!errors.password}
+            <Input
               {...register("password")}
               type="password"
               autoComplete="current-password"
             />
-            {errors?.password && (
-              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+            {errors.password && (
+              <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <FormButton disabled={isSubmitting}>
@@ -62,7 +58,7 @@ function Login() {
           </FormButton>
           <$.RegisterText>
             Ainda não é cadastrado?{" "}
-            <$.Links to="/users/register">registre</$.Links>
+            <$.Links to="/users/register">Cadastre-se</$.Links>
           </$.RegisterText>
         </$.Form>
       </$.Wrapper>

@@ -6,20 +6,23 @@ import {
   Sparkles,
   TicketPercent,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { flexCenter } from "../../../styles/mixins";
 
 export const Container = styled.div`
   display: flex;
   flex-flow: column wrap;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: max-content;
+  overflow: hidden;
 `;
 // --------------------Reusable----------------------------------
 export const Divisor = styled.div`
   width: 100%;
-  height: 150px;
+  height: 100px;
   background-color: #e8e8e8;
-  opacity: 0.7;
+  opacity: 1;
 `;
 export const SeeMore = styled.button``;
 // --------------------------------------------------------------
@@ -28,7 +31,6 @@ export const SeeMore = styled.button``;
 export const CategoriesSection = styled.section`
   display: flex;
   width: 100dvw;
-  height: 100dvh;
   flex-flow: column nowrap;
 `;
 export const WeeatTitleWrapper = styled.div`
@@ -54,8 +56,6 @@ export const SearchWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 20dvh;
-  background-color: #fff;
   padding: 3rem;
   border-radius: 10px;
   flex-flow: column nowrap;
@@ -74,12 +74,11 @@ export const SearchContentWrapper = styled.div`
 export const SearchContentContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  position: relative;
   border-radius: 0.6rem;
   border: 1px solid black;
   padding: 0.5rem;
   align-items: center;
-  width: 70%;
+  width: 100%;
 `;
 
 export const SearchIcon = styled(Search)`
@@ -89,20 +88,117 @@ export const SearchBar = styled.input`
   height: 100%;
   width: 100%;
   border: none;
-
   &:focus {
     outline: none;
   }
 `;
 export const SearchContentButton = styled.button`
   margin-left: 1rem;
+  border-color: #ff0000;
+  border-width: 2px;
   border-radius: 0.6rem;
-  border: 1px solid black;
-  background: black;
+  background-color: #fff;
   padding: 0.7rem;
-  color: white;
+  color: #ff0000;
   font-weight: 600;
   width: 150px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: #ff0000;
+    color: #fff;
+  }
+`;
+export const SearchResultsWrapper = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: ${({ theme }) => theme.border.button};
+`;
+export const NoStoresMessage = styled.p`
+  font-size: ${({ theme }) => theme.font.text};
+  width: 100%;
+  padding: 1rem;
+  color: ${({ theme }) => theme.colors.primary};
+  border: 2px dotted currentColor;
+  opacity: 0.9;
+  border-radius: ${({ theme }) => theme.border.button};
+`;
+
+export const StoreCard = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 2rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
+export const StoreLogo = styled.img`
+  width: 170px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: contain;
+`;
+
+export const StoreInfo = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: 1rem;
+`;
+
+export const StoreName = styled.h2`
+  font-size: ${({ theme }) => theme.font.subtitle};
+  color: ${({ theme }) => theme.colors.primaryDark};
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+export const StoreDescription = styled.p`
+  font-size: ${({ theme }) => theme.font.text};
+  color: #666;
+  margin-bottom: 10px;
+`;
+
+export const StoreRating = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+`;
+export const StoreCategory = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+`;
+
+export const StoreLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.primary};
+  transition: color 0.2s ease;
+`;
+export const StoreLinkButton = styled.button`
+  border: 2px solid #fe2c2c;
+  background-color: transparent;
+  border-radius: ${(p) => p.theme.border.button};
+  color: #fe2c2c;
+  font-weight: 500;
+  width: 100px;
+  padding: 0.6rem;
+  font-size: 12pt;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: #fe2c2c;
+  }
 `;
 export const GreetingsWrapper = styled.div`
   display: flex;
@@ -152,19 +248,30 @@ export const StoresCategoryWrapper = styled.div`
 export const StoresCategoryButton = styled.button`
   height: 350px;
   width: 250px;
+  font-size: 14pt;
+  font-weight: bold;
   border-radius: 5px;
-  border: 2px solid black;
+  border-color: #000;
+  border-width: 4px;
   margin: 0 auto;
   color: #eb4032;
-  background-color: transparent;
+  background-color: white;
+  margin-bottom: 30px;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    scale 0.2s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+    border-color: ${({ theme }) => theme.colors.primaryDark};
+    scale: 0.99;
+  }
 `;
 //----------------Categories---------------------
 
 //----------------Discount---------------------
 export const DiscountSection = styled.section`
   width: 100dvw;
-  height: 100dvh;
-  margin-top: 10%;
+  margin: 10% 0;
   padding: 0 4%;
 `;
 export const DiscountTitleWrapper = styled.div`
@@ -249,14 +356,15 @@ export const DiscountCardNewPrice = styled.p`
 //----------------Stores-----------------------
 export const StoresSection = styled.section`
   width: 100dvw;
-  height: 100dvh;
   display: flex;
   justify-content: center;
   padding: 0 4%;
+  margin-bottom: 5%;
   flex-flow: column nowrap;
 `;
 export const StoresTitleWrapper = styled.div`
   display: flex;
+  margin: 1rem 0;
   flex-flow: column nowrap;
 `;
 export const StoresTitleContent = styled.div`
@@ -285,11 +393,45 @@ export const StoresCardWrapper = styled.div`
 export const StoresCard = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  border: 1px solid #d9d9d9;
+  border: 4px solid #d9d9d9;
   width: 400px;
   height: 200px;
   border-radius: 12px;
   margin: 2rem auto 0 0;
+  overflow: hidden;
+  position: relative;
+  transition: 200ms ease;
+
+  &:hover {
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+  }
+  &::after {
+    content: "Ver Estabelecimento";
+    border-radius: ${({ theme }) => theme.border.button};
+    ${flexCenter}
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    height: 0;
+    backdrop-filter: blur(5px);
+    font-weight: bold;
+    transform: translateX(-50%);
+    color: transparent;
+    text-align: center;
+    transition: 0.15s ease-in-out;
+    background-color: #fff;
+    opacity: 0.9;
+
+  }
+  &:hover::after {
+    height: 45%;
+    transform: translateX(-50%);
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 14pt;
+    font-weight: 600;
+  }
 `;
 export const StoresCardLogoWrapper = styled.div`
   display: flex;
@@ -304,15 +446,18 @@ export const StoresCardNameWrapper = styled.div`
   justify-content: center;
 `;
 export const StoresCardLogo = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
 `;
 export const StoresCardName = styled.p`
   font-size: ${(p) => p.theme.font.text};
+  font-weight: 600;
 `;
 export const StoresCardCategory = styled.p`
   color: ${(p) => p.theme.colors.secondary};
   font-weight: 500;
   font-size: ${(p) => p.theme.font.text};
 `;
+
 //----------------Stores-----------------------

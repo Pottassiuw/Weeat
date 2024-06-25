@@ -1,7 +1,7 @@
 import * as $ from "./styles";
 import LogoImage from "../../assets/logo weeat.png";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authProvider";
+import { useAuth } from "../../context/authContext";
 
 interface NavBarProps {
   sticky: string;
@@ -9,7 +9,9 @@ interface NavBarProps {
 
 export default function NavBar({ sticky }: NavBarProps) {
   const navigate = useNavigate();
-  const { user, isSignedIn, logout } = useAuth();
+  const { isSignedIn } = useAuth();
+  const user = localStorage.getItem("user");
+  const store = localStorage.getItem("store");
 
   const gotoHome = () => {
     navigate("/");
@@ -19,9 +21,8 @@ export default function NavBar({ sticky }: NavBarProps) {
     navigate("/users/dashboard");
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate("/");
+  const gotoFavorites = () => {
+    navigate("/users/favorites");
   };
 
   return (
@@ -37,23 +38,39 @@ export default function NavBar({ sticky }: NavBarProps) {
         <$.LinkItem>
           <$.Links to="/stores">Estabelecimentos</$.Links>
         </$.LinkItem>
-        <$.LinkItem>
-          <$.Links to="#">Faq</$.Links>
-        </$.LinkItem>
       </$.LinksWrapper>
-      {isSignedIn ? (
+      {isSignedIn && user ? (
         <$.ButtonsWrapper>
           <$.Links to="/users/dashboard">
             <$.ButtonUser onClick={gotoDashboard}>
-              {user && user.name}
+              <$.UserIcon />
+              Usuário
             </$.ButtonUser>
           </$.Links>
-          <$.ButtonUser onClick={handleLogout}>Logout</$.ButtonUser>
+          <$.ButtonFavorite onClick={gotoFavorites}>
+            <$.FavoriteIcon />
+            Favoritos
+          </$.ButtonFavorite>
+        </$.ButtonsWrapper>
+      ) : isSignedIn && store ? (
+        <$.ButtonsWrapper>
+          <$.Links to="/stores/dashboard">
+            <$.ButtonStore>
+              <$.StoreIcon />
+              Minha Loja!
+            </$.ButtonStore>
+          </$.Links>
+          <$.Links to="/stores/products">
+            <$.ButtonStore>
+              <$.ProductIcon />
+              Cadastrar Produtos!
+            </$.ButtonStore>
+          </$.Links>
         </$.ButtonsWrapper>
       ) : (
         <$.ButtonsWrapper>
           <$.Links to="/stores/login">
-            <$.ButtonStore>Login Loja</$.ButtonStore>
+            <$.ButtonUser>Login loja</$.ButtonUser>
           </$.Links>
           <$.Links to="/users/login">
             <$.ButtonUser>Login Usuário</$.ButtonUser>

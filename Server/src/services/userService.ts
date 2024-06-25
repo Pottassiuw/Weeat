@@ -1,8 +1,7 @@
-import { PrismaClient, User, Favorite, Store } from "@prisma/client";
+import { PrismaClient, Prisma, User, Favorite, Store } from "@prisma/client";
 import bcrypt from "bcrypt";
-
+import { generateToken } from "./tokenService";
 const prisma = new PrismaClient();
-
 interface UserRegistrationData {
   id?: number;
   name: string;
@@ -10,13 +9,15 @@ interface UserRegistrationData {
   password: string;
   userAddress?: number[];
 }
-
 interface UserFunctions {
   favorites?: number[];
   productReview?: number[];
 }
 
 class UserService {
+  generateToken(type: "user" | "store", id: number): string {
+    return generateToken(type, id);
+  }
   async registerUser(userData: UserRegistrationData): Promise<User> {
     try {
       if (!userData.name || !userData.email || !userData.password) {
@@ -105,7 +106,6 @@ class UserService {
           store: { connect: { id: storeId } },
         },
       });
-
       return favorite;
     } catch (error) {
       console.error("Error favoriting store:", error);

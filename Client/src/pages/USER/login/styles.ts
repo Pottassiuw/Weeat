@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-interface HasError {
-  hasError: boolean;
-}
 export const Container = styled.div`
   display: flex;
   position: relative;
@@ -41,18 +38,6 @@ export const WrapperInput = styled.div`
   position: relative;
   width: 550px;
   margin: 0.7rem 0px;
-`;
-
-export const Input = styled.input<HasError>`
-  border: 2px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
-  width: 100%;
-  border-radius: ${(p) => p.theme.border.button};
-  padding: 13px;
-  margin-bottom: 10px;
-
-  &:focus {
-    outline: 1px solid ${(p) => (p.hasError ? "#ff2b2b" : "#D9D9D9")};
-  }
 `;
 
 export const Label = styled.label`
@@ -96,15 +81,19 @@ export const Image = styled.img`
 `;
 
 export const RegisterText = styled.h2`
-  font-size: ${(p) => p.theme.font.text};
+  font-size: ${({ theme }) => theme.font.text};
+  font-weight: 500;
   margin-top: 2rem;
-  font-weight: 400;
   color: #1c1c1c;
 `;
 export const Links = styled(Link)`
   text-decoration: none;
-  color: black;
   font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+  }
 `;
 
 export const BottomColor = styled.div`
@@ -118,8 +107,3 @@ export const BottomColor = styled.div`
   height: 10%;
 `;
 
-export const ErrorMessage = styled.p`
-  color: red;
-  font-size: 0.875rem;
-  height: 4px;
-`;

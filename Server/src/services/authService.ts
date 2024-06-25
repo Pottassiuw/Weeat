@@ -1,11 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-
+import { generateToken, verifyToken } from "./tokenService";
 const prisma = new PrismaClient();
-const SECRET_KEY = process.env.SECRET_KEY as string;
 
 class AuthService {
+  generateToken(type: "user" | "store", id: number): string {
+    return generateToken(type, id);
+  }
+
   async loginUser(
     email: string,
     password: string
@@ -38,19 +40,6 @@ class AuthService {
     const token = this.generateToken("store", store.id);
     const { password: _, ...storeWithoutPassword } = store;
     return { token, store: storeWithoutPassword };
-  }
-
-  generateToken(type: "user" | "store", id: number): string {
-    const token = jwt.sign({ type, id }, SECRET_KEY ?? "", { expiresIn: "5d" });
-    return token;
-  }
-
-  verifyToken(token: string): { type: "user" | "store"; id: number } {
-    const decodedToken = jwt.verify(token, SECRET_KEY ?? "") as {
-      type: "user" | "store";
-      id: number;
-    };
-    return decodedToken;
   }
 }
 

@@ -1,15 +1,17 @@
-import * as $ from "./styles";
+import * as $ from "./styles.ts";
 import Image from "../../../assets/login_register.png";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import type { TsignUpSchema } from "../../../@types/userform";
-import { signUpSchema } from "../../../@types/userform";
+import type { TsignUpSchema } from "../../../lib/userForms.ts";
+import { signUpSchema } from "../../../lib/userForms.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavBar from "../../../components/nav/index.tsx";
 import { FormButton } from "../../../components/FormButton/styles.ts";
-
+import Input from "../../../components/input/styles.ts";
+import ErrorMessage from "../../../components/errorMessage/styles.ts";
+import { useUser } from "../../../context/userContext.tsx";
+import { useNavigate } from "react-router-dom";
 export default function Register() {
-  const URL = "http://localhost:4040/users/register";
+  const { registerUser } = useUser();
   const {
     register,
     handleSubmit,
@@ -18,13 +20,17 @@ export default function Register() {
   } = useForm<TsignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
+  const navigate = useNavigate();
 
   const createUser = async (data: TsignUpSchema) => {
-    const response = await axios.post(URL, data);
-    const responseData = await response.data;
-
+    await registerUser({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    });
     reset();
-    return responseData;
+    navigate("/users/login");
   };
 
   return (
@@ -37,57 +43,53 @@ export default function Register() {
         <$.Form onSubmit={handleSubmit(createUser)}>
           <$.WrapperInput>
             <$.Label htmlFor="name">Usuário</$.Label>
-            <$.Input
-              hasError={!!errors.name}
+            <Input
               id="name"
               {...register("name")}
               autoComplete="username"
             />
             {errors?.name && (
-              <$.ErrorMessage>{`${errors.name?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.name?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="email">Email</$.Label>
-            <$.Input
-              hasError={!!errors.email}
+            <Input
               id="email"
               {...register("email")}
               autoComplete="email"
             />
             {errors?.email && (
-              <$.ErrorMessage>{`${errors.email?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="password">Senha</$.Label>
-            <$.Input
-              hasError={!!errors.password}
+            <Input
               id="password"
               {...register("password")}
               type="password"
             />
             {errors?.password && (
-              <$.ErrorMessage>{`${errors.password?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <$.WrapperInput>
             <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
-            <$.Input
-              hasError={!!errors.confirmPassword}
+            <Input
               id="confirmPassword"
               {...register("confirmPassword")}
               type="password"
             />
             {errors?.confirmPassword && (
-              <$.ErrorMessage>{`${errors.confirmPassword?.message}`}</$.ErrorMessage>
+              <ErrorMessage>{`${errors.confirmPassword?.message}`}</ErrorMessage>
             )}
           </$.WrapperInput>
           <FormButton disabled={isSubmitting}>
             {isSubmitting ? <p>...Loading</p> : <p>Cadastrar</p>}
           </FormButton>
           <$.RegisterText>
-            Já possuí uma conta? <$.Links to="/users/login">Logar</$.Links>
+            Já possuí uma conta? <$.Links to="/users/login">Entrar</$.Links>
           </$.RegisterText>
         </$.Form>
       </$.Wrapper>

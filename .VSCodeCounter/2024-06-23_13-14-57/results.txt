@@ -1,0 +1,122 @@
+Date : 2024-06-23 13:14:57
+Directory : c:\Users\pottassiu\Documents\Weeat\Client
+Total : 60 files,  10339 codes, 47 comments, 350 blanks, all 10736 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          3 |      5,687 |          0 |          3 |      5,690 |
+| TypeScript         |         31 |      2,322 |         22 |        230 |      2,574 |
+| TypeScript JSX     |         22 |      1,870 |         23 |        103 |      1,996 |
+| XML                |          1 |        398 |          0 |          1 |        399 |
+| Markdown           |          1 |         22 |          0 |          9 |         31 |
+| JSON with Comments |          1 |         21 |          2 |          3 |         26 |
+| HTML               |          1 |         19 |          0 |          1 |         20 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                 |         60 |     10,339 |         47 |        350 |     10,736 |
+| . (Files)                                                                         |          8 |      5,764 |          3 |         20 |      5,787 |
+| src                                                                               |         52 |      4,575 |         44 |        330 |      4,949 |
+| src (Files)                                                                       |          6 |        146 |          2 |         19 |        167 |
+| src\@types                                                                        |          2 |         57 |          1 |          4 |         62 |
+| src\assets                                                                        |          1 |        398 |          0 |          1 |        399 |
+| src\components                                                                    |         12 |        407 |          0 |         51 |        458 |
+| src\components\Category                                                           |          1 |         18 |          0 |          4 |         22 |
+| src\components\Footer                                                             |          2 |        118 |          0 |          8 |        126 |
+| src\components\FormButton                                                         |          2 |         23 |          0 |          7 |         30 |
+| src\components\MaskInput                                                          |          1 |         17 |          0 |          3 |         20 |
+| src\components\button                                                             |          2 |         23 |          0 |          7 |         30 |
+| src\components\errorMessage                                                       |          1 |          8 |          0 |          3 |         11 |
+| src\components\input                                                              |          1 |         16 |          0 |          3 |         19 |
+| src\components\nav                                                                |          2 |        184 |          0 |         16 |        200 |
+| src\context                                                                       |          4 |        315 |          1 |         26 |        342 |
+| src\helper                                                                        |          1 |          1 |          0 |          1 |          2 |
+| src\lib                                                                           |          2 |        133 |          2 |          6 |        141 |
+| src\pages                                                                         |         22 |      3,086 |         38 |        218 |      3,342 |
+| src\pages\Favorites                                                               |          2 |        222 |         12 |         23 |        257 |
+| src\pages\error                                                                   |          2 |         51 |          0 |          9 |         60 |
+| src\pages\home                                                                    |          2 |        516 |         12 |         35 |        563 |
+| src\pages\infra                                                                   |          1 |         16 |          0 |          5 |         21 |
+| src\pages\store                                                                   |          9 |      1,763 |         12 |         94 |      1,869 |
+| src\pages\store\Establishment                                                     |          2 |        294 |          3 |         35 |        332 |
+| src\pages\store\login                                                             |          2 |        214 |          0 |         17 |        231 |
+| src\pages\store\page                                                              |          2 |        487 |          8 |         21 |        516 |
+| src\pages\store\register                                                          |          3 |        768 |          1 |         21 |        790 |
+| src\pages\user                                                                    |          6 |        518 |          2 |         52 |        572 |
+| src\pages\user\login                                                              |          2 |        170 |          0 |         18 |        188 |
+| src\pages\user\register                                                           |          2 |        195 |          0 |         23 |        218 |
+| src\pages\user\settings                                                           |          2 |        153 |          2 |         11 |        166 |
+| src\styles                                                                        |          2 |         32 |          0 |          4 |         36 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                          | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\pottassiu\Documents\Weeat\Client\README.md                               | Markdown           |         22 |          0 |          9 |         31 |
+| c:\Users\pottassiu\Documents\Weeat\Client\eslint.config.ts                        | TypeScript         |         10 |          0 |          2 |         12 |
+| c:\Users\pottassiu\Documents\Weeat\Client\index.html                              | HTML               |         19 |          0 |          1 |         20 |
+| c:\Users\pottassiu\Documents\Weeat\Client\package-lock.json                       | JSON               |      5,627 |          0 |          1 |      5,628 |
+| c:\Users\pottassiu\Documents\Weeat\Client\package.json                            | JSON               |         49 |          0 |          1 |         50 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\@types\Entity.d.ts                  | TypeScript         |         28 |          1 |          3 |         32 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\@types\styled.d.ts                  | TypeScript         |         29 |          0 |          1 |         30 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\App.tsx                             | TypeScript JSX     |         26 |          0 |          2 |         28 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\assets\heroImage.svg                | XML                |        398 |          0 |          1 |        399 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\Category\styles.ts       | TypeScript         |         18 |          0 |          4 |         22 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\Footer\index.tsx         | TypeScript JSX     |         39 |          0 |          1 |         40 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\Footer\styles.ts         | TypeScript         |         79 |          0 |          7 |         86 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\FormButton\index.tsx     | TypeScript JSX     |         14 |          0 |          4 |         18 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\FormButton\styles.ts     | TypeScript         |          9 |          0 |          3 |         12 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\MaskInput\styled.ts      | TypeScript         |         17 |          0 |          3 |         20 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\button\index.tsx         | TypeScript JSX     |          9 |          0 |          4 |         13 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\button\styles.ts         | TypeScript         |         14 |          0 |          3 |         17 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\errorMessage\styles.ts   | TypeScript         |          8 |          0 |          3 |         11 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\input\styles.ts          | TypeScript         |         16 |          0 |          3 |         19 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\nav\index.tsx            | TypeScript JSX     |         73 |          0 |          7 |         80 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\components\nav\styles.ts            | TypeScript         |        111 |          0 |          9 |        120 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\context\appContextProvider.tsx      | TypeScript JSX     |         16 |          0 |          3 |         19 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\context\authContext.tsx             | TypeScript JSX     |         30 |          0 |          6 |         36 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\context\storeContext.tsx            | TypeScript JSX     |        137 |          1 |          8 |        146 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\context\userContext.tsx             | TypeScript JSX     |        132 |          0 |          9 |        141 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\firebase.ts                         | TypeScript         |         13 |          1 |          3 |         17 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\global-style.ts                     | TypeScript         |         38 |          0 |          8 |         46 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\helper\URL.ts                       | TypeScript         |          1 |          0 |          1 |          2 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\lib\storeForms.ts                   | TypeScript         |        106 |          2 |          2 |        110 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\lib\userForms.ts                    | TypeScript         |         27 |          0 |          4 |         31 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\main.tsx                            | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\Favorites\index.tsx           | TypeScript JSX     |        102 |         12 |          5 |        119 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\Favorites\styles.ts           | TypeScript         |        120 |          0 |         18 |        138 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\error\index.tsx               | TypeScript JSX     |         18 |          0 |          3 |         21 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\error\styles.ts               | TypeScript         |         33 |          0 |          6 |         39 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\home\index.tsx                | TypeScript JSX     |        241 |          7 |         14 |        262 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\home\styles.ts                | TypeScript         |        275 |          5 |         21 |        301 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\infra\userProtected.tsx       | TypeScript JSX     |         16 |          0 |          5 |         21 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\Establishment\index.tsx | TypeScript JSX     |        100 |          3 |          2 |        105 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\Establishment\styles.ts | TypeScript         |        194 |          0 |         33 |        227 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\login\index.tsx         | TypeScript JSX     |         87 |          0 |          2 |         89 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\login\styles.ts         | TypeScript         |        127 |          0 |         15 |        142 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\page\index.tsx          | TypeScript JSX     |        169 |          0 |         11 |        180 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\page\styles.ts          | TypeScript         |        318 |          8 |         10 |        336 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\register\index.tsx      | TypeScript JSX     |        311 |          0 |          1 |        312 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\register\styles.ts      | TypeScript         |        232 |          0 |         15 |        247 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\store\register\useRegister.ts | TypeScript         |        225 |          1 |          5 |        231 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\user\login\index.tsx          | TypeScript JSX     |         74 |          0 |          4 |         78 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\user\login\styles.ts          | TypeScript         |         96 |          0 |         14 |        110 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\user\register\index.tsx       | TypeScript JSX     |        101 |          0 |          3 |        104 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\user\register\styles.ts       | TypeScript         |         94 |          0 |         20 |        114 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\user\settings\index.tsx       | TypeScript JSX     |        106 |          0 |          4 |        110 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\pages\user\settings\styles.ts       | TypeScript         |         47 |          2 |          7 |         56 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\router.tsx                          | TypeScript JSX     |         60 |          0 |          3 |         63 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\styles\mixins.ts                    | TypeScript         |          6 |          0 |          2 |          8 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\styles\theme.ts                     | TypeScript         |         26 |          0 |          2 |         28 |
+| c:\Users\pottassiu\Documents\Weeat\Client\src\vite-env.d.ts                       | TypeScript         |          0 |          1 |          1 |          2 |
+| c:\Users\pottassiu\Documents\Weeat\Client\tsconfig.json                           | JSON with Comments |         21 |          2 |          3 |         26 |
+| c:\Users\pottassiu\Documents\Weeat\Client\tsconfig.node.json                      | JSON               |         11 |          0 |          1 |         12 |
+| c:\Users\pottassiu\Documents\Weeat\Client\vite.config.ts                          | TypeScript         |          5 |          1 |          2 |          8 |
+| Total                                                                             |                    |     10,339 |         47 |        350 |     10,736 |
++-----------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

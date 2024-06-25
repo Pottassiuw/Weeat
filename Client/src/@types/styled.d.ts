@@ -8,6 +8,7 @@ interface Theme {
   };
   font: {
     text: string;
+    errorMessage: string;
     subtitle: string;
     subtitleG: string;
     title: string;

@@ -71,4 +71,16 @@ export default class FavoriteController {
       res.status(500).json({ message });
     }
   }
+  async deleteByUserAndStore(req: Request, res: Response) {
+    try {
+      const favorite = await favoriteService.removeFavoritesByUserIdAndStoreId(
+        parseInt(req.params.userId),
+        parseInt(req.params.storeId)
+      );
+      res.status(201).json({ favorite });
+    } catch (error) {
+      const message = isError(error) ? error.message : "Unknown error";
+      res.status(500).json({ message });
+    }
+  }
 }
