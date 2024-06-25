@@ -6,6 +6,10 @@ import Feature1 from "../../assets/Feature1.png";
 import Feature2 from "../../assets/Feature2.png";
 import Feature3 from "../../assets/Feature3.png";
 import Footer from "../../components/Footer";
+import image_raph from "../../assets/raphao.jpg";
+import image_thigos from "../../assets/thisosf pfp.jpg";
+import image_teteu from "../../assets/teteu pfp.jpg";
+
 export default function Home() {
   return (
     <$.Container>
@@ -110,7 +114,7 @@ export default function Home() {
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
               <$.TestimonialUserIconWrapper>
-                <$.TestimonialUserIcon src="#" />
+                <$.TestimonialUserIcon src={image_thigos} />
               </$.TestimonialUserIconWrapper>
               <$.TestimonialUserReviewWrapper>
                 <$.TestimonialUserName>Thiago Batista</$.TestimonialUserName>
@@ -129,7 +133,7 @@ export default function Home() {
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
               <$.TestimonialUserIconWrapper>
-                <$.TestimonialUserIcon src="#" />
+                <$.TestimonialUserIcon src={image_raph} />
               </$.TestimonialUserIconWrapper>
               <$.TestimonialUserReviewWrapper>
                 <$.TestimonialUserName>Raphael Curini</$.TestimonialUserName>
@@ -149,7 +153,7 @@ export default function Home() {
             </$.TestimonialCard>
             <$.TestimonialUsersWrapper>
               <$.TestimonialUserIconWrapper>
-                <$.TestimonialUserIcon src="#" />
+                <$.TestimonialUserIcon src={image_teteu} />
               </$.TestimonialUserIconWrapper>
               <$.TestimonialUserReviewWrapper>
                 <$.TestimonialUserName>Matheus Reis</$.TestimonialUserName>

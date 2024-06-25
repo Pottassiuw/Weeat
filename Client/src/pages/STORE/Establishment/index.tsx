@@ -1,6 +1,5 @@
 import * as $ from "./styles";
 import NavBar from "../../../components/nav";
-import Image1 from "../../../assets/estb_image1.png";
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
