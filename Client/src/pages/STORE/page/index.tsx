@@ -179,11 +179,11 @@ export default function StorePage() {
       <$.StoresSection>
         <$.StoresTitleWrapper>
           <$.StoresTitleContent>
-            <$.StoresTitle>Melhores restaurantes da sua região</$.StoresTitle>
+            <$.StoresTitle>Nossos Restaurantes</$.StoresTitle>
             <$.StoresMapIcon />
           </$.StoresTitleContent>
           <$.StoresSubtitle>
-            Os restaurantes mais bem avaliados perto de você.
+            Os melhores restaurantes parceiros weeat!
           </$.StoresSubtitle>
         </$.StoresTitleWrapper>
         <$.StoresCardWrapper>
@@ -207,37 +207,7 @@ export default function StorePage() {
             </$.StoresCard>
           ))}
         </$.StoresCardWrapper>
-        <$.StoresTitleWrapper>
-          <$.StoresTitleContent>
-            <$.StoresTitle>Mais pedidos</$.StoresTitle>
-            <$.StoresStarIcon />
-          </$.StoresTitleContent>
-          <$.StoresSubtitle>
-            Os restaurantes mais pedidos recentemente próximos de você{" "}
-          </$.StoresSubtitle>
-        </$.StoresTitleWrapper>
-        <$.StoresCardWrapper>
-          {Allstores.map((store) => (
-            <$.StoresCard
-              key={store.id}
-              onClick={() => {
-                if (store.id !== undefined) gotoStorePage(store.id!);
-              }}
-            >
-              <$.StoresCardLogoWrapper>
-                <$.StoresCardLogo
-                  src={store.logo || "#"}
-                  alt={`${store.storeName} Logo`}
-                />
-              </$.StoresCardLogoWrapper>
-              <$.StoresCardNameWrapper>
-                <$.StoresCardName>{store.storeName}</$.StoresCardName>
-                <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
-              </$.StoresCardNameWrapper>
-            </$.StoresCard>
-          ))}
-        </$.StoresCardWrapper>
-      </$.StoresSection>
+        </$.StoresSection>
       <$.Divisor>{/* NEWSLETTER */}</$.Divisor>
       <Footer />
     </$.Container>

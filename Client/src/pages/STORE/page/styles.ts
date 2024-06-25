@@ -420,14 +420,17 @@ export const StoresCard = styled.div`
     transform: translateX(-50%);
     color: transparent;
     text-align: center;
-    transition: 200ms ease-in-out;
+    transition: 0.15s ease-in-out;
     background-color: #fff;
     opacity: 0.9;
+
   }
   &:hover::after {
-    height: 70%;
+    height: 45%;
     transform: translateX(-50%);
     color: ${({ theme }) => theme.colors.primary};
+    font-size: 14pt;
+    font-weight: 600;
   }
 `;
 export const StoresCardLogoWrapper = styled.div`
