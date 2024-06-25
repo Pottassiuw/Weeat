@@ -14,6 +14,7 @@ export default function RestaurantPage() {
   const { store } = useStore();
   const [restaurant, setRestaurant] = useState<Store>({});
   const [products, setProducts] = useState<Product[]>([]);
+  const [showContact, setShowContact] = useState(false);
   console.log(store);
   useEffect(() => {
     const getRestaurant = async () => {
@@ -63,43 +64,36 @@ export default function RestaurantPage() {
       <$.WrapperImage>
         <$.Banner src={restaurant.banner} alt="banner restaurante" />
       </$.WrapperImage>
+
       <$.InfoContainer>
-        <$.RestaurantName>
-          <h1>{restaurant.storeName}</h1>
-          <$.Rating>
-            <$.Star> ☆☆☆☆☆ </$.Star>
-            <$.RatingNumber>(4,7)</$.RatingNumber>
-          </$.Rating>
-          <$.MoreButtons>
-            <$.ContactsButton>{restaurant.contact}</$.ContactsButton>
-            {Object.keys(store).length === 0 ? (
-              <$.FavoritesButton onClick={addFavorite}>
-                Favoritar
-              </$.FavoritesButton>
-            ) : null}
-          </$.MoreButtons>
-        </$.RestaurantName>
-        <$.RestaurantDistance>
-          <$.DetailsItem>Lanches - 2,0 km</$.DetailsItem>
-        </$.RestaurantDistance>
-        <$.RestaurantTime>
-          <$.DetailsItem>Prazo estimado: 20 a 30 minutos</$.DetailsItem>
-        </$.RestaurantTime>
-        <$.ButtonsContainer>
-          <$.Button type="button">Próximo de você</$.Button>
-          <$.Button type="button">Próximo de você</$.Button>
-          <$.Button type="button">Próximo de você</$.Button>
-          <$.Button type="button">Próximo de você</$.Button>
-          <$.Button type="button">Próximo de você</$.Button>
-        </$.ButtonsContainer>
-        <$.MenuContainer>
-          <$.MenuItem type="button">Lanches</$.MenuItem>
-          <$.MenuItem type="button">Combos</$.MenuItem>
-          <$.MenuItem type="button">Fritos</$.MenuItem>
-          <$.MenuItem type="button">Tortas</$.MenuItem>
-          <$.MenuItem type="button">Refrigerantes</$.MenuItem>
-          <$.MenuItem type="button">Sobremesas</$.MenuItem>
-        </$.MenuContainer>
+        <$.ContentWrapper>
+          <$.RestaurantName>
+            <h1>{restaurant.storeName}</h1>
+            <$.Rating>
+              <$.Star> ☆☆☆☆☆ </$.Star>
+              <$.RatingNumber>(4,7)</$.RatingNumber>
+            </$.Rating>
+            <$.MoreButtons>
+              <div>
+                <$.ContactsButton
+                  onClick={() => {
+                    setShowContact(!showContact);
+                  }}
+                >
+                  {restaurant.contact}
+                </$.ContactsButton>
+                {showContact && (
+                  <$.Contact>{restaurant.commercialNumber}</$.Contact>
+                )}
+              </div>
+              {Object.keys(store).length === 0 ? (
+                <$.FavoritesButton onClick={addFavorite}>
+                  Favoritar
+                </$.FavoritesButton>
+              ) : null}
+            </$.MoreButtons>
+          </$.RestaurantName>
+        </$.ContentWrapper>
         <$.PromotionsContainer>
           <$.PromotionTitle>Lanches</$.PromotionTitle>
           <$.PromotionList>

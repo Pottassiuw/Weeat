@@ -9,8 +9,10 @@ import { OnlyStore } from "../../@types/Entity";
 const Favorites = () => {
   const { user } = useUser();
   const [stores, setStores] = useState<OnlyStore[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>("Todos"); // Estado para categoria ativa
+
   useEffect(() => {
-    const getUser = async () => {
+    const getUserFavorites = async () => {
       try {
         const res = await axios.get(Url + `favorites/user/${user.id}`);
         const data = await res.data;
@@ -21,22 +23,23 @@ const Favorites = () => {
           });
         }
       } catch (error) {
-        if (error instanceof Error) {
-          console.error("Error: ", error);
-        }
+        console.error("Error fetching user favorites: ", error);
       }
     };
-    getUser();
-  }, []);
+    getUserFavorites();
+  }, [user.id]);
+
   const removeFavorite = async (storeId: number) => {
     try {
       await axios.delete(Url + `favorites/user/${user.id}/store/${storeId}`);
       setStores((prevStores) => prevStores.filter((s) => s.id !== storeId));
     } catch (error) {
-      if (error instanceof Error) {
-        console.error("Error: ", error);
-      }
+      console.error("Error removing favorite: ", error);
     }
+  };
+
+  const filterByCategory = (category: string) => {
+    setActiveCategory(category); // Atualiza a categoria ativa
   };
 
   return (
@@ -48,42 +51,84 @@ const Favorites = () => {
           <$.Star />
         </$.FavoritesTitle>
         <$.FavoritesNav>
-          <$.FavoriteItem active>Todos</$.FavoriteItem>
-          <$.FavoriteItem>Pizzaria</$.FavoriteItem>
-          <$.FavoriteItem>Lanchonete</$.FavoriteItem>
-          <$.FavoriteItem>Restaurantes</$.FavoriteItem>
+          <$.FavoriteItem
+            active={activeCategory === "Todos"}
+            onClick={() => filterByCategory("Todos")}
+          >
+            Todos
+          </$.FavoriteItem>
+          <$.FavoriteItem
+            active={activeCategory === "Pizzaria"}
+            onClick={() => filterByCategory("Pizzaria")}
+          >
+            Pizzaria
+          </$.FavoriteItem>
+          <$.FavoriteItem
+            active={activeCategory === "Lanchonete"}
+            onClick={() => filterByCategory("Lanchonete")}
+          >
+            Lanchonete
+          </$.FavoriteItem>
+          <$.FavoriteItem
+            active={activeCategory === "Restaurante Árabe"}
+            onClick={() => filterByCategory("Restaurante Árabe")}
+          >
+            Restaurante Árabe
+          </$.FavoriteItem>
+          <$.FavoriteItem
+            active={activeCategory === "Restaurante Japonês"}
+            onClick={() => filterByCategory("Restaurante Japonês")}
+          >
+            Restaurante Japonês
+          </$.FavoriteItem>
+          <$.FavoriteItem
+            active={activeCategory === "Sobremesas"}
+            onClick={() => filterByCategory("Sobremesas")}
+          >
+            Sobremesas
+          </$.FavoriteItem>
         </$.FavoritesNav>
         <$.FavoritesList>
-          {stores.map((store) => (
-            <$.FavoriteItemCard key={store.id}>
-              <$.FavoriteImage
-                src={store.banner}
-                alt="Imagem do estabelecimento"
-              />
-              <$.FavoriteInfo>
-                <$.FavoriteTitle>{store.storeName}</$.FavoriteTitle>
-                <$.FavoriteDescription>
-                  {store.description}
-                </$.FavoriteDescription>
-                <$.FavoriteCategory>{store.category}</$.FavoriteCategory>
-                <div>
-                  <$.FavoriteLink to={`/stores/page/${store.id}`}>
-                    <$.FavoriteButton>Página</$.FavoriteButton>
-                  </$.FavoriteLink>
-                  <$.FavoriteButton
-                    onClick={() => {
-                      if (store.id !== undefined) {
-                        removeFavorite(store.id);
-                      }
-                    }}
-                  >
-                    Remover
-                  </$.FavoriteButton>
-                </div>
-              </$.FavoriteInfo>
-              <$.FavoriteHeart />
-            </$.FavoriteItemCard>
-          ))}
+          {stores.length == 0 ? (
+            <$.NoFavoriteText>
+              Sem estabelecimentos favoritados!
+            </$.NoFavoriteText>
+          ) : (
+            stores.map((store) => {
+              if (
+                activeCategory !== "Todos" &&
+                store.category !== activeCategory
+              ) {
+                return null;
+              }
+              return (
+                <$.FavoriteItemCard key={store.id}>
+                  <$.FavoriteImage
+                    src={store.banner}
+                    alt="Imagem do estabelecimento"
+                  />
+                  <$.FavoriteInfo>
+                    <$.FavoriteTitle>{store.storeName}</$.FavoriteTitle>
+                    <$.FavoriteDescription>
+                      {store.description}
+                    </$.FavoriteDescription>
+                    <$.FavoriteCategory>{store.category}</$.FavoriteCategory>
+                    <div>
+                      <$.FavoriteLink to={`/stores/page/${store.id}`}>
+                        <$.FavoriteButton>Página</$.FavoriteButton>
+                      </$.FavoriteLink>
+                      <$.FavoriteButton
+                        onClick={() => removeFavorite(store?.id!)}
+                      >
+                        Remover
+                      </$.FavoriteButton>
+                    </div>
+                  </$.FavoriteInfo>
+                  <$.FavoriteHeart />
+                </$.FavoriteItemCard>
+              );
+            })
+          )}
         </$.FavoritesList>
       </$.Container>
     </>

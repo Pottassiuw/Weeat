@@ -13,6 +13,11 @@ export const PromotionItem = styled.div`
   margin: 1rem auto;
   box-shadow: 1px 1px 3px 5px rgba(0, 0, 0, 0.2);
 `;
+export const NoProductText = styled.p`
+  text-align: center;
+  font-size: ${({ theme }) => theme.font.subtitle};
+  font-weight: 500;
+`;
 
 export const PromotionImage = styled.img`
   width: 200px;

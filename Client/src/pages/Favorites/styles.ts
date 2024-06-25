@@ -18,6 +18,15 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const NoFavoriteText = styled.p`
+  text-align: center;
+  font-size: ${({ theme }) => theme.font.subtitle};
+  font-weight: 600;
+  border: 2px dotted currentColor;
+  padding: 1rem;
+  border-radius: ${({ theme }) => theme.border.button};
+`;
+
 export const FavoritesTitle = styled.h1`
   font-size: ${({ theme }) => theme.font.title};
   font-weight: bold;

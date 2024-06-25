@@ -43,32 +43,36 @@ export default function RestaurantPage() {
       <NavBar sticky="true" />
       <$.PromotionsContainer>
         <$.PromotionTitle>Seus Produtos</$.PromotionTitle>
-        {products.map((product) => (
-          <$.PromotionItem key={product.id}>
-            <$.PromotionWrapper>
-              <$.PromotionImage src={product.photo} alt="promotion image" />
-              <$.PromotionInfo>
-                <$.PromotionName>{product.name}</$.PromotionName>
-                <$.PromotionDescription>
-                  {product.description}
-                </$.PromotionDescription>
-                <$.PromotionPrice>R$: {product.price}</$.PromotionPrice>
-              </$.PromotionInfo>
-            </$.PromotionWrapper>
-            <$.ButtonWrapper>
-              <$.RemoveButton
-                onClick={() => {
-                  if (store.id !== undefined) {
-                    deleteProduct(product.id);
-                  }
-                }}
-              >
-                <$.TrashIcon />
-                Remover
-              </$.RemoveButton>
-            </$.ButtonWrapper>
-          </$.PromotionItem>
-        ))}
+        {products.length === 0 ? (
+          <$.NoProductText>Não há produtos cadastrados</$.NoProductText>
+        ) : (
+          products.map((product) => (
+            <$.PromotionItem key={product.id}>
+              <$.PromotionWrapper>
+                <$.PromotionImage src={product.photo} alt="promotion image" />
+                <$.PromotionInfo>
+                  <$.PromotionName>{product.name}</$.PromotionName>
+                  <$.PromotionDescription>
+                    {product.description}
+                  </$.PromotionDescription>
+                  <$.PromotionPrice>R$: {product.price}</$.PromotionPrice>
+                </$.PromotionInfo>
+              </$.PromotionWrapper>
+              <$.ButtonWrapper>
+                <$.RemoveButton
+                  onClick={() => {
+                    if (store.id !== undefined) {
+                      deleteProduct(product.id);
+                    }
+                  }}
+                >
+                  <$.TrashIcon />
+                  Remover
+                </$.RemoveButton>
+              </$.ButtonWrapper>
+            </$.PromotionItem>
+          ))
+        )}
       </$.PromotionsContainer>
     </$.Screen>
   );

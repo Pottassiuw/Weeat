@@ -7,14 +7,14 @@ export const RestaurantContainer = styled.div`
 `;
 
 export const WrapperImage = styled.div`
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+  min-width: 100%;
+  height: 400px;
+  overflow: hidden;
   margin-bottom: 0.8rem;
 
   img {
     width: 100%;
-    height: 550px;
+    height: 100%;
   }
 `;
 
@@ -77,8 +77,12 @@ export const MoreButtons = styled.div`
   justify-content: inline;
   margin-bottom: 1rem;
   margin-left: 45rem;
-`;
 
+  div {
+    display: flex;
+    align-items: center;
+  }
+`;
 
 export const Button = styled.button`
   margin: 0 2rem;
@@ -99,7 +103,6 @@ export const MenuContainer = styled.div`
   margin-top: 2rem;
 `;
 
-
 export const MenuItem = styled.button`
   margin: 0 0.5rem;
   padding: 0.5rem 1.5rem;
@@ -109,7 +112,8 @@ export const MenuItem = styled.button`
   background-color: #fff;
   cursor: pointer;
   font-weight: bold;
-  transition: border 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out, scale 0.15s ease-in-out;
+  transition: border 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out, scale 0.15s ease-in-out;
 
   &:hover {
     border: solid 1px;
@@ -183,6 +187,13 @@ export const PromotionPrice = styled.span`
   color: #333;
 `;
 
+export const ContentWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const Button2 = styled.button`
   position: sticky;
   left: 100%;
@@ -211,10 +222,10 @@ export const ContactsButton = styled.button`
   height: 3.3rem;
   font-size: 16pt;
   font-weight: 600;
-  border-color: #ff0000;
+  border-color: #76e630;
   border-radius: 0.25rem;
-  color: ${({ theme }) => theme.colors.primary};
-  background-color: #fff;
+  color: #76e630;
+  background-color: transparent;
   cursor: pointer;
   transition: background-color 0.3 ease-in-out;
   width: 150px;
@@ -223,7 +234,7 @@ export const ContactsButton = styled.button`
 
   &:hover {
     color: #fff;
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: #76e630;
   }
 `;
 
@@ -234,9 +245,9 @@ export const FavoritesButton = styled.button`
   font-size: 16pt;
   height: 3.3rem;
   border-radius: 0.25rem;
-  border-color: #ff0000;
+  border-color: ${({ theme }) => theme.colors.secondary};
   background-color: #fff;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
   cursor: pointer;
   width: 150px;
   height: 60px;
@@ -244,6 +255,9 @@ export const FavoritesButton = styled.button`
 
   &:hover {
     color: #fff;
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
+`;
+export const Contact = styled.p`
+  font-size: ${({ theme }) => theme.font.text};
 `;
