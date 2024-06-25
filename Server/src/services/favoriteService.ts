@@ -12,7 +12,6 @@ class FavoriteService {
     });
     return favorite;
   }
-
   async removeFavorite(favoriteId: number): Promise<Favorite> {
     const favorite = await prisma.favorite.delete({
       where: { id: favoriteId },

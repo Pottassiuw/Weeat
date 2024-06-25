@@ -4,12 +4,14 @@ import Image1 from "../../../assets/estb_image1.png";
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import type { Store } from "../../../@types/Entity";
+import type { Product, Store } from "../../../@types/Entity";
 import { Url } from "../../../helper/URL";
+import { useUser } from "../../../context/userContext";
 export default function RestaurantPage() {
   const { id } = useParams();
+  const { user } = useUser();
   const [restaurant, setRestaurant] = useState<Store>({});
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     const getRestaurant = async () => {
       try {
@@ -33,6 +35,24 @@ export default function RestaurantPage() {
     }
   }, [products]);
 
+  const addFavorite = async () => {
+    const storeId = id;
+    try {
+      if (storeId) {
+        const newStoreId = parseInt(storeId);
+        if (!id && !user) return;
+        await axios.post(Url + "favorites/add", {
+          userId: user.id,
+          storeId: newStoreId,
+        });
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Error", error);
+      }
+    }
+  };
+
   return (
     <$.RestaurantContainer>
       <NavBar sticky="true" />
@@ -47,8 +67,10 @@ export default function RestaurantPage() {
             <$.RatingNumber>(4,7)</$.RatingNumber>
           </$.Rating>
           <$.MoreButtons>
-            <$.ContactsButton type="button">Contato</$.ContactsButton>
-            <$.FavoritesButton type="button">Favoritos</$.FavoritesButton>
+            <$.ContactsButton>{restaurant.contact}</$.ContactsButton>
+            <$.FavoritesButton onClick={addFavorite}>
+              Favoritar
+            </$.FavoritesButton>
           </$.MoreButtons>
         </$.RestaurantName>
         <$.RestaurantDistance>

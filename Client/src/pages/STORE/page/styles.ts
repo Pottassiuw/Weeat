@@ -14,6 +14,7 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   height: max-content;
+  overflow: hidden;
 `;
 // --------------------Reusable----------------------------------
 export const Divisor = styled.div`

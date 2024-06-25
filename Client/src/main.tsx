@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import AppContextProvider from "./context/appContextProvider"; // Adjust path if necessary
-import router from "./router"; // Ensure this is correctly set up
+import AppContextProvider from "./context/appContextProvider";
+import router from "./router"; 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <AppContextProvider>

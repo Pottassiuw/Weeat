@@ -166,7 +166,7 @@ export default function StorePage() {
                 <$.StoresCardName>{store.storeName}</$.StoresCardName>
                 <$.StoresCardCategory>{store.category}</$.StoresCardCategory>
               </$.StoresCardNameWrapper>
-            </$.StoresCard>          
+            </$.StoresCard>
           ))}
         </$.StoresCardWrapper>
         <$.StoresTitleWrapper>
