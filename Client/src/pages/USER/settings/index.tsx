@@ -3,13 +3,13 @@ import Input from "../../../components/input/styles";
 import { useForm } from "react-hook-form";
 import NavBar from "../../../components/nav";
 import { useState, useEffect } from "react";
-import { TsignUpSchema, signUpSchema } from "../../../lib/userForms";
+import { TUpdateSchema, updateSchema } from "../../../lib/userForms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "../../../context/userContext";
 
 export default function index() {
   const { updateUser, user, logoutUser } = useUser();
-  const [userD, setUserD] = useState<TsignUpSchema | null>(null);
+  const [userD, setUserD] = useState<TUpdateSchema | null>(null);
   const [shouldFetchUserData, setShouldFetchUserData] = useState(true);
   const {
     register,
@@ -17,8 +17,17 @@ export default function index() {
     setValue,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<TsignUpSchema>({
-    resolver: zodResolver(signUpSchema),
+  } = useForm<TUpdateSchema>({
+    resolver: zodResolver(updateSchema),
+    criteriaMode: "all",
+    mode: "all",
+    reValidateMode: "onChange",
+    defaultValues: {
+      name: user?.name || "",
+      email: user?.email || "",
+      password: "",
+      confirmPassword: "",
+    },
   });
   const fetchUserData = () => {
     const userData = localStorage.getItem("user");
@@ -40,16 +49,18 @@ export default function index() {
     }
   }, [shouldFetchUserData, setValue]);
 
-  const handleUpdate = async (user: TsignUpSchema) => {
+  const handleUpdate = async (user: Partial<TUpdateSchema>) => {
     try {
-      await updateUser({
-        name: user.name,
-        email: user.email,
-        password: user.password,
-        confirmPassword: user.confirmPassword,
-      });
-      reset();
-      setShouldFetchUserData(true);
+      if (user) {
+        await updateUser({
+          name: user.name,
+          email: user.email,
+          password: user.password,
+          confirmPassword: user.confirmPassword,
+        });
+        reset();
+        setShouldFetchUserData(true);
+      }
     } catch (error) {
       console.error("Failed to update User: ", error);
     }

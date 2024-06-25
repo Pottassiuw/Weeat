@@ -79,6 +79,7 @@ export const storeRegisterSchema = z
         }),
       category: z.string(),
       contact: z.string(),
+      commercialNumber: z.string().min(0, "Número comercial obrigatório!"),
     }),
   })
   .transform((field) => ({
@@ -105,6 +106,7 @@ export const storeRegisterSchema = z
       banner: field.storeInfo.banner,
       logo: field.storeInfo.logo,
       category: field.storeInfo.category,
+      commercialNumber: field.storeInfo.commercialNumber,
     },
   }));
 export const storeRegisterUpdateSchema = z

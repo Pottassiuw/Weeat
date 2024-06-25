@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import NavBar from "../../../../components/nav";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import type { OnlyStore } from "../../../../@types/Entity";
@@ -9,6 +9,7 @@ import { flexCenter } from "../../../../styles/mixins";
 const CategoryPage = () => {
   const { category } = useParams();
   const [stores, setStores] = useState<OnlyStore[]>([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const getCategory = async () => {
       try {
@@ -28,19 +29,29 @@ const CategoryPage = () => {
     };
     getCategory();
   }, []);
+  const gotoStorePage = (storeId: number) => {
+    if (storeId) {
+      navigate("/stores/page/" + storeId);
+    }
+  };
   return (
     <Container>
       <NavBar sticky="true" />
       <CategoryTitle>Restaurantes</CategoryTitle>
       <CategoryList>
         {stores.map((store) => (
-          <StoresCard key={store.id}>
+          <StoresCard
+            key={store.id}
+            onClick={() => {
+              if (store.id !== undefined) gotoStorePage(store.id!);
+            }}
+          >
             <StoresCardLogoWrapper>
               <StoresCardLogo src={store.logo} alt={store.name} />
             </StoresCardLogoWrapper>
 
             <StoresCardNameWrapper>
-              <StoresCardName>{store.name}</StoresCardName>
+              <StoresCardName>{store.storeName}</StoresCardName>
 
               <StoresCardCategory>{store.category}</StoresCardCategory>
             </StoresCardNameWrapper>

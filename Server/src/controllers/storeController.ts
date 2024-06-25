@@ -10,6 +10,7 @@ type TStore = {
   password: string;
   contact: string;
   banner: string;
+  commercialNumber: string;
   logo: string;
   category: string;
   createdAt?: Date;
@@ -38,6 +39,7 @@ export default class StoreController {
           contact,
           banner,
           category,
+          commercialNumber,
           logo,
         } = req.body;
 
@@ -46,6 +48,7 @@ export default class StoreController {
           storeName,
           storeNumber,
           description,
+          commercialNumber,
           email,
           password,
           contact,
@@ -71,7 +74,8 @@ export default class StoreController {
           complement,
           zipCode,
         };
-        console.log(req.body);
+        console.log("requisição: ", req.body);
+        console.log("Dados filtrados:", StoreData, AddressData);
         const store = await StoreService.registerStore(StoreData, AddressData);
         const { password: _, ...storeData } = store;
         return res.status(201).json({ storeData, AddressData });

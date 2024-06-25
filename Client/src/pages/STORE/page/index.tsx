@@ -102,14 +102,14 @@ export default function StorePage() {
           </$.StoresCategoryButton>
           <$.StoresCategoryButton
             onClick={() => {
-              navigate("category/restaurantejapones");
+              navigate("category/Restaurante Japonês");
             }}
           >
             Japonês
           </$.StoresCategoryButton>
           <$.StoresCategoryButton
             onClick={() => {
-              navigate("category/restaurantearabe");
+              navigate("category/Restaurante Árabe");
             }}
           >
             Árabe

@@ -17,6 +17,7 @@ export type Store = {
   banner?: string;
   logo?: string;
   category?: string;
+  commercialNumber?: string;
   addresses?: {
     address?: string;
     zipCode?: string;
@@ -39,6 +40,7 @@ export type OnlyStore = {
   banner?: string;
   logo?: string;
   category?: string;
+  commercialNumber?: string;
 };
 export type OnlyAddress = {
   address?: string;

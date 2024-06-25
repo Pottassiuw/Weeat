@@ -9,14 +9,14 @@ import {
 import { Url } from "../helper/URL";
 import axios from "axios";
 import type { User } from "../@types/Entity";
-import { TloginSchema, TsignUpSchema } from "../lib/userForms";
+import { TloginSchema, TsignUpSchema, TUpdateSchema } from "../lib/userForms";
 import { toast } from "react-toastify";
 import { useAuth } from "./authContext";
 type UserContextProps = {
   user: User;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
-  updateUser: (data: TsignUpSchema) => void;
+  updateUser: (data: Partial<TUpdateSchema>) => void;
   logoutUser: () => void;
 };
 
@@ -77,7 +77,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       throw error;
     }
   };
-  const updateUser = async (data: TsignUpSchema) => {
+  const updateUser = async (data: Partial<TUpdateSchema>) => {
     try {
       const user = localStorage.getItem("user");
       if (!user) {

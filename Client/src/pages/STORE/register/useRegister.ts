@@ -90,10 +90,10 @@ export const useRegister = () => {
         contact: "",
         storeName: "",
         description: "",
-        number: "",
         category: "",
         logo: "",
         banner: "",
+        commercialNumber: "",
       },
     },
   });
@@ -121,6 +121,9 @@ export const useRegister = () => {
   // ! Enviar para o backend
   const handleData: SubmitHandler<Inputs> = async (data) => {
     try {
+      toast.loading("Cadastrando dados...", {
+        closeButton: true,
+      });
       const { information, storeInfo, address } = data;
       const logo = storeInfo.logo;
       const banner = storeInfo.banner;
@@ -136,7 +139,7 @@ export const useRegister = () => {
           email: information.email,
           password: information.password,
           contact: storeInfo.contact,
-          comercialnumber: storeInfo.number,
+          commercialNumber: storeInfo.commercialNumber,
           banner: bannerUrl,
           logo: logoUrl,
           category: storeInfo.category,
@@ -151,6 +154,7 @@ export const useRegister = () => {
           },
         };
         await registerStore(store);
+        toast.dismiss();
         reset();
         navigate("/stores/login");
       }
