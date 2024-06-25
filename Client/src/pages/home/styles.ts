@@ -156,6 +156,7 @@ export const TestimonialsSection = styled.section`
   flex-flow: column nowrap;
   padding: 0px 4%;
   margin-top: 10%;
+
 `;
 export const TestimonialTitle = styled.h1`
   text-align: center;
@@ -199,8 +200,8 @@ export const TestimonialUsersWrapper = styled.div`
 `;
 export const TestimonialUserIconWrapper = styled.div``;
 export const TestimonialUserIcon = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
 `;
 export const TestimonialUserReviewWrapper = styled.div`
@@ -210,8 +211,12 @@ export const TestimonialUserReviewWrapper = styled.div`
 `;
 export const TestimonialUserName = styled.p`
   font-weight: 600;
+  font-size: 13pt;
+  margin-top: 9pt;
 `;
-export const TestimonialUserReview = styled.span``;
+export const TestimonialUserReview = styled.span`
+font-size: 13pt;
+`;
 
 // Feature Section
 
