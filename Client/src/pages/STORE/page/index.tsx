@@ -207,7 +207,7 @@ export default function StorePage() {
             </$.StoresCard>
           ))}
         </$.StoresCardWrapper>
-        </$.StoresSection>
+      </$.StoresSection>
       <$.Divisor>{/* NEWSLETTER */}</$.Divisor>
       <Footer />
     </$.Container>
