@@ -9,6 +9,7 @@ router.post("/register", controller.register);
 router.post("/login", controller.login);
 router.post("/address", authenticate, authorizeStore, controller.addAddress);
 router.get("/address/:id", authenticate, controller.getAddressById);
+router.get("/geocode/:id", authenticate, controller.getStoreCodeAddress);
 router.get("/address/store/:id", authenticate, controller.getAddressByStoreId);
 router.get("/", authenticate, controller.getStores);
 router.get("/:id", authenticate, controller.getById);

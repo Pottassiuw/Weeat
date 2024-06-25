@@ -52,6 +52,12 @@ class ProductService {
     return product;
   }
 
+  async delteProductFromStore(productId: number, storeId: number) {
+    await prisma.product.deleteMany({
+      where: { id: productId, storeId },
+    });
+  }
+
   async getAllProducts(): Promise<Product[]> {
     const products = await prisma.product.findMany();
     return products;

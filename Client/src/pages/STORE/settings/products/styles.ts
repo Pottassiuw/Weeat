@@ -1,28 +1,28 @@
 import styled from "styled-components";
+import { flexCenter } from "../../../../styles/mixins";
+import { Trash2 } from "lucide-react";
+export const Screen = styled.div``;
 
-export const Screen = styled.div`
-`;
-
-export const PromotionList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-export const PromotionItem = styled.li`
+export const PromotionItem = styled.div`
   display: flex;
   align-items: center;
   padding: 2rem;
-  border-bottom: 4px solid #ddd;
+  justify-content: space-between;
+  width: 80%;
+  height: 20%;
+  margin: 1rem auto;
+  box-shadow: 1px 1px 3px 5px rgba(0, 0, 0, 0.2);
 `;
 
 export const PromotionImage = styled.img`
-  width: 15.2rem;
-  height: 15rem;
-  border-radius: 0.5rem;
+  width: 200px;
+  height: 200px;
+  border-radius: ${({ theme }) => theme.border.images};
   margin-right: 1rem;
 `;
-
+export const PromotionWrapper = styled.div`
+  ${flexCenter}
+`;
 export const PromotionInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,18 +43,18 @@ export const PromotionPrice = styled.span`
   font-weight: bold;
   color: #333;
 `;
-
+export const ButtonWrapper = styled.div`
+  ${flexCenter}
+  gap: 40px;
+`;
 export const Button2 = styled.button`
-  position: sticky;
-  left: 100%;
+  ${flexCenter}
   border-color: ${({ theme }) => theme.colors.primary};
-  font-size: 16pt;
+  font-size: ${({ theme }) => theme.font.text};
   font-weight: 600;
-  margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
-  height: 4rem;
-  width: 10rem;
-  border-radius: 0.25rem;
+  padding: 0.6rem;
+  width: 200px;
+  border-radius: ${({ theme }) => theme.border.button};
   color: ${({ theme }) => theme.colors.primary};
   background-color: #fff;
   cursor: pointer;
@@ -65,7 +65,24 @@ export const Button2 = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
-
+export const RemoveButton = styled.button`
+  ${flexCenter}
+  color: #383838;
+  border: 2px dotted currentColor;
+  background-color: transparent;
+  border-radius: ${({ theme }) => theme.border.button};
+  padding: 0.6rem;
+  width: 150px;
+  font-size: ${({ theme }) => theme.font.text};
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  &:hover {
+    color: #fff;
+    background-color: #383838;
+  }
+`;
+export const TrashIcon = styled(Trash2)`
+  margin-right: 0.3rem;
+`;
 export const RestaurantName = styled.div`
   display: flex;
   flex-direction: inline;
@@ -84,6 +101,7 @@ export const PromotionTitle = styled.h2`
   display: flex;
   font-size: 4rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   justify-content: center;
+  border-bottom: 0.2rem solid black;
 `;

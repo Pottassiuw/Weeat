@@ -126,7 +126,7 @@ export default function StorePage() {
 
       <$.Divisor>{/* DISCOUNT */}</$.Divisor>
 
-      <$.DiscountSection>
+      {/* <$.DiscountSection>
         <$.DiscountTitleWrapper>
           <$.DiscountTitle>Produtos com DESCONTÃO!</$.DiscountTitle>
           <$.DiscountTitleIcon />
@@ -172,7 +172,7 @@ export default function StorePage() {
             </$.DiscountCardPriceWrapper>
           </$.DiscountCard>
         </$.DiscountCardWrapper>
-      </$.DiscountSection>
+      </$.DiscountSection> */}
 
       <$.Divisor>{/* NEWSLETTER */}</$.Divisor>
 

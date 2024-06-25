@@ -40,6 +40,17 @@ export default class ProductController {
       res.status(500).json({ message });
     }
   }
+  async deleteFromStore(req: Request, res: Response) {
+    try {
+      const storeId = parseInt(req.params.storeId);
+      const productId = parseInt(req.params.productId);
+      await productService.delteProductFromStore(productId, storeId);
+      res.status(204).send();
+    } catch (error) {
+      const message = isError(error) ? error.message : "Unknown error";
+      res.status(500).json({ message });
+    }
+  }
 
   async getById(req: Request, res: Response) {
     const id = parseInt(req.params.id);

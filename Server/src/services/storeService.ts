@@ -1,6 +1,8 @@
 import { PrismaClient, Store, StoreAddress } from "@prisma/client";
 import bcrypt from "bcrypt";
-
+import opencage from "opencage-api-client";
+import dotenv from "dotenv";
+dotenv.config();
 const prisma = new PrismaClient();
 
 type TStore = {
@@ -165,6 +167,33 @@ class StoreService {
       data: { ...addressData }, // spread the addressData object
     });
     return storeAddress;
+  }
+
+  async getGeocodeAddress(storeId: number) {
+    try {
+      const storeAddress = await prisma.storeAddress.findUnique({
+        where: { id: storeId },
+      });
+      if (!storeAddress) {
+        throw new Error("Store address not found");
+      }
+      let fullAddress = `${storeAddress.address} ${storeAddress.number}, ${storeAddress.neighborhood}, ${storeAddress.city}, ${storeAddress.state} ${storeAddress.zipCode}, Brazil`;
+      if (storeAddress.complement) {
+        fullAddress += ` ${storeAddress.complement}`;
+      }
+      const result = await opencage.geocode({ q: fullAddress, language: "pt" });
+      if (result.status.code === 200 && result.results.length > 0) {
+        const place = result.results[0];
+        const latitude = place.geometry.lat;
+        const longitude = place.geometry.lgn;
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        return { latitude, longitude };
+      } else {
+        console.log("No results found");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../../context/userContext";
 import { useAuth } from "../../../context/authContext";
 import type { Store } from "../../../@types/Entity";
@@ -53,6 +53,22 @@ export const usePage = () => {
       navigate("/stores/page/" + storeId);
     }
   };
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        console.log("latitude", latitude);
+        console.log("longitude", longitude);
+      });
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
   return {
     getStores,
     token,

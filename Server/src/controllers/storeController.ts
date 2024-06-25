@@ -145,6 +145,22 @@ export default class StoreController {
       }
     }
   }
+  async getStoreCodeAddress(req: Request, res: Response) {
+    try {
+      if (!req.entity) {
+        return res.status(500).json({ error: "Unauthorized" });
+      }
+      const coordinates = await StoreService.getGeocodeAddress(
+        parseInt(req.params.id)
+      );
+      res.status(201).json({ coordinates });
+    } catch (error) {
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
+    }
+  }
 
   async addAddress(req: Request, res: Response) {
     try {

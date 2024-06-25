@@ -105,7 +105,7 @@ export default function updateStore() {
           {currentStep === 1 && (
             <>
               <$.FormTexts>
-                <h1>Endereço da loja!</h1>
+                <h1>Atualizar o endereço da loja!</h1>
                 <p>Preencha as informações do seu estabelecimento</p>
               </$.FormTexts>
               <$.InputWrapper>
@@ -195,7 +195,7 @@ export default function updateStore() {
           {currentStep === 2 && (
             <>
               <$.FormTexts>
-                <h1>Dados do Estabelecimento</h1>
+                <h1>Atualizar os dados do Estabelecimento</h1>
                 <p>Preencha os dados de seu estabelecimento</p>
               </$.FormTexts>
               <$.InputWrapper>
@@ -224,7 +224,7 @@ export default function updateStore() {
                   Insira a categoria do seu Estabelecimento*
                   <p>Importante!</p>
                 </$.Label>
-                <SelectCategory>
+                <SelectCategory >
                   <option value="">...</option>
                   <option value="">Lanchonete</option>
                   <option value="">Restaurante Árabe</option>
@@ -241,14 +241,16 @@ export default function updateStore() {
                   Insira o(s) contato(s) de seu estabelecimento*
                   <p>Importante!</p>
                 </$.Label>
-                <SelectCategory multiple>
+                <SelectCategory>
                   <option value="">Whatsapp</option>
                   <option value="">Instagram</option>
                   <option value="">facebook</option>
                   <option value="">Telegram</option>
                 </SelectCategory>
               </$.InputWrapper>
-              <$.filetitletext><h1>Imagens</h1></$.filetitletext>
+              <$.filetitletext>
+                <h1>Imagens</h1>
+              </$.filetitletext>
               <$.FileInputWrapper>
                 <$.InputWrapper>
                   <p>Logo</p>

@@ -6,11 +6,15 @@ import axios from "axios";
 import type { Product, Store } from "../../../@types/Entity";
 import { Url } from "../../../helper/URL";
 import { useUser } from "../../../context/userContext";
+import { useStore } from "../../../context/storeContext";
+import { toast } from "react-toastify";
 export default function RestaurantPage() {
   const { id } = useParams();
   const { user } = useUser();
+  const { store } = useStore();
   const [restaurant, setRestaurant] = useState<Store>({});
   const [products, setProducts] = useState<Product[]>([]);
+  console.log(store);
   useEffect(() => {
     const getRestaurant = async () => {
       try {
@@ -44,6 +48,7 @@ export default function RestaurantPage() {
           userId: user.id,
           storeId: newStoreId,
         });
+        toast.success("Restaurante adicionado aos favoritos!");
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -67,9 +72,11 @@ export default function RestaurantPage() {
           </$.Rating>
           <$.MoreButtons>
             <$.ContactsButton>{restaurant.contact}</$.ContactsButton>
-            <$.FavoritesButton onClick={addFavorite}>
-              Favoritar
-            </$.FavoritesButton>
+            {Object.keys(store).length === 0 ? (
+              <$.FavoritesButton onClick={addFavorite}>
+                Favoritar
+              </$.FavoritesButton>
+            ) : null}
           </$.MoreButtons>
         </$.RestaurantName>
         <$.RestaurantDistance>
@@ -106,7 +113,6 @@ export default function RestaurantPage() {
                   </$.PromotionDescription>
                   <$.PromotionPrice>R$: {product.price}</$.PromotionPrice>
                 </$.PromotionInfo>
-                <$.Button2 type="button">Saiba mais</$.Button2>
               </$.PromotionItem>
             ))}
           </$.PromotionList>

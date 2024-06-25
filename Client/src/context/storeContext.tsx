@@ -12,7 +12,7 @@ import type { Store, OnlyStore, OnlyAddress } from "../@types/Entity";
 import { TstoreLoginSchema } from "../lib/storeForms";
 import { useAuth } from "./authContext";
 import { toast } from "react-toastify";
-import { Navigate } from "react-router-dom";
+
 type StoreContextProps = {
   store: Store;
   setStore: React.Dispatch<React.SetStateAction<Store>>;
@@ -107,7 +107,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("token");
     setIsSignedIn(false);
     toast.info("Loja deslogada!");
-    return <Navigate to="/stores/login" />;
   };
 
   const value = useMemo(
