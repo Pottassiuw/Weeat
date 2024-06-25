@@ -19,10 +19,5 @@ router.put(
   authorizeStore,
   controller.updateAddress
 );
-router.get(
-  "/category/:category",
-  authenticate,
-  authorizeStore,
-  controller.getByCategory
-);
+router.get("/category/:category", authenticate, controller.getByCategory);
 export default router;

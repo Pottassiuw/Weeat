@@ -131,11 +131,11 @@ export default class StoreController {
   }
 
   async getByCategory(req: Request, res: Response) {
+    const category = req.params.category;
     try {
       if (!req.entity) {
         return res.status(500).json({ error: "Unauthorized" });
       }
-      const { category } = req.body;
       const store = await StoreService.getStoresByCategory(category);
       res.status(201).json({ store });
     } catch (error) {

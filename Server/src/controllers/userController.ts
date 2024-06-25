@@ -50,7 +50,6 @@ export default class UserController {
         parseInt(req.params.id),
         req.body
       );
-      console.log("------>", req.body);
       res.status(200).json(user);
     } catch (error) {
       const message = isError(error) ? error.message : "Unknown error";
