@@ -10,12 +10,9 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <ToastContainer
-          position="bottom-left"
+          position="bottom-right"
           autoClose={6000}
-          hideProgressBar={false}
-          newestOnTop={false}
           closeOnClick
-          rtl={false}
           pauseOnFocusLoss
           draggable
           pauseOnHover

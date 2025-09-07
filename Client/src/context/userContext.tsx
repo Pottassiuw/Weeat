@@ -1,62 +1,48 @@
 import {
-  PropsWithChildren,
   createContext,
   useContext,
   useState,
   useMemo,
   useEffect,
+  ReactNode,
 } from "react";
-import { URL } from "../helper/URL";
+import { Url } from "../helper/URL";
 import axios from "axios";
-import type { User, Store } from "../@types/Entity";
-import { TloginSchema, TsignUpSchema } from "../@types/userForms";
+import type { User } from "../@types/Entity";
+import { TloginSchema, TsignUpSchema, TUpdateSchema } from "../lib/userForms";
 import { toast } from "react-toastify";
-import { TstoreLoginSchema } from "../@types/storeForms";
-interface AuthContextProps {
-  user: User | undefined;
-  isSignedIn: boolean;
-  token: string | undefined;
+import { useAuth } from "./authContext";
+type UserContextProps = {
+  user: User;
   loginUser: (data: TloginSchema) => void;
   registerUser: (data: TsignUpSchema) => void;
-  updateUser: (data: TsignUpSchema) => void;
+  updateUser: (data: Partial<TUpdateSchema>) => void;
   logoutUser: () => void;
-  loginStore: (data: TstoreLoginSchema) => void;
-}
+};
 
-const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
+const userContext = createContext<UserContextProps>({} as UserContextProps);
 
-type AuthProviderProps = PropsWithChildren;
-
-export default function AuthProvider({ children }: AuthProviderProps) {
+export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>({} as User);
-  const [store, setStore] = useState<Store>({} as Store);
-  //********MUDAR SE ESTIVER NA ETEC PARA ----> TRUE***********
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  //******************************************************************
-  const [token, setToken] = useState<string | undefined>(undefined);
+  const { token, setToken, isSignedIn, setIsSignedIn } = useAuth();
   const [isReady, setIsReady] = useState(false);
-
   useEffect(() => {
     const user = localStorage.getItem("user");
-    const store = localStorage.getItem("store");
     const token = localStorage.getItem("token");
     if (user && token) {
       setUser(JSON.parse(user));
       setToken(token);
       setIsSignedIn(true);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    } else if (store && token) {
-      setStore(JSON.parse(store));
-      setToken(token);
-      setIsSignedIn(true);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
     setIsReady(true);
   }, []);
+  useEffect(() => {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }, [token]);
 
   const loginUser = async (data: TloginSchema) => {
     try {
-      const res = await axios.post(URL + "users/login", data);
+      const res = await axios.post(Url + "users/login", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -68,13 +54,16 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setIsReady(true);
       }
     } catch (error: any) {
-      toast.error("Login error:", error);
-      throw error;
+      if (error instanceof Error) {
+        const message = error.message;
+        toast.error(`Login error: ${message}`);
+        throw error;
+      }
     }
   };
   const registerUser = async (data: TsignUpSchema) => {
     try {
-      const res = await axios.post(URL, data);
+      const res = await axios.post(Url + "users/register", data);
       if (res) {
         const responseData = await res.data;
         localStorage.setItem("token", responseData.token);
@@ -88,7 +77,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       throw error;
     }
   };
-  const updateUser = async (data: TsignUpSchema) => {
+  const updateUser = async (data: Partial<TUpdateSchema>) => {
     try {
       const user = localStorage.getItem("user");
       if (!user) {
@@ -97,7 +86,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       const userObj = JSON.parse(user);
       const userId = userObj.id;
       const { confirmPassword: _, ...datas } = data;
-      const res = await axios.put(URL + "users/update/" + userId, datas);
+      const res = await axios.put(Url + "users/update/" + userId, datas);
       if (res) {
         const responseData = await res.data;
         const jsonData = JSON.stringify(responseData);
@@ -120,51 +109,34 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     setUser({});
     setToken("");
     setIsSignedIn(false);
+    toast.info("Usuário deslogado!");
   };
-  const loginStore = async (data: TstoreLoginSchema) => {
-    try {
-      const res = await axios.post(URL + "stores/login", data);
-      if (res) {
-        const responseData = await res.data;
-        localStorage.setItem("token", responseData.token);
-        localStorage.setItem("store", JSON.stringify(responseData.store));
-        setToken(responseData?.token!);
-        setStore(responseData.store);
-        toast.success("Estabelecimento Logado!");
-        setIsSignedIn(true);
-        setIsReady(true);
-      }
-    } catch (error: any) {
-      toast.error("Login error:", error);
-      throw error;
-    }
-  };
+
   const value = useMemo(
     () => ({
       user,
-      isSignedIn,
       token,
       loginUser,
       registerUser,
       updateUser,
       logoutUser,
-      loginStore,
     }),
     [user, isSignedIn]
   );
 
   return (
-    <AuthContext.Provider value={value}>
+    <userContext.Provider value={value}>
       {isReady ? children : null}
-    </AuthContext.Provider>
+    </userContext.Provider>
   );
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
+export const useUser = () => {
+  const context = useContext(userContext);
 
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useUser must be used within an AuthProvider");
   }
+
   return context;
 };

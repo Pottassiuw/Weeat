@@ -12,14 +12,20 @@ class FavoriteService {
     });
     return favorite;
   }
-
   async removeFavorite(favoriteId: number): Promise<Favorite> {
     const favorite = await prisma.favorite.delete({
       where: { id: favoriteId },
     });
     return favorite;
   }
-
+  async removeFavoritesByUserIdAndStoreId(
+    userId: number,
+    storeId: number
+  ): Promise<void> {
+    await prisma.favorite.deleteMany({
+      where: { userId, storeId },
+    });
+  }
   async getFavoritesByUser(
     userId: number
   ): Promise<(Favorite & { store: Store })[]> {
@@ -31,7 +37,6 @@ class FavoriteService {
     });
     return favorites;
   }
-
   async getFavoritesByStore(
     storeId: number
   ): Promise<(Favorite & { user: User })[]> {
@@ -41,7 +46,6 @@ class FavoriteService {
     });
     return favorites;
   }
-
   async getFavorite(userId: number, storeId: number): Promise<Favorite | null> {
     const favorite = await prisma.favorite.findFirst({
       where: {
@@ -51,7 +55,6 @@ class FavoriteService {
     });
     return favorite;
   }
-
   async updateFavorite(
     favoriteId: number,
     updateData: Partial<Favorite>

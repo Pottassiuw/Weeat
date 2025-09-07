@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createGlobalStyle, styled } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -6,6 +7,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 `;
+=======
+import styled from "styled-components";
+>>>>>>> develop
 
 export const Error404Container = styled.div`
   display: flex;
@@ -17,20 +21,30 @@ export const Error404Container = styled.div`
 `;
 
 export const Title = styled.h1`
+<<<<<<< HEAD
   font-size: 36px;
   font-weight: bold;
+=======
+  font-size: 50pt;
+  font-weight: 600;
+>>>>>>> develop
   color: #333;
   text-align: center;
   margin-bottom: 20px;
 `;
 
 export const ErrorText = styled.p`
+<<<<<<< HEAD
   font-size: 18px;
+=======
+  font-size: 17pt;
+>>>>>>> develop
   color: #666;
   text-align: center;
   margin-bottom: 40px;
 `;
 
+<<<<<<< HEAD
 export const LinesContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -44,3 +58,5 @@ export const Line = styled.span`
     background-color: ${color};
   `}
 `;
+=======
+>>>>>>> develop

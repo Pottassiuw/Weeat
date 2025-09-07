@@ -5,11 +5,16 @@ import * as $ from "./styles";
 import { useForm } from "react-hook-form";
 import Input from "../../../components/input/styles";
 import FormButton from "../../../components/FormButton";
+<<<<<<< HEAD
 import {
   TstoreLoginSchema,
   storeLoginSchema,
 } from "../../../@types/storeForms";
 import { useAuth } from "../../../context/authProvider";
+=======
+import { TstoreLoginSchema, storeLoginSchema } from "../../../lib/storeForms";
+import { useStore } from "../../../context/storeContext";
+>>>>>>> develop
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMessage from "../../../components/errorMessage/styles";
 export default function LoginEstablishment() {
@@ -25,11 +30,20 @@ export default function LoginEstablishment() {
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+<<<<<<< HEAD
   const { loginStore } = useAuth();
   const navigate = useNavigate();
   const handleData = async (data: TstoreLoginSchema) => {
     loginStore({ email: data.email, password: data.password });
     reset();
+=======
+  const { loginStore } = useStore();
+  const navigate = useNavigate();
+  const handleData = async (form: TstoreLoginSchema) => {
+    await loginStore({ email: form.email, password: form.password });
+    reset();
+    navigate("/stores");
+>>>>>>> develop
   };
 
   return (
@@ -46,12 +60,19 @@ export default function LoginEstablishment() {
               <$.Label>Email</$.Label>
               <Input
                 {...register("email")}
+<<<<<<< HEAD
                 hasError={!!errors.email}
+=======
+>>>>>>> develop
                 type="text"
                 placeholder="Ex: email@email.email"
                 autoComplete="email"
               />
+<<<<<<< HEAD
               {errors?.email && (
+=======
+              {errors.email && (
+>>>>>>> develop
                 <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>
@@ -60,7 +81,10 @@ export default function LoginEstablishment() {
               <$.InputIconWrapper>
                 <Input
                   {...register("password")}
+<<<<<<< HEAD
                   hasError={!!errors.password}
+=======
+>>>>>>> develop
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Ex: 12345678"
                   autoComplete="current-password webauthn"
@@ -69,7 +93,11 @@ export default function LoginEstablishment() {
                   {passwordVisible ? <$.Eye_off /> : <$.Eye_on />}
                 </$.EyeDiv>
               </$.InputIconWrapper>
+<<<<<<< HEAD
               {errors?.password && (
+=======
+              {errors.password && (
+>>>>>>> develop
                 <ErrorMessage>{`${errors.password?.message}`}</ErrorMessage>
               )}
             </$.WrapperInput>

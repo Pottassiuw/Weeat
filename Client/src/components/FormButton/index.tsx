@@ -7,7 +7,15 @@ interface FormButtonProps
 }
 
 const FormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
+<<<<<<< HEAD
   return <$.FormButton {...props}>{children}</$.FormButton>;
+=======
+  return (
+    <$.FormButton {...props}>
+      {children}
+    </$.FormButton>
+  );
+>>>>>>> develop
 };
 
 export default FormButton;

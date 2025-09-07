@@ -1,13 +1,89 @@
 import { Request, Response } from "express";
 import AuthService from "../services/authService";
 import StoreService from "../services/storeService";
+<<<<<<< HEAD
 
+=======
+type TStore = {
+  name: string;
+  storeName: string;
+  storeNumber: string | null;
+  description: string;
+  email: string;
+  password: string;
+  contact: string;
+  banner: string;
+  commercialNumber: string;
+  logo: string;
+  category: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
+type AddressData = {
+  neighborhood: string;
+  state: string;
+  address: string;
+  city: string;
+  number: number;
+  complement: string | null;
+  zipCode: string;
+};
+>>>>>>> develop
 export default class StoreController {
   async register(req: Request, res: Response) {
     try {
-      const store = await StoreService.registerStore(req.body);
-      const { password: _, ...storeData } = store;
-      return res.status(201).json(storeData);
+      if (req.body && req.body.addresses) {
+        const {
+          name,
+          storeName,
+          storeNumber,
+          description,
+          email,
+          password,
+          contact,
+          banner,
+          category,
+          commercialNumber,
+          logo,
+        } = req.body;
+
+        const StoreData: TStore = {
+          name,
+          storeName,
+          storeNumber,
+          description,
+          commercialNumber,
+          email,
+          password,
+          contact,
+          banner,
+          logo,
+          category,
+        };
+        const {
+          neighborhood,
+          state,
+          address,
+          city,
+          number,
+          complement,
+          zipCode,
+        } = req.body.addresses;
+        const AddressData: AddressData = {
+          neighborhood,
+          state,
+          address,
+          city,
+          number,
+          complement,
+          zipCode,
+        };
+        console.log("requisição: ", req.body);
+        console.log("Dados filtrados:", StoreData, AddressData);
+        const store = await StoreService.registerStore(StoreData, AddressData);
+        const { password: _, ...storeData } = store;
+        return res.status(201).json({ storeData, AddressData });
+      }
     } catch (error) {
       if (error instanceof Error) {
         const message = error.message;
@@ -63,11 +139,11 @@ export default class StoreController {
   }
 
   async getByCategory(req: Request, res: Response) {
+    const category = req.params.category;
     try {
       if (!req.entity) {
         return res.status(500).json({ error: "Unauthorized" });
       }
-      const { category } = req.body;
       const store = await StoreService.getStoresByCategory(category);
       res.status(201).json({ store });
     } catch (error) {
@@ -75,6 +151,25 @@ export default class StoreController {
         const message = error.message;
         res.status(500).json({ message });
       }
+<<<<<<< HEAD
+=======
+    }
+  }
+  async getStoreCodeAddress(req: Request, res: Response) {
+    try {
+      if (!req.entity) {
+        return res.status(500).json({ error: "Unauthorized" });
+      }
+      const coordinates = await StoreService.getGeocodeAddress(
+        parseInt(req.params.id)
+      );
+      res.status(201).json({ coordinates });
+    } catch (error) {
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
+>>>>>>> develop
     }
   }
 
@@ -97,7 +192,7 @@ export default class StoreController {
     }
   }
 
-  async getAddress(req: Request, res: Response) {
+  async getAddressById(req: Request, res: Response) {
     try {
       if (!req.entity) {
         return res.status(500).json({ error: "Unauthorized" });
@@ -121,6 +216,45 @@ export default class StoreController {
       }
       const store = await StoreService.getAllStores();
       res.status(201).json(store);
+<<<<<<< HEAD
+=======
+    } catch (error) {
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
+    }
+  }
+
+  async getAddressByStoreId(req: Request, res: Response) {
+    try {
+      if (!req.entity) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      const store = await StoreService.getStoreAdressByStoreId(
+        parseInt(req.params.id)
+      );
+      res.status(201).json(store);
+    } catch (error) {
+      if (error instanceof Error) {
+        const message = error.message;
+        res.status(500).json({ message });
+      }
+    }
+  }
+  async updateAddress(req: Request, res: Response) {
+    try {
+      if (!req.entity) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      const addressId = req.params.id;
+      const { addressData } = req.body;
+      const store = await StoreService.updateStoreAddress(
+        parseInt(addressId),
+        addressData
+      );
+      res.status(201).json({ store });
+>>>>>>> develop
     } catch (error) {
       if (error instanceof Error) {
         const message = error.message;

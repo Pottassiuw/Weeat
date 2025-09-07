@@ -3,8 +3,6 @@ import { styled } from "styled-components";
 
 export const Footer = styled.footer`
   display: flex;
-  bottom: 0;
-  left: 0;
   width: 100%;
   background-color: #2e2e2e;
   padding: 0px 4%;
@@ -33,8 +31,8 @@ export const LogoWrapper = styled.div`
   align-items: center;
 `;
 export const Logo = styled.img`
-  width: 65px;
-  height: 65px;
+  width: 80px;
+  height: 80px;
 `;
 export const LogoTitle = styled.h1`
   font-size: ${(p) => p.theme.font.subtitleG};
@@ -55,6 +53,11 @@ export const ItensTitle = styled.h1`
 `;
 export const Links = styled(Link)`
   padding: 5px 0px;
+  transition: color 0.1s ease-in-out;
+
+  &:hover {
+    color: #fe2c2c;
+    }
 `;
 export const Copyright = styled.div`
   display: flex;
