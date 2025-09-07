@@ -1,16 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-<<<<<<< HEAD
-import Login from "./pages/USER/login";
-import UserRegister from "./pages/USER/register";
-// import StoreRegister from "./pages/STORE/register";
-import StoresPage from "./pages/STORE/page";
-import StoreLogin from "./pages/STORE/login";
-import Home from "./pages/home";
-import ProtectedRoute from "./pages/infra/userProtected";
-import UserDash from "./pages/USER/settings";
-import StoreRegister from "./pages/STORE/register"
-=======
 import Error404 from "./pages/error";
 import Login from "./pages/user/login";
 import UserRegister from "./pages/user/register";
@@ -30,7 +19,6 @@ import StoreData from "./pages/store/settings/information";
 import ProductsRegister from "./pages/store/products";
 import ProductsPage from "./pages/store/settings/products";
 import StoreCategoryPage from "./pages/store/page/category";
->>>>>>> develop
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,14 +45,9 @@ const router = createBrowserRouter([
         ),
       },
       { path: "users/register", element: <UserRegister /> },
-<<<<<<< HEAD
-      // { path: "stores/register", element: <StoreRegister /> },
-      { path: "stores/login", element: <StoreLogin /> },
-=======
 
       // *Stores Pages*
 
->>>>>>> develop
       {
         path: "stores",
         element: (

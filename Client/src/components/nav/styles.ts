@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { User } from "lucide-react";
-<<<<<<< HEAD
-=======
 import { ShoppingBasket, PackageSearch, Star } from "lucide-react";
->>>>>>> develop
 interface NavProps {
   sticky: string;
 }
@@ -157,4 +154,4 @@ export const StoreIcon = styled(ShoppingBasket)`
 export const ProductIcon = styled(PackageSearch)`
   margin-right: 5px;
 `;
-export const UserIcon = styled(User)``;
+

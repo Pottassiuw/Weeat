@@ -1,22 +1,6 @@
 import styled from "styled-components";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
-import background from "../../../assets/estb_image2.png";
-import { flexCenter } from "../../../styles/mixins";
-export const Screen = styled.div`
-  width: 100dvw;
-  height: 100dvh;
-  display: flex;
-  background-image: url(${background});
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
-`;
-=======
 import { Eye, EyeOff, Cross, ArrowLeft, ArrowRight } from "lucide-react";
 import { flexCenter } from "../../../styles/mixins";
->>>>>>> develop
 
 export const Section = styled.section`
   display: flex;
@@ -26,40 +10,6 @@ export const Section = styled.section`
   height: max-content;
 `;
 export const Container = styled.div`
-<<<<<<< HEAD
-  ${flexCenter}
-  flex-direction: column;
-  position: absolute;
-  right: 10%;
-  top: 50%;
-  width: 700px;
-  height: 700px;
-  transform: translateY(-45%);
-  background-color: #fff;
-  border-radius: 1rem;
-  overflow: hidden;
-`;
-
-export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 3rem;
-  overflow: hidden;
-`;
-export const WrapperTitle = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  padding: 0rem 1rem;
-`;
-export const Title = styled.h1`
-  font-weight: 700;
-  font-size: ${(p) => p.theme.font.title};
-  height: 25px;
-`;
-export const Subtitle = styled.h2`
-  font-size: ${(p) => p.theme.font.subtitle};
-=======
   display: flex;
   flex-flow: column wrap;
   width: inherit;
@@ -90,7 +40,6 @@ export const FormPreviewDiv = styled.div`
   p {
     font-size: ${({ theme }) => theme.font.text};
   }
->>>>>>> develop
 `;
 
 export const Form = styled.form`
@@ -101,12 +50,6 @@ export const Form = styled.form`
 `;
 export const FormTexts = styled.div`
   display: flex;
-<<<<<<< HEAD
-  flex-direction: column;
-  padding: 0.7rem 0rem;
-
-  &:nth-child(3) {
-=======
   flex-flow: column nowrap;
   h1 {
     font-size: ${({ theme }) => theme.font.subtitleG};
@@ -146,7 +89,6 @@ export const InputContentWrapper = styled.div`
   height: min-content;
   gap: 3rem;
   :nth-child(2) {
->>>>>>> develop
     margin-bottom: 1rem;
   }
 `;
@@ -203,66 +145,6 @@ export const Line = styled.div`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-<<<<<<< HEAD
-  flex-direction: column;
-`;
-
-
-export const Links = styled(Link)`
-  font-size: ${({ theme }) => theme.font.text};
-  text-decoration: none;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary};
-  transition: 200ms;
-  padding-left: 8px;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primaryDark};
-  }
-`;
-
-export const PolicyText = styled.span`
-  font-size: ${({ theme }) => theme.font.text};
-  font-weight: 500;
-  margin-top: 15px;
-`;
-
-export const PolicyText2 = styled.span`
-  font-size: ${({ theme }) => theme.font.text};
-  font-weight: 500;
-`;
-
-export const encapsular = styled.div`
-  ${flexCenter}
-  border-top: 1px solid #d9d9d9;
-  width: 100%;
-  height: 20%;
-`;
-
-export const EyeDiv = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 1%;
-
-  height: 100%;
-  width: 50px;
-  svg {
-    color: #292929;
-  }
-`;
-
-export const InputIconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-`;
-export const Eye_on = styled(Eye)`
-  width: 100%;
-`;
-export const Eye_off = styled(EyeOff)`
-  width: 100%;
-=======
   justify-content: space-between;
   margin-top: 2rem;
   width: 100%;
@@ -375,5 +257,4 @@ export const ArrowRightIcon = styled(ArrowRight)`
 export const NumberInput = styled.textarea`
 
 
->>>>>>> develop
 `;

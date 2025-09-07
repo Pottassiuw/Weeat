@@ -6,19 +6,12 @@ export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-<<<<<<< HEAD
-=======
   overflow: hidden;
->>>>>>> develop
 `;
 export const DataSection = styled.section`
   display: flex;
   width: 100vw;
-<<<<<<< HEAD
-  height: 100vh;
-=======
   height: 90vh;
->>>>>>> develop
 `;
 export const DataForm = styled.form`
   border-radius: ${({ theme }) => theme.border.wrappers};
@@ -44,12 +37,6 @@ export const DataLabel = styled.label`
 `;
 
 export const DataButtonWrapper = styled.div``;
-<<<<<<< HEAD
-export const DataButton = styled.button`
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.primary};
-  transition: 200ms;
-=======
 
 
 export const DataButton = styled.button`
@@ -64,7 +51,6 @@ export const DataButton = styled.button`
   border: none;
   width: 250px;
   transition: background-color 0.1s ease-in-out;
->>>>>>> develop
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};
@@ -76,9 +62,6 @@ export const ErrorMessage = styled.p`
   font-size: 0.875rem;
   height: 4px;
 `;
-<<<<<<< HEAD
-
-=======
 export const LogouButton = styled.button`
   margin-top: 30px;
   border: 2px solid ${({ theme }) => theme.colors.primaryDark};
@@ -95,5 +78,4 @@ export const LogouButton = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
->>>>>>> develop
 //-----------------User Settings------------------

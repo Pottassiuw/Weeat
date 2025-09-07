@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import { styled } from "styled-components";
-
-export const nalcakcasndkasdknas = styled.div``;
-=======
 import styled from "styled-components";
 
 export const RestaurantContainer = styled.div`
@@ -266,4 +261,3 @@ export const FavoritesButton = styled.button`
 export const Contact = styled.p`
   font-size: ${({ theme }) => theme.font.text};
 `;
->>>>>>> develop

@@ -16,30 +16,10 @@ export default function StorePage() {
     gotoStorePage,
   } = usePage();
   useEffect(() => {
-<<<<<<< HEAD
-    const getStores = async () => {
-      try {
-        if (user) {
-          const response = await axios.get(`${URL}stores`);
-          if (response.data && Array.isArray(response.data)) {
-            setStores(response.data);
-          } else {
-            console.error("Unexpected response data format:", response.data);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching stores:", error);
-      }
-    };
-    getStores();
-  }, [user]);
-  console.log(stores);
-=======
     getStores();
   }, [token, user]);
   const navigate = useNavigate();
 
->>>>>>> develop
   return (
     <$.Container>
       <NavBar sticky="true" />

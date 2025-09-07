@@ -1,15 +1,6 @@
 import * as $ from "./styles.ts";
 import Image from "../../../assets/login_register.png";
 import { useForm } from "react-hook-form";
-<<<<<<< HEAD
-import type { TsignUpSchema } from "../../../@types/userForms.ts";
-import { signUpSchema } from "../../../@types/userForms.ts";
-import { zodResolver } from "@hookform/resolvers/zod";
-import NavBar from "../../../components/nav/index.tsx";
-import { FormButton } from "../../../components/FormButton/styles.ts";
-import Input from "../../../components/input/styles";
-import ErrorMessage from "../../../components/errorMessage/styles.ts";
-=======
 import type { TsignUpSchema } from "../../../lib/userForms.ts";
 import { signUpSchema } from "../../../lib/userForms.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +10,6 @@ import Input from "../../../components/input/styles.ts";
 import ErrorMessage from "../../../components/errorMessage/styles.ts";
 import { useUser } from "../../../context/userContext.tsx";
 import { useNavigate } from "react-router-dom";
->>>>>>> develop
 export default function Register() {
   const { registerUser } = useUser();
   const {
@@ -54,10 +44,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="name">Usuário</$.Label>
             <Input
-<<<<<<< HEAD
-              hasError={!!errors.name}
-=======
->>>>>>> develop
               id="name"
               {...register("name")}
               autoComplete="username"
@@ -69,10 +55,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="email">Email</$.Label>
             <Input
-<<<<<<< HEAD
-              hasError={!!errors.email}
-=======
->>>>>>> develop
               id="email"
               {...register("email")}
               autoComplete="email"
@@ -84,10 +66,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="password">Senha</$.Label>
             <Input
-<<<<<<< HEAD
-              hasError={!!errors.password}
-=======
->>>>>>> develop
               id="password"
               {...register("password")}
               type="password"
@@ -99,10 +77,6 @@ export default function Register() {
           <$.WrapperInput>
             <$.Label htmlFor="confirmPassword">Confirmar senha</$.Label>
             <Input
-<<<<<<< HEAD
-              hasError={!!errors.confirmPassword}
-=======
->>>>>>> develop
               id="confirmPassword"
               {...register("confirmPassword")}
               type="password"
