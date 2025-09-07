@@ -1,9 +1,6 @@
 import { Request, Response } from "express";
 import AuthService from "../services/authService";
 import StoreService from "../services/storeService";
-<<<<<<< HEAD
-
-=======
 type TStore = {
   name: string;
   storeName: string;
@@ -28,7 +25,6 @@ type AddressData = {
   complement: string | null;
   zipCode: string;
 };
->>>>>>> develop
 export default class StoreController {
   async register(req: Request, res: Response) {
     try {
@@ -151,8 +147,6 @@ export default class StoreController {
         const message = error.message;
         res.status(500).json({ message });
       }
-<<<<<<< HEAD
-=======
     }
   }
   async getStoreCodeAddress(req: Request, res: Response) {
@@ -169,7 +163,6 @@ export default class StoreController {
         const message = error.message;
         res.status(500).json({ message });
       }
->>>>>>> develop
     }
   }
 
@@ -216,8 +209,6 @@ export default class StoreController {
       }
       const store = await StoreService.getAllStores();
       res.status(201).json(store);
-<<<<<<< HEAD
-=======
     } catch (error) {
       if (error instanceof Error) {
         const message = error.message;
@@ -254,7 +245,6 @@ export default class StoreController {
         addressData
       );
       res.status(201).json({ store });
->>>>>>> develop
     } catch (error) {
       if (error instanceof Error) {
         const message = error.message;

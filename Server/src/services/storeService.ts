@@ -22,10 +22,6 @@ type TStore = {
 type AddressData = {
   neighborhood: string;
   state: string;
-<<<<<<< HEAD
-  zip: string;
-}
-=======
   address: string;
   city: string;
   number: number;
@@ -33,7 +29,6 @@ type AddressData = {
   zipCode: string;
 };
 
->>>>>>> develop
 type StoreWithoutPassword = Omit<Store, "password">;
 
 class StoreService {
@@ -112,33 +107,22 @@ class StoreService {
     });
     return addresses;
   }
-<<<<<<< HEAD
-
-=======
   async getStoreAdressByStoreId(storeId: number): Promise<StoreAddress | null> {
     const address = await prisma.storeAddress.findFirst({
       where: { id: storeId },
     });
     return address;
   }
->>>>>>> develop
   async getAllStores(): Promise<StoreWithoutPassword[]> {
     const stores = await prisma.store.findMany({
       select: {
         id: true,
-<<<<<<< HEAD
-=======
         storeNumber: true,
->>>>>>> develop
         name: true,
         storeName: true,
         description: true,
         email: true,
-<<<<<<< HEAD
-        taxpayerRegistry: true,
-=======
         commercialNumber: true,
->>>>>>> develop
         contact: true,
         banner: true,
         logo: true,
